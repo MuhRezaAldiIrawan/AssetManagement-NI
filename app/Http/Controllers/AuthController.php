@@ -28,7 +28,7 @@ class AuthController extends Controller
     public function default()
     {
 
-        return view('layout.default');
+        return view('components.layout');
     }
 
     /**

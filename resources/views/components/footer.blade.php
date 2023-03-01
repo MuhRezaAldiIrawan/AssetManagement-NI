@@ -1,9 +1,12 @@
-<footer class="footer">
-    <div class="footer-content">
-        <p class="m-b-0">Copyright © 2019 Theme_Nate. All rights reserved.</p>
-        <span>
-            <a href="" class="text-gray m-r-15">Term &amp; Conditions</a>
-            <a href="" class="text-gray">Privacy &amp; Policy</a>
-        </span>
+<footer class="content-footer footer bg-footer-theme">
+    <div class="container-fluid d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+        <div class="mb-2 mb-md-0">
+            ©
+            <script>
+                document.write(new Date().getFullYear());
+            </script>
+            , made with ❤️ by
+            <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">Llen Developer PNUP</a>
+        </div>
     </div>
 </footer>
