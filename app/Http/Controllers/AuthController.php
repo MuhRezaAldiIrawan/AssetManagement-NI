@@ -25,6 +25,12 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
+    public function default()
+    {
+
+        return view('layout.default');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

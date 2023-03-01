@@ -13,8 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('/login', 'App\Http\Controllers\AuthController@page_login');
+Route::get('/', 'App\Http\Controllers\AuthController@page_login');
+Route::get('/default', 'App\Http\Controllers\AuthController@default');
+Route::get('/dashboard', 'App\Http\Controllers\pages@index');
+Route::get('/activity', 'App\Http\Controllers\pages@activity');
+

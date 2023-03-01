@@ -4,10 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Enlink - Admin Dashboard Template</title>
+    <title>Login Page - MUN</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="{{ asset('images/logo/favicon.png') }}">
+    <link rel="shortcut icon" href="{{ asset('images/others/mun.png') }}">
 
 
     <!-- page css -->
