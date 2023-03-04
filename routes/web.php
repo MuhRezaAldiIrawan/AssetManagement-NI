@@ -21,4 +21,5 @@ Route::get('/', 'App\Http\Controllers\AuthController@page_login');
 Route::get('/default', 'App\Http\Controllers\AuthController@default');
 Route::get('/dashboard', 'App\Http\Controllers\pages@index');
 Route::get('/activity', 'App\Http\Controllers\pages@activity');
+Route::get('/location', 'App\Http\Controllers\pages@location');
 

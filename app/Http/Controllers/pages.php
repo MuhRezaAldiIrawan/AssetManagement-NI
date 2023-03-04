@@ -15,4 +15,9 @@ class pages extends Controller
     {
         return view('pages.activity');
     }
+
+    public function location()
+    {
+        return view('pages.location');
+    }
 }
