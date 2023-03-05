@@ -17,9 +17,19 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+// Main ROUTE
 Route::get('/', 'App\Http\Controllers\AuthController@page_login');
 Route::get('/default', 'App\Http\Controllers\AuthController@default');
 Route::get('/dashboard', 'App\Http\Controllers\pages@index');
 Route::get('/activity', 'App\Http\Controllers\pages@activity');
+Route::get('/activitydetail', 'App\Http\Controllers\pages@activitydetail');
 Route::get('/location', 'App\Http\Controllers\pages@location');
+Route::get('/kategori', 'App\Http\Controllers\pages@kategori');
+Route::get('/user', 'App\Http\Controllers\pages@user');
+Route::get('/lognontol', 'App\Http\Controllers\pages@lognontol');
+Route::get('/pengembangan', 'App\Http\Controllers\pages@pengembangan');
+
+//CRUD ROUTE
+
+
 

@@ -32,25 +32,25 @@
             </a>
         </li>
         <li class="menu-item">
-            <a href="tables-basic.html" class="menu-link">
+            <a href="/kategori" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-category"></i>
                 <div data-i18n="Tables">Kategori</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="index.html" class="menu-link">
+            <a href="/lognontol" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-laptop"></i>
                 <div data-i18n="Analytics">Log Non Tol</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="index.html" class="menu-link">
+            <a href="/pengembangan" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-spa"></i>
                 <div data-i18n="Analytics">Pengembangan</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="tables-basic.html" class="menu-link">
+            <a href="user" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-group"></i>
                 <div data-i18n="Tables">User</div>
             </a>

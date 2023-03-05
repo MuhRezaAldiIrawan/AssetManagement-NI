@@ -9,12 +9,12 @@
           content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
         />
     
-        <title>Tables - Basic Tables | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+        <title>Marga utama Nusantara</title>
     
         <meta name="description" content="" />
     
         <!-- Favicon -->
-        <link rel="icon" type="image/x-icon" href="{{ asset('img/favicon/favicon.ico') }}" />
+        <link rel="icon" type="image/x-icon" href="{{ asset('img/favicon/mun.ico') }}" />
     
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -40,6 +40,25 @@
         <link rel="stylesheet" href="{{ asset('vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
         <script src="{{ asset('vendor/js/helpers.js') }}"></script>
         <script src="{{ asset('js/config.js') }}"></script>
+
+        <style>
+            .pagination{
+                display: flex;
+                justify-content: end;
+                align-items: end;
+                margin-top: 3%
+            }
+            
+            .dataTables_filter{
+                display: flex;
+                justify-content: end;
+                align-items: end;
+                margin-bottom: 1%;
+            }
+            div.dataTables_wrapper{
+                margin: 0 auto;
+            }
+        </style>
       </head>
 
 <body>
