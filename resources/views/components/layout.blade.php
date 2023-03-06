@@ -40,6 +40,8 @@
         <link rel="stylesheet" href="{{ asset('vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
         <script src="{{ asset('vendor/js/helpers.js') }}"></script>
         <script src="{{ asset('js/config.js') }}"></script>
+        <link href="{{ asset('css/mobiscroll.javascript.min.css') }}" rel="stylesheet" />
+        <script src="{{ asset('js/mobiscroll.javascript.min.js') }}"></script>
 
         <style>
             .pagination{

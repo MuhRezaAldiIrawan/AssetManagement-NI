@@ -13,7 +13,7 @@
             <div class="card-body">
                 <div class="row mb-6">
                     <div class="col-md">
-                        <div class="card mb-3">
+                        {{-- <div class="card mb-3"> --}}
                             <div class="row g-0">
                                 <div class="col-md-4">
                                     <img class="card-img card-img-left" src="{{ asset('img/elements/12.jpg') }}"
@@ -31,7 +31,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        {{-- </div> --}}
                     </div>
                     <div class="demo-inline-spacing d-flex justify-content-end ">
                         <button type="button" class="btn btn-primary m-1">

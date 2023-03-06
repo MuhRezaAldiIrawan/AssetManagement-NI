@@ -12,14 +12,24 @@ class pages extends Controller
     }
 
     //Activity Controllers
-    public function activity()
+    public function toll()
     {
-        return view('pages.activity');
+        return view('pages.activity.toll');
+    }
+
+    public function nontoll()
+    {
+        return view('pages.activity.nontoll');
+    }
+
+    public function pengembangan()
+    {
+        return view('pages.activity.pengembangan');
     }
 
     public function activitydetail()
     {
-        return view('pages.detail.activitydetail');
+        return view('pages.activity.subpages.activitydetail');
     }
 
     //End Activity Controllers
@@ -50,19 +60,7 @@ class pages extends Controller
     //End User Controllers
 
 
-    //Lognontol Controllers
-    public function lognontol()
-    {
-        return view('pages.lognontol');
-    }
-
-    //End lognontol Controllers
-
     //Pengembangan Controllers
-    public function pengembangan()
-    {
-        return view('pages.pengembangan');
-    }
 
     //End Pengembangan Controllers
     

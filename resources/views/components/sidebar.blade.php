@@ -20,10 +20,27 @@
             </a>
         </li>
         <li class="menu-item">
-            <a href="/activity" class="menu-link">
+            <a class="menu-link menu-toggle">
                 <i class=' menu-icon tf-icons bx bxs-report'></i>
-                <div data-i18n="Tables">Activity</div>
+                <div data-i18n="Layouts">Activity</div>
             </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="/toll" class="menu-link">
+                        <div data-i18n="Without menu">Toll</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="/nontoll" class="menu-link">
+                        <div data-i18n="Without navbar">Non Toll</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="/pengembangan" class="menu-link">
+                        <div data-i18n="Without navbar">Pengembangan</div>
+                    </a>
+                </li>
+            </ul>
         </li>
         <li class="menu-item">
             <a href="/location" class="menu-link">
@@ -38,22 +55,22 @@
             </a>
         </li>
         <li class="menu-item">
-            <a href="/lognontol" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-laptop"></i>
-                <div data-i18n="Analytics">Log Non Tol</div>
-            </a>
-        </li>
-        <li class="menu-item">
-            <a href="/pengembangan" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-spa"></i>
-                <div data-i18n="Analytics">Pengembangan</div>
-            </a>
-        </li>
-        <li class="menu-item">
-            <a href="user" class="menu-link">
+            <a class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-group"></i>
-                <div data-i18n="Tables">User</div>
+                <div data-i18n="Layouts">User</div>
             </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="/user" class="menu-link">
+                        <div data-i18n="Without menu">Profile</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="layouts-without-navbar.html" class="menu-link">
+                        <div data-i18n="Without navbar">All Users</div>
+                    </a>
+                </li>
+            </ul>
         </li>
         <li class="menu-header small text-uppercase"><span class="menu-header-text">End Menu</span></li>
     </ul>
