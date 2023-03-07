@@ -37,7 +37,7 @@ class pages extends Controller
     //Location Controllers
     public function location()
     {
-        return view('pages.location');
+        return view('pages.location.location');
     }
 
     //End Location Controllers
@@ -45,16 +45,21 @@ class pages extends Controller
     //Kategori Controllers
     public function kategori()
     {
-        return view('pages.kategori');
+        return view('pages.kategori.kategori');
     }
 
     //End Kategori Controllers
 
 
     //User Controllers
-    public function user()
+    public function users()
     {
-        return view('pages.user');
+        return view('pages.users.users');
+    }
+
+    public function allusers()
+    {
+        return view('pages.users.allusers');
     }
 
     //End User Controllers

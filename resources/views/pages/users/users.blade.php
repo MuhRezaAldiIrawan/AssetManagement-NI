@@ -6,8 +6,8 @@
 {{-- Content --}}
 @section('content')
     <div class="col-lg-12 mb-4 order-0">
-        <h5 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Account Settings /</span> Account<i
-                class='bx bxs-user-account m-1'></i></h5>
+        <h5 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">User /</span> Account<i
+                class='bx bx-user m-1'></i></h5>
         <div class="row">
             <div class="col-md-12">
                 <div class="card mb-4">

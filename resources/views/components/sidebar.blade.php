@@ -61,12 +61,12 @@
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="/user" class="menu-link">
+                    <a href="/users" class="menu-link">
                         <div data-i18n="Without menu">Profile</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="layouts-without-navbar.html" class="menu-link">
+                    <a href="/allusers" class="menu-link">
                         <div data-i18n="Without navbar">All Users</div>
                     </a>
                 </li>
