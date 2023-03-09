@@ -18,8 +18,8 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // Main ROUTE
-Route::get('/', 'App\Http\Controllers\AuthController@login');
-Route::get('/default', 'App\Http\Controllers\AuthController@default');
+Route::get('/', 'App\Http\Controllers\AuthController@loginview')->name('login')->middleware('guest');
+// Route::get('/default', 'App\Http\Controllers\AuthController@default');
 Route::get('/dashboard', 'App\Http\Controllers\pages@index');
 Route::get('/toll', 'App\Http\Controllers\pages@toll');
 Route::get('/nontoll', 'App\Http\Controllers\pages@nontoll');
@@ -33,7 +33,12 @@ Route::get('/pengembangan', 'App\Http\Controllers\pages@pengembangan');
 
 //End Main Route
 
-//CRUD ROUTE
+//Action Route
+Route::post('/login', 'App\Http\Controllers\AuthController@authenticate');
+Route::post('/location', 'App\Http\Controllers\pages@addlocation');
+Route::get('/location/{id}', 'App\Http\Controllers\pages@editlocation');
+Route::post('/location/update', 'App\Http\Controllers\pages@updatelocation');
+
 
 
 

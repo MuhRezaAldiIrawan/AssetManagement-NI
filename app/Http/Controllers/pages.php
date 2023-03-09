@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+use App\Models\lokasi;
 
 class pages extends Controller
 {
@@ -37,7 +40,38 @@ class pages extends Controller
     //Location Controllers
     public function location()
     {
-        return view('pages.location.location');
+        $location = DB::table('lokasi')->get();
+
+        return view('pages.location.location', ['location' => $location]);
+    }
+
+    public function addlocation(Request $request)
+    {
+        DB::table('lokasi')->insert([
+            'nama' => $request->nama,
+            'singkatan' => $request->singkatan,
+
+        ]);
+        return redirect('/location');
+    }
+
+    public function editlocation($id)
+    {
+
+        $location = DB::table('lokasi')->where('id', $id)->get();
+
+        return view('pages.location.location', ['location' => $location]);
+    }
+
+    public function updatelocation(Request $request)
+    {
+        DB::table('lokasi')->where('id', $request->id)->update([
+            'nama' => $request->nama,
+            'singkatan' => $request->singkatan,
+        ]);
+        // dd($request);
+
+        return redirect('/location');
     }
 
     //End Location Controllers
@@ -68,5 +102,5 @@ class pages extends Controller
     //Pengembangan Controllers
 
     //End Pengembangan Controllers
-    
+
 }

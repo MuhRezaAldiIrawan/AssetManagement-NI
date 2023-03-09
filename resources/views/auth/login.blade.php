@@ -19,7 +19,8 @@
 
 <body>
     <div class="app">
-        <div class="container-fluid p-h-0 p-v-20 bg full-height d-flex" style="background-image: url({{ url('img/Logo/login-3.png')}})" >
+        <div class="container-fluid p-h-0 p-v-20 bg full-height d-flex"
+            style="background-image: url({{ url('img/Logo/login-3.png') }})">
             <div class="d-flex flex-column justify-content-between w-100">
                 <div class="container d-flex h-100">
                     <div class="row align-items-center w-100">
@@ -32,23 +33,36 @@
                                     <div class="d-flex align-items-center justify-content-center m-b-30 ">
                                         <h5 class="m-b-0 font-size-13 text-muted">Selamat Datang, Silahkan Login</h5>
                                     </div>
-                                    <form>
+
+                                    @if(session()->has('loginError'))
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        {{ session('loginError') }}
+                                        {{-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> --}}
+                                      </div>
+                                    @endif
+
+                                    <form action="api/auth/login" method="POST">
+                                        @csrf
                                         <div class="form-group">
                                             <label class="font-weight-semibold" for="Email">Email:</label>
                                             <div class="input-affix">
                                                 {{-- <i class="prefix-icon far fa-envelope"></i> --}}
-                                                <input type="text" class="form-control" id="Email" placeholder="Email">
+                                                <input type="text"
+                                                    class="form-control"
+                                                    id="email" name="email" placeholder="Email" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="font-weight-semibold" for="password">Password:</label>
-                                            <a class="float-right font-size-13 text-muted" href="">Forget Password?</a>
+                                            <a class="float-right font-size-13 text-muted" href="">Forget
+                                                Password?</a>
                                             <div class="input-affix m-b-10">
                                                 {{-- <i class="prefix-icon anticon anticon-lock"></i> --}}
-                                                <input type="password" class="form-control" id="password" placeholder="Password">
+                                                <input type="password" class="form-control" id="password"
+                                                    name="password" placeholder="Password" required>
                                             </div>
                                         </div>
-                                        <button class="btn btn-primary">Sign In</button>
+                                        <button class="btn btn-primary" type="submit">Sign In</button>
                                     </form>
                                 </div>
                             </div>
@@ -59,7 +73,7 @@
         </div>
     </div>
 
-    
+
     <!-- Core Vendors JS -->
     <script src="{{ asset('js/LoginPage.vendors.min.js') }}"></script>
 

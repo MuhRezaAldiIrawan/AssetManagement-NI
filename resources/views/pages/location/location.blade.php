@@ -10,14 +10,14 @@
             <div class="row gy-3 m-1">
                 <div class="col-md-6 d-flex align-items-end">
                     <div class="demo-inline-spacing ">
-                        <h4 class="m-0">Log Activity</h4>
+                        <h4 class="m-0">Lokasi</h4>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="demo-inline-spacing">
                         <div class="d-flex justify-content-end">
                             <button type="button" class="btn btn-icon btn-primary m-1" data-bs-toggle="modal"
-                                data-bs-target="#basicModal"">
+                                data-bs-target="#basicModal">
                                 <span class="tf-icons bx bx-plus"></span>
                             </button>
                             <button type="button" class="btn btn-icon btn-secondary m-1">
@@ -33,40 +33,114 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>IdLokasi</th>
                                 <th>Nama</th>
                                 <th>Singkatan</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>10-10-10</td>
-                                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque beatae cupiditate
-                                    necessitatibus temporibus hic sit qui dolorem.</td>
-                                <td>>3</td>
+                        @foreach ($location as $l)
+                            <tbody>
+                                <td>{{ $l->id }}</td>
+                                <td>{{ $l->nama }}</td>
+                                <td>{{ $l->singkatan }}</td>
                                 <td>
-                                    <div>
-                                        <button type="button " class="btn btn-primary " aria-expanded="false"><i
-                                                class='bx bx-edit'></i>
-                                            
-                                        </button>
-                                        <button type="button" class="btn btn-danger mt-2 " aria-expanded="false"><i
-                                                class='bx bx-trash'></i>
-                                            
-                                        </button>
+                                    <button type="button" class="btn btn-icon btn-primary m-1" data-bs-toggle="modal"
+                                        data-bs-target="#basicModal{{ $l->id }}">
+                                        <span class="tf-icons bx bx-edit"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-icon btn-danger m-1" data-bs-toggle="modal"
+                                        data-bs-target="#basicModal{{ $l->id }}">
+                                        <span class="tf-icons bx bx-trash"></span>
+                                    </button>
+
+                                    <!-- Modal Edit Data -->
+                                    <div class="modal fade" id="basicModal{{ $l->id }}" tabindex="-1"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel1">Edit Data Location</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="{!! url('/location/update') !!}" method="POST">
+                                                        {{-- @method('patch') --}}
+                                                        @csrf
+                                                        <input type="hidden" name="id" value="{{ $l->id }}">
+                                                        <div class="row g-2">
+                                                            <div class="col mb-0">
+                                                                <label for="namalokasi" class="form-label">Nama</label>
+                                                                <input type="text" id="nama" name="nama"
+                                                                    class="form-control" placeholder="Nama Lokasi"
+                                                                    value="{{ $l->nama }}" required />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row g-2">
+                                                            <div class="col mb-0">
+                                                                <label for="singkatan"
+                                                                    class="form-label mt-3">Singkatan</label>
+                                                                <input type="text" id="singkatan" name="singkatan"
+                                                                    class="form-control" placeholder="Singkatan Nama Lokasi"
+                                                                    value="{{ $l->singkatan }}" required />
+                                                            </div>
+                                                        </div>
+                                                        <button type="submit" class="btn btn-primary mt-3">Update
+                                                            Data</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Modal Delete Data -->
+                                    <div class="modal fade" id="basicModaldelete" tabindex="-1" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel1">Delete Data Location
+                                                    </h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="{!! url('/location') !!}" method="POST">
+                                                        @csrf
+                                                        <div class="row g-2">
+                                                            <div class="col mb-0">
+                                                                <label for="namalokasi" class="form-label">Nama</label>
+                                                                <input type="text" id="nama" name="nama"
+                                                                    class="form-control" placeholder="Nama Lokasi"
+                                                                    value="{{ $l->nama }}" required />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row g-2">
+                                                            <div class="col mb-0">
+                                                                <label for="singkatan"
+                                                                    class="form-label mt-3">Singkatan</label>
+                                                                <input type="text" id="singkatan" name="singkatan"
+                                                                    class="form-control"
+                                                                    placeholder="Singkatan Nama Lokasi"
+                                                                    value="{{ $l->singkatan }}" required />
+                                                            </div>
+                                                        </div>
+                                                        <button type="submit"
+                                                            class="btn btn-primary mt-3">Delete</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </td>
-                            </tr>
-                        </tbody>
+                            </tbody>
+                        @endforeach
                     </table>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal Add Data -->
     <div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -75,34 +149,25 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="row g-2">
-                        <div class="col mb-0">
-                            <label for="emailBasic" class="form-label">ID</label>
-                            <input type="text" id="emailBasic" class="form-control" placeholder="Id Lokasi" />
+                    <form action="{!! url('/location') !!}" method="POST">
+                        @csrf
+                        <div class="row g-2">
+                            <div class="col mb-0">
+                                <label for="namalokasi" class="form-label">Nama</label>
+                                <input type="text" id="nama" name="nama" class="form-control"
+                                    placeholder="Nama Lokasi" required />
+                            </div>
                         </div>
-                        <div class="col mb-0">
-                            <label for="dobBasic" class="form-label">Nama</label>
-                            <input type="text" id="dobBasic" class="form-control" placeholder="Nama Lokasi" />
+                        <div class="row g-2">
+                            <div class="col mb-0">
+                                <label for="singkatan" class="form-label mt-3">Singkatan</label>
+                                <input type="text" id="singkatan" name="singkatan" class="form-control"
+                                    placeholder="Singkatan Nama Lokasi" required />
+                            </div>
                         </div>
-                    </div>
-                    <div class="row g-2">
-                        <div class="col mb-0">
-                            <label for="dobBasic" class="form-label mt-3">Lokasi</label>
-                            <input type="text" id="dobBasic" class="form-control" placeholder="Lokasi" />
-                        </div>
-                        <div class="col mb-0">
-                            <label for="emailBasic" class="form-label mt-3">Singkatan</label>
-                            <input type="text" id="emailBasic" class="form-control"
-                                placeholder="Singkatan Nama Lokasi" />
-                        </div>
-
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                        Close
-                    </button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="submit" class="btn btn-primary mt-3">add
+                            Data</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -127,6 +192,16 @@
                 // paginate: true,
                 // scrollY: true,
                 // responsive: true,
+                // processing: true,
+                // ajax: {
+                //     'url':'/location',
+                //     'type': 'GET'
+                // },
+                // columns: [
+                //     {data: 'id', name: 'id'},
+                //     {data: 'nama', name: 'nama'},
+                //     {data: 'singkatan', name: 'singkatan'},
+                // ]
             });
         });
     </script>

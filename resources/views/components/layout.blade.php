@@ -60,6 +60,19 @@
             div.dataTables_wrapper{
                 margin: 0 auto;
             }
+            .sorting .sorting_desc{
+                display: flex;
+                justify-content: center;
+                text-align: center;
+            }
+            .dataTables_scrollHead{
+                display: flex;
+                justify-content: center;
+                text-align: center;
+            }
+            .dataTables_scrollHeadInner{
+                color: steelblue
+            }
         </style>
       </head>
 <body>
