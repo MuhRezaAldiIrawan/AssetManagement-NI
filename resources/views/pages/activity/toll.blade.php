@@ -368,4 +368,5 @@
             });
         });
     </script>
+    
 @endsection

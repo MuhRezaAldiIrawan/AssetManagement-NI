@@ -62,7 +62,15 @@
                                                     name="password" placeholder="Password" required>
                                             </div>
                                         </div>
-                                        <button class="btn btn-primary" type="submit">Sign In</button>
+                                        <div class="form-group">
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <span class="font-size-13 text-muted">
+                                                    Don't have an account? 
+                                                    <a class="small" href="/register"> Signup</a>
+                                                </span>
+                                                <button class="btn btn-primary">Sign In</button>
+                                            </div>
+                                        </div>
                                     </form>
                                 </div>
                             </div>

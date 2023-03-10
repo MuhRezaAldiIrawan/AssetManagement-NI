@@ -10,14 +10,14 @@
             <div class="row gy-3 m-1">
                 <div class="col-md-6 d-flex align-items-end">
                     <div class="demo-inline-spacing ">
-                        <h4 class="m-0">Log Activity</h4>
+                        <h4 class="m-0">Kategori</h4>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="demo-inline-spacing">
                         <div class="d-flex justify-content-end">
                             <button type="button" class="btn btn-icon btn-primary m-1" data-bs-toggle="modal"
-                                data-bs-target="#basicModal"">
+                                data-bs-target="#basicModal">
                                 <span class="tf-icons bx bx-plus"></span>
                             </button>
                             <button type="button" class="btn btn-icon btn-secondary m-1">
@@ -28,43 +28,66 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="text-wrap">
-                    <table class="table table-bordered table-striped nowrap table-hover display" id="myTable">
+                <div class="table-responsive text-wrap">
+                    <table class="table table-bordered table-striped  table-hover">
                         <thead>
                             <tr>
-                                <th>No</th>
-                                <th>IdKategori</th>
-                                <th>Jenis Kategori</th>
-                                <th>Action</th>
+                                <th class="text-center" width="50px">No</th>
+                                <th class="text-center">Nama</th>
+                                <th class="text-center"width="200px">Action</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>10-10-10</td>
-                                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque beatae cupiditate
-                                    necessitatibus temporibus hic sit qui dolorem.</td>
-                                <td>
-                                    <div>
-                                        <button type="button " class="btn btn-primary " aria-expanded="false"><i
-                                                class='bx bx-edit'></i>
-                                            
-                                        </button>
-                                        <button type="button" class="btn btn-danger mt-2 " aria-expanded="false"><i
-                                                class='bx bx-trash'></i>
-                                            
-                                        </button>
+                        @foreach ($kategori as $l)
+                            <tbody>
+                                <td>{{ $l->id }}</td>
+                                <td>{{ $l->nama }}</td>
+                                <td class="d-flex justify-content-center align-items-center">
+                                    <button type="button" class="btn btn-icon btn-primary m-2" data-bs-toggle="modal"
+                                        data-bs-target="#basicModal{{ $l->id }}">
+                                        <span class="tf-icons bx bx-edit"></span>
+                                    </button>
+                                    <a class="btn btn-icon btn-danger m-1" href="/kategori/delete/{{ $l->id }}"><span class="tf-icons bx bx-trash"></span></a>
+
+                                    <!-- Edit Modal --> 
+                                    <div class="modal fade" id="basicModal{{ $l->id }}" tabindex="-1"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel1">Edit Data Location</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="{!! url('/kategori/update') !!}" method="POST">
+                                                        {{-- @method('patch') --}}
+                                                        @csrf
+                                                        <input type="hidden" name="id" value="{{ $l->id }}">
+                                                        <div class="row g-2">
+                                                            <div class="col mb-0">
+                                                                <label for="namalokasi" class="form-label">Nama</label>
+                                                                <input type="text" id="nama" name="nama"
+                                                                    class="form-control" placeholder="Nama Lokasi"
+                                                                    value="{{ $l->nama }}" required />
+                                                            </div>
+                                                        </div>
+                                                        <button type="submit" class="btn btn-primary mt-3">Update
+                                                            Data</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </td>
-                            </tr>
-                        </tbody>
+                            </tbody>
+                        @endforeach
                     </table>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal Add Data -->
     <div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -73,47 +96,21 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="row g-2">
-                        <div class="col mb-0">
-                            <label for="emailBasic" class="form-label">ID</label>
-                            <input type="text" id="emailBasic" class="form-control" placeholder="Id Lokasi" />
+                    <form action="{!! url('/kategori') !!}" method="POST">
+                        @csrf
+                        <div class="row g-2">
+                            <div class="col mb-0">
+                                <label for="namalokasi" class="form-label">Nama Kategori</label>
+                                <input type="text" id="nama" name="nama" class="form-control"
+                                    placeholder="Nama Kategori" required />
+                            </div>
                         </div>
-                        <div class="col mb-0">
-                            <label for="dobBasic" class="form-label">Jenis Kategori</label>
-                            <input type="text" id="dobBasic" class="form-control" placeholder="Nama Lokasi" />
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                        Close
-                    </button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="submit" class="btn btn-primary mt-3">add
+                            Data</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 @endsection
-@section('script')
-    <script>
-        $(document).ready(function() {
-            $('#myTable').DataTable({
-                // scrollX: true
-                scrollY: 400,
-                // deferRender: true,
-                // responsive: true,
-                // fixedHeader: true,
-                // colReorder: true,
-                // dom: 'Bfrtip',
-                // autoFill: true
-                // buttons: [
-                //     'copy', 'excel', 'pdf'
-                // ]
-                // rowReorder: true,
-                // paginate: true,
-                // scrollY: true,
-                // responsive: true,
-            });
-        });
-    </script>
-@endsection
+

@@ -35,9 +35,19 @@ Route::get('/pengembangan', 'App\Http\Controllers\pages@pengembangan');
 
 //Action Route
 Route::post('/login', 'App\Http\Controllers\AuthController@authenticate');
+Route::get('/register', 'App\Http\Controllers\AuthController@registerview');
+
+//Location
 Route::post('/location', 'App\Http\Controllers\pages@addlocation');
 Route::get('/location/{id}', 'App\Http\Controllers\pages@editlocation');
 Route::post('/location/update', 'App\Http\Controllers\pages@updatelocation');
+Route::get('/location/delete/{id}', 'App\Http\Controllers\pages@deletelocation');
+
+//Kategori
+Route::post('/kategori', 'App\Http\Controllers\pages@addkategori');
+Route::get('/kategori/{id}', 'App\Http\Controllers\pages@editkategori');
+Route::post('/kategori/update', 'App\Http\Controllers\pages@updatekategori');
+Route::get('/kategori/delete/{id}', 'App\Http\Controllers\pages@deletekategori');
 
 
 

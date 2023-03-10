@@ -28,14 +28,14 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="text-wrap">
-                    <table class="table table-bordered table-striped nowrap table-hover display" id="myTable">
+                <div class="table-responsive text-wrap">
+                    <table class="table table-bordered table-striped  table-hover">
                         <thead>
                             <tr>
-                                <th>No</th>
-                                <th>Nama</th>
-                                <th>Singkatan</th>
-                                <th>Action</th>
+                                <th class="text-center" width="50px">No</th>
+                                <th class="text-center">Nama</th>
+                                <th class="text-center">Singkatan</th>
+                                <th class="text-center"width="150px">Action</th>
                             </tr>
                         </thead>
                         @foreach ($location as $l)
@@ -48,12 +48,9 @@
                                         data-bs-target="#basicModal{{ $l->id }}">
                                         <span class="tf-icons bx bx-edit"></span>
                                     </button>
-                                    <button type="button" class="btn btn-icon btn-danger m-1" data-bs-toggle="modal"
-                                        data-bs-target="#basicModal{{ $l->id }}">
-                                        <span class="tf-icons bx bx-trash"></span>
-                                    </button>
+                                    <a class="btn btn-icon btn-danger m-1" href="/location/delete/{{ $l->id }}"><span class="tf-icons bx bx-trash"></span></a>
 
-                                    <!-- Modal Edit Data -->
+                                    <!-- Edit Modal --> 
                                     <div class="modal fade" id="basicModal{{ $l->id }}" tabindex="-1"
                                         aria-hidden="true">
                                         <div class="modal-dialog" role="document">
@@ -87,45 +84,6 @@
                                                         </div>
                                                         <button type="submit" class="btn btn-primary mt-3">Update
                                                             Data</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Modal Delete Data -->
-                                    <div class="modal fade" id="basicModaldelete" tabindex="-1" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel1">Delete Data Location
-                                                    </h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form action="{!! url('/location') !!}" method="POST">
-                                                        @csrf
-                                                        <div class="row g-2">
-                                                            <div class="col mb-0">
-                                                                <label for="namalokasi" class="form-label">Nama</label>
-                                                                <input type="text" id="nama" name="nama"
-                                                                    class="form-control" placeholder="Nama Lokasi"
-                                                                    value="{{ $l->nama }}" required />
-                                                            </div>
-                                                        </div>
-                                                        <div class="row g-2">
-                                                            <div class="col mb-0">
-                                                                <label for="singkatan"
-                                                                    class="form-label mt-3">Singkatan</label>
-                                                                <input type="text" id="singkatan" name="singkatan"
-                                                                    class="form-control"
-                                                                    placeholder="Singkatan Nama Lokasi"
-                                                                    value="{{ $l->singkatan }}" required />
-                                                            </div>
-                                                        </div>
-                                                        <button type="submit"
-                                                            class="btn btn-primary mt-3">Delete</button>
                                                     </form>
                                                 </div>
                                             </div>
@@ -173,36 +131,4 @@
         </div>
     </div>
 @endsection
-@section('script')
-    <script>
-        $(document).ready(function() {
-            $('#myTable').DataTable({
-                // scrollX: true
-                scrollY: 400,
-                // deferRender: true,
-                // responsive: true,
-                // fixedHeader: true,
-                // colReorder: true,
-                // dom: 'Bfrtip',
-                // autoFill: true
-                // buttons: [
-                //     'copy', 'excel', 'pdf'
-                // ]
-                // rowReorder: true,
-                // paginate: true,
-                // scrollY: true,
-                // responsive: true,
-                // processing: true,
-                // ajax: {
-                //     'url':'/location',
-                //     'type': 'GET'
-                // },
-                // columns: [
-                //     {data: 'id', name: 'id'},
-                //     {data: 'nama', name: 'nama'},
-                //     {data: 'singkatan', name: 'singkatan'},
-                // ]
-            });
-        });
-    </script>
-@endsection
+
