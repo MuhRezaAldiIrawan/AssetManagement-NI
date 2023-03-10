@@ -7,11 +7,14 @@ use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
 use App\Models\lokasi;
+use App\Models\User;
+
 
 class pages extends Controller
 {
     public function index()
     {
+
         return view('pages.dashboard');
     }
 
@@ -142,7 +145,9 @@ class pages extends Controller
 
     public function allusers()
     {
-        return view('pages.users.allusers');
+        $allusers = DB::table('users')->get();
+        // dd($allusers);
+        return view('pages.users.allusers', ['allusers' => $allusers]);
     }
 
     //End User Controllers

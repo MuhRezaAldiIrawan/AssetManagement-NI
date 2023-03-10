@@ -36,6 +36,7 @@ Route::get('/pengembangan', 'App\Http\Controllers\pages@pengembangan');
 //Action Route
 Route::post('/login', 'App\Http\Controllers\AuthController@authenticate');
 Route::get('/register', 'App\Http\Controllers\AuthController@registerview');
+Route::post('/register', 'App\Http\Controllers\AuthController@store');
 
 //Location
 Route::post('/location', 'App\Http\Controllers\pages@addlocation');

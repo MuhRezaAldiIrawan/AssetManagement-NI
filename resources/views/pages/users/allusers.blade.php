@@ -38,13 +38,31 @@
                                 <th class="text-center">Nama</th>
                                 <th class="text-center">Email</th>
                                 <th class="text-center">Jabatan</th>
-                                <th class="text-center">Foto</th>
                                 <th class="text-center">Level</th>
+                                <th class="text-center">Foto</th>
                                 <th class="text-center">Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
-                        </tbody>
+                        @foreach ($allusers as $l)
+                            <tbody>
+                                <td>{{ $l->id }}</td>
+                                <td>{{ $l->nama }}</td>
+                                <td>{{ $l->email }}</td>
+                                <td>{{ $l->jabatan }}</td>
+                                <td>{{ $l->level }}</td>
+                                <td>{{ $l->foto }}</td>
+                                <td>
+                                    <button type="button" class="btn btn-icon btn-primary m-1" data-bs-toggle="modal"
+                                        data-bs-target="#basicModal{{ $l->id }}">
+                                        <span class="tf-icons bx bx-edit"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-icon btn-primary m-1" data-bs-toggle="modal"
+                                        data-bs-target="#basicModal{{ $l->id }}">
+                                        <span class="tf-icons bx bx-edit"></span>
+                                    </button>
+                                </td>
+                            </tbody>
+                        @endforeach
                     </table>
                 </div>
             </div>
@@ -60,7 +78,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form  action="{!! url('/alluser') !!}" method="POST" enctype="multipart/form-data">
+                    <form action="{!! url('/alluser') !!}" method="POST" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label class="form-label" for="basic-icon-default-fullname">Nama</label>
                             <div class="input-group input-group-merge">
@@ -106,8 +124,7 @@
                         <div class="mb-3">
                             <label class="form-label" for="basic-icon-default-message">Foto</label>
                             <div class="input-group input-group-merge">
-                                <span class="input-group-text"><i
-                                        class="bx bx-comment"></i></span>
+                                <span class="input-group-text"><i class="bx bx-comment"></i></span>
                                 <input id="foto" name="foto" type="file" class="form-control"
                                     placeholder="Hi, Do you have a moment to talk Joe?" type="file"></input>
                             </div>
@@ -115,10 +132,10 @@
                         <div class="mb-3" hidden>
                             <label class="form-label" for="basic-icon-default-message">Level</label>
                             <div class="input-group input-group-merge">
-                                <span class="input-group-text"><i
-                                        class="bx bx-comment"></i></span>
+                                <span class="input-group-text"><i class="bx bx-comment"></i></span>
                                 <input id="foto" name="foto" class="form-control"
-                                    placeholder="Hi, Do you have a moment to talk Joe?" type="text" value="1"></input>
+                                    placeholder="Hi, Do you have a moment to talk Joe?" type="text"
+                                    value="1"></input>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Send</button>

@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Contracts\Auth\Factory;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
+use Alert;
 
 
 class AuthController extends Controller
@@ -24,76 +26,66 @@ class AuthController extends Controller
      */
 
 
-    public function _construct()
+    public function authenticate(Request $request)
     {
-        $this -> middleware('auth:api', ['except' => ['login','register']]);
+        $login = $request->validate([
+            'email' => 'required',
+            'password' => 'required'
+        ]);
+
+        if(Auth::attempt($login)){
+            $request->session()->regenerate();
+            return redirect()->intended('/dashboard');
+        }
+        return back()->with('loginError', 'Login Failed');
+
     }
 
     // public function login(Request $request)
     // {
-    //     return view('auth.login');
-    // }
-
-    // public function authenticate(Request $request)
-    // {
-    //     $login = $request->validate([
-    //         'email' => 'required',
-    //         'password' => 'required'
+    //     $validator = Validator::make($request->all(),[
+    //         'email' => 'required|string|email',
+    //         'password' => 'required|string|min:6',
     //     ]);
-
-    //     if(Auth::attempt($login)){
-    //         $request->session()->regenerate();
-    //         return redirect()->intended('/toll');
+    //     if ($validator->fails()){
+    //         return back()->with('LoginError', 'Login Failed');
     //     }
-    //     return back()->with('loginError', 'Login Failed');
-
+    //     if(!$token=auth()->attempt($validator->validated())){
+    //         return back()->with('LoginError', 'Login Failed');
+    //     }
+    //     return redirect()->intended('/dashboard');
+    //     return $this->createNewToken($token);
     // }
 
-    public function login(Request $request)
-    {
-        $validator = Validator::make($request->all(),[
-            'email' => 'required|string|email',
-            'password' => 'required|string|min:6',
-        ]);
-        if ($validator->fails()){
-            return back()->with('LoginError', 'Login Failed');
-        }
-        if(!$token=auth()->attempt($validator->validated())){
-            return back()->with('LoginError', 'Login Failed');
-        }
-        return redirect()->intended('/dashboard');
-        return $this->createNewToken($token);
-    }
+    // public function createNewToken($token){
+    //     return response()->json([
+    //         'access_token' => $token,
+    //         'token_type' => 'bearer',
+    //         'expires_in' => auth()->Factory()->getTTL()*60,
+    //         'user' => auth()->user()
+    //     ]);
+    // }
 
-    public function createNewToken($token){
-        return response()->json([
-            'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => auth()->Factory()->getTTL()*60,
-            'user' => auth()->user()
-        ]);
-    }
+    // // return view('auth.login');
+    // public function register(Request $request){
+    //     $validator = Validator::make($request->all(),[
+    //         'name' => 'required',
+    //         'email' => 'required|string|email',
+    //         'password' => 'required|string|min:6',
+    //     ]);
+    //     if ($validator->fails()){
+    //         return response()->json($validator->errors()->toJson(),400);
+    //     }
+    //     $user = User::create(array_merge(
+    //         $validator->validated(),
+    //         ['password' => bcrypt($request->password)]
+    //     ));
+    //     return response()->json([
+    //         'message'=> 'User Successfuly registered',
+    //         'user'=> $user
+    //     ],201);
 
-    // return view('auth.login');
-    public function register(Request $request){
-        $validator = Validator::make($request->all(),[
-            'name' => 'required',
-            'email' => 'required|string|email',
-            'password' => 'required|string|min:6',
-        ]);
-        if ($validator->fails()){
-            return response()->json($validator->errors()->toJson(),400);
-        }
-        $user = User::create(array_merge(
-            $validator->validated(),
-            ['password' => bcrypt($request->password)]
-        ));
-        return response()->json([
-            'message'=> 'User Successfuly registered',
-            'user'=> $user
-        ],201);
-
-    }
+    // }
 
     public function default()
     {
@@ -111,5 +103,26 @@ class AuthController extends Controller
     {
 
         return view('auth.register');
+    }
+
+    public function store(Request $request)
+    {
+        // return $request->all();
+        $validatedData = $request->validate([
+            'nama' => 'required|max:255',
+            'email' => 'required|email',
+            'password' => 'required|min:3',
+            
+            // 'foto' => 'image|file',
+            
+        ]);
+        $validatedData['password'] = Hash::make($validatedData['password']);
+
+        
+        // dd($request);
+        User::create($validatedData);
+        toast('Akun Anda Telah terdaftar','success');
+        return redirect('/');
+       
     }
 }

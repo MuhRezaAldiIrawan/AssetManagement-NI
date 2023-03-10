@@ -18,6 +18,7 @@
 </head>
 
 <body>
+    @include('sweetalert::alert')
     <div class="app">
         <div class="container-fluid p-h-0 p-v-20 bg full-height d-flex"
             style="background-image: url({{ url('img/Logo/login-3.png') }})">
@@ -41,7 +42,7 @@
                                         </div>
                                     @endif
 
-                                    <form action="api/auth/login" method="POST">
+                                    <form action="{!! url('/register'); !!}" method="POST" enctype="multipart/form-data">
                                         @csrf
                                         <div class="form-group">
                                             <label class="font-weight-semibold" for="Email">Nama</label>
@@ -64,40 +65,15 @@
                                                     name="password" placeholder="Password" required>
                                             </div>
                                         </div>
-
-                                        <div class="form-group" hidden>
-                                            <label class="font-weight-semibold" for="Jabatan">Jabatan</label>
-                                            <div class="input-affix">
-                                                {{-- <i class="prefix-icon far fa-envelope"></i> --}}
-                                                <input type="text" class="form-control" id="jabatan" name="jabatan"
-                                                    placeholder="Jabatan" required value="New User">
-                                            </div>
-                                        </div>
-                                        <div class="form-group" hidden>
-                                            <label class="font-weight-semibold" for="Level">Level</label>
-                                            <div class="input-affix m-b-10">
-                                                <input type="text" class="form-control" id="level"
-                                                    name="level"  required value="1">
-                                            </div>
-                                        </div>
-                                        <div class="form-group" hidden>
-                                            <label class="font-weight-semibold" for="foto">foto</label>
-                                            <div class="input-affix m-b-10">
-                                                <input type="file" class="form-control" id="foto"
-                                                    name="foto">
-                                            </div>
-                                        </div>
                                         <div class="form-group">
                                             <div class="d-flex align-items-center justify-content-between">
                                                 <span class="font-size-13 text-muted">
                                                     have an account? 
-                                                    <a class="small" href="/register"> Sign In</a>
+                                                    <a class="small" href="/login"> Sign In</a>
                                                 </span>
-                                                <button class="btn btn-primary">Sign Up</button>
+                                                <button class="btn btn-primary" type="submit">Sign Up</button>
                                             </div>
                                         </div>
-                                        
-
                                     </form>
                                 </div>
                             </div>
