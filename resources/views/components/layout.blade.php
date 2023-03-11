@@ -8,7 +8,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Marga utama Nusantara</title>
+    <title>{{ $title }}</title>
 
     <meta name="description" content="" />
 
@@ -39,8 +39,7 @@
     <link rel="stylesheet" href="{{ asset('vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
     <script src="{{ asset('vendor/js/helpers.js') }}"></script>
     <script src="{{ asset('js/config.js') }}"></script>
-    <link href="{{ asset('css/mobiscroll.javascript.min.css') }}" rel="stylesheet" />
-    <script src="{{ asset('js/mobiscroll.javascript.min.js') }}"></script>
+
 
     <style>
         .pagination {

@@ -19,7 +19,7 @@
                 <div data-i18n="Analytics">Dashboard</div>
             </a>
         </li>
-        <li class="menu-item">
+        <li class="menu-item ">
             <a class="menu-link menu-toggle">
                 <i class=' menu-icon tf-icons bx bxs-report'></i>
                 <div data-i18n="Layouts">Activity</div>

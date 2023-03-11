@@ -50,6 +50,12 @@ Route::get('/kategori/{id}', 'App\Http\Controllers\pages@editkategori');
 Route::post('/kategori/update', 'App\Http\Controllers\pages@updatekategori');
 Route::get('/kategori/delete/{id}', 'App\Http\Controllers\pages@deletekategori');
 
+//User
+Route::post('/allusers', 'App\Http\Controllers\pages@addallusers');
+Route::get('/allusers/{id}', 'App\Http\Controllers\pages@editallusers');
+Route::post('/allusers/update', 'App\Http\Controllers\pages@updateallusers');
+Route::get('/allusers/delete/{id}', 'App\Http\Controllers\pages@deleteallusers');
+
 
 
 
