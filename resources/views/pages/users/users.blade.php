@@ -6,8 +6,8 @@
 {{-- Content --}}
 @section('content')
     <div class="col-lg-12 mb-4 order-0">
-        <h5 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">User /</span> Account<i
-                class='bx bx-user m-1'></i></h5>
+        <h5 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">User /</span> Account<i class='bx bx-user m-1'></i>
+        </h5>
         <div class="row">
             <div class="col-md-12">
                 <div class="card mb-4">
@@ -15,17 +15,19 @@
                     <!-- Account -->
                     <div class="card-body">
                         <div class="d-flex align-items-start align-items-sm-center gap-4">
-                            <img src="{{ asset('img/avatars/1.png') }}" alt="user-avatar" class="d-block rounded"
-                                height="150" width="150" id="uploadedAvatar" />
-                                <div class="row">
-                                    <p class="text-muted mb-3">NAMA POSISI </p>
-
-                                <p class="text-muted mb-3">POSISI</p>
-
+                            @if (auth()->user()->foto)
+                                <img src="{{ asset('storage/' . auth()->user()->foto) }}" alt="">
+                            @else
+                                <img src="{{ asset('img/Logo/mun.png') }}" alt=""
+                                    style="max-height: 200px; width: 180px">
+                            @endif
+                            <div class="row">
+                                <h2 class="text-muted mb-3">{{ auth()->user()->nama }}</h2>
+                                <h3 class="text-muted mb-3">{{ auth()->user()->jabatan }}</h3>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-outline-secondary mt-3">
-                            
+                        <button type="button" class="btn btn-outline-secondary mt-3" data-bs-toggle="modal"
+                            data-bs-target="#fullscreenModal">
                             <span class="d-none d-sm-block">Edit Profile</span>
                         </button>
                     </div>
@@ -33,20 +35,14 @@
                     <div class="card-body">
                         <form id="formAccountSettings" method="POST" onsubmit="return false">
                             <div class="row">
-                                <div class="mb-3 col-md-12">
-                                    <label for="firstName" class="form-label">Nama</label>
-                                    <input class="form-control" type="text" id="firstName" name="firstName"
-                                        value="John" autofocus disabled />
-                                </div>
                                 <div class="mb-3 col-md-6">
-                                    <label for="email" class="form-label">E-mail</label>
+                                    <label for="email" class="form-label">Nama</label>
                                     <input class="form-control" type="text" id="email" name="email"
                                         value="john.doe@example.com" placeholder="john.doe@example.com" disabled />
                                 </div>
                                 <div class="mb-3 col-md-6">
-                                    <label class="form-label" for="phoneNumber">Nomor HP</label>
+                                    <label class="form-label" for="phoneNumber">Email</label>
                                     <div class="input-group input-group-merge">
-                                        <span class="input-group-text">IND (+62)</span>
                                         <input type="text" id="phoneNumber" name="phoneNumber" class="form-control"
                                             placeholder="+6282393169811" disabled />
                                     </div>
@@ -57,8 +53,8 @@
                                         value="ThemeSelection" disabled />
                                 </div>
                                 <div class="mb-3 col-md-6">
-                                    <label for="address" class="form-label">Level</label>
-                                    <input type="text" class="form-control" id="address" name="address"
+                                    <label for="address" class="form-label">Tanda Tangan</label>
+                                    <input type="file" class="form-control" id="address" name="address"
                                         placeholder="Address" disabled />
                                 </div>
                                 <div class="mb-3 col-md-12">
@@ -67,12 +63,54 @@
                                         <img src="{{ asset('img/avatars/1.png') }}" alt="user-avatar"
                                             class="d-block rounded" height="200" width="200" id="uploadedAvatar" />
                                     </div>
-                                    <input type="file" class="form-control" id="address" name="address"
-                                        placeholder="Address" disabled />
                                 </div>
                         </form>
                     </div>
                     <!-- /Account -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="fullscreenModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalFullTitle">Add Data User</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{!! url('/allusers') !!}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="mb-3">
+                            <label class="form-label" for="basic-icon-default-fullname">Nama</label>
+                            <div class="input-group input-group-merge">
+                                <span id="basic-icon-default-fullname2" class="input-group-text"><i
+                                        class="bx bx-user"></i></span>
+                                <input type="text" class="form-control" id="nama" name="nama" />
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="email">Email</label>
+                            <div class="input-group input-group-merge">
+                                <span class="input-group-text"><i class="bx bx-envelope"></i></span>
+                                <input type="text" id="email" name="email" class="form-control"
+                                    placeholder="email@gmail.com" />
+                                <span id="basic-icon-default-email2" class="input-group-text">@example.com</span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="basic-icon-default-message">Foto</label>
+                            <div class="input-group input-group-merge">
+                                <span class="input-group-text"><i class="bx bx-comment"></i></span>
+                                <input id="foto" name="foto" type="file" class="form-control"
+                                    placeholder="Hi, Do you have a moment to talk Joe?" type="file"></input>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Add Data Users</button>
+                    </form>
                 </div>
             </div>
         </div>

@@ -19,7 +19,7 @@
                     <div class="demo-inline-spacing">
                         <div class="d-flex justify-content-end">
                             <button type="button" class="btn btn-icon btn-primary m-1" data-bs-toggle="modal"
-                                data-bs-target="#fullscreenModal"">
+                                data-bs-target="#fullscreenModal">
                                 <span class="tf-icons bx bx-plus"></span>
                             </button>
                             <button type="button" class="btn btn-icon btn-secondary m-1">
@@ -204,18 +204,18 @@
                             <label class="form-label" for="basic-icon-default-phone">Jabatan</label>
                             <div class="input-group input-group-merge">
                                 <span class="input-group-text"><i class='bx bx-crown'></i></span>
-                                <input type="text" id="jabatan" name="jabatan" class="form-control"
-                                    placeholder="At Least 6" />
-                                {{-- <select id="jabatan" name="jabatan" class="form-select">
+                                {{-- <input type="text" id="jabatan" name="jabatan" class="form-control"
+                                    placeholder="At Least 6" /> --}}
+                                <select id="jabatan" name="jabatan" class="form-select">
                                     <option>Default select</option>
-                                    <option value="1">Admin</option>
-                                    <option value="2">Svp.IT</option>
-                                    <option value="3">Ka.Bang MMN</option>
-                                    <option value="1">ka.Bang JTSE</option>
-                                    <option value="2">KSPT</option>
-                                    <option value="3">Staf IT</option>
-                                    <option value="3">IT Maintenance</option>
-                                </select> --}}
+                                    <option value="Admin">Admin</option>
+                                    <option value="Svp.IT">Svp.IT</option>
+                                    <option value="Ka.Bang MMN">Ka.Bang MMN</option>
+                                    <option value="ka.Bang JTSE">Ka.Bang JTSE</option>
+                                    <option value="KSPT">KSPT</option>
+                                    <option value="Staf IT">Staf IT</option>
+                                    <option value="IT Maintenance">IT Maintenance</option>
+                                </select>
                             </div>
                         </div>
                         <div class="mb-3">
