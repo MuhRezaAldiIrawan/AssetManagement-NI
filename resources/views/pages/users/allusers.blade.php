@@ -62,7 +62,8 @@
                                         data-bs-target="#basicModal{{ $l->id }}">
                                         <span class="tf-icons bx bx-edit"></span>
                                     </button>
-                                    <a class="btn btn-icon btn-danger m-1" href="/allusers/delete/{{ $l->id }}"><span class="tf-icons bx bx-trash"></span></a>
+                                    <a class="btn btn-icon btn-danger m-1" href="/allusers/delete/{{ $l->id }}"><span
+                                            class="tf-icons bx bx-trash"></span></a>
 
                                     <!-- Edit Modal -->
                                     <div class="modal fade" id="basicModal{{ $l->id }}" tabindex="-1"
@@ -75,16 +76,16 @@
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form action="{!! url('/allusers/update') !!}" method="POST">
+                                                    <form action="{!! url('/allusers/update/'. $l->id ) !!}" method="POST" enctype="multipart/form-data">
                                                         @csrf
-                                                        <div class="row">
+                                                        {{-- <div class="row">
                                                             <div class="col mb-3">
                                                                 <label for="nameBasic" class="form-label">ID User</label>
                                                                 <input type="text" id="id" name="id"
                                                                     class="form-control" value="{{ $l->id }}"
                                                                     disabled />
                                                             </div>
-                                                        </div>
+                                                        </div> --}}
                                                         <div class="row g-2">
                                                             <div class="col mb-0">
                                                                 <label for="Nama" class="form-label">Nama</label>
@@ -97,22 +98,32 @@
                                                                     class="form-control" value="{{ $l->email }}" />
                                                             </div>
                                                         </div>
-                                                        <div class="row" hidden>
+                                                        {{-- <div class="row" hidden>
                                                             <div class="col mb-3">
                                                                 <label for="nameBasic" class="form-label">Passwrod</label>
                                                                 <input type="text" id="password" name="password"
                                                                     class="form-control" value="{{ $l->password }}"
                                                                     disabled />
                                                             </div>
-                                                        </div>
+                                                        </div> --}}
                                                         <div class="row g-2">
                                                             <div class="col mb-0">
                                                                 <label for="jabatan"
                                                                     class="form-label mt-2">Jabatan</label>
-                                                                <input type="text" id="jabatan" name="jabatan"
-                                                                    class="form-control" value="{{ $l->jabatan }}" />
+                                                                <select id="jabatan" name="jabatan"
+                                                                    class="form-select">
+                                                                    <option>Default select</option>
+                                                                    <option value="Admin">Admin</option>
+                                                                    <option value="Svp.IT">Svp.IT</option>
+                                                                    <option value="Ka.Bang MMN">Ka.Bang MMN</option>
+                                                                    <option value="ka.Bang JTSE">Ka.Bang JTSE</option>
+                                                                    <option value="KSPT">KSPT</option>
+                                                                    <option value="Staf IT">Staf IT</option>
+                                                                    <option value="IT Maintenance">IT Maintenance</option>
+                                                                </select>
+                                                                {{-- <input type="text" id="jabatan" name="jabatan"
+                                                                    class="form-control" value="{{ $l->jabatan }}" /> --}}
                                                             </div>
-
                                                         </div>
                                                         <div class="row">
                                                             <div class="col mb-3">

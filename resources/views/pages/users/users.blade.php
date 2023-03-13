@@ -37,19 +37,19 @@
                             <div class="row">
                                 <div class="mb-3 col-md-6">
                                     <label for="email" class="form-label">Nama</label>
-                                    <input class="form-control" type="text" id="email" name="email"
-                                        value="john.doe@example.com" placeholder="john.doe@example.com" disabled />
+                                    <input class="form-control" type="text" id="email" name="email" value="{{ auth()->user()->nama }}"
+                                        value="john.doe@example.com"  disabled />
                                 </div>
                                 <div class="mb-3 col-md-6">
-                                    <label class="form-label" for="phoneNumber">Email</label>
+                                    <label class="form-label" for="">Email</label>
                                     <div class="input-group input-group-merge">
-                                        <input type="text" id="phoneNumber" name="phoneNumber" class="form-control"
-                                            placeholder="+6282393169811" disabled />
+                                        <input type="text" id="email" name="email" class="form-control" value="{{ auth()->user()->email }}"
+                                            disabled />
                                     </div>
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label for="organization" class="form-label">Jabatan</label>
-                                    <input type="text" class="form-control" id="organization" name="organization"
+                                    <input type="text" class="form-control" id="jabatan" name="jabatan" value="{{ auth()->user()->jabatan }}"
                                         value="ThemeSelection" disabled />
                                 </div>
                                 <div class="mb-3 col-md-6">
@@ -60,8 +60,14 @@
                                 <div class="mb-3 col-md-12">
                                     <label for="state" class="form-label">Foto Tanda Tangan</label>
                                     <div class="d-flex align-items-start align-items-sm-center gap-4 m-1">
-                                        <img src="{{ asset('img/avatars/1.png') }}" alt="user-avatar"
-                                            class="d-block rounded" height="200" width="200" id="uploadedAvatar" />
+                                        @if (auth()->user()->ttd)
+                                        <img src="{{ asset('storage/' . auth()->user()->ttd) }}" alt="">
+                                        @else
+                                            <img src="{{ asset('img/Logo/mun.png') }}" alt=""
+                                                style="max-height: 200px; width: 180px">
+                                        @endif
+                                        {{-- <img src="{{ asset('img/avatars/1.png') }}" alt="user-avatar"
+                                            class="d-block rounded" height="200" width="200" id="uploadedAvatar" /> --}}
                                     </div>
                                 </div>
                         </form>
@@ -81,22 +87,22 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{!! url('/allusers') !!}" method="POST" enctype="multipart/form-data">
+                    <form action="{!! url('/users/update') !!}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
                             <label class="form-label" for="basic-icon-default-fullname">Nama</label>
                             <div class="input-group input-group-merge">
                                 <span id="basic-icon-default-fullname2" class="input-group-text"><i
                                         class="bx bx-user"></i></span>
-                                <input type="text" class="form-control" id="nama" name="nama" />
+                                <input type="text" class="form-control" id="nama" name="nama" value="{{ auth()->user()->nama }}"/>
                             </div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="email">Email</label>
                             <div class="input-group input-group-merge">
                                 <span class="input-group-text"><i class="bx bx-envelope"></i></span>
-                                <input type="text" id="email" name="email" class="form-control"
-                                    placeholder="email@gmail.com" />
+                                <input type="text" id="email" name="email" class="form-control" value="{{ auth()->user()->email }}"
+                                    />
                                 <span id="basic-icon-default-email2" class="input-group-text">@example.com</span>
                             </div>
                         </div>

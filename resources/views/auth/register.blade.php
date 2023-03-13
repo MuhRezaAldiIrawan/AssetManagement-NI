@@ -69,7 +69,7 @@
                                             <div class="d-flex align-items-center justify-content-between">
                                                 <span class="font-size-13 text-muted">
                                                     have an account? 
-                                                    <a class="small" href="/login"> Sign In</a>
+                                                    <a class="small" href="/"> Sign In</a>
                                                 </span>
                                                 <button class="btn btn-primary" type="submit">Sign Up</button>
                                             </div>

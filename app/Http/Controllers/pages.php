@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Activity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Hash;
 
 use App\Models\lokasi;
+use App\Models\TollActivity;
 use App\Models\User;
+
 
 
 class pages extends Controller
@@ -24,6 +27,40 @@ class pages extends Controller
     {
         $title = 'MUN | Toll';
         return view('pages.activity.toll', compact('title'));
+    }
+
+    public function addtollactivity(Request $request)
+    {
+        // dd($request);
+
+        $validatedData = $request->validate([
+            'kategori_activity' => 'required',
+            'tanggal' => 'required',
+            'j_hardware' => 'required',
+            'u_hardware' => 'required',
+            's_aplikasi' => 'required',
+            'u_aplikasi' => 'required',
+            'a_it' => 'required',
+            'u_it' => 'required',
+            'catatan' => 'required',
+            'shift' => 'required',
+            'lokasi' => 'required',
+            'kategori' => 'required',
+            'kondisi_akhir' => 'required',
+            'foto' => 'image|file',
+
+        ]);
+
+        if ($request->file('foto')) {
+            $validatedData['foto'] = $request->file('foto')->store('activity-foto');
+        }
+
+        // $validatedData['password'] = Hash::make($validatedData['password']);
+
+
+        // dd($request);
+        Activity::create($validatedData);
+        return redirect('/toll');
     }
 
     public function nontoll()
@@ -150,6 +187,7 @@ class pages extends Controller
         return view('pages.users.users', compact('title'));
     }
 
+
     public function allusers()
     {
         $title = 'MUN | All User';
@@ -158,6 +196,40 @@ class pages extends Controller
 
         return view('pages.users.allusers', ['allusers' => $allusers], compact('title'));
     }
+
+    public function editallusers($id)
+    {
+
+        $users = DB::table('users')->where('id', $id)->get();
+
+        return view('pages.users.allusers', ['users' => $users]);
+    }
+
+    public function updateallusers(Request $request, $id)
+    {
+
+        $title = 'MUN | All User';
+
+        $allusers = $request->validate([
+            'nama' => 'required|max:255',
+            'email' => 'required|email',
+            'jabatan' => 'required',
+            'foto' => 'image|file',
+        ]);
+
+        if($request->file('foto'))
+        {
+            $allusers['foto'] = $request->file('foto')->store('users-foto');
+            
+        }
+
+        User::where('id', $request->id)->update($allusers);
+
+        // return view('pages.users.allusers', ['allusers' => $allusers], compact('title'));
+
+        return redirect('/allusers');
+    }
+
     public function addallusers(Request $request)
     {
         $validatedData = $request->validate([
@@ -169,7 +241,7 @@ class pages extends Controller
 
         ]);
 
-        if($request->file('foto')){
+        if ($request->file('foto')) {
             $validatedData['foto'] = $request->file('foto')->store('users-foto');
         }
 
@@ -179,28 +251,6 @@ class pages extends Controller
         // dd($request);
         User::create($validatedData);
         return redirect('/allusers');
-    }
-
-    public function editallusers($id)
-    {
-
-        $allusers = DB::table('allusers')->where('id', $id)->get();
-
-        return view('pages.users.allusers', ['allusers' => $allusers]);
-    }
-
-    public function updateallusers(Request $request)
-    {
-        DB::table('users')->where('id', $request->id)->update([
-            'nama' => $request->nama,
-            'email' => $request->email,
-            'jabatan' => $request->jabatan,
-            'foto' => $request->foto,
-
-        ]);
-        dd($request);
-
-        // return redirect('/allusers');
     }
 
     public function deleteallusers($id)
