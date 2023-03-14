@@ -6,12 +6,13 @@
 {{-- Content --}}
 @section('content')
     <div class="col-lg-12 mb-4 order-0">
-        <h5 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Activity /</span>Pengembangan<i class='bx bx-trending-up m-1'></i></h5>
+        <h5 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Activity /</span>Pengembangan Log Activity <i
+                class='bx bx-street-view m-1'></i></h5>
         <div class="card">
             <div class="row gy-3 m-1">
                 <div class="col-md-6 d-flex align-items-end">
                     <div class="demo-inline-spacing ">
-                        <h4 class="m-0">Pengembangan</h4>
+                        <h4 class="m-0">Pengembangan Log Activity</h4>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -29,98 +30,71 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="text-wrap">
-                    <table class="table table-bordered table-striped nowrap table-hover display" id="myTable">
+                <div class="table-responsive text-wrap">
+                    <table class="table table-bordered table-striped  table-hover display" width="1000px">
                         <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Tanggal</th>
-                                <th>Uraian Jenis Hardware</th>
-                                <th>Shift</th>
-                                <th>Kategori</th>
-                                <th>user</th>
-                                <th>Action</th>
+                            <tr class="text-wrap">
+                                <th class="text-center">No</th>
+                                <th class="text-center">Tanggal</th>
+                                <th class="text-center">Uraian Jenis Hardware</th>
+                                <th class="text-center">Shift</th>
+                                <th class="text-center">Kategori</th>
+                                <th class="text-center">user</th>
+                                <th class="text-center" width="21%">Action</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>10-10-10</td>
-                                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque beatae cupiditate
-                                    necessitatibus temporibus hic sit qui dolorem.</td>
-                                <td>>3</td>
-                                <td>perawatan rutin</td>
-                                <td>User</td>
+                        @foreach ($pengembangan as $t)
+                            <tbody>
+                                <td>{{ $t->id }}</td>
+                                <td>{{ $t->tanggal }}</td>
+                                <td>{{ Str::limit($t->u_hardware, 200) }}</td>
+                                <td>{{ $t->shift }}</td>
+                                <td>{{ $t->kategori }}</td>
+                                <td>{{ $t->user_id }}</td>
                                 <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary dropdown-toggle hide-arrow"
-                                            data-bs-toggle="dropdown" aria-expanded="false"><i class='bx bx-list-check'></i>
-                                            Details
+                                    <button class="btn btn-icon btn-success me-1" type="button" data-bs-toggle="modal"
+                                        data-bs-target="#basicModalView{{ $t->id }}" aria-expanded="false"
+                                        aria-controls="multiCollapseExample2"> <span class="tf-icons bx bx-qr-scan"></span>
+                                    </button>
+                                    <a href="/activitydetail/{{ $t->id }}">
+                                        <button type="button" class="btn btn-primary">
+                                            <span class="tf-icons bx bx-detail"></span>&nbsp; Details
                                         </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="/activitydetail">More Details</a></li>
-                                            <li><a class="dropdown-item" href="javascript:void(0);">Update</a></li>
-                                            <li><a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                                            </li>
-                                        </ul>
+                                    </a>
+                                    <!-- View Modal -->
+                                    <div class="modal fade" id="basicModalView{{ $t->id }}" tabindex="-1"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel1">Edit User</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body d-flex justify-content-center align-items-center">
+                                                    <div class="col-sm-6 col-lg-12 mb-4 ">
+                                                        <div class="card">
+                                                            <div style="overflow:scroll; max-height: auto; width: 100%  ">
+                                                                <img src="{{ asset('storage/' . $t->foto) }}"
+                                                                    alt="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>10-10-10</td>
-                                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque beatae cupiditate
-                                    necessitatibus temporibus hic sit qui dolorem.</td>
-                                <td>>3</td>
-                                <td>perawatan rutin</td>
-                                <td>User</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary dropdown-toggle hide-arrow"
-                                            data-bs-toggle="dropdown" aria-expanded="false"><i class='bx bx-list-check'></i>
-                                            Details
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="/activitydetail">More Details</a></li>
-                                            <li><a class="dropdown-item" href="javascript:void(0);">Update</a></li>
-                                            <li><a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>10-10-10</td>
-                                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque beatae cupiditate
-                                    necessitatibus temporibus hic sit qui dolorem.</td>
-                                <td>>3</td>
-                                <td>perawatan rutin</td>
-                                <td>User</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary dropdown-toggle hide-arrow"
-                                            data-bs-toggle="dropdown" aria-expanded="false"><i class='bx bx-list-check'></i>
-                                            Details
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="/activitydetail">More Details</a></li>
-                                            <li><a class="dropdown-item" href="javascript:void(0);">Update</a></li>
-                                            <li><a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
+                            </tbody>
+                        @endforeach
                     </table>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="fullscreenModal" tabindex="-1" aria-hidden="true" >
+    <!-- Add Modal -->
+    <div class="modal fade" id="fullscreenModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -128,16 +102,29 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form action="{!! url('/toll') !!}" method="POST" enctype="multipart/form-data">
+                        @csrf
                         <div class="row mb-3" hidden>
-                            <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Uraian
-                                hardware</label>
+                            <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">User ID</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <span id="basic-icon-default-fullname2" class="input-group-text"><i
                                             class="bx bx-devices"></i></span>
                                     <input type="text" class="form-control" id="basic-icon-default-fullname"
-                                        placeholder="DD/MM/YYYY" aria-label="John Doe" disabled />
+                                        name="user_id" id="user_id" value="{{ auth()->user()->nama }}" readonly />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3" hidden>
+                            <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Kategori
+                                Activity</label>
+                            <div class="col-sm-10">
+                                <div class="input-group input-group-merge">
+                                    <span id="basic-icon-default-fullname2" class="input-group-text"><i
+                                            class="bx bx-devices"></i></span>
+                                    <input type="text" class="form-control" id="basic-icon-default-fullname"
+                                        name="kategori_activity" id="kategori_activity" aria-label="John Doe"
+                                        value="Toll" readonly />
                                 </div>
                             </div>
                         </div>
@@ -147,7 +134,7 @@
                                 <div class="input-group input-group-merge">
                                     <span id="basic-icon-default-fullname2" class="input-group-text"><i
                                             class="bx bx-calendar"></i></span>
-                                    <input type="date" class="form-control" id="basic-icon-default-fullname"
+                                    <input type="date" class="form-control" id="tanggal" name="tanggal"
                                         placeholder="DD/MM/YYYY" aria-label="John Doe" />
                                 </div>
                             </div>
@@ -156,7 +143,11 @@
                             <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Jenis Hardware</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
-                                    <div class="col-md d-flex align-items-center ">
+                                    <span id="basic-icon-default-fullname2" class="input-group-text"><i
+                                            class="bx bx-calendar"></i></span>
+                                    <input type="text" class="form-control" id="j_hardware" name="j_hardware"
+                                        placeholder="Jenis Hardwarwe" aria-label="John Doe" />
+                                    {{-- <div class="col-md d-flex align-items-center ">
                                         <div class="form-check form-check-inline mt-1">
                                             <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
                                                 value="option1" />
@@ -170,8 +161,7 @@
                                         <div class="form-check form-check-inline mt-1">
                                             <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
                                                 value="option1" />
-                                            <label class="form-check-label"
-                                                for="inlineCheckbox1">Printer/Periferal</label>
+                                            <label class="form-check-label" for="inlineCheckbox1">Printer/Periferal</label>
                                         </div>
                                         <div class="form-check form-check-inline mt-1">
                                             <input class="form-check-input" type="checkbox" id="inlineCheckbox2"
@@ -185,23 +175,25 @@
                                             <label class="form-check-label"
                                                 for="inlineCheckbox2">LTCS/TFI/PCS/RTM/CCTV</label>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-icon-default-company"></label>
                             <div class="col-sm-10">
-                                <textarea id="basic-default-message" class="form-control" placeholder="Penjabaran Masalah Hardware"
-                                    aria-label="Hi, Do you have a moment to talk Joe?" aria-describedby="basic-icon-default-message2"></textarea>
+                                <textarea id="u_hardware" name="u_hardware" class="form-control" placeholder="Penjabaran Masalah Hardware"></textarea>
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Standart Aplikasi</label>
+                            <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Standart
+                                Aplikasi</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <div class="col-md d-flex align-items-center ">
-                                        <div class="form-check form-check-inline mt-1">
+                                        <input type="text" class="form-control" id="s_aplikasi" name="s_aplikasi"
+                                            placeholder="Jenis Hardwarwe" />
+                                        {{-- <div class="form-check form-check-inline mt-1">
                                             <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
                                                 value="option1" />
                                             <label class="form-check-label" for="inlineCheckbox1">Sistem Operasi</label>
@@ -210,7 +202,7 @@
                                             <input class="form-check-input" type="checkbox" id="inlineCheckbox2"
                                                 value="option2" />
                                             <label class="form-check-label" for="inlineCheckbox2">Microsoft Office</label>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                             </div>
@@ -218,16 +210,18 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-icon-default-company"></label>
                             <div class="col-sm-10">
-                                <textarea id="basic-default-message" class="form-control" placeholder="Penjabaran Masalah Sistem"
-                                    aria-label="Hi, Do you have a moment to talk Joe?" aria-describedby="basic-icon-default-message2"></textarea>
+                                <textarea name="u_aplikasi" id="u_aplikasi" class="form-control" placeholder="Penjabaran Masalah Sistem"></textarea>
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Aplikasi IT & Peralatan Toll</label>
+                            <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Aplikasi IT &
+                                Peralatan Toll</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <div class="col-md d-flex align-items-center ">
-                                        <div class="form-check form-check-inline mt-1">
+                                        <input name="a_it" id="a_it" class="form-control"
+                                            placeholder="Penjabaran Masalah Sistem"></input>
+                                        {{-- <div class="form-check form-check-inline mt-1">
                                             <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
                                                 value="option1" />
                                             <label class="form-check-label" for="inlineCheckbox1">Program LTCS/TFI</label>
@@ -246,7 +240,7 @@
                                             <input class="form-check-input" type="checkbox" id="inlineCheckbox2"
                                                 value="option2" />
                                             <label class="form-check-label" for="inlineCheckbox2">Program CCTV/VMS</label>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                             </div>
@@ -254,15 +248,14 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-icon-default-company"></label>
                             <div class="col-sm-10">
-                                <textarea id="basic-default-message" class="form-control" placeholder="Penjabaran Masalah Aplikasi IT & Peralatan Toll"
-                                    aria-label="Hi, Do you have a moment to talk Joe?" aria-describedby="basic-icon-default-message2"></textarea>
+                                <textarea id="u_it" name="u_it" class="form-control"
+                                    placeholder="Penjabaran Masalah Aplikasi IT & Peralatan Toll"></textarea>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Catatan</label>
                             <div class="col-sm-10">
-                                <textarea id="basic-default-message" class="form-control" placeholder="Catatan Tambahan jika Diperlukan"
-                                    aria-label="Hi, Do you have a moment to talk Joe?" aria-describedby="basic-icon-default-message2"></textarea>
+                                <textarea id="catatan" name="catatan" class="form-control" placeholder="Catatan Tambahan jika Diperlukan"></textarea>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -271,12 +264,12 @@
                                 <div class="input-group input-group-merge">
                                     <span id="basic-icon-default-fullname2" class="input-group-text"><i
                                             class="bx bx-run "></i></span>
-                                            <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">Satu</option>
-                                                <option value="2">Dua</option>
-                                                <option value="3">Tiga</option>
-                                              </select>
+                                    <select class="form-select" id="shift" name="shift">
+                                        <option selected disabled>Open this select menu</option>
+                                        <option value="Satu">Satu</option>
+                                        <option value="Dua2">Dua</option>
+                                        <option value="Tiga">Tiga</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -286,12 +279,13 @@
                                 <div class="input-group input-group-merge">
                                     <span id="basic-icon-default-fullname2" class="input-group-text"><i
                                             class="bx bx-location-plus "></i></span>
-                                            <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">Satu</option>
-                                                <option value="2">Dua</option>
-                                                <option value="3">Tiga</option>
-                                              </select>
+                                    <select class="form-select" id="lokasi" name="lokasi"
+                                        aria-label="Default select example">
+                                        <option selected>Open this select menu</option>
+                                        <option value="Satu">Satu</option>
+                                        <option value="Dua">Dua</option>
+                                        <option value="Tiga">Tiga</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -301,20 +295,20 @@
                                 <div class="input-group input-group-merge">
                                     <span id="basic-icon-default-fullname2" class="input-group-text"><i
                                             class="bx bx-package "></i></span>
-                                            <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">Satu</option>
-                                                <option value="2">Dua</option>
-                                                <option value="3">Tiga</option>
-                                              </select>
+                                    <select class="form-select" id="kategori" name="kategori"
+                                        aria-label="Default select example">
+                                        <option selected>Open this select menu</option>
+                                        <option value="Satu">Satu</option>
+                                        <option value="Dua">Dua</option>
+                                        <option value="Tiga">Tiga</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Kondisi Akhir</label>
                             <div class="col-sm-10">
-                                <textarea id="basic-default-message" class="form-control" placeholder="Penjabaran Masalah Aplikasi IT & Peralatan Toll"
-                                    aria-label="Hi, Do you have a moment to talk Joe?" aria-describedby="basic-icon-default-message2"></textarea>
+                                <textarea id="kondisi_akhir" name="kondisi_akhir" class="form-control" placeholder="kondisi Akhir "></textarea>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -323,49 +317,21 @@
                                 <div class="input-group input-group-merge">
                                     <span id="basic-icon-default-fullname2" class="input-group-text"><i
                                             class="bx bx-camera"></i></span>
-                                    <input type="file" class="form-control" id="basic-icon-default-fullname"
-                                        placeholder="DD/MM/YYYY" aria-label="John Doe" />
+                                    <input type="file" class="form-control" id="foto" name="foto" />
                                 </div>
                             </div>
                         </div>
-{{--                         
-                        <div class="row justify-content-end">
-                            <div class="col-sm-10">
-                                <button type="submit" class="btn btn-primary">Send</button>
-                            </div>
-                        </div> --}}
+                        <button type="submit" class="btn btn-primary">Save changes</button>
                     </form>
                 </div>
-                <div class="modal-footer">
+                {{-- <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                         Close
                     </button>
                     <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
 @endsection
-@section('script')
-    <script>
-        $(document).ready(function() {
-            $('#myTable').DataTable({
-                // scrollX: true
-                scrollY: 400,
-                // deferRender: true,
-                // responsive: true,
-                // fixedHeader: true,
-                // colReorder: true,
-                // dom: 'Bfrtip',
-                // autoFill: true
-                // buttons: [
-                //     'copy', 'excel', 'pdf'
-                // ]
-                // rowReorder: true,
-                // paginate: true,
-                // scrollY: true,
-                // responsive: true,
-            });
-        });
-    </script>
-@endsection
+

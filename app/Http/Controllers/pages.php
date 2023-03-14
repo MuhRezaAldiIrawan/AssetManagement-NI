@@ -65,13 +65,20 @@ class pages extends Controller
     public function nontoll()
     {
         $title = 'MUN | Non Toll';
-        return view('pages.activity.nontoll', compact('title'));
+
+        $nontoll = DB::table('activities')->get();
+   
+        return view('pages.activity.nontoll', ['nontoll' => $nontoll], compact('title'));
     }
 
     public function pengembangan()
     {
         $title = 'MUN | Pengembangan';
-        return view('pages.activity.pengembangan', compact('title'));
+
+        $pengembangan = DB::table('activities')->get();
+
+
+        return view('pages.activity.pengembangan',['pengembangan' => $pengembangan], compact('title'));
     }
 
     public function activitydetail($id)

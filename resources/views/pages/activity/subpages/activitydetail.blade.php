@@ -142,31 +142,15 @@
                                         </tbody>
                                     @endforeach
                                 </table>
-
                             </div>
-                            {{-- <div class="col-md-8">
-                                    @foreach ($activitydetail as $d)
-                                    <div class="card-body">
-                                        <h7 class="card-title">Jenis Hardware : {{ $d->j_hardware }}</h7>
-                                        <h7 class="card-title d-inline">Uraian Hardware : 
-                                            <p class="card-text d-inline">{{ $d->u_hardware }}</p>
-                                        </h7> 
-                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                    </div>
-                                    @endforeach
-                                </div> --}}
                         </div>
-                        {{-- </div> --}}
                     </div>
                     <div class="demo-inline-spacing d-flex justify-content-end ">
-                        <button type="button" class="btn btn-primary m-1">
-                            <span class="tf-icons bx bx-edit-alt"></span>&nbsp; Edit
-                        </button>
-                        <button type="button" class="btn btn-danger m-1">
-                            <span class="tf-icons bx bx-trash"></span>&nbsp; Delete
-                        </button>
                         <button type="button" class="btn btn-secondary m-1">
                             <span class="tf-icons bx bx-printer"></span>&nbsp; Print
+                        </button>
+                        <button type="button" class="btn btn-danger m-1">
+                            <span class="tf-icons bx bx-trash"></span>&nbsp; Rejected
                         </button>
                         <button type="button" class="btn btn-success m-1">
                             <span class="tf-icons bx bx-select-multiple"></span>&nbsp; Approve
