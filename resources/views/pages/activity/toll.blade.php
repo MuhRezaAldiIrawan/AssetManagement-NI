@@ -30,28 +30,70 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="text-wrap">
-                    <table class="table table-bordered table-striped nowrap table-hover display" id="myTable">
+                <div class="table-responsive text-wrap">
+                    <table class="table table-bordered table-striped  table-hover display" width="1000px">
                         <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Tanggal</th>
-                                <th>Uraian Jenis Hardware</th>
-                                <th>Shift</th>
-                                <th>Kategori</th>
-                                <th>user</th>
-                                <th>Action</th>
+                            <tr class="text-wrap">
+                                <th class="text-center">No</th>
+                                <th class="text-center">Tanggal</th>
+                                <th class="text-center">Uraian Jenis Hardware</th>
+                                <th class="text-center">Shift</th>
+                                <th class="text-center">Kategori</th>
+                                <th class="text-center">user</th>
+                                <th class="text-center" width="21%">Action</th>
                             </tr>
                         </thead>
-                        <tbody>
-                        </tbody>
+                        @foreach ($toll as $t)
+                            <tbody>
+                                <td>{{ $t->id }}</td>
+                                <td>{{ $t->tanggal }}</td>
+                                <td>{{ Str::limit($t->u_hardware, 200) }}</td>
+                                <td>{{ $t->shift }}</td>
+                                <td>{{ $t->kategori }}</td>
+                                <td>{{ $t->user_id }}</td>
+                                <td>
+                                    <button class="btn btn-icon btn-success me-1" type="button" data-bs-toggle="modal"
+                                        data-bs-target="#basicModalView{{ $t->id }}" aria-expanded="false"
+                                        aria-controls="multiCollapseExample2"> <span class="tf-icons bx bx-qr-scan"></span>
+                                    </button>
+                                    <a href="/activitydetail/{{ $t->id }}">
+                                        <button type="button" class="btn btn-primary">
+                                            <span class="tf-icons bx bx-detail"></span>&nbsp; Details
+                                        </button>
+                                    </a>
+                                    <!-- View Modal -->
+                                    <div class="modal fade" id="basicModalView{{ $t->id }}" tabindex="-1"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel1">Edit User</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body d-flex justify-content-center align-items-center">
+                                                    <div class="col-sm-6 col-lg-12 mb-4 ">
+                                                        <div class="card">
+                                                            <div style="overflow:scroll; max-height: auto; width: 100%  ">
+                                                                <img src="{{ asset('storage/' . $t->foto) }}"
+                                                                    alt="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tbody>
+                        @endforeach
                     </table>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Add Modal -->
     <div class="modal fade" id="fullscreenModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
             <div class="modal-content">
@@ -62,7 +104,18 @@
                 <div class="modal-body">
                     <form action="{!! url('/toll') !!}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <div class="row mb-3">
+                        <div class="row mb-3" hidden>
+                            <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">User ID</label>
+                            <div class="col-sm-10">
+                                <div class="input-group input-group-merge">
+                                    <span id="basic-icon-default-fullname2" class="input-group-text"><i
+                                            class="bx bx-devices"></i></span>
+                                    <input type="text" class="form-control" id="basic-icon-default-fullname"
+                                        name="user_id" id="user_id" value="{{ auth()->user()->nama }}" readonly />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3" hidden>
                             <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Kategori
                                 Activity</label>
                             <div class="col-sm-10">
@@ -70,7 +123,8 @@
                                     <span id="basic-icon-default-fullname2" class="input-group-text"><i
                                             class="bx bx-devices"></i></span>
                                     <input type="text" class="form-control" id="basic-icon-default-fullname"
-                                        name="kategori_activity" id="kategori_activity" aria-label="John Doe" />
+                                        name="kategori_activity" id="kategori_activity" aria-label="John Doe"
+                                        value="Toll" readonly />
                                 </div>
                             </div>
                         </div>
@@ -128,8 +182,7 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-icon-default-company"></label>
                             <div class="col-sm-10">
-                                <input id="u_hardware" name="u_hardware" class="form-control"
-                                    placeholder="Penjabaran Masalah Hardware"></input>
+                                <textarea id="u_hardware" name="u_hardware" class="form-control" placeholder="Penjabaran Masalah Hardware"></textarea>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -157,8 +210,7 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-icon-default-company"></label>
                             <div class="col-sm-10">
-                                <input  name="u_aplikasi" id="u_aplikasi" class="form-control" placeholder="Penjabaran Masalah Sistem"
-                                    ></input>
+                                <textarea name="u_aplikasi" id="u_aplikasi" class="form-control" placeholder="Penjabaran Masalah Sistem"></textarea>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -167,8 +219,8 @@
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <div class="col-md d-flex align-items-center ">
-                                        <input  name="a_it" id="a_it" class="form-control" placeholder="Penjabaran Masalah Sistem"
-                                        ></input>
+                                        <input name="a_it" id="a_it" class="form-control"
+                                            placeholder="Penjabaran Masalah Sistem"></input>
                                         {{-- <div class="form-check form-check-inline mt-1">
                                             <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
                                                 value="option1" />
@@ -196,14 +248,14 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-icon-default-company"></label>
                             <div class="col-sm-10">
-                                <input id="u_it" name="u_it" class="form-control"
-                                    placeholder="Penjabaran Masalah Aplikasi IT & Peralatan Toll" ></input>
+                                <textarea id="u_it" name="u_it" class="form-control"
+                                    placeholder="Penjabaran Masalah Aplikasi IT & Peralatan Toll"></textarea>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Catatan</label>
                             <div class="col-sm-10">
-                                <input id="catatan" name="catatan" class="form-control" placeholder="Catatan Tambahan jika Diperlukan"></input>
+                                <textarea id="catatan" name="catatan" class="form-control" placeholder="Catatan Tambahan jika Diperlukan"></textarea>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -256,9 +308,7 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Kondisi Akhir</label>
                             <div class="col-sm-10">
-                                <input id="kondisi_akhir" name="kondisi_akhir" class="form-control"
-                                    placeholder="kondisi Akhir " 
-                                    ></input>
+                                <textarea id="kondisi_akhir" name="kondisi_akhir" class="form-control" placeholder="kondisi Akhir "></textarea>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -267,8 +317,7 @@
                                 <div class="input-group input-group-merge">
                                     <span id="basic-icon-default-fullname2" class="input-group-text"><i
                                             class="bx bx-camera"></i></span>
-                                    <input type="file" class="form-control" id="foto" name="foto"
-                                        />
+                                    <input type="file" class="form-control" id="foto" name="foto" />
                                 </div>
                             </div>
                         </div>
@@ -286,7 +335,7 @@
     </div>
 @endsection
 @section('script')
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             $('#myTable').DataTable({
                 // scrollX: true
@@ -306,5 +355,5 @@
                 // responsive: true,
             });
         });
-    </script>
+    </script> --}}
 @endsection

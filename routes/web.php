@@ -19,11 +19,10 @@ use Illuminate\Support\Facades\Route;
 
 // Main ROUTE
 Route::get('/', 'App\Http\Controllers\AuthController@loginview')->name('login')->middleware('guest');
-// Route::get('/default', 'App\Http\Controllers\AuthController@default');
 Route::get('/dashboard', 'App\Http\Controllers\pages@index');
 Route::get('/toll', 'App\Http\Controllers\pages@toll');
 Route::get('/nontoll', 'App\Http\Controllers\pages@nontoll');
-Route::get('/activitydetail', 'App\Http\Controllers\pages@activitydetail');
+
 Route::get('/location', 'App\Http\Controllers\pages@location');
 Route::get('/kategori', 'App\Http\Controllers\pages@kategori');
 Route::get('/users', 'App\Http\Controllers\pages@users');
@@ -60,6 +59,7 @@ Route::post('/users/update', 'App\Http\Controllers\pages@updateusers');
 
 //Activity
 Route::post('/toll', 'App\Http\Controllers\pages@addtollactivity');
+Route::get('/activitydetail/{id}', 'App\Http\Controllers\pages@activitydetail');
 
 
 

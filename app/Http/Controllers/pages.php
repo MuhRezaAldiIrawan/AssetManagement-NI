@@ -26,14 +26,17 @@ class pages extends Controller
     public function toll()
     {
         $title = 'MUN | Toll';
-        return view('pages.activity.toll', compact('title'));
+        $toll = DB::table('activities')->get();
+
+
+        return view('pages.activity.toll', ['toll' => $toll], compact('title'));
     }
 
     public function addtollactivity(Request $request)
     {
-        // dd($request);
 
         $validatedData = $request->validate([
+            'user_id' => 'required',
             'kategori_activity' => 'required',
             'tanggal' => 'required',
             'j_hardware' => 'required',
@@ -54,12 +57,8 @@ class pages extends Controller
         if ($request->file('foto')) {
             $validatedData['foto'] = $request->file('foto')->store('activity-foto');
         }
-
-        // $validatedData['password'] = Hash::make($validatedData['password']);
-
-
-        // dd($request);
         Activity::create($validatedData);
+        Alert::success('Success', 'Log Activity Telah berhasil Ditambahkan');
         return redirect('/toll');
     }
 
@@ -75,10 +74,13 @@ class pages extends Controller
         return view('pages.activity.pengembangan', compact('title'));
     }
 
-    public function activitydetail()
+    public function activitydetail($id)
     {
         $title = 'MUN | Detail Activity';
-        return view('pages.activity.subpages.activitydetail', compact('title'));
+
+        $activitydetail = DB::table('activities')->where('id', $id)->get();
+
+        return view('pages.activity.subpages.activitydetail', ['activitydetail' => $activitydetail], compact('title'));
     }
 
     //End Activity Controllers
@@ -217,10 +219,8 @@ class pages extends Controller
             'foto' => 'image|file',
         ]);
 
-        if($request->file('foto'))
-        {
+        if ($request->file('foto')) {
             $allusers['foto'] = $request->file('foto')->store('users-foto');
-            
         }
 
         User::where('id', $request->id)->update($allusers);
