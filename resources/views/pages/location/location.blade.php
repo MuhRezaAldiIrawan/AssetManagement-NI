@@ -40,7 +40,7 @@
                         </thead>
                         @foreach ($location as $l)
                             <tbody>
-                                <td>{{ $l->id }}</td>
+                                <td>{{ ++$i }}</td>
                                 <td>{{ $l->nama }}</td>
                                 <td>{{ $l->singkatan }}</td>
                                 <td>
@@ -48,9 +48,10 @@
                                         data-bs-target="#basicModal{{ $l->id }}">
                                         <span class="tf-icons bx bx-edit"></span>
                                     </button>
-                                    <a class="btn btn-icon btn-danger m-1" href="/location/delete/{{ $l->id }}"><span class="tf-icons bx bx-trash"></span></a>
+                                    <a class="btn btn-icon btn-danger m-1" href="/location/delete/{{ $l->id }}"><span
+                                            class="tf-icons bx bx-trash"></span></a>
 
-                                    <!-- Edit Modal --> 
+                                    <!-- Edit Modal -->
                                     <div class="modal fade" id="basicModal{{ $l->id }}" tabindex="-1"
                                         aria-hidden="true">
                                         <div class="modal-dialog" role="document">
@@ -93,6 +94,12 @@
                             </tbody>
                         @endforeach
                     </table>
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            {{ $location->links() }}
+                        </ul>
+                    </nav>
+                    
                 </div>
             </div>
         </div>
@@ -131,4 +138,3 @@
         </div>
     </div>
 @endsection
-

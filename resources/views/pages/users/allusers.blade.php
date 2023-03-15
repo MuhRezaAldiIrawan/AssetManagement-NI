@@ -31,14 +31,14 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive text-nowrap">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered"  width="1000px">
                         <thead>
                             <tr>
-                                <th class="text-center">ID</th>
-                                <th class="text-center">Nama</th>
+                                <th class="text-center" width="5%">No</th>
+                                <th class="text-center" width="25%">Nama</th>
                                 <th class="text-center">Email</th>
-                                <th class="text-center">Jabatan</th>
-                                <th class="text-center">Actions</th>
+                                <th class="text-center" width="15%">Jabatan</th>
+                                <th class="text-center"  width="19%">Actions</th>
                             </tr>
                         </thead>
                         @foreach ($allusers as $l)

@@ -56,9 +56,9 @@
                                                 <div id="accordionIcon-7" class="accordion-collapse collapse"
                                                     data-bs-parent="#accordionIcon">
                                                     <div class="accordion-body">
-                                                        <p>{{ $d->shift }}</p>
-                                                        <p>{{ $d->lokasi }}</p>
-                                                        <p>{{ $d->kategori }}</p>
+                                                        <p>Shift    : {{ $d->shift }}</p>
+                                                        <p>Lokasi   :{{ $d->lokasi }}</p>
+                                                        <p>Kategori :{{ $d->kategori }}</p>
                                                     </div>
                                                 </div>
                                             </div>

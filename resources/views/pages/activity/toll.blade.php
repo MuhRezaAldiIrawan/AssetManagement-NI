@@ -45,7 +45,7 @@
                         </thead>
                         @foreach ($toll as $t)
                             <tbody>
-                                <td>{{ $t->id }}</td>
+                                <td>{{ ++$i }}</td>
                                 <td>{{ $t->tanggal }}</td>
                                 <td>{{ Str::limit($t->u_hardware, 200) }}</td>
                                 <td>{{ $t->shift }}</td>

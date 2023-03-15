@@ -16,7 +16,7 @@
                     <div class="card-body">
                         <div class="d-flex align-items-start align-items-sm-center gap-4">
                             @if (auth()->user()->foto)
-                                <img src="{{ asset('storage/' . auth()->user()->foto) }}" alt="">
+                                <img src="{{ asset('storage/' . auth()->user()->foto) }}" alt="" style="width: 200px; height: 200px" class="rounded">
                             @else
                                 <img src="{{ asset('img/Logo/mun.png') }}" alt=""
                                     style="max-height: 200px; width: 180px">
@@ -112,6 +112,15 @@
                                 <span class="input-group-text"><i class="bx bx-comment"></i></span>
                                 <input id="foto" name="foto" type="file" class="form-control"
                                     placeholder="Hi, Do you have a moment to talk Joe?" type="file"></input>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="basic-icon-default-message">Foto TTD</label>
+                            <div class="input-group input-group-merge">
+                                <span class="input-group-text"><i class="bx bx-comment"></i></span>
+                                <input id="ttd" name="ttd" type="file" class="form-control"
+                                     type="file"></input>
                             </div>
                         </div>
 

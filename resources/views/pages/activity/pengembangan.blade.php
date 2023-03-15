@@ -45,7 +45,7 @@
                         </thead>
                         @foreach ($pengembangan as $t)
                             <tbody>
-                                <td>{{ $t->id }}</td>
+                                <td>{{ ++$i }}</td>
                                 <td>{{ $t->tanggal }}</td>
                                 <td>{{ Str::limit($t->u_hardware, 200) }}</td>
                                 <td>{{ $t->shift }}</td>
@@ -102,7 +102,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{!! url('/toll') !!}" method="POST" enctype="multipart/form-data">
+                    <form action="{!! url('/pengembangan') !!}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row mb-3" hidden>
                             <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">User ID</label>
@@ -115,7 +115,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row mb-3" hidden>
+                        <div class="row mb-3" hidden >
                             <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Kategori
                                 Activity</label>
                             <div class="col-sm-10">
@@ -124,7 +124,7 @@
                                             class="bx bx-devices"></i></span>
                                     <input type="text" class="form-control" id="basic-icon-default-fullname"
                                         name="kategori_activity" id="kategori_activity" aria-label="John Doe"
-                                        value="Toll" readonly />
+                                        value="Pengembangan" readonly />
                                 </div>
                             </div>
                         </div>

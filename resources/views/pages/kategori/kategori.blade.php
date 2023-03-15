@@ -39,7 +39,7 @@
                         </thead>
                         @foreach ($kategori as $l)
                             <tbody>
-                                <td>{{ $l->id }}</td>
+                                <td>{{ ++$i }}</td>
                                 <td>{{ $l->nama }}</td>
                                 <td class="d-flex justify-content-center align-items-center">
                                     <button type="button" class="btn btn-icon btn-primary m-2" data-bs-toggle="modal"
@@ -82,6 +82,11 @@
                             </tbody>
                         @endforeach
                     </table>
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            {{ $kategori->links() }}
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
