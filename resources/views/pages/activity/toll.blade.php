@@ -143,39 +143,39 @@
                             <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Jenis Hardware</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
-                                    <span id="basic-icon-default-fullname2" class="input-group-text"><i
-                                            class="bx bx-calendar"></i></span>
-                                    <input type="text" class="form-control" id="j_hardware" name="j_hardware"
-                                        placeholder="Jenis Hardwarwe" aria-label="John Doe" />
-                                    {{-- <div class="col-md d-flex align-items-center ">
+                                    {{-- <span id="basic-icon-default-fullname2" class="input-group-text"><i
+                                            class="bx bx-calendar"></i></span> --}}
+                                    {{-- <input type="text" class="form-control" id="j_hardware" name="j_hardware"
+                                        placeholder="Jenis Hardwarwe" aria-label="John Doe" /> --}}
+                                    <div class="col-md d-flex align-items-center ">
                                         <div class="form-check form-check-inline mt-1">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
-                                                value="option1" />
+                                            <input class="form-check-input" type="checkbox" id="PC/Laptop" name="j_hardware[]"
+                                                value="PC/Laptop" />
                                             <label class="form-check-label" for="inlineCheckbox1">PC/Laptop</label>
                                         </div>
                                         <div class="form-check form-check-inline mt-1">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2"
-                                                value="option2" />
+                                            <input class="form-check-input" type="checkbox" id="Server" name="j_hardware[]"
+                                                value="Server" />
                                             <label class="form-check-label" for="inlineCheckbox2">Server</label>
                                         </div>
                                         <div class="form-check form-check-inline mt-1">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
-                                                value="option1" />
+                                            <input class="form-check-input" type="checkbox" id="Printer/Periferal" name="j_hardware[]"
+                                                value="Printer/Periferal" />
                                             <label class="form-check-label" for="inlineCheckbox1">Printer/Periferal</label>
                                         </div>
                                         <div class="form-check form-check-inline mt-1">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2"
-                                                value="option2" />
+                                            <input class="form-check-input" type="checkbox" id="Internet/Jaringan" name="j_hardware[]"
+                                                value="Internet/Jaringan" />
                                             <label class="form-check-label"
                                                 for="inlineCheckbox2">Internet/Jaringan</label>
                                         </div>
                                         <div class="form-check form-check-inline mt-1">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2"
-                                                value="option2" />
+                                            <input class="form-check-input" type="checkbox" id="LTCS/TFI/PCS/RTM/CCTV"  name="j_hardware[]"
+                                                value="LTCS/TFI/PCS/RTM/CCTV" />
                                             <label class="form-check-label"
                                                 for="inlineCheckbox2">LTCS/TFI/PCS/RTM/CCTV</label>
                                         </div>
-                                    </div> --}}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -321,7 +321,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="submit" class="btn btn-primary" name="simpan">Save changes</button>
                     </form>
                 </div>
                 {{-- <div class="modal-footer">

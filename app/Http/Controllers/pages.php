@@ -27,7 +27,7 @@ class pages extends Controller
     {
         $title = 'MUN | Toll';
         $pagination = 10;
-        $toll = DB::table('activities')->where('kategori_activity', '=' , 'Toll')->paginate( $pagination);
+        $toll = DB::table('activities')->where('kategori_activity', '=', 'Toll')->paginate($pagination);
 
 
         return view('pages.activity.toll', ['toll' => $toll], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
@@ -35,7 +35,6 @@ class pages extends Controller
 
     public function addtollactivity(Request $request)
     {
-
         $validatedData = $request->validate([
             'user_id' => 'required',
             'kategori_activity' => 'required',
@@ -55,10 +54,17 @@ class pages extends Controller
 
         ]);
 
+        
+        if(($request->input('j_hardware'))){
+            $validatedData['j_hardware'] = join(',', $request->input('j_hardware'));
+        }
+
         if ($request->file('foto')) {
             $validatedData['foto'] = $request->file('foto')->store('activity-foto');
         }
+
         Activity::create($validatedData);
+
         Alert::success('Success', 'Log Activity Telah berhasil Ditambahkan');
         return redirect('/toll');
     }
@@ -67,8 +73,8 @@ class pages extends Controller
     {
         $title = 'MUN | Non Toll';
         $pagination = 10;
-        $nontoll = DB::table('activities')->where('kategori_activity', '=' , 'NonToll')->paginate( $pagination);
-   
+        $nontoll = DB::table('activities')->where('kategori_activity', '=', 'NonToll')->paginate($pagination);
+
         return view('pages.activity.nontoll', ['nontoll' => $nontoll], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
     }
 
@@ -106,10 +112,10 @@ class pages extends Controller
     {
         $title = 'MUN | Pengembangan';
         $pagination = 10;
-        $pengembangan = DB::table('activities')->where('kategori_activity', '=' , 'Pengembangan')->paginate( $pagination);
+        $pengembangan = DB::table('activities')->where('kategori_activity', '=', 'Pengembangan')->paginate($pagination);
 
 
-        return view('pages.activity.pengembangan',['pengembangan' => $pengembangan], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);;
+        return view('pages.activity.pengembangan', ['pengembangan' => $pengembangan], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);;
     }
 
     public function pengembanganactivity(Request $request)
@@ -158,7 +164,7 @@ class pages extends Controller
     {
         $title = 'MUN | Location';
         $pagination = 10;
-        $location = DB::table('lokasi')->paginate( $pagination);
+        $location = DB::table('lokasi')->paginate($pagination);
 
         return view('pages.location.location', ['location' => $location], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
     }
@@ -204,11 +210,11 @@ class pages extends Controller
     //End Location Controllers
 
     //Kategori Controllers
-    public function kategori(Request $request )
+    public function kategori(Request $request)
     {
         $title = 'MUN | Kategori';
         $pagination = 10;
-        $kategori = DB::table('kategori')->paginate( $pagination);
+        $kategori = DB::table('kategori')->paginate($pagination);
 
         return view('pages.kategori.kategori', ['kategori' => $kategori], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
     }
@@ -217,6 +223,7 @@ class pages extends Controller
     {
         DB::table('kategori')->insert([
             'nama' => $request->nama,
+
 
         ]);
         Alert::success('Success', 'Kategori Telah berhasil Ditambahkan');
@@ -259,37 +266,7 @@ class pages extends Controller
         return view('pages.users.users', compact('title'));
     }
 
-    // public function updateusers(Request $request)
-    // {
-    //     // dd($request);
 
-    //     // $allusers = $request->validate([
-    //     //     'nama' => 'required|max:255',
-    //     //     'email' => 'required|email',
-    //     //     'jabatan' => 'required',
-    //     //     'foto' => 'image|file',
-    //     //     'ttd' => 'image|file'
-    //     // ]);
-    //     DB::table('users')->where('id', $request->id)->update([
-    //         'nama' => $request->nama,
-    //         'email' => $request->email,
-    //         'jabatan' => $request->jabatan,
-    //         'foto' => $request->foto,
-    //         'ttd' => $request->ttd
-    //     ]);
-
-    //     // if ($request->file('foto')) {
-    //     //     $request['foto'] = $request->file('foto')->store('users-foto');
-    //     //     // $request['ttd'] = $request->file('ttd')->store('users-ttd');
-    //     // }
-    //     // dd($request);
-
-    //     // User::where('id', $request->id)->update($allusers);
-
-    //     // return view('pages.users.allusers', ['allusers' => $allusers], compact('title'));
-
-    //     return redirect('/users');
-    // }
 
 
     public function allusers(Request $request)
