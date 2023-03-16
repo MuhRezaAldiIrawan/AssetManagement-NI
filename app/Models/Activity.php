@@ -29,7 +29,8 @@ class Activity extends Model
         'kategori',
         'kondisi_akhir',
         'foto',
-
+        'status',
+        
 
     ];
 

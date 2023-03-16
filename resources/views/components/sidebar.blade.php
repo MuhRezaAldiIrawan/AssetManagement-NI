@@ -19,29 +19,66 @@
                 <div data-i18n="Analytics">Dashboard</div>
             </a>
         </li>
+
+        <li class="menu-header small text-uppercase"><span class="menu-header-text">Activity </span></li>
+
         <li class="menu-item ">
             <a class="menu-link menu-toggle">
-                <i class=' menu-icon tf-icons bx bxs-report'></i>
-                <div data-i18n="Layouts">Activity</div>
+                <i class=' menu-icon tf-icons bx bxs-car-mechanic'></i>
+                <div data-i18n="Layouts">Toll</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
                     <a href="/toll" class="menu-link">
-                        <div data-i18n="Without menu">Toll</div>
+                        <div data-i18n="Without menu">Log Toll</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="/nontoll" class="menu-link">
-                        <div data-i18n="Without navbar">Non Toll</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/pengembangan" class="menu-link">
-                        <div data-i18n="Without navbar">Pengembangan</div>
+                    <a href="/tollhistori" class="menu-link">
+                        <div data-i18n="Without navbar">Log Histori</div>
                     </a>
                 </li>
             </ul>
         </li>
+        <li class="menu-item ">
+            <a class="menu-link menu-toggle">
+                <i class=' menu-icon tf-icons bx bx-building-house'></i>
+                <div data-i18n="Layouts">Non Toll</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="/nontoll" class="menu-link">
+                        <div data-i18n="Without menu">Log Non Toll</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="/nontollhistori" class="menu-link">
+                        <div data-i18n="Without navbar">Log Histori</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="menu-item ">
+            <a class="menu-link menu-toggle">
+                <i class=' menu-icon tf-icons bx bx-trending-up'></i>
+                <div data-i18n="Layouts">Pengembangan</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="/pengembangan" class="menu-link">
+                        <div data-i18n="Without menu">Log Pengembangan</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="/pengembanganhistori" class="menu-link">
+                        <div data-i18n="Without navbar">Log Histori</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="menu-header small text-uppercase"><span class="menu-header-text">Information Details</span></li>
+
         <li class="menu-item">
             <a href="/location" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-map-pin"></i>

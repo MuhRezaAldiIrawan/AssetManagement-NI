@@ -29,6 +29,9 @@ Route::get('/users', 'App\Http\Controllers\pages@users');
 Route::get('/allusers', 'App\Http\Controllers\pages@allusers');
 Route::get('/lognontol', 'App\Http\Controllers\pages@lognontol');
 Route::get('/pengembangan', 'App\Http\Controllers\pages@pengembangan');
+Route::get('/tollhistori', 'App\Http\Controllers\pages@tollhistori');
+Route::get('/nontollhistori', 'App\Http\Controllers\pages@nontollhistori');
+Route::get('/pengembanganhistori', 'App\Http\Controllers\pages@pengembanganhistori');
 
 //End Main Route
 

@@ -51,12 +51,21 @@ class pages extends Controller
             'kategori' => 'required',
             'kondisi_akhir' => 'required',
             'foto' => 'image|file',
+            'status' => 'required'
 
         ]);
 
         
         if(($request->input('j_hardware'))){
             $validatedData['j_hardware'] = join(',', $request->input('j_hardware'));
+        }
+
+        if(($request->input('s_aplikasi'))){
+            $validatedData['s_aplikasi'] = join(',', $request->input('s_aplikasi'));
+        }
+
+        if(($request->input('a_it'))){
+            $validatedData['a_it'] = join(',', $request->input('a_it'));
         }
 
         if ($request->file('foto')) {
@@ -99,6 +108,18 @@ class pages extends Controller
             'foto' => 'image|file',
 
         ]);
+
+        if(($request->input('j_hardware'))){
+            $validatedData['j_hardware'] = join(',', $request->input('j_hardware'));
+        }
+
+        if(($request->input('s_aplikasi'))){
+            $validatedData['s_aplikasi'] = join(',', $request->input('s_aplikasi'));
+        }
+
+        if(($request->input('a_it'))){
+            $validatedData['a_it'] = join(',', $request->input('a_it'));
+        }
 
         if ($request->file('foto')) {
             $validatedData['foto'] = $request->file('foto')->store('activity-foto');
@@ -156,6 +177,85 @@ class pages extends Controller
 
         return view('pages.activity.subpages.activitydetail', ['activitydetail' => $activitydetail], compact('title'));
     }
+
+    public function updateactivitydetail(Request $request, $id)
+    {
+
+        $activitydetail = $request->validate([
+            'user_id' => 'required',
+            'kategori_activity' => 'required',
+            'tanggal' => 'required',
+            'j_hardware' => 'required',
+            'u_hardware' => 'required',
+            's_aplikasi' => 'required',
+            'u_aplikasi' => 'required',
+            'a_it' => 'required',
+            'u_it' => 'required',
+            'catatan' => 'required',
+            'shift' => 'required',
+            'lokasi' => 'required',
+            'kategori' => 'required',
+            'kondisi_akhir' => 'required',
+            'foto' => 'image|file',
+            'status' => 'required'
+        ]);
+
+        if(($request->input('j_hardware'))){
+            $validatedData['j_hardware'] = join(',', $request->input('j_hardware'));
+        }
+
+        if(($request->input('s_aplikasi'))){
+            $validatedData['s_aplikasi'] = join(',', $request->input('s_aplikasi'));
+        }
+
+        if(($request->input('a_it'))){
+            $validatedData['a_it'] = join(',', $request->input('a_it'));
+        }
+
+        if ($request->file('foto')) {
+            $validatedData['foto'] = $request->file('foto')->store('activity-foto');
+        }
+
+        User::where('id', $request->id)->update($activitydetail);
+
+        // return view('pages.users.allusers', ['allusers' => $allusers], compact('title'));
+
+        return redirect('/allusers');
+    }
+
+    public function tollhistori(Request $request)
+    {
+        $title = 'MUN | Toll Histori';
+        $subtitle = 'Log Histori Toll';
+        $pagination = 10;
+        $histori = DB::table('activities')->where([['kategori_activity', '=', 'Toll'],['status', '=', 'approve']])->orWhere('status', '=', 'rejected')->paginate($pagination);
+
+
+        return view('pages.activity.subpages.histori', ['histori' => $histori], compact('title','subtitle'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
+    }
+
+    public function nontollhistori(Request $request)
+    {
+        $title = 'MUN | Non Toll Histori';
+        $subtitle = 'Log Histori Non Toll';
+        $pagination = 10;
+        $histori = DB::table('activities')->where('kategori_activity', '=', 'NonToll')->paginate($pagination);
+
+
+        return view('pages.activity.subpages.histori', ['histori' => $histori], compact('title','subtitle'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
+    }
+
+    public function pengembanganhistori(Request $request)
+    {
+        $title = 'MUN | Pengembangan Histori';
+        $subtitle = 'Log Histori Pengembangan';
+        $pagination = 10;
+        $histori = DB::table('activities')->where('kategori_activity', '=', 'Pengembangan')->paginate($pagination);
+
+
+        return view('pages.activity.subpages.histori', ['histori' => $histori], compact('title','subtitle'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
+    }
+
 
     //End Activity Controllers
 
@@ -265,9 +365,6 @@ class pages extends Controller
         $title = 'MUN | User';
         return view('pages.users.users', compact('title'));
     }
-
-
-
 
     public function allusers(Request $request)
     {

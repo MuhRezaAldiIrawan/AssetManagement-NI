@@ -143,39 +143,35 @@
                             <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Jenis Hardware</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
-                                    <span id="basic-icon-default-fullname2" class="input-group-text"><i
-                                            class="bx bx-calendar"></i></span>
-                                    <input type="text" class="form-control" id="j_hardware" name="j_hardware"
-                                        placeholder="Jenis Hardwarwe" aria-label="John Doe" />
-                                    {{-- <div class="col-md d-flex align-items-center ">
+                                    <div class="col-md d-flex align-items-center ">
                                         <div class="form-check form-check-inline mt-1">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
-                                                value="option1" />
+                                            <input class="form-check-input" type="checkbox" id="PC/Laptop" name="j_hardware[]"
+                                                value="PC/Laptop" />
                                             <label class="form-check-label" for="inlineCheckbox1">PC/Laptop</label>
                                         </div>
                                         <div class="form-check form-check-inline mt-1">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2"
-                                                value="option2" />
+                                            <input class="form-check-input" type="checkbox" id="Server" name="j_hardware[]"
+                                                value="Server" />
                                             <label class="form-check-label" for="inlineCheckbox2">Server</label>
                                         </div>
                                         <div class="form-check form-check-inline mt-1">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
-                                                value="option1" />
+                                            <input class="form-check-input" type="checkbox" id="Printer/Periferal" name="j_hardware[]"
+                                                value="Printer/Periferal" />
                                             <label class="form-check-label" for="inlineCheckbox1">Printer/Periferal</label>
                                         </div>
                                         <div class="form-check form-check-inline mt-1">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2"
-                                                value="option2" />
+                                            <input class="form-check-input" type="checkbox" id="Internet/Jaringan" name="j_hardware[]"
+                                                value="Internet/Jaringan" />
                                             <label class="form-check-label"
                                                 for="inlineCheckbox2">Internet/Jaringan</label>
                                         </div>
                                         <div class="form-check form-check-inline mt-1">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2"
-                                                value="option2" />
+                                            <input class="form-check-input" type="checkbox" id="LTCS/TFI/PCS/RTM/CCTV"  name="j_hardware[]"
+                                                value="LTCS/TFI/PCS/RTM/CCTV" />
                                             <label class="form-check-label"
                                                 for="inlineCheckbox2">LTCS/TFI/PCS/RTM/CCTV</label>
                                         </div>
-                                    </div> --}}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -191,18 +187,16 @@
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <div class="col-md d-flex align-items-center ">
-                                        <input type="text" class="form-control" id="s_aplikasi" name="s_aplikasi"
-                                            placeholder="Jenis Hardwarwe" />
-                                        {{-- <div class="form-check form-check-inline mt-1">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
-                                                value="option1" />
-                                            <label class="form-check-label" for="inlineCheckbox1">Sistem Operasi</label>
+                                        <div class="form-check form-check-inline mt-1">
+                                            <input class="form-check-input" type="checkbox" id="Sistem Operasi" name="s_aplikasi[]"
+                                                value="Sistem Operasi" />
+                                            <label class="form-check-label" for="Sistem Operasi">Sistem Operasi</label>
                                         </div>
                                         <div class="form-check form-check-inline mt-1">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2"
-                                                value="option2" />
-                                            <label class="form-check-label" for="inlineCheckbox2">Microsoft Office</label>
-                                        </div> --}}
+                                            <input class="form-check-input" type="checkbox" id="Microsoft Office"  name="s_aplikasi[]"
+                                                value="Microsoft Office" />
+                                            <label class="form-check-label" for="Microsoft Office">Microsoft Office</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -219,28 +213,26 @@
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <div class="col-md d-flex align-items-center ">
-                                        <input name="a_it" id="a_it" class="form-control"
-                                            placeholder="Penjabaran Masalah Sistem"></input>
-                                        {{-- <div class="form-check form-check-inline mt-1">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
-                                                value="option1" />
-                                            <label class="form-check-label" for="inlineCheckbox1">Program LTCS/TFI</label>
+                                        <div class="form-check form-check-inline mt-1">
+                                            <input class="form-check-input" type="checkbox" id="Program LTCS/TFI" name="a_it[]"
+                                                value="Program LTCS/TFI" />
+                                            <label class="form-check-label" for="Program LTCS/TFI">Program LTCS/TFI</label>
                                         </div>
                                         <div class="form-check form-check-inline mt-1">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2"
-                                                value="option2" />
-                                            <label class="form-check-label" for="inlineCheckbox2">Program PCS</label>
+                                            <input class="form-check-input" type="checkbox" id="Program PCS" name="a_it[]"
+                                                value="Program PCS" />
+                                            <label class="form-check-label" for="Program PCS">Program PCS</label>
                                         </div>
                                         <div class="form-check form-check-inline mt-1">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
-                                                value="option1" />
-                                            <label class="form-check-label" for="inlineCheckbox1">Program RTM</label>
+                                            <input class="form-check-input" type="checkbox" id="Program RTM" name="a_it[]"
+                                                value="Program RTM" />
+                                            <label class="form-check-label" for="Program RTM">Program RTM</label>
                                         </div>
                                         <div class="form-check form-check-inline mt-1">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2"
-                                                value="option2" />
-                                            <label class="form-check-label" for="inlineCheckbox2">Program CCTV/VMS</label>
-                                        </div> --}}
+                                            <input class="form-check-input" type="checkbox" id="Program CCTV/VMS" name="a_it[]"
+                                                value="Program CCTV/VMS" />
+                                            <label class="form-check-label" for="Program CCTV/VMS">Program CCTV/VMS</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
