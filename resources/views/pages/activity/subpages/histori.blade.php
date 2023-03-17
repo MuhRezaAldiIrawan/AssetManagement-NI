@@ -18,10 +18,6 @@
                 <div class="col-md-6">
                     <div class="demo-inline-spacing">
                         <div class="d-flex justify-content-end">
-                            <button type="button" class="btn btn-icon btn-primary m-1" data-bs-toggle="modal"
-                                data-bs-target="#fullscreenModal"">
-                                <span class="tf-icons bx bx-plus"></span>
-                            </button>
                             <button type="button" class="btn btn-icon btn-secondary m-1">
                                 <span class="tf-icons bx bx-printer"></span>
                             </button>
@@ -40,6 +36,7 @@
                                 <th class="text-center">Shift</th>
                                 <th class="text-center">Kategori</th>
                                 <th class="text-center">user</th>
+                                <th class="text-center">Status</th>
                                 <th class="text-center" width="21%">Action</th>
                             </tr>
                         </thead>
@@ -51,6 +48,13 @@
                                 <td>{{ $t->shift }}</td>
                                 <td>{{ $t->kategori }}</td>
                                 <td>{{ $t->user_id }}</td>
+                                <td>
+                                    @if ($t->status =='approve')
+                                    <button type="button" class="btn btn-success active">Approve</button>
+                                    @else
+                                    <button type="button" class="btn btn-danger active">rejected</button>
+                                    @endif
+                                </td>
                                 <td>
                                     <button class="btn btn-icon btn-success me-1" type="button" data-bs-toggle="modal"
                                         data-bs-target="#basicModalView{{ $t->id }}" aria-expanded="false"

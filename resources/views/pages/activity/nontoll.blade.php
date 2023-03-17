@@ -40,6 +40,7 @@
                                 <th class="text-center">Shift</th>
                                 <th class="text-center">Kategori</th>
                                 <th class="text-center">user</th>
+                                <th class="text-center">Status</th>
                                 <th class="text-center" width="21%">Action</th>
                             </tr>
                         </thead>
@@ -51,6 +52,9 @@
                                 <td>{{ $t->shift }}</td>
                                 <td>{{ $t->kategori }}</td>
                                 <td>{{ $t->user_id }}</td>
+                                <td>
+                                    <button type="button" class="btn btn-warning active">Pending</button>
+                                </td>
                                 <td>
                                     <button class="btn btn-icon btn-success me-1" type="button" data-bs-toggle="modal"
                                         data-bs-target="#basicModalView{{ $t->id }}" aria-expanded="false"
@@ -311,6 +315,12 @@
                                             class="bx bx-camera"></i></span>
                                     <input type="file" class="form-control" id="foto" name="foto" />
                                 </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3" hidden>
+                            <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Status</label>
+                            <div class="col-sm-10">
+                                <input id="status" name="status" class="form-control" value="pending" readonly></input>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Save changes</button>

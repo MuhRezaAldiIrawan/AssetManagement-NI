@@ -65,6 +65,7 @@ Route::post('/toll', 'App\Http\Controllers\pages@addtollactivity');
 Route::post('/nontoll', 'App\Http\Controllers\pages@addnontollactivity');
 Route::post('/pengembangan', 'App\Http\Controllers\pages@pengembanganactivity');
 Route::get('/activitydetail/{id}', 'App\Http\Controllers\pages@activitydetail');
+Route::post('/activitydetail/update/{id}', 'App\Http\Controllers\pages@updateactivitydetail');
 
 
 

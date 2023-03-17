@@ -27,7 +27,7 @@ class pages extends Controller
     {
         $title = 'MUN | Toll';
         $pagination = 10;
-        $toll = DB::table('activities')->where('kategori_activity', '=', 'Toll')->paginate($pagination);
+        $toll = DB::table('activities')->where([['kategori_activity', '=', 'Toll'],['status', '=', 'pending']])->paginate($pagination);
 
 
         return view('pages.activity.toll', ['toll' => $toll], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
@@ -82,7 +82,7 @@ class pages extends Controller
     {
         $title = 'MUN | Non Toll';
         $pagination = 10;
-        $nontoll = DB::table('activities')->where('kategori_activity', '=', 'NonToll')->paginate($pagination);
+        $nontoll = DB::table('activities')->where([['kategori_activity', '=', 'NonToll'],['status', '=', 'pending']])->paginate($pagination);
 
         return view('pages.activity.nontoll', ['nontoll' => $nontoll], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
     }
@@ -106,6 +106,7 @@ class pages extends Controller
             'kategori' => 'required',
             'kondisi_akhir' => 'required',
             'foto' => 'image|file',
+            'status' => 'required'
 
         ]);
 
@@ -133,7 +134,7 @@ class pages extends Controller
     {
         $title = 'MUN | Pengembangan';
         $pagination = 10;
-        $pengembangan = DB::table('activities')->where('kategori_activity', '=', 'Pengembangan')->paginate($pagination);
+        $pengembangan = DB::table('activities')->where([['kategori_activity', '=', 'pengembangan'],['status', '=', 'pending']])->paginate($pagination);
 
 
         return view('pages.activity.pengembangan', ['pengembangan' => $pengembangan], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);;
@@ -158,12 +159,28 @@ class pages extends Controller
             'kategori' => 'required',
             'kondisi_akhir' => 'required',
             'foto' => 'image|file',
+            'status' => 'required'
 
         ]);
+
+
+        if(($request->input('j_hardware'))){
+            $validatedData['j_hardware'] = json_encode($request->j_hardware);
+
+        }
+
+        if(($request->input('s_aplikasi'))){
+            $validatedData['s_aplikasi'] = json_encode($request->s_aplikasi);
+        }
+
+        if(($request->input('a_it'))){
+            $validatedData['a_it'] = json_encode($request->a_it);
+        }
 
         if ($request->file('foto')) {
             $validatedData['foto'] = $request->file('foto')->store('activity-foto');
         }
+
         Activity::create($validatedData);
         Alert::success('Success', 'Log Activity Telah berhasil Ditambahkan');
         return redirect('/pengembangan');
@@ -201,22 +218,24 @@ class pages extends Controller
         ]);
 
         if(($request->input('j_hardware'))){
-            $validatedData['j_hardware'] = join(',', $request->input('j_hardware'));
+            $validatedData['j_hardware'] = json_encode($request->j_hardware);
+
         }
 
         if(($request->input('s_aplikasi'))){
-            $validatedData['s_aplikasi'] = join(',', $request->input('s_aplikasi'));
+            $validatedData['s_aplikasi'] = json_encode($request->s_aplikasi);
         }
 
         if(($request->input('a_it'))){
-            $validatedData['a_it'] = join(',', $request->input('a_it'));
+            $validatedData['a_it'] = json_encode($request->a_it);
         }
 
         if ($request->file('foto')) {
             $validatedData['foto'] = $request->file('foto')->store('activity-foto');
         }
+        dd($request);
 
-        User::where('id', $request->id)->update($activitydetail);
+        Activity::where('id', $request->id)->update($activitydetail);
 
         // return view('pages.users.allusers', ['allusers' => $allusers], compact('title'));
 
@@ -239,7 +258,7 @@ class pages extends Controller
         $title = 'MUN | Non Toll Histori';
         $subtitle = 'Log Histori Non Toll';
         $pagination = 10;
-        $histori = DB::table('activities')->where('kategori_activity', '=', 'NonToll')->paginate($pagination);
+        $histori = DB::table('activities')->where([['kategori_activity', '=', 'NonToll'],['status', '=', 'approve']])->orWhere('status', '=', 'rejected')->paginate($pagination);
 
 
         return view('pages.activity.subpages.histori', ['histori' => $histori], compact('title','subtitle'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
@@ -250,7 +269,7 @@ class pages extends Controller
         $title = 'MUN | Pengembangan Histori';
         $subtitle = 'Log Histori Pengembangan';
         $pagination = 10;
-        $histori = DB::table('activities')->where('kategori_activity', '=', 'Pengembangan')->paginate($pagination);
+        $histori = DB::table('activities')->where('kategori_activity', '=', 'pengembangan')->paginate($pagination);
 
 
         return view('pages.activity.subpages.histori', ['histori' => $histori], compact('title','subtitle'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
