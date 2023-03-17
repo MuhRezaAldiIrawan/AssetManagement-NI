@@ -163,11 +163,11 @@
     </div>
 
     @php
-        $j_hardware = json_decode($activitydetail[0]->j_hardware); 
+        $j_hardware = json_decode($activitydetail[0]->j_hardware);
         $s_aplikasi = json_decode($activitydetail[0]->s_aplikasi);
-        $a_it = json_decode($activitydetail[0]->a_it)  
+        $a_it = json_decode($activitydetail[0]->a_it);
     @endphp
-    
+
     <!-- Add Modal -->
     <div class="modal fade" id="approve" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
@@ -178,9 +178,20 @@
                 </div>
                 <div class="modal-body">
                     @foreach ($activitydetail as $d)
-                    <form action="{!! url('/activitydetail/update/' . $d->id) !!}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                            <div class="row mb-3" >
+                        <form action="{!! url('/activitydetail/update') !!}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Input ID</label>
+                                <div class="col-sm-10">
+                                    <div class="input-group input-group-merge">
+                                        <span id="basic-icon-default-fullname2" class="input-group-text"><i
+                                                class="bx bx-devices"></i></span>
+                                        <input type="text" class="form-control" name="kategori_activity"
+                                            id="kategori_activity" value="{{ $d->id }}" readonly />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Kategori
                                     Activity</label>
                                 <div class="col-sm-10">
@@ -188,8 +199,7 @@
                                         <span id="basic-icon-default-fullname2" class="input-group-text"><i
                                                 class="bx bx-devices"></i></span>
                                         <input type="text" class="form-control" name="kategori_activity"
-                                            id="kategori_activity" 
-                                            value="{{ $d->kategori_activity }}" readonly />
+                                            id="kategori_activity" value="{{ $d->kategori_activity }}" readonly />
                                     </div>
                                 </div>
                             </div>
@@ -199,8 +209,8 @@
                                     <div class="input-group input-group-merge">
                                         <span id="basic-icon-default-fullname2" class="input-group-text"><i
                                                 class="bx bx-calendar"></i></span>
-                                        <input type="date" class="form-control" id="tanggal" name="tanggal" value="{{ $d->tanggal }}"
-                                        aria-label="John Doe" />
+                                        <input type="date" class="form-control" id="tanggal" name="tanggal"
+                                            value="{{ $d->tanggal }}" aria-label="John Doe" />
                                     </div>
                                 </div>
                             </div>
@@ -212,30 +222,35 @@
                                         <div class="col-md d-flex align-items-center ">
                                             <div class="form-check form-check-inline mt-1">
                                                 <input class="form-check-input" type="checkbox" id="PC/Laptop"
-                                                    name="j_hardware[]" value="PC/Laptop" {{ in_array('PC/Laptop', $j_hardware) ? 'checked' : '' }}/>
+                                                    name="j_hardware[]" value="PC/Laptop"
+                                                    {{ in_array('PC/Laptop', $j_hardware) ? 'checked' : '' }} />
                                                 <label class="form-check-label" for="inlineCheckbox1">PC/Laptop</label>
                                             </div>
                                             <div class="form-check form-check-inline mt-1">
                                                 <input class="form-check-input" type="checkbox" id="Server"
-                                                    name="j_hardware[]"  value="Server"  {{ in_array('Server', $j_hardware) ? 'checked' : '' }}/>
+                                                    name="j_hardware[]" value="Server"
+                                                    {{ in_array('Server', $j_hardware) ? 'checked' : '' }} />
                                                 <label class="form-check-label" for="inlineCheckbox2">Server</label>
                                             </div>
                                             <div class="form-check form-check-inline mt-1">
                                                 <input class="form-check-input" type="checkbox" id="Printer/Periferal"
-                                                    name="j_hardware[]" value="Printer/Periferal"  {{ in_array('Printer/Periferal', $j_hardware) ? 'checked' : '' }} />
+                                                    name="j_hardware[]" value="Printer/Periferal"
+                                                    {{ in_array('Printer/Periferal', $j_hardware) ? 'checked' : '' }} />
                                                 <label class="form-check-label"
                                                     for="inlineCheckbox1">Printer/Periferal</label>
                                             </div>
                                             <div class="form-check form-check-inline mt-1">
                                                 <input class="form-check-input" type="checkbox" id="Internet/Jaringan"
-                                                    name="j_hardware[]" value="Internet/Jaringan"  {{ in_array('Internet/Jaringan', $j_hardware) ? 'checked' : '' }} />
+                                                    name="j_hardware[]" value="Internet/Jaringan"
+                                                    {{ in_array('Internet/Jaringan', $j_hardware) ? 'checked' : '' }} />
                                                 <label class="form-check-label"
                                                     for="inlineCheckbox2">Internet/Jaringan</label>
                                             </div>
                                             <div class="form-check form-check-inline mt-1">
                                                 <input class="form-check-input" type="checkbox"
                                                     id="LTCS/TFI/PCS/RTM/CCTV" name="j_hardware[]"
-                                                    value="LTCS/TFI/PCS/RTM/CCTV"  {{ in_array('LTCS/TFI/PCS/RTM/CCTV', $j_hardware) ? 'checked' : '' }} />
+                                                    value="LTCS/TFI/PCS/RTM/CCTV"
+                                                    {{ in_array('LTCS/TFI/PCS/RTM/CCTV', $j_hardware) ? 'checked' : '' }} />
                                                 <label class="form-check-label"
                                                     for="inlineCheckbox2">LTCS/TFI/PCS/RTM/CCTV</label>
                                             </div>
@@ -257,13 +272,15 @@
                                         <div class="col-md d-flex align-items-center ">
                                             <div class="form-check form-check-inline mt-1">
                                                 <input class="form-check-input" type="checkbox" id="Sistem Operasi"
-                                                    name="s_aplikasi[]" value="Sistem Operasi" {{ in_array('Sistem Operasi', $s_aplikasi) ? 'checked' : '' }}/>
+                                                    name="s_aplikasi[]" value="Sistem Operasi"
+                                                    {{ in_array('Sistem Operasi', $s_aplikasi) ? 'checked' : '' }} />
                                                 <label class="form-check-label" for="Sistem Operasi">Sistem
                                                     Operasi</label>
                                             </div>
                                             <div class="form-check form-check-inline mt-1">
                                                 <input class="form-check-input" type="checkbox" id="Microsoft Office"
-                                                    name="s_aplikasi[]" value="Microsoft Office" {{ in_array('Microsoft Office', $s_aplikasi) ? 'checked' : '' }} />
+                                                    name="s_aplikasi[]" value="Microsoft Office"
+                                                    {{ in_array('Microsoft Office', $s_aplikasi) ? 'checked' : '' }} />
                                                 <label class="form-check-label" for="Microsoft Office">Microsoft
                                                     Office</label>
                                             </div>
@@ -285,22 +302,26 @@
                                         <div class="col-md d-flex align-items-center ">
                                             <div class="form-check form-check-inline mt-1">
                                                 <input class="form-check-input" type="checkbox" id="Program LTCS/TFI"
-                                                    name="a_it[]" value="Program LTCS/TFI" {{ in_array('Program LTCS/TFI', $a_it) ? 'checked' : '' }}/>
+                                                    name="a_it[]" value="Program LTCS/TFI"
+                                                    {{ in_array('Program LTCS/TFI', $a_it) ? 'checked' : '' }} />
                                                 <label class="form-check-label" for="Program LTCS/TFI">Program
                                                     LTCS/TFI</label>
                                             </div>
                                             <div class="form-check form-check-inline mt-1">
-                                                <input class="form-check-input" type="checkbox" id="Program PCS" {{ in_array('Program PCS', $a_it) ? 'checked' : '' }}
-                                                    name="a_it[]" value="Program PCS" />
+                                                <input class="form-check-input" type="checkbox" id="Program PCS"
+                                                    {{ in_array('Program PCS', $a_it) ? 'checked' : '' }} name="a_it[]"
+                                                    value="Program PCS" />
                                                 <label class="form-check-label" for="Program PCS">Program PCS</label>
                                             </div>
                                             <div class="form-check form-check-inline mt-1">
-                                                <input class="form-check-input" type="checkbox" id="Program RTM" {{ in_array('Program RTM', $a_it) ? 'checked' : '' }}
-                                                    name="a_it[]" value="Program RTM" />
+                                                <input class="form-check-input" type="checkbox" id="Program RTM"
+                                                    {{ in_array('Program RTM', $a_it) ? 'checked' : '' }} name="a_it[]"
+                                                    value="Program RTM" />
                                                 <label class="form-check-label" for="Program RTM">Program RTM</label>
                                             </div>
                                             <div class="form-check form-check-inline mt-1">
-                                                <input class="form-check-input" type="checkbox" id="Program CCTV/VMS" {{ in_array('Program CCTV/VMS', $a_it) ? 'checked' : '' }}
+                                                <input class="form-check-input" type="checkbox" id="Program CCTV/VMS"
+                                                    {{ in_array('Program CCTV/VMS', $a_it) ? 'checked' : '' }}
                                                     name="a_it[]" value="Program CCTV/VMS" />
                                                 <label class="form-check-label" for="Program CCTV/VMS">Program
                                                     CCTV/VMS</label>
@@ -330,9 +351,15 @@
                                                 class="bx bx-run "></i></span>
                                         <select class="form-select" id="shift" name="shift">
                                             @foreach ($activitydetail as $key => $value)
-                                            <option value="{{ $value->shift }}" {{ ($value->shift == 'Satu') ? 'selected' : '' }}>{{ $value->shift }}</option>
-                                            <option value="{{ $value->shift }}" {{ ($value->shift == 'Dua') ? 'selected' : '' }}>{{ $value->shift }}</option>
-                                            <option  value="{{ $value->shift }}" {{ ($value->shift == 'Tiga') ? 'selected' : '' }}>{{ $value->shift }}</option>
+                                                <option value="{{ $value->shift }}"
+                                                    {{ $value->shift == 'Satu' ? 'selected' : '' }}>{{ $value->shift }}
+                                                </option>
+                                                <option value="{{ $value->shift }}"
+                                                    {{ $value->shift == 'Dua' ? 'selected' : '' }}>{{ $value->shift }}
+                                                </option>
+                                                <option value="{{ $value->shift }}"
+                                                    {{ $value->shift == 'Tiga' ? 'selected' : '' }}>{{ $value->shift }}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -347,9 +374,15 @@
                                         <select class="form-select" id="lokasi" name="lokasi"
                                             aria-label="Default select example">
                                             @foreach ($activitydetail as $key => $value)
-                                            <option value="{{ $value->shift }}" {{ ($value->shift == 'Satu') ? 'selected' : '' }}>{{ $value->shift }}</option>
-                                            <option value="{{ $value->shift }}" {{ ($value->shift == 'Dua') ? 'selected' : '' }}>{{ $value->shift }}</option>
-                                            <option  value="{{ $value->shift }}" {{ ($value->shift == 'Tiga') ? 'selected' : '' }}>{{ $value->shift }}</option>
+                                                <option value="{{ $value->shift }}"
+                                                    {{ $value->shift == 'Satu' ? 'selected' : '' }}>{{ $value->shift }}
+                                                </option>
+                                                <option value="{{ $value->shift }}"
+                                                    {{ $value->shift == 'Dua' ? 'selected' : '' }}>{{ $value->shift }}
+                                                </option>
+                                                <option value="{{ $value->shift }}"
+                                                    {{ $value->shift == 'Tiga' ? 'selected' : '' }}>{{ $value->shift }}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -364,9 +397,15 @@
                                         <select class="form-select" id="kategori" name="kategori"
                                             aria-label="Default select example">
                                             @foreach ($activitydetail as $key => $value)
-                                            <option value="{{ $value->kategori }}" {{ ($value->shift == 'Satu') ? 'selected' : '' }}>{{ $value->kategori }}</option>
-                                            <option value="{{ $value->kategori }}" {{ ($value->shift == 'Dua') ? 'selected' : '' }}>{{ $value->kategori }}</option>
-                                            <option value="{{ $value->kategori }}" {{ ($value->shift == 'Tiga') ? 'selected' : '' }}>{{ $value->kategori }}</option>
+                                                <option value="{{ $value->kategori }}"
+                                                    {{ $value->shift == 'Satu' ? 'selected' : '' }}>
+                                                    {{ $value->kategori }}</option>
+                                                <option value="{{ $value->kategori }}"
+                                                    {{ $value->shift == 'Dua' ? 'selected' : '' }}>
+                                                    {{ $value->kategori }}</option>
+                                                <option value="{{ $value->kategori }}"
+                                                    {{ $value->shift == 'Tiga' ? 'selected' : '' }}>
+                                                    {{ $value->kategori }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -396,9 +435,9 @@
                                         readonly></input>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary" name="simpan">Save changes</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
                         </form>
-                        @endforeach
+                    @endforeach
                 </div>
             </div>
         </div>

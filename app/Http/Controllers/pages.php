@@ -57,15 +57,16 @@ class pages extends Controller
 
         
         if(($request->input('j_hardware'))){
-            $validatedData['j_hardware'] = join(',', $request->input('j_hardware'));
+            $validatedData['j_hardware'] = json_encode($request->j_hardware);
+
         }
 
         if(($request->input('s_aplikasi'))){
-            $validatedData['s_aplikasi'] = join(',', $request->input('s_aplikasi'));
+            $validatedData['s_aplikasi'] = json_encode($request->s_aplikasi);
         }
 
         if(($request->input('a_it'))){
-            $validatedData['a_it'] = join(',', $request->input('a_it'));
+            $validatedData['a_it'] = json_encode($request->a_it);
         }
 
         if ($request->file('foto')) {
@@ -111,15 +112,16 @@ class pages extends Controller
         ]);
 
         if(($request->input('j_hardware'))){
-            $validatedData['j_hardware'] = join(',', $request->input('j_hardware'));
+            $validatedData['j_hardware'] = json_encode($request->j_hardware);
+
         }
 
         if(($request->input('s_aplikasi'))){
-            $validatedData['s_aplikasi'] = join(',', $request->input('s_aplikasi'));
+            $validatedData['s_aplikasi'] = json_encode($request->s_aplikasi);
         }
 
         if(($request->input('a_it'))){
-            $validatedData['a_it'] = join(',', $request->input('a_it'));
+            $validatedData['a_it'] = json_encode($request->a_it);
         }
 
         if ($request->file('foto')) {
@@ -195,10 +197,13 @@ class pages extends Controller
         return view('pages.activity.subpages.activitydetail', ['activitydetail' => $activitydetail], compact('title'));
     }
 
-    public function updateactivitydetail(Request $request, $id)
+    public function ubahdata(Request $request, Activity $activity)
     {
+        // dd($request);
+        // return ($request->file('foto')->store('activity-foto'));
 
         $activitydetail = $request->validate([
+            'id' => 'required',
             'user_id' => 'required',
             'kategori_activity' => 'required',
             'tanggal' => 'required',
@@ -233,13 +238,15 @@ class pages extends Controller
         if ($request->file('foto')) {
             $validatedData['foto'] = $request->file('foto')->store('activity-foto');
         }
-        dd($request);
 
-        Activity::where('id', $request->id)->update($activitydetail);
+    
 
-        // return view('pages.users.allusers', ['allusers' => $allusers], compact('title'));
+        Activity::where('id', $activity->id)->update($activitydetail);
+        // Activity::save();
 
-        return redirect('/allusers');
+        // return view('pages.users.allusers', compact('title'));
+
+        return redirect('/activitydetail');
     }
 
     public function tollhistori(Request $request)

@@ -317,25 +317,19 @@
                                 <div class="input-group input-group-merge">
                                     <span id="basic-icon-default-fullname2" class="input-group-text"><i
                                             class="bx bx-camera"></i></span>
-                                    <input type="file" class="form-control" id="foto" name="foto" />
+                                    <input type="file" class="form-control" id="foto" name="foto" required/>
                                 </div>
                             </div>
                         </div>
-                        <div class="row mb-3">
+                        <div class="row mb-3" hidden>
                             <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Status</label>
                             <div class="col-sm-10">
                                 <input id="status" name="status" class="form-control" value="pending" readonly></input>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary" name="simpan">Save changes</button>
+                        <button type="submit" class="btn btn-primary" name="simpan">Save Data</button>
                     </form>
                 </div>
-                {{-- <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                        Close
-                    </button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div> --}}
             </div>
         </div>
     </div>
