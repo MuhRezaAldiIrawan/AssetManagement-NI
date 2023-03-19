@@ -67,6 +67,10 @@ Route::post('/pengembangan', 'App\Http\Controllers\pages@pengembanganactivity');
 Route::get('/activitydetail/{id}', 'App\Http\Controllers\pages@activitydetail');
 Route::post('/activitydetail/update/', 'App\Http\Controllers\pages@ubahdata');
 
+Route::post('/activitydetail/{id}', 'App\Http\Controllers\pages@approve');
+
+
+
 
 
 

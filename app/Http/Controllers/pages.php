@@ -249,6 +249,18 @@ class pages extends Controller
         return redirect('/activitydetail');
     }
 
+
+    public function approve(Request $request, $id)
+    {
+        // dd($request);
+        DB::table('activities')->where('id', $id)->update([
+            'status' => $request->status,
+  
+        ]);
+        
+        return redirect('/toll');
+    }
+
     public function tollhistori(Request $request)
     {
         $title = 'MUN | Toll Histori';

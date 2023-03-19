@@ -146,10 +146,22 @@
                                                 <button type="button" class="btn btn-danger m-1">
                                                     <span class="tf-icons bx bx-trash"></span>&nbsp; Rejected
                                                 </button>
-                                                <button type="button" class="btn btn-success m-1" data-bs-toggle="modal"
-                                                    data-bs-target="#approve">
-                                                    <span class="tf-icons bx bx-select-multiple"></span>&nbsp; Approve
-                                                </button>
+                                                {{-- <form action="{!! url('/activitydetail/update') !!}" method="POST">
+                                                    <button type="button" class="btn btn-success m-1"
+                                                        data-bs-toggle="modal" data-bs-target="#approve">
+                                                        <span class="tf-icons bx bx-select-multiple"></span>&nbsp; Approve
+                                                    </button>
+                                                </form> --}}
+                                                <form action="{!! url('/activitydetail/' . $d->id) !!}" method="POST">
+                                                    @csrf
+                                                    <input id="status" name="status" class="form-control" value="{{ $d->id }}" 
+                                                         readonly></input>
+                                                    <input id="status" name="status" class="form-control" value="approve" 
+                                                         readonly></input>
+                                                    <button type="submit" class="btn btn-success m-1">
+                                                        <span class="tf-icons bx bx-select-multiple"></span>&nbsp; Approve
+                                                    </button>
+                                                </form>
                                             </div>
                                         </tbody>
                                     @endforeach
@@ -161,7 +173,7 @@
             </div>
         </div>
     </div>
-
+    {{-- 
     @php
         $j_hardware = json_decode($activitydetail[0]->j_hardware);
         $s_aplikasi = json_decode($activitydetail[0]->s_aplikasi);
@@ -441,5 +453,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 @endsection
