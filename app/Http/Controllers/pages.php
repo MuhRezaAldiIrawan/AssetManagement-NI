@@ -261,6 +261,17 @@ class pages extends Controller
         return redirect('/toll');
     }
 
+    public function rejected(Request $request, $id)
+    {
+        // dd($request);
+        DB::table('activities')->where('id', $id)->update([
+            'status' => $request->status,
+  
+        ]);
+        
+        return redirect('/toll');
+    }
+
     public function tollhistori(Request $request)
     {
         $title = 'MUN | Toll Histori';
@@ -402,6 +413,28 @@ class pages extends Controller
     {
         $title = 'MUN | User';
         return view('pages.users.users', compact('title'));
+    }
+
+    public function updateusers(Request $request, $id)
+    {
+        // dd($request);
+        $updateuser = $request->validate([
+            'nama' => 'required|max:255',
+            'email' => 'required|email',
+            'foto' => 'image|file',
+            'ttd' => 'image|file',
+        ]);
+
+        if ($request->file('foto')) {
+            $updateuser['foto'] = $request->file('foto')->store('users-foto');
+        }
+        if ($request->file('ttd')) {
+            $updateuser['ttd'] = $request->file('ttd')->store('users-ttd');
+        }
+
+        User::where('id', $request->id)->update($updateuser);
+        
+        return redirect('/users');
     }
 
     public function allusers(Request $request)

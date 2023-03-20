@@ -58,7 +58,7 @@ Route::get('/allusers/{id}', 'App\Http\Controllers\pages@editallusers');
 Route::post('/allusers/update/{id}', 'App\Http\Controllers\pages@updateallusers');
 Route::get('/allusers/delete/{id}', 'App\Http\Controllers\pages@deleteallusers');
 
-Route::post('/users/update', 'App\Http\Controllers\pages@updateusers');
+Route::post('/users/update/{id}', 'App\Http\Controllers\pages@updateusers');
 
 //Activity
 Route::post('/toll', 'App\Http\Controllers\pages@addtollactivity');
@@ -68,6 +68,7 @@ Route::get('/activitydetail/{id}', 'App\Http\Controllers\pages@activitydetail');
 Route::post('/activitydetail/update/', 'App\Http\Controllers\pages@ubahdata');
 
 Route::post('/activitydetail/{id}', 'App\Http\Controllers\pages@approve');
+Route::post('/activitydetail/rejected/{id}', 'App\Http\Controllers\pages@rejected');
 
 
 

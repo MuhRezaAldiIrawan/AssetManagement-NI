@@ -9,6 +9,8 @@ class Lokasi extends Model
 {
     use HasFactory;
 
+
+
         /**
      * The attributes that are mass assignable.
      *
@@ -18,5 +20,6 @@ class Lokasi extends Model
         'nama',
         'singkatan',
     ];
+
 
 }

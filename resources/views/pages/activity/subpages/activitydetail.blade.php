@@ -18,7 +18,7 @@
                             @foreach ($activitydetail as $d)
                                 <div class="col-md-4 d-flex justify-content-center align-items-center">
                                     <img class="card-img card-img-left" src="{{ asset('storage/' . $d->foto) }}"
-                                        alt="Card image" />
+                                        style="width:250px" alt="Card image" />
                                 </div>
                             @endforeach
                             <div class="col-lg">
@@ -143,21 +143,22 @@
                                                 <button type="button" class="btn btn-secondary m-1">
                                                     <span class="tf-icons bx bx-printer"></span>&nbsp; Print
                                                 </button>
-                                                <button type="button" class="btn btn-danger m-1">
-                                                    <span class="tf-icons bx bx-trash"></span>&nbsp; Rejected
-                                                </button>
-                                                {{-- <form action="{!! url('/activitydetail/update') !!}" method="POST">
-                                                    <button type="button" class="btn btn-success m-1"
-                                                        data-bs-toggle="modal" data-bs-target="#approve">
-                                                        <span class="tf-icons bx bx-select-multiple"></span>&nbsp; Approve
+                                                <form action="{!! url('/activitydetail/rejected/' . $d->id) !!}" method="POST">
+                                                    @csrf
+                                                    <input id="id" name="id" class="form-control"
+                                                        value="{{ $d->id }}" readonly hidden></input>
+                                                    <input id="status" name="status" class="form-control"
+                                                        value="rejected" readonly hidden></input>
+                                                    <button type="submit" class="btn btn-danger m-1">
+                                                        <span class="tf-icons bx bx-trash"></span>&nbsp; Rejected
                                                     </button>
-                                                </form> --}}
+                                                </form>
                                                 <form action="{!! url('/activitydetail/' . $d->id) !!}" method="POST">
                                                     @csrf
-                                                    <input id="status" name="status" class="form-control" value="{{ $d->id }}" 
-                                                         readonly></input>
-                                                    <input id="status" name="status" class="form-control" value="approve" 
-                                                         readonly></input>
+                                                    <input id="status" name="status" class="form-control"
+                                                        value="{{ $d->id }}" readonly hidden></input>
+                                                    <input id="status" name="status" class="form-control"
+                                                        value="approve" readonly hidden></input>
                                                     <button type="submit" class="btn btn-success m-1">
                                                         <span class="tf-icons bx bx-select-multiple"></span>&nbsp; Approve
                                                     </button>

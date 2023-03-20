@@ -61,7 +61,7 @@
                                     <label for="state" class="form-label">Foto Tanda Tangan</label>
                                     <div class="d-flex align-items-start align-items-sm-center gap-4 m-1">
                                         @if (auth()->user()->ttd)
-                                        <img src="{{ asset('storage/' . auth()->user()->ttd) }}" alt="">
+                                        <img src="{{ asset('storage/' . auth()->user()->ttd) }}" alt="" style="width: 300px">
                                         @else
                                             <img src="{{ asset('img/Logo/mun.png') }}" alt=""
                                                 style="max-height: 200px; width: 180px">
@@ -87,7 +87,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{!! url('/users/update') !!}" method="POST" enctype="multipart/form-data">
+                    <form action="{!! url('/users/update/' . auth()->user()->id) !!}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
                             <label class="form-label" for="basic-icon-default-fullname">Nama</label>
@@ -111,7 +111,7 @@
                             <div class="input-group input-group-merge">
                                 <span class="input-group-text"><i class="bx bx-comment"></i></span>
                                 <input id="foto" name="foto" type="file" class="form-control"
-                                    placeholder="Hi, Do you have a moment to talk Joe?" type="file"></input>
+                                    type="file"></input>
                             </div>
                         </div>
 
@@ -123,8 +123,7 @@
                                      type="file"></input>
                             </div>
                         </div>
-
-                        <button type="submit" class="btn btn-primary">Add Data Users</button>
+                        <button type="submit" class="btn btn-primary">Update Data</button>
                     </form>
                 </div>
             </div>

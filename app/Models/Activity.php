@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Activity extends Model
 {
     use HasFactory;
+
                 /**
      * The attributes that are mass assignable.
      *
@@ -33,6 +34,11 @@ class Activity extends Model
         
 
     ];
+
+    public function lokasi()
+    {
+    	return $this->belongsTo('App\Lokasi');
+    }
 
 
     
