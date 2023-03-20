@@ -510,5 +510,13 @@ class pages extends Controller
 
     //End User Controllers
 
+    //Print
+    public function printactivity()
+    {
+        $title = 'MUN | Dashboard';
+
+        return view('pages.activity.subpages.printactivity', compact('title'));
+    }
+
 
 }
