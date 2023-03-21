@@ -300,11 +300,23 @@ class pages extends Controller
         $title = 'MUN | Toll Histori';
         $subtitle = 'Log Histori Toll';
         $pagination = 10;
-        $histori = DB::table('activities')->where([['kategori_activity', '=', 'Toll'],['status', '=', 'approve']])->orWhere('status', '=', 'rejected')->latest()->paginate($pagination);
+   
+        $lokasi = Lokasi::all();
+        $kategori = Kategori::all();
 
+      
 
-        
-        return view('pages.activity.subpages.histori', ['histori' => $histori], compact('title','subtitle'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
+        if($request->has('search')){
+            $histori = DB::table('activities')->where([['kategori_activity', '=', 'Toll'],['status', '=', 'approve'],['lokasi','like','%' .$request->search. '%']])->paginate($pagination);
+            session()->put('selected_value', null);
+            session()->put('toll', $histori);
+        }else{
+            $histori = DB::table('activities')->where([['kategori_activity', '=', 'Toll'],['status', '=', 'approve']])->paginate($pagination);
+        }
+
+       
+
+        return view('pages.activity.subpages.histori', ['histori' => $histori, 'lokasi' => $lokasi, 'kategori' => $kategori], compact('title','subtitle'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
     }
 
     public function nontollhistori(Request $request)

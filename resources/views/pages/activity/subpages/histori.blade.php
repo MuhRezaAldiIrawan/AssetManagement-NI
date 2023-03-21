@@ -27,14 +27,14 @@
             </div>
             <div class="card-body">
 
-                <form action="/toll" method="get">
+                {{-- <form action="/toll" method="get">
                     <div class="row g-2">
                         <div class="col mb-0">
                             <select id="cari" name="search" class="form-select">
                                 <option value="" selected>Semua Lokasi</option>
-                                {{-- @foreach ($histori as $l)
+                                @foreach ($histori as $l)
                                     <option>{{ $l->nama }}</option>
-                                @endforeach --}}
+                                @endforeach
                             </select>
                         </div>
                         <div class="col mb-0">
@@ -45,7 +45,7 @@
                             </div>
                         </div>
                     </div>
-                </form>
+                </form> --}}
 
                 <div class="table-responsive text-wrap mt-3">
                     <table class="table table-bordered table-striped  table-hover display" width="1000px">
