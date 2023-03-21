@@ -30,22 +30,25 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="row g-2 ">
-                    <div class="col mb-0">
-                        <select id="defaultSelect" class="form-select">
-                            @foreach ($lokasi as $l)
-                            <option value="{{ $l->nama }}">{{ $l->nama }}</option>
-                        @endforeach
-                        </select>
-                    </div>
-                    <div class="col mb-0">
-                        <div class="demo-inline-spacing">
-                            <button type="button" class="btn btn-primary">
-                                <span class="tf-icons bx bx-search"></span>&nbsp; Search
-                            </button>
+                <form action="/toll" method="get">
+                    <div class="row g-2">
+                        <div class="col mb-0">
+                            <select id="cari" name="search" class="form-select">
+                                <option value="" selected>Semua Lokasi</option>
+                                @foreach ($lokasi as $l)
+                                <option>{{ $l->nama }}</option>
+                            @endforeach
+                            </select>
+                        </div>
+                        <div class="col mb-0">
+                            <div class="demo-inline-spacing">
+                                <button type="submit" class="btn btn-primary" value="CARI">
+                                    <span class="tf-icons bx bx-search"></span>&nbsp; Search
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
                 <div class="table-responsive text-wrap mt-3">
                     <table class="table table-bordered table-striped  table-hover display" width="1000px">
                         <thead>

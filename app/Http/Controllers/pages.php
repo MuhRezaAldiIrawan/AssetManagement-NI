@@ -39,7 +39,18 @@ class pages extends Controller
         $pagination = 10;
         $lokasi = Lokasi::all();
         $kategori = Kategori::all();
-        $toll = DB::table('activities')->where([['kategori_activity', '=', 'Toll'],['status', '=', 'pending']])->paginate($pagination);
+
+      
+
+        if($request->has('search')){
+            $toll = DB::table('activities')->where([['kategori_activity', '=', 'Toll'],['status', '=', 'pending'],['lokasi','like','%' .$request->search. '%']])->paginate($pagination);
+            session()->put('selected_value', null);
+            session()->put('toll', $toll);
+        }else{
+            $toll = DB::table('activities')->where([['kategori_activity', '=', 'Toll'],['status', '=', 'pending']])->paginate($pagination);
+        }
+
+       
 
         return view('pages.activity.toll', ['toll' => $toll, 'lokasi' => $lokasi, 'kategori' => $kategori], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
     }
@@ -292,6 +303,7 @@ class pages extends Controller
         $histori = DB::table('activities')->where([['kategori_activity', '=', 'Toll'],['status', '=', 'approve']])->orWhere('status', '=', 'rejected')->latest()->paginate($pagination);
 
 
+        
         return view('pages.activity.subpages.histori', ['histori' => $histori], compact('title','subtitle'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
     }
 
@@ -522,13 +534,25 @@ class pages extends Controller
 
     //End User Controllers
 
-    //Print
+    //External Command
     public function printactivity()
     {
         $title = 'MUN | Dashboard';
 
         return view('pages.activity.subpages.printactivity', compact('title'));
     }
+
+    public function cari(Request $request)
+	{
+
+        dd($request);
+		$cari = $request->cari;
+
+		$toll = DB::table('activities')->where('lokasi','like',"%".$request->cari."%")->paginate();
+ 
+		return view('index',['toll' => $toll]);
+ 
+	}
 
 
 }

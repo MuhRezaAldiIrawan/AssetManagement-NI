@@ -71,6 +71,7 @@ Route::post('/activitydetail/rejected/{id}', 'App\Http\Controllers\pages@rejecte
 
 //Print 
 Route::get('/printactivity', 'App\Http\Controllers\pages@printactivity');
+Route::get('/toll/cari','App\Http\Controllers\pages@cari');
 
 
 
