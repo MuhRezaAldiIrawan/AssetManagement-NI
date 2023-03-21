@@ -37,7 +37,12 @@ class Activity extends Model
 
     public function lokasi()
     {
-    	return $this->belongsTo('App\Lokasi');
+    	return $this->belongsTo(Lokasi::class);
+    }
+
+    public function kategori()
+    {
+    	return $this->belongsTo(Kategori::class);
     }
 
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Activity;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -19,7 +20,16 @@ class pages extends Controller
     public function index()
     {
         $title = 'MUN | Dashboard';
-        return view('pages.dashboard', compact('title'));
+
+
+        $mayor = Activity::all()->where('kategori', '=', 'Kerusakan Mayor')->count();
+        $perbaikan = Activity::all()->where('kategori', '=', 'Perbaikan')->count();
+        $pergantian = Activity::all()->where('kategori', '=', 'Kerusakan/Pergantian')->count();
+        $minor = Activity::all()->where('kategori', '=', 'Kerusakan Minor')->count();
+
+
+
+        return view('pages.dashboard', compact('title'))->with(['mayor' => $mayor, 'perbaikan' => $perbaikan, 'pergantian' => $pergantian, 'minor' => $minor]);
     }
 
     //Activity Controllers
@@ -27,10 +37,11 @@ class pages extends Controller
     {
         $title = 'MUN | Toll';
         $pagination = 10;
+        $lokasi = Lokasi::all();
+        $kategori = Kategori::all();
         $toll = DB::table('activities')->where([['kategori_activity', '=', 'Toll'],['status', '=', 'pending']])->paginate($pagination);
 
-
-        return view('pages.activity.toll', ['toll' => $toll], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
+        return view('pages.activity.toll', ['toll' => $toll, 'lokasi' => $lokasi, 'kategori' => $kategori], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
     }
 
     public function addtollactivity(Request $request)
@@ -83,9 +94,10 @@ class pages extends Controller
     {
         $title = 'MUN | Non Toll';
         $pagination = 10;
+        $lokasi = Lokasi::all();
         $nontoll = DB::table('activities')->where([['kategori_activity', '=', 'NonToll'],['status', '=', 'pending']])->paginate($pagination);
 
-        return view('pages.activity.nontoll', ['nontoll' => $nontoll], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
+        return view('pages.activity.nontoll', ['nontoll' => $nontoll, 'lokasi' => $lokasi], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
     }
 
     public function addnontollactivity(Request $request)
@@ -277,7 +289,7 @@ class pages extends Controller
         $title = 'MUN | Toll Histori';
         $subtitle = 'Log Histori Toll';
         $pagination = 10;
-        $histori = DB::table('activities')->where([['kategori_activity', '=', 'Toll'],['status', '=', 'approve']])->orWhere('status', '=', 'rejected')->paginate($pagination);
+        $histori = DB::table('activities')->where([['kategori_activity', '=', 'Toll'],['status', '=', 'approve']])->orWhere('status', '=', 'rejected')->latest()->paginate($pagination);
 
 
         return view('pages.activity.subpages.histori', ['histori' => $histori], compact('title','subtitle'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
@@ -288,7 +300,7 @@ class pages extends Controller
         $title = 'MUN | Non Toll Histori';
         $subtitle = 'Log Histori Non Toll';
         $pagination = 10;
-        $histori = DB::table('activities')->where([['kategori_activity', '=', 'NonToll'],['status', '=', 'approve']])->orWhere('status', '=', 'rejected')->paginate($pagination);
+        $histori = DB::table('activities')->where([['kategori_activity', '=', 'NonToll'],['status', '=', 'approve']])->orWhere('status', '=', 'rejected')->latest()->paginate($pagination);
 
 
         return view('pages.activity.subpages.histori', ['histori' => $histori], compact('title','subtitle'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
@@ -299,7 +311,7 @@ class pages extends Controller
         $title = 'MUN | Pengembangan Histori';
         $subtitle = 'Log Histori Pengembangan';
         $pagination = 10;
-        $histori = DB::table('activities')->where('kategori_activity', '=', 'pengembangan')->paginate($pagination);
+        $histori = DB::table('activities')->where([['kategori_activity', '=', 'pengembangan'],['status', '=', 'approve']])->orWhere('status', '=', 'rejected')->latest()->paginate($pagination);
 
 
         return view('pages.activity.subpages.histori', ['histori' => $histori], compact('title','subtitle'))->with('i', ($request->input('page', 1) - 1) *  $pagination);

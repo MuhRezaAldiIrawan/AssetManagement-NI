@@ -10,6 +10,7 @@ class Lokasi extends Model
     use HasFactory;
 
 
+    protected $table = "lokasi";
 
         /**
      * The attributes that are mass assignable.
@@ -20,6 +21,11 @@ class Lokasi extends Model
         'nama',
         'singkatan',
     ];
+
+    public function activities()
+    {
+    	return $this->hasMany(Activity::class);
+    }
 
 
 }

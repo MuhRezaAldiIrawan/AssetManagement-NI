@@ -9,6 +9,8 @@ class Kategori extends Model
 {
     use HasFactory;
 
+    protected $table = "kategori";
+
         /**
      * The attributes that are mass assignable.
      *
@@ -18,6 +20,11 @@ class Kategori extends Model
     protected $fillable = [
         'nama',
     ];
+
+    public function activities()
+    {
+    	return $this->hasMany(Activity::class);
+    }
 
 }
 

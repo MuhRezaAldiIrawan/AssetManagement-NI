@@ -30,7 +30,23 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="table-responsive text-wrap">
+                <div class="row g-2 ">
+                    <div class="col mb-0">
+                        <select id="defaultSelect" class="form-select">
+                            @foreach ($lokasi as $l)
+                            <option value="{{ $l->nama }}">{{ $l->nama }}</option>
+                        @endforeach
+                        </select>
+                    </div>
+                    <div class="col mb-0">
+                        <div class="demo-inline-spacing">
+                            <button type="button" class="btn btn-primary">
+                                <span class="tf-icons bx bx-search"></span>&nbsp; Search
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive text-wrap mt-3">
                     <table class="table table-bordered table-striped  table-hover display" width="1000px">
                         <thead>
                             <tr class="text-wrap">
@@ -144,7 +160,8 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Jenis Hardware</label>
+                            <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Jenis
+                                Hardware</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <div class="col-md d-flex align-items-center ">
@@ -195,7 +212,8 @@
                                         <div class="form-check form-check-inline mt-1">
                                             <input class="form-check-input" type="checkbox" id="Sistem Operasi"
                                                 name="s_aplikasi[]" value="Sistem Operasi" />
-                                            <label class="form-check-label" for="Sistem Operasi">Sistem Operasi</label>
+                                            <label class="form-check-label" for="Sistem Operasi">Sistem
+                                                Operasi</label>
                                         </div>
                                         <div class="form-check form-check-inline mt-1">
                                             <input class="form-check-input" type="checkbox" id="Microsoft Office"
@@ -281,10 +299,9 @@
                                             class="bx bx-location-plus "></i></span>
                                     <select class="form-select" id="lokasi" name="lokasi"
                                         aria-label="Default select example">
-                                        <option selected>Open this select menu</option>
-                                        <option value="Satu">Satu</option>
-                                        <option value="Dua">Dua</option>
-                                        <option value="Tiga">Tiga</option>
+                                        @foreach ($lokasi as $l)
+                                            <option value="{{ $l->nama }}">{{ $l->nama }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -297,16 +314,16 @@
                                             class="bx bx-package "></i></span>
                                     <select class="form-select" id="kategori" name="kategori"
                                         aria-label="Default select example">
-                                        <option selected>Open this select menu</option>
-                                        <option value="Satu">Satu</option>
-                                        <option value="Dua">Dua</option>
-                                        <option value="Tiga">Tiga</option>
+                                        @foreach ($kategori as $k)
+                                            <option value="{{ $k->nama }}">{{ $k->nama }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Kondisi Akhir</label>
+                            <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Kondisi
+                                Akhir</label>
                             <div class="col-sm-10">
                                 <textarea id="kondisi_akhir" name="kondisi_akhir" class="form-control" placeholder="kondisi Akhir "></textarea>
                             </div>
@@ -317,14 +334,15 @@
                                 <div class="input-group input-group-merge">
                                     <span id="basic-icon-default-fullname2" class="input-group-text"><i
                                             class="bx bx-camera"></i></span>
-                                    <input type="file" class="form-control" id="foto" name="foto" required/>
+                                    <input type="file" class="form-control" id="foto" name="foto" required />
                                 </div>
                             </div>
                         </div>
                         <div class="row mb-3" hidden>
                             <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Status</label>
                             <div class="col-sm-10">
-                                <input id="status" name="status" class="form-control" value="pending" readonly></input>
+                                <input id="status" name="status" class="form-control" value="pending"
+                                    readonly></input>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary" name="simpan">Save Data</button>
@@ -334,4 +352,3 @@
         </div>
     </div>
 @endsection
-

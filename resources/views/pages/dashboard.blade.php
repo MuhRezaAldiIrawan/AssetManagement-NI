@@ -10,7 +10,7 @@
             <div class="d-flex align-items-end row">
                 <div class="col-sm-7">
                     <div class="card-body">
-                        <h5 class="card-title text-primary">Welcome Developer Llen 🎉</h5>
+                        <h5 class="card-title text-primary">Welcome {{ auth()->user()->nama }} 🎉</h5>
                         <p class="mb-4">
                             Kamu Punya <span class="fw-bold">72</span> Tambahan Permintaan Activity
                         </p>
@@ -49,7 +49,7 @@
                                 </div>
                             </div>
                         </div>
-                        <h2 class="fw-semibold d-block mb-1">10</h2>
+                        <h2 class="fw-semibold d-block mb-1">{{ $mayor }}</h2>
                         <h4 class="card-title mb-2">Kerusakan Mayor</h4>
                         <small class="text-success fw-semibold">bulan ini <i class="bx bx-up-arrow-alt"></i> +10%</small>
                     </div>
@@ -74,7 +74,7 @@
                                 </div>
                             </div>
                         </div>
-                        <h2 class="fw-semibold d-block mb-1">3</h2>
+                        <h2 class="fw-semibold d-block mb-1">{{ $perbaikan }}</h2>
                         <h4 class="card-title mb-2">Perbaikan</h4>
                         <small class="text-success fw-semibold">bulan ini <i class="bx bx-up-arrow-alt"></i> +10%</small>
                     </div>
@@ -99,7 +99,7 @@
                                 </div>
                             </div>
                         </div>
-                        <h2 class="fw-semibold d-block mb-1">4</h2>
+                        <h2 class="fw-semibold d-block mb-1">{{ $pergantian }}</h2>
                         <h4 class="card-title mb-2">Pergantian</h4>
                         <small class="text-success fw-semibold">bulan ini <i class="bx bx-up-arrow-alt"></i> +10%</small>
                     </div>
@@ -124,7 +124,7 @@
                                 </div>
                             </div>
                         </div>
-                        <h2 class="fw-semibold d-block mb-1">0</h2>
+                        <h2 class="fw-semibold d-block mb-1">{{ $minor }}</h2>
                         <h4 class="card-title mb-2">Penanganan Minor</h4>
                         <small class="text-success fw-semibold">bulan ini <i class="bx bx-up-arrow-alt"></i> +10%</small>
                     </div>
