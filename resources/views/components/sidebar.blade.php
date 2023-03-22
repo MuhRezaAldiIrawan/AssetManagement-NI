@@ -81,6 +81,12 @@
 
         <li class="menu-item">
             <a href="/location" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-cart"></i>
+                <div data-i18n="Analytics">Barang</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="/location" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-map-pin"></i>
                 <div data-i18n="Analytics">Lokasi</div>
             </a>

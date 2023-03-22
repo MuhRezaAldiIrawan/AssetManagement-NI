@@ -566,5 +566,16 @@ class pages extends Controller
  
 	}
 
+    //Barang
+    public function listbarang()
+    {
+        $title = 'MUN | List Stok Barang';
+
+
+        return view('pages.barang.listbarang', compact('title'));
+    }
+
+
+
 
 }

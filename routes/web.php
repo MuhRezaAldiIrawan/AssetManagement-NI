@@ -73,6 +73,9 @@ Route::post('/activitydetail/rejected/{id}', 'App\Http\Controllers\pages@rejecte
 Route::get('/printactivity', 'App\Http\Controllers\pages@printactivity');
 Route::get('/toll/cari','App\Http\Controllers\pages@cari');
 
+//Barang
+Route::get('/listbarang', 'App\Http\Controllers\pages@listbarang');
+
 
 
 
