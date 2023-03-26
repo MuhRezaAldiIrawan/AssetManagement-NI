@@ -40,8 +40,6 @@ class pages extends Controller
         $lokasi = Lokasi::all();
         $kategori = Kategori::all();
 
-      
-
         if($request->has('search')){
             $toll = DB::table('activities')->where([['kategori_activity', '=', 'Toll'],['status', '=', 'pending'],['lokasi','like','%' .$request->search. '%']])->paginate($pagination);
             session()->put('selected_value', null);
@@ -49,8 +47,6 @@ class pages extends Controller
         }else{
             $toll = DB::table('activities')->where([['kategori_activity', '=', 'Toll'],['status', '=', 'pending']])->paginate($pagination);
         }
-
-       
 
         return view('pages.activity.toll', ['toll' => $toll, 'lokasi' => $lokasi, 'kategori' => $kategori], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
     }
@@ -106,9 +102,19 @@ class pages extends Controller
         $title = 'MUN | Non Toll';
         $pagination = 10;
         $lokasi = Lokasi::all();
-        $nontoll = DB::table('activities')->where([['kategori_activity', '=', 'NonToll'],['status', '=', 'pending']])->paginate($pagination);
+        $kategori = Kategori::all();
 
-        return view('pages.activity.nontoll', ['nontoll' => $nontoll, 'lokasi' => $lokasi], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
+        if($request->has('search')){
+            $nontoll = DB::table('activities')->where([['kategori_activity', '=', 'NonToll'],['status', '=', 'pending'],['lokasi','like','%' .$request->search. '%']])->paginate($pagination);
+            session()->put('selected_value', null);
+            session()->put('nontoll', $nontoll);
+        }else{
+            $toll = DB::table('activities')->where([['kategori_activity', '=', 'Toll'],['status', '=', 'pending']])->paginate($pagination);
+        }
+
+        // $nontoll = DB::table('activities')->where([['kategori_activity', '=', 'NonToll'],['status', '=', 'pending']])->paginate($pagination);
+
+        return view('pages.activity.nontoll', ['nontoll' => $nontoll, 'lokasi' => $lokasi, 'kategori' => $kategori], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
     }
 
     public function addnontollactivity(Request $request)

@@ -286,7 +286,6 @@
                                     <span id="basic-icon-default-fullname2" class="input-group-text"><i
                                             class="bx bx-run "></i></span>
                                     <select class="form-select" id="shift" name="shift">
-                                        <option selected disabled>Open this select menu</option>
                                         <option value="Satu">Satu</option>
                                         <option value="Dua2">Dua</option>
                                         <option value="Tiga">Tiga</option>
