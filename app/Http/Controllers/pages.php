@@ -109,7 +109,7 @@ class pages extends Controller
             session()->put('selected_value', null);
             session()->put('nontoll', $nontoll);
         }else{
-            $toll = DB::table('activities')->where([['kategori_activity', '=', 'Toll'],['status', '=', 'pending']])->paginate($pagination);
+            $nontoll = DB::table('activities')->where([['kategori_activity', '=', 'NonToll'],['status', '=', 'pending']])->paginate($pagination);
         }
 
         // $nontoll = DB::table('activities')->where([['kategori_activity', '=', 'NonToll'],['status', '=', 'pending']])->paginate($pagination);
@@ -165,10 +165,21 @@ class pages extends Controller
     {
         $title = 'MUN | Pengembangan';
         $pagination = 10;
-        $pengembangan = DB::table('activities')->where([['kategori_activity', '=', 'pengembangan'],['status', '=', 'pending']])->paginate($pagination);
+        $lokasi = Lokasi::all();
+        $kategori = Kategori::all();
+
+        if($request->has('search')){
+            $pengembangan = DB::table('activities')->where([['kategori_activity', '=', 'pengembangan'],['status', '=', 'pending'],['lokasi','like','%' .$request->search. '%']])->paginate($pagination);
+            session()->put('selected_value', null);
+            session()->put('pengembangan', $pengembangan);
+        }else{
+            $pengembangan = DB::table('activities')->where([['kategori_activity', '=', 'Toll'],['status', '=', 'pending']])->paginate($pagination);
+        }
+
+        // $pengembangan = DB::table('activities')->where([['kategori_activity', '=', 'pengembangan'],['status', '=', 'pending']])->paginate($pagination);
 
 
-        return view('pages.activity.pengembangan', ['pengembangan' => $pengembangan], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);;
+        return view('pages.activity.pengembangan', ['pengembangan' => $pengembangan, 'lokasi' => $lokasi, 'kategori' => $kategori], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);;
     }
 
     public function pengembanganactivity(Request $request)

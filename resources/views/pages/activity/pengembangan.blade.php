@@ -30,7 +30,26 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="table-responsive text-wrap">
+                <form action="/pengembangan" method="get">
+                    <div class="row g-2">
+                        <div class="col mb-0">
+                            <select id="cari" name="search" class="form-select">
+                                <option value="" selected>Semua Lokasi</option>
+                                @foreach ($lokasi as $l)
+                                    <option>{{ $l->nama }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col mb-0">
+                            <div class="demo-inline-spacing">
+                                <button type="submit" class="btn btn-primary" value="CARI">
+                                    <span class="tf-icons bx bx-search"></span>&nbsp; Search
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="table-responsive text-wrap mt-3">
                     <table class="table table-bordered table-striped  table-hover display" width="1000px">
                         <thead>
                             <tr class="text-wrap">
@@ -265,9 +284,8 @@
                                     <span id="basic-icon-default-fullname2" class="input-group-text"><i
                                             class="bx bx-run "></i></span>
                                     <select class="form-select" id="shift" name="shift">
-                                        <option selected disabled>Open this select menu</option>
                                         <option value="Satu">Satu</option>
-                                        <option value="Dua2">Dua</option>
+                                        <option value="Dua">Dua</option>
                                         <option value="Tiga">Tiga</option>
                                     </select>
                                 </div>
@@ -281,10 +299,9 @@
                                             class="bx bx-location-plus "></i></span>
                                     <select class="form-select" id="lokasi" name="lokasi"
                                         aria-label="Default select example">
-                                        <option selected>Open this select menu</option>
-                                        <option value="Satu">Satu</option>
-                                        <option value="Dua">Dua</option>
-                                        <option value="Tiga">Tiga</option>
+                                        @foreach ($lokasi as $l)
+                                            <option>{{ $l->nama }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -297,10 +314,9 @@
                                             class="bx bx-package "></i></span>
                                     <select class="form-select" id="kategori" name="kategori"
                                         aria-label="Default select example">
-                                        <option selected>Open this select menu</option>
-                                        <option value="Satu">Satu</option>
-                                        <option value="Dua">Dua</option>
-                                        <option value="Tiga">Tiga</option>
+                                        @foreach ($kategori as $k)
+                                            <option value="{{ $k->nama }}">{{ $k->nama }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>

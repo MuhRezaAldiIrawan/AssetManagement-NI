@@ -22,13 +22,12 @@ Route::get('/', 'App\Http\Controllers\AuthController@loginview')->name('login')-
 Route::get('/dashboard', 'App\Http\Controllers\pages@index');
 Route::get('/toll', 'App\Http\Controllers\pages@toll');
 Route::get('/nontoll', 'App\Http\Controllers\pages@nontoll');
+Route::get('/pengembangan', 'App\Http\Controllers\pages@pengembangan');
 
 Route::get('/location', 'App\Http\Controllers\pages@location');
 Route::get('/kategori', 'App\Http\Controllers\pages@kategori');
 Route::get('/users', 'App\Http\Controllers\pages@users');
 Route::get('/allusers', 'App\Http\Controllers\pages@allusers');
-Route::get('/lognontol', 'App\Http\Controllers\pages@lognontol');
-Route::get('/pengembangan', 'App\Http\Controllers\pages@pengembangan');
 Route::get('/tollhistori', 'App\Http\Controllers\pages@tollhistori');
 Route::get('/nontollhistori', 'App\Http\Controllers\pages@nontollhistori');
 Route::get('/pengembanganhistori', 'App\Http\Controllers\pages@pengembanganhistori');

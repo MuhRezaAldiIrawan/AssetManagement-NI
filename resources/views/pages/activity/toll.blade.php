@@ -36,8 +36,8 @@
                             <select id="cari" name="search" class="form-select">
                                 <option value="" selected>Semua Lokasi</option>
                                 @foreach ($lokasi as $l)
-                                <option>{{ $l->nama }}</option>
-                            @endforeach
+                                    <option>{{ $l->nama }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="col mb-0">
