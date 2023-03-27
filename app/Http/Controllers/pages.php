@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Activity;
+use App\Models\Barang;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -696,10 +697,30 @@ class pages extends Controller
     }
 
     //Barang
-    public function listbarang()
+    public function listbarang(Request $request)
     {
         $title = 'MUN | List Stok Barang';
+        $pagination = 10;
+        $listbarang = DB::table('barangs')->paginate($pagination);
 
+        return view('pages.barang.listbarang', ['listbarang' => $listbarang], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
+
+    }
+
+    public function addbarang(Request $request)
+    {
+        $validatedData = $request->validate([
+            'nama_equipment' => 'required',
+            'unit' => 'required',
+            'merk' => 'required',
+            'stock' => 'required',
+
+        ]);
+
+        Barang::create($validatedData);
+
+        Alert::success('Success', 'Log Activity Telah berhasil Ditambahkan');
+        return redirect('/listbarang');
 
         return view('pages.barang.listbarang', compact('title'));
     }
