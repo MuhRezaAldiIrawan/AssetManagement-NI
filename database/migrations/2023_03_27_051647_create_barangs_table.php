@@ -18,7 +18,7 @@ class CreateBarangsTable extends Migration
             $table->string('nama_equipment');
             $table->string('unit');
             $table->string('merk');
-            $table->string('stock');
+            $table->integer('stock');
             $table->timestamps();
         });
     }

@@ -39,6 +39,7 @@
                                 <th class="text-center">Unit</th>
                                 <th class="text-center">Merk</th>
                                 <th class="text-center">Stock</th>
+                                <th class="text-center">Action</th>
                             </tr>
                         </thead>
                         @foreach ($listbarang as $b)
@@ -48,6 +49,60 @@
                                 <td>{{ $b->unit }}</td>
                                 <td>{{ $b->merk }}</td>
                                 <td>{{ $b->stock }}</td>
+                                <td>
+                                    <button class="btn btn-icon btn-primary me-1" type="button" data-bs-toggle="modal"
+                                        data-bs-target="#basicModalViewAdd{{ $b->id }}" aria-expanded="false"
+                                        aria-controls="multiCollapseExample2"> <span class="tf-icons bx bx-plus"></span>
+                                    </button>
+                                    <button class="btn btn-icon btn-danger me-1" type="button" data-bs-toggle="modal"
+                                        data-bs-target="#basicModalViewMinus{{ $b->id }}" aria-expanded="false"
+                                        aria-controls="multiCollapseExample2"> <span class="tf-icons bx bx-minus"></span>
+                                    </button>
+
+                                    <!-- Add Stock Modal -->
+                                    <div class="modal fade" id="basicModalViewAdd{{ $b->id }}" tabindex="-1"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel1">Barang Masuk</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body d-flex justify-content-center align-items-center">
+                                                    <div class="col-sm-6 col-lg-12 mb-4 ">
+                                                        <div class="card">
+                                                            <label for="nama_equipment" class="form-label">Jumlah Barang Masuk</label>
+                                                        <input type="number" name="stock" id="stock"
+                                                            class="form-control" value="{{ $b->stock }}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Minus Stock Modal -->
+                                    <div class="modal fade" id="basicModalViewMinus{{ $b->id }}" tabindex="-1"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel1">Barang Keluar</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body d-flex justify-content-center align-items-center">
+                                                    <div class="col-sm-6 col-lg-12 mb-4 ">
+                                                        <label for="nama_equipment" class="form-label">Jumlah Barang keluar</label>
+                                                        <input type="number" name="stock" id="stock"
+                                                            class="form-control" value="{{ $b->stock }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
                             </tbody>
                         @endforeach
                     </table>
@@ -87,7 +142,7 @@
                             </div>
                             <div class="col mb-0 mt-3">
                                 <label for="stock" class="form-label">Stock</label>
-                                <input type="text" id="stock" name="stock" class="form-control"
+                                <input type="number" id="stock" name="stock" class="form-control"
                                     placeholder="Stock" />
                             </div>
                         </div>
