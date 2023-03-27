@@ -29,6 +29,7 @@ class CreateActivitiesTable extends Migration
             $table->string('lokasi');
             $table->string('kategori');
             $table->string('kondisi_akhir');
+            $table->string('biaya');
             $table->string('foto');
             $table->string('status');
             $table->timestamps();

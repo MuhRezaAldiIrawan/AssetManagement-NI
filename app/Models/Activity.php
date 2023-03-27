@@ -29,6 +29,7 @@ class Activity extends Model
         'lokasi',
         'kategori',
         'kondisi_akhir',
+        'biaya',
         'foto',
         'status',
         

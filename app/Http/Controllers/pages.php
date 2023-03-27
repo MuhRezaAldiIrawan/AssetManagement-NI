@@ -39,16 +39,35 @@ class pages extends Controller
         $pagination = 10;
         $lokasi = Lokasi::all();
         $kategori = Kategori::all();
+        $selected_value = $request->lokasi;
 
-        if($request->has('search')){
-            $toll = DB::table('activities')->where([['kategori_activity', '=', 'Toll'],['status', '=', 'pending'],['lokasi','like','%' .$request->search. '%']])->paginate($pagination);
-            session()->put('selected_value', null);
+        if ($request->has('search') || $selected_value) {
+            $toll = DB::table('activities')
+                ->where(function ($query) use ($request, $selected_value) {
+                    $query->where('kategori_activity', 'Toll')
+                        ->whereIn('status', ['pending']);
+                    if ($request->has('search')) {
+                        $query->where('lokasi', 'like', '%' . $request->search . '%');
+                        session()->put('selected_value', null);
+                    } else {
+                        $query->where('lokasi', '=', $selected_value);
+                        session()->put('selected_value', $selected_value);
+                    }
+                })
+                ->latest()
+                ->paginate($pagination);
+
             session()->put('toll', $toll);
-        }else{
-            $toll = DB::table('activities')->where([['kategori_activity', '=', 'Toll'],['status', '=', 'pending']])->paginate($pagination);
+        } else {
+            $toll = DB::table('activities')
+            ->where('kategori_activity', 'Toll')
+            ->whereIn('status', ['pending'])
+                // ->orWhere('status', '=', 'rejected')
+                ->latest()
+                ->paginate($pagination);
         }
 
-        return view('pages.activity.toll', ['toll' => $toll, 'lokasi' => $lokasi, 'kategori' => $kategori], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
+        return view('pages.activity.toll', ['toll' => $toll, 'lokasi' => $lokasi, 'kategori' => $kategori, 'selected_value' => $selected_value], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
     }
 
     public function addtollactivity(Request $request)
@@ -68,22 +87,22 @@ class pages extends Controller
             'lokasi' => 'required',
             'kategori' => 'required',
             'kondisi_akhir' => 'required',
+            'biaya' => 'required',
             'foto' => 'image|file',
             'status' => 'required'
 
         ]);
 
-        
-        if(($request->input('j_hardware'))){
-            $validatedData['j_hardware'] = json_encode($request->j_hardware);
 
+        if (($request->input('j_hardware'))) {
+            $validatedData['j_hardware'] = json_encode($request->j_hardware);
         }
 
-        if(($request->input('s_aplikasi'))){
+        if (($request->input('s_aplikasi'))) {
             $validatedData['s_aplikasi'] = json_encode($request->s_aplikasi);
         }
 
-        if(($request->input('a_it'))){
+        if (($request->input('a_it'))) {
             $validatedData['a_it'] = json_encode($request->a_it);
         }
 
@@ -104,12 +123,12 @@ class pages extends Controller
         $lokasi = Lokasi::all();
         $kategori = Kategori::all();
 
-        if($request->has('search')){
-            $nontoll = DB::table('activities')->where([['kategori_activity', '=', 'NonToll'],['status', '=', 'pending'],['lokasi','like','%' .$request->search. '%']])->paginate($pagination);
+        if ($request->has('search')) {
+            $nontoll = DB::table('activities')->where([['kategori_activity', '=', 'NonToll'], ['status', '=', 'pending'], ['lokasi', 'like', '%' . $request->search . '%']])->paginate($pagination);
             session()->put('selected_value', null);
             session()->put('nontoll', $nontoll);
-        }else{
-            $nontoll = DB::table('activities')->where([['kategori_activity', '=', 'NonToll'],['status', '=', 'pending']])->paginate($pagination);
+        } else {
+            $nontoll = DB::table('activities')->where([['kategori_activity', '=', 'NonToll'], ['status', '=', 'pending']])->paginate($pagination);
         }
 
         // $nontoll = DB::table('activities')->where([['kategori_activity', '=', 'NonToll'],['status', '=', 'pending']])->paginate($pagination);
@@ -135,21 +154,21 @@ class pages extends Controller
             'lokasi' => 'required',
             'kategori' => 'required',
             'kondisi_akhir' => 'required',
+            'biaya' => 'required',
             'foto' => 'image|file',
             'status' => 'required'
 
         ]);
 
-        if(($request->input('j_hardware'))){
+        if (($request->input('j_hardware'))) {
             $validatedData['j_hardware'] = json_encode($request->j_hardware);
-
         }
 
-        if(($request->input('s_aplikasi'))){
+        if (($request->input('s_aplikasi'))) {
             $validatedData['s_aplikasi'] = json_encode($request->s_aplikasi);
         }
 
-        if(($request->input('a_it'))){
+        if (($request->input('a_it'))) {
             $validatedData['a_it'] = json_encode($request->a_it);
         }
 
@@ -167,19 +186,35 @@ class pages extends Controller
         $pagination = 10;
         $lokasi = Lokasi::all();
         $kategori = Kategori::all();
+        $selected_value = $request->lokasi;
 
-        if($request->has('search')){
-            $pengembangan = DB::table('activities')->where([['kategori_activity', '=', 'pengembangan'],['status', '=', 'pending'],['lokasi','like','%' .$request->search. '%']])->paginate($pagination);
-            session()->put('selected_value', null);
+        if ($request->has('search') || $selected_value) {
+            $pengembangan = DB::table('activities')
+                ->where(function ($query) use ($request, $selected_value) {
+                    $query->where('kategori_activity', 'pengembangan')
+                        ->whereIn('status', ['pending']);
+                    if ($request->has('search')) {
+                        $query->where('lokasi', 'like', '%' . $request->search . '%');
+                        session()->put('selected_value', null);
+                    } else {
+                        $query->where('lokasi', '=', $selected_value);
+                        session()->put('selected_value', $selected_value);
+                    }
+                })
+                ->latest()
+                ->paginate($pagination);
+
             session()->put('pengembangan', $pengembangan);
-        }else{
-            $pengembangan = DB::table('activities')->where([['kategori_activity', '=', 'Toll'],['status', '=', 'pending']])->paginate($pagination);
+        } else {
+            $pengembangan = DB::table('activities')
+            ->where('kategori_activity', 'pengembangan')
+            ->whereIn('status', ['pending'])
+                // ->orWhere('status', '=', 'rejected')
+                ->latest()
+                ->paginate($pagination);
         }
 
-        // $pengembangan = DB::table('activities')->where([['kategori_activity', '=', 'pengembangan'],['status', '=', 'pending']])->paginate($pagination);
-
-
-        return view('pages.activity.pengembangan', ['pengembangan' => $pengembangan, 'lokasi' => $lokasi, 'kategori' => $kategori], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);;
+        return view('pages.activity.pengembangan', ['pengembangan' => $pengembangan, 'lokasi' => $lokasi, 'kategori' => $kategori, 'selected_value' => $selected_value], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);;
     }
 
     public function pengembanganactivity(Request $request)
@@ -200,22 +235,22 @@ class pages extends Controller
             'lokasi' => 'required',
             'kategori' => 'required',
             'kondisi_akhir' => 'required',
+            'biaya' => 'required',
             'foto' => 'image|file',
             'status' => 'required'
 
         ]);
 
 
-        if(($request->input('j_hardware'))){
+        if (($request->input('j_hardware'))) {
             $validatedData['j_hardware'] = json_encode($request->j_hardware);
-
         }
 
-        if(($request->input('s_aplikasi'))){
+        if (($request->input('s_aplikasi'))) {
             $validatedData['s_aplikasi'] = json_encode($request->s_aplikasi);
         }
 
-        if(($request->input('a_it'))){
+        if (($request->input('a_it'))) {
             $validatedData['a_it'] = json_encode($request->a_it);
         }
 
@@ -262,16 +297,15 @@ class pages extends Controller
             'status' => 'required'
         ]);
 
-        if(($request->input('j_hardware'))){
+        if (($request->input('j_hardware'))) {
             $validatedData['j_hardware'] = json_encode($request->j_hardware);
-
         }
 
-        if(($request->input('s_aplikasi'))){
+        if (($request->input('s_aplikasi'))) {
             $validatedData['s_aplikasi'] = json_encode($request->s_aplikasi);
         }
 
-        if(($request->input('a_it'))){
+        if (($request->input('a_it'))) {
             $validatedData['a_it'] = json_encode($request->a_it);
         }
 
@@ -279,7 +313,7 @@ class pages extends Controller
             $validatedData['foto'] = $request->file('foto')->store('activity-foto');
         }
 
-    
+
 
         Activity::where('id', $activity->id)->update($activitydetail);
         // Activity::save();
@@ -295,10 +329,10 @@ class pages extends Controller
         // dd($request);
         DB::table('activities')->where('id', $id)->update([
             'status' => $request->status,
-  
+
         ]);
-        
-        return redirect('/toll');
+
+        return redirect('/dashboard');
     }
 
     public function rejected(Request $request, $id)
@@ -306,10 +340,10 @@ class pages extends Controller
         // dd($request);
         DB::table('activities')->where('id', $id)->update([
             'status' => $request->status,
-  
+
         ]);
-        
-        return redirect('/toll');
+
+        return redirect('/dashboard');
     }
 
     public function tollhistori(Request $request)
@@ -318,39 +352,84 @@ class pages extends Controller
         $subtitle = 'Log Histori Toll';
         $pagination = 10;
         $lokasi = Lokasi::all();
+        $selected_value = $request->lokasi;
 
-        if($request->has('search')){
-            $histori = DB::table('activities')->where([['kategori_activity', '=', 'Toll'],['status', '=', 'approve'],['lokasi','like','%' .$request->search. '%']])->orWhere('status', '=', 'rejected')->latest()->paginate($pagination);
-            session()->put('selected_value', null);
+        if ($request->has('search') || $selected_value) {
+            $histori = DB::table('activities')
+                ->where(function ($query) use ($request, $selected_value) {
+                    $query->where('kategori_activity', 'Toll')
+                        ->whereIn('status', ['approve', 'rejected']);
+                    if ($request->has('search')) {
+                        $query->where('lokasi', 'like', '%' . $request->search . '%');
+                        session()->put('selected_value', null);
+                    } else {
+                        $query->where('lokasi', '=', $selected_value);
+                        session()->put('selected_value', $selected_value);
+                    }
+                })
+                ->latest()
+                ->paginate($pagination);
+
             session()->put('toll', $histori);
-        }else{
-            $histori = DB::table('activities')->where([['kategori_activity', '=', 'Toll'],['status', '=', 'approve']])->orWhere('status', '=', 'rejected')->latest()->paginate($pagination);
+        } else {
+            $histori = DB::table('activities')
+            ->where('kategori_activity', 'Toll')
+            ->whereIn('status', ['approve', 'rejected'])
+                // ->orWhere('status', '=', 'rejected')
+                ->latest()
+                ->paginate($pagination);
         }
 
-       
-
-        return view('pages.activity.subpages.histori', ['histori' => $histori, 'lokasi' => $lokasi], compact('title','subtitle'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
+        return view('pages.activity.subpages.histori', [
+            'histori' => $histori,
+            'lokasi' => $lokasi,
+            'selected_value' => $selected_value
+        ], compact('title', 'subtitle'))->with('i', ($request->input('page', 1) - 1) * $pagination);
     }
 
     public function nontollhistori(Request $request)
     {
-        $title = 'MUN | Non Toll Histori';
+        $title = 'MUN | Toll Histori';
         $subtitle = 'Log Histori Non Toll';
         $pagination = 10;
         $lokasi = Lokasi::all();
+        $selected_value = $request->lokasi;
 
-        if($request->has('search')){
-            $histori = DB::table('activities')->where([['kategori_activity', '=', 'NonToll'],['status', '=', 'approve'],['lokasi','like','%' .$request->search. '%']])->orWhere('status', '=', 'rejected')->latest()->paginate($pagination);
-            session()->put('selected_value', null);
-            session()->put('nontoll', $histori);
-        }else{
-            $histori = DB::table('activities')->where([['kategori_activity', '=', 'NonToll'],['status', '=', 'approve']])->orWhere('status', '=', 'rejected')->latest()->paginate($pagination);
+        if ($request->has('search') || $selected_value) {
+            $nontollhistori = DB::table('activities')
+                ->where(function ($query) use ($request, $selected_value) {
+                    $query->where('kategori_activity', 'NonToll')
+                        ->whereIn('status', ['approve', 'rejected']);
+                    if ($request->has('search')) {
+                        $query->where('lokasi', 'like', '%' . $request->search . '%');
+                        session()->put('selected_value', null);
+                    } else {
+                        $query->where('lokasi', '=', $selected_value);
+                        session()->put('selected_value', $selected_value);
+                    }
+                })
+                ->latest()
+                ->paginate($pagination);
+
+            session()->put('nontollhistori', $nontollhistori);
+        } else {
+            $nontollhistori = DB::table('activities')
+            ->where('kategori_activity', 'NonToll')
+                        ->whereIn('status', ['approve', 'rejected'])
+                // ->where([
+                //     ['kategori_activity', '=', 'NonToll'],
+                //     ['status', '=', 'approve'],
+                // ])
+                // ->orWhere('status', '=', 'rejected')
+                ->latest()
+                ->paginate($pagination);
         }
 
-        // $histori = DB::table('activities')->where([['kategori_activity', '=', 'NonToll'],['status', '=', 'approve']])->orWhere('status', '=', 'rejected')->latest()->paginate($pagination);
-
-
-        return view('pages.activity.subpages.histori', ['histori' => $histori, 'lokasi' => $lokasi], compact('title','subtitle'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
+        return view('pages.activity.subpages.nontollhistori', [
+            'nontollhistori' => $nontollhistori,
+            'lokasi' => $lokasi,
+            'selected_value' => $selected_value
+        ], compact('title', 'subtitle'))->with('i', ($request->input('page', 1) - 1) * $pagination);
     }
 
     public function pengembanganhistori(Request $request)
@@ -358,12 +437,40 @@ class pages extends Controller
         $title = 'MUN | Pengembangan Histori';
         $subtitle = 'Log Histori Pengembangan';
         $pagination = 10;
-        $histori = DB::table('activities')->where([['kategori_activity', '=', 'pengembangan'],['status', '=', 'approve']])->orWhere('status', '=', 'rejected')->latest()->paginate($pagination);
+        $lokasi = Lokasi::all();
+        $selected_value = $request->lokasi;
 
+        if ($request->has('search') || $selected_value) {
+            $pengembangan = DB::table('activities')
+                ->where(function ($query) use ($request, $selected_value) {
+                    $query->where('kategori_activity', 'pengembangan')
+                        ->whereIn('status', ['approve', 'rejected']);
+                    if ($request->has('search')) {
+                        $query->where('lokasi', 'like', '%' . $request->search . '%');
+                        session()->put('selected_value', null);
+                    } else {
+                        $query->where('lokasi', '=', $selected_value);
+                        session()->put('selected_value', $selected_value);
+                    }
+                })
+                ->latest()
+                ->paginate($pagination);
 
-        return view('pages.activity.subpages.histori', ['histori' => $histori], compact('title','subtitle'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
+            session()->put('pengembangan', $pengembangan);
+        } else {
+            $pengembangan = DB::table('activities')
+            ->where('kategori_activity', 'pengembangan')
+            ->whereIn('status', ['approve', 'rejected'])
+                ->latest()
+                ->paginate($pagination);
+        }
+
+        return view('pages.activity.subpages.pengembanganhistori', [
+            'pengembangan' => $pengembangan,
+            'lokasi' => $lokasi,
+            'selected_value' => $selected_value
+        ], compact('title', 'subtitle'))->with('i', ($request->input('page', 1) - 1) * $pagination);
     }
-
 
     //End Activity Controllers
 
@@ -492,7 +599,7 @@ class pages extends Controller
         }
 
         User::where('id', $request->id)->update($updateuser);
-        
+
         return redirect('/users');
     }
 
@@ -578,16 +685,15 @@ class pages extends Controller
     }
 
     public function cari(Request $request)
-	{
+    {
 
         dd($request);
-		$cari = $request->cari;
+        $cari = $request->cari;
 
-		$toll = DB::table('activities')->where('lokasi','like',"%".$request->cari."%")->paginate();
- 
-		return view('index',['toll' => $toll]);
- 
-	}
+        $toll = DB::table('activities')->where('lokasi', 'like', "%" . $request->cari . "%")->paginate();
+
+        return view('index', ['toll' => $toll]);
+    }
 
     //Barang
     public function listbarang()
@@ -597,8 +703,4 @@ class pages extends Controller
 
         return view('pages.barang.listbarang', compact('title'));
     }
-
-
-
-
 }

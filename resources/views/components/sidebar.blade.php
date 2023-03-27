@@ -80,7 +80,7 @@
         <li class="menu-header small text-uppercase"><span class="menu-header-text">Information Details</span></li>
 
         <li class="menu-item">
-            <a href="/location" class="menu-link">
+            <a href="/listbarang" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-cart"></i>
                 <div data-i18n="Analytics">Barang</div>
             </a>

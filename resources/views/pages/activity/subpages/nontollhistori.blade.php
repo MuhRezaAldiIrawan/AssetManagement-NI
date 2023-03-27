@@ -26,9 +26,7 @@
                 </div>
             </div>
             <div class="card-body">
-
-                @if('/tollhistori' )
-                <form action="/tollhistori" method="get">
+                <form action="/nontollhistori" method="get">
                     <div class="row g-2">
                         <div class="col mb-0">
                             <select id="cari" name="search" class="form-select">
@@ -46,9 +44,7 @@
                             </div>
                         </div>
                     </div>
-                </form>      
-                @endif
-
+                </form>     
                 <div class="table-responsive text-wrap mt-3">
                     <table class="table table-bordered table-striped  table-hover display" width="1000px">
                         <thead>
@@ -63,7 +59,7 @@
                                 <th class="text-center" width="21%">Action</th>
                             </tr>
                         </thead>
-                        @foreach ($histori as $t)
+                        @foreach ($nontollhistori as $t)
                             <tbody>
                                 <td>{{ ++$i }}</td>
                                 <td>{{ $t->tanggal }}</td>

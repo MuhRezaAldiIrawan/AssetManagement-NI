@@ -126,7 +126,7 @@
                                                     <button type="button" class="accordion-button collapsed"
                                                         data-bs-toggle="collapse" data-bs-target="#accordionIcon-6"
                                                         aria-controls="accordionIcon-6">
-                                                        Catatan & Kondisi Akhir
+                                                        Catatan & Kondisi Akhir dan Biaya
                                                     </button>
                                                 </h2>
 
@@ -135,6 +135,7 @@
                                                     <div class="accordion-body">
                                                         <p>{{ $d->catatan }}</p>
                                                         <p>{{ $d->kondisi_akhir }}</p>
+                                                        <p>Rp. {{ $d->biaya }}</p>
                                                     </div>
                                                 </div>
                                             </div>
