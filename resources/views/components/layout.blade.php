@@ -75,6 +75,12 @@
         .dataTables_scrollHeadInner {
             color: steelblue
         }
+    
+		@media print {
+		  a {
+		    display: none;
+		  }
+		}
     </style>
 </head>
 

@@ -20,9 +20,11 @@
                                 data-bs-target="#basicModal">
                                 <span class="tf-icons bx bx-plus"></span>
                             </button>
-                            <button type="button" class="btn btn-icon btn-secondary m-1">
-                                <span class="tf-icons bx bx-printer"></span>
-                            </button>
+                            <a href="/print_location" >
+                                <button type="button" class="btn btn-icon btn-secondary m-1">
+                                    <span class="tf-icons bx bx-printer"></span>
+                                </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -98,7 +100,7 @@
                         <ul class="pagination">
                             {{ $location->links() }}
                         </ul>
-                    </nav>
+                    </nav>  
                     
                 </div>
             </div>

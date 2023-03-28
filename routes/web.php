@@ -69,6 +69,7 @@ Route::post('/activitydetail/{id}', 'App\Http\Controllers\pages@approve');
 Route::post('/activitydetail/rejected/{id}', 'App\Http\Controllers\pages@rejected');
 
 //Print 
+Route::get('/print_location', 'App\Http\Controllers\pages@print_location');
 Route::get('/printactivity', 'App\Http\Controllers\pages@printactivity');
 // Route::get('/toll/cari','App\Http\Controllers\pages@cari');
 

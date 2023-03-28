@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Carbon;
+
+use Barryvdh\DomPDF\Facade\PDF;
 
 use App\Models\lokasi;
 use App\Models\TollActivity;
@@ -61,8 +64,8 @@ class pages extends Controller
             session()->put('toll', $toll);
         } else {
             $toll = DB::table('activities')
-            ->where('kategori_activity', 'Toll')
-            ->whereIn('status', ['pending'])
+                ->where('kategori_activity', 'Toll')
+                ->whereIn('status', ['pending'])
                 // ->orWhere('status', '=', 'rejected')
                 ->latest()
                 ->paginate($pagination);
@@ -208,8 +211,8 @@ class pages extends Controller
             session()->put('pengembangan', $pengembangan);
         } else {
             $pengembangan = DB::table('activities')
-            ->where('kategori_activity', 'pengembangan')
-            ->whereIn('status', ['pending'])
+                ->where('kategori_activity', 'pengembangan')
+                ->whereIn('status', ['pending'])
                 // ->orWhere('status', '=', 'rejected')
                 ->latest()
                 ->paginate($pagination);
@@ -374,8 +377,8 @@ class pages extends Controller
             session()->put('toll', $histori);
         } else {
             $histori = DB::table('activities')
-            ->where('kategori_activity', 'Toll')
-            ->whereIn('status', ['approve', 'rejected'])
+                ->where('kategori_activity', 'Toll')
+                ->whereIn('status', ['approve', 'rejected'])
                 // ->orWhere('status', '=', 'rejected')
                 ->latest()
                 ->paginate($pagination);
@@ -415,8 +418,8 @@ class pages extends Controller
             session()->put('nontollhistori', $nontollhistori);
         } else {
             $nontollhistori = DB::table('activities')
-            ->where('kategori_activity', 'NonToll')
-                        ->whereIn('status', ['approve', 'rejected'])
+                ->where('kategori_activity', 'NonToll')
+                ->whereIn('status', ['approve', 'rejected'])
                 // ->where([
                 //     ['kategori_activity', '=', 'NonToll'],
                 //     ['status', '=', 'approve'],
@@ -460,8 +463,8 @@ class pages extends Controller
             session()->put('pengembangan', $pengembangan);
         } else {
             $pengembangan = DB::table('activities')
-            ->where('kategori_activity', 'pengembangan')
-            ->whereIn('status', ['approve', 'rejected'])
+                ->where('kategori_activity', 'pengembangan')
+                ->whereIn('status', ['approve', 'rejected'])
                 ->latest()
                 ->paginate($pagination);
         }
@@ -704,7 +707,6 @@ class pages extends Controller
         $listbarang = DB::table('barangs')->paginate($pagination);
 
         return view('pages.barang.listbarang', ['listbarang' => $listbarang], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
-
     }
 
     public function addbarang(Request $request)
@@ -730,6 +732,19 @@ class pages extends Controller
         $title = 'MUN | Log Activity Barang';
 
         return view('pages.barang.logbarang', compact('title'));
+    }
 
+    // All Print
+    public function print_location(Request $request)
+    {
+        $title = 'Print Page';
+        $pagination = 10;
+        $date = Carbon::now()->format('d-m-Y');
+        $location = DB::table('lokasi')->paginate($pagination);
+
+        return view('pages.location.printlocation', ['location' => $location, 'date' => $date], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
+    
+        // return view('pages.location.printlocation');
+    
     }
 }
