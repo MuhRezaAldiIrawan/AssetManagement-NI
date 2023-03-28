@@ -6,13 +6,13 @@
 {{-- Content --}}
 @section('content')
     <div class="col-lg-12 mb-4 order-0">
-        <h5 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Activity /</span>Log Activity Toll<i
-                class='bx bx-street-view m-1'></i></h5>
+        <h5 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Barang/</span>List Barang<i
+                class='bx bx-list-ol m-1'></i></h5>
         <div class="card">
             <div class="row gy-3 m-1">
                 <div class="col-md-6 d-flex align-items-end">
                     <div class="demo-inline-spacing ">
-                        <h4 class="m-0">Log Activity</h4>
+                        <h4 class="m-0">List Barang</h4>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -49,7 +49,7 @@
                                 <td>{{ $b->unit }}</td>
                                 <td>{{ $b->merk }}</td>
                                 <td>{{ $b->stock }}</td>
-                                <td>
+                                <td class=" d-flex justify-content-center m-0 ">
                                     <button class="btn btn-icon btn-primary me-1" type="button" data-bs-toggle="modal"
                                         data-bs-target="#basicModalViewAdd{{ $b->id }}" aria-expanded="false"
                                         aria-controls="multiCollapseExample2"> <span class="tf-icons bx bx-plus"></span>
@@ -57,6 +57,9 @@
                                     <button class="btn btn-icon btn-danger me-1" type="button" data-bs-toggle="modal"
                                         data-bs-target="#basicModalViewMinus{{ $b->id }}" aria-expanded="false"
                                         aria-controls="multiCollapseExample2"> <span class="tf-icons bx bx-minus"></span>
+                                    </button>
+                                    <button class="btn btn-icon btn-secondary me-1" type="button" aria-expanded="false"
+                                        aria-controls="multiCollapseExample2"> <span class="tf-icons bx bx-message-detail"></span>
                                     </button>
 
                                     <!-- Add Stock Modal -->
@@ -72,9 +75,10 @@
                                                 <div class="modal-body d-flex justify-content-center align-items-center">
                                                     <div class="col-sm-6 col-lg-12 mb-4 ">
                                                         <div class="card">
-                                                            <label for="nama_equipment" class="form-label">Jumlah Barang Masuk</label>
-                                                        <input type="number" name="stock" id="stock"
-                                                            class="form-control" value="{{ $b->stock }}">
+                                                            <label for="nama_equipment" class="form-label">Jumlah Barang
+                                                                Masuk</label>
+                                                            <input type="number" name="stock" id="stock"
+                                                                class="form-control" value="{{ $b->stock }}">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -94,7 +98,8 @@
                                                 </div>
                                                 <div class="modal-body d-flex justify-content-center align-items-center">
                                                     <div class="col-sm-6 col-lg-12 mb-4 ">
-                                                        <label for="nama_equipment" class="form-label">Jumlah Barang keluar</label>
+                                                        <label for="nama_equipment" class="form-label">Jumlah Barang
+                                                            keluar</label>
                                                         <input type="number" name="stock" id="stock"
                                                             class="form-control" value="{{ $b->stock }}">
                                                     </div>

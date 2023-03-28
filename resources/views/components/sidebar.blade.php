@@ -80,10 +80,22 @@
         <li class="menu-header small text-uppercase"><span class="menu-header-text">Information Details</span></li>
 
         <li class="menu-item">
-            <a href="/listbarang" class="menu-link">
+            <a class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-cart"></i>
-                <div data-i18n="Analytics">Barang</div>
+                <div data-i18n="Layouts">Barang</div>
             </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="/listbarang" class="menu-link">
+                        <div data-i18n="Without menu">List Barang</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="/logbarang" class="menu-link">
+                        <div data-i18n="Without navbar">Log Barang</div>
+                    </a>
+                </li>
+            </ul>
         </li>
         <li class="menu-item">
             <a href="/location" class="menu-link">

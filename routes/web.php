@@ -75,6 +75,7 @@ Route::get('/printactivity', 'App\Http\Controllers\pages@printactivity');
 //Barang
 Route::get('/listbarang', 'App\Http\Controllers\pages@listbarang');
 Route::post('/listbarang', 'App\Http\Controllers\pages@addbarang');
+Route::get('/logbarang', 'App\Http\Controllers\pages@logbarang');
 
 
 

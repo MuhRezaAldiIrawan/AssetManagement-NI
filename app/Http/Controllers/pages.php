@@ -724,4 +724,12 @@ class pages extends Controller
 
         return view('pages.barang.listbarang', compact('title'));
     }
+
+    public function logbarang(Request $request)
+    {
+        $title = 'MUN | Log Activity Barang';
+
+        return view('pages.barang.logbarang', compact('title'));
+
+    }
 }
