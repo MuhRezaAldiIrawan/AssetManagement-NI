@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,11 +6,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="dist/css/pint.css"> -->
-    <title>Document</title>
+
 </head>
 
-<body>
+<body onload="window.print();">
     <table border="1" align="center" width=100%>
         <thead>
             <tr>
@@ -32,11 +32,12 @@
             
             </tr>
         </thead>
+        @php $i=1 @endphp
         @foreach ($location as $l)
             <tbody>
-                <td>{{ ++$i }}</td>
+                <td style="text-align:center">{{ $i++ }}</td>
                 <td>{{ $l->nama }}</td>
-                <td style=" align-items-center ">{{ $l->singkatan }}</td>
+                <td style="text-align:center">{{ $l->singkatan }}</td>
             </tbody>
         @endforeach
     </table>
@@ -49,7 +50,7 @@
                 <td style="overflow: hidden;" align="left" width=100%>
                     Makassar,
                     <p>Dicheck Oleh</p>
-                    <img src="images/625520090e70c.png" alt="" width="15%">
+                    <img src="{{ asset('img/ttd/625520090e70c.png') }}" alt="" width="15%">
                     <p>( IT & Develovpment )</p>
             </tr>
         </tbody>

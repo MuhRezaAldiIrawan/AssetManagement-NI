@@ -20,17 +20,14 @@ use Illuminate\Support\Facades\Route;
 // Main ROUTE
 Route::get('/', 'App\Http\Controllers\AuthController@loginview')->name('login')->middleware('guest');
 Route::get('/dashboard', 'App\Http\Controllers\pages@index');
-Route::get('/toll', 'App\Http\Controllers\pages@toll');
-Route::get('/nontoll', 'App\Http\Controllers\pages@nontoll');
-Route::get('/pengembangan', 'App\Http\Controllers\pages@pengembangan');
-
-Route::get('/location', 'App\Http\Controllers\pages@location');
-Route::get('/kategori', 'App\Http\Controllers\pages@kategori');
+Route::get('/toll', 'App\Http\Controllers\ActivityController@toll');
+Route::get('/nontoll', 'App\Http\Controllers\ActivityController@nontoll');
+Route::get('/pengembangan', 'App\Http\Controllers\ActivityController@pengembangan');
+Route::get('/location', 'App\Http\Controllers\LocationController@location');
+Route::get('/kategori', 'App\Http\Controllers\KategoriController@kategori');
 Route::get('/users', 'App\Http\Controllers\pages@users');
 Route::get('/allusers', 'App\Http\Controllers\pages@allusers');
-Route::get('/tollhistori', 'App\Http\Controllers\pages@tollhistori');
-Route::get('/nontollhistori', 'App\Http\Controllers\pages@nontollhistori');
-Route::get('/pengembanganhistori', 'App\Http\Controllers\pages@pengembanganhistori');
+
 
 //End Main Route
 
@@ -40,16 +37,16 @@ Route::get('/register', 'App\Http\Controllers\AuthController@registerview');
 Route::post('/register', 'App\Http\Controllers\AuthController@store');
 
 //Location
-Route::post('/location', 'App\Http\Controllers\pages@addlocation');
-Route::get('/location/{id}', 'App\Http\Controllers\pages@editlocation');
-Route::post('/location/update', 'App\Http\Controllers\pages@updatelocation');
-Route::get('/location/delete/{id}', 'App\Http\Controllers\pages@deletelocation');
+Route::post('/location', 'App\Http\Controllers\LocationController@addlocation');
+Route::get('/location/{id}', 'App\Http\Controllers\LocationController@editlocation');
+Route::post('/location/update', 'App\Http\Controllers\LocationController@updatelocation');
+Route::get('/location/delete/{id}', 'App\Http\Controllers\LocationController@deletelocation');
 
 //Kategori
-Route::post('/kategori', 'App\Http\Controllers\pages@addkategori');
-Route::get('/kategori/{id}', 'App\Http\Controllers\pages@editkategori');
-Route::post('/kategori/update', 'App\Http\Controllers\pages@updatekategori');
-Route::get('/kategori/delete/{id}', 'App\Http\Controllers\pages@deletekategori');
+Route::post('/kategori', 'App\Http\Controllers\KategoriController@addkategori');
+Route::get('/kategori/{id}', 'App\Http\Controllers\KategoriController@editkategori');
+Route::post('/kategori/update', 'App\Http\Controllers\KategoriController@updatekategori');
+Route::get('/kategori/delete/{id}', 'App\Http\Controllers\KategoriController@deletekategori');
 
 //User
 Route::post('/allusers', 'App\Http\Controllers\pages@addallusers');
@@ -60,13 +57,16 @@ Route::get('/allusers/delete/{id}', 'App\Http\Controllers\pages@deleteallusers')
 Route::post('/users/update/{id}', 'App\Http\Controllers\pages@updateusers');
 
 //Activity
-Route::post('/toll', 'App\Http\Controllers\pages@addtollactivity');
-Route::post('/nontoll', 'App\Http\Controllers\pages@addnontollactivity');
-Route::post('/pengembangan', 'App\Http\Controllers\pages@pengembanganactivity');
-Route::get('/activitydetail/{id}', 'App\Http\Controllers\pages@activitydetail');
-Route::post('/activitydetail/update/', 'App\Http\Controllers\pages@ubahdata');
-Route::post('/activitydetail/{id}', 'App\Http\Controllers\pages@approve');
-Route::post('/activitydetail/rejected/{id}', 'App\Http\Controllers\pages@rejected');
+Route::post('/toll', 'App\Http\Controllers\ActivityController@addtollactivity');
+Route::post('/nontoll', 'App\Http\Controllers\ActivityController@addnontollactivity');
+Route::post('/pengembangan', 'App\Http\Controllers\ActivityController@pengembanganactivity');
+Route::get('/tollhistori', 'App\Http\Controllers\ActivityController@tollhistori');
+Route::get('/nontollhistori', 'App\Http\Controllers\ActivityController@nontollhistori');
+Route::get('/pengembanganhistori', 'App\Http\Controllers\ActivityController@pengembanganhistori');
+Route::get('/activitydetail/{id}', 'App\Http\Controllers\ActivityController@activitydetail');
+Route::post('/activitydetail/update/', 'App\Http\Controllers\ActivityController@ubahdata');
+Route::post('/activitydetail/{id}', 'App\Http\Controllers\ActivityController@approve');
+Route::post('/activitydetail/rejected/{id}', 'App\Http\Controllers\ActivityController@rejected');
 
 //Print 
 Route::get('/print_location', 'App\Http\Controllers\pages@print_location');
