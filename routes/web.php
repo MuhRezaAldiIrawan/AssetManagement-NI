@@ -69,9 +69,11 @@ Route::get('/printactivity', 'App\Http\Controllers\pages@printactivity');
 // Route::get('/toll/cari','App\Http\Controllers\pages@cari');
 
 //Barang
-Route::get('/listbarang', 'App\Http\Controllers\pages@listbarang');
-Route::post('/listbarang', 'App\Http\Controllers\pages@addbarang');
-Route::get('/logbarang', 'App\Http\Controllers\pages@logbarang');
+Route::get('/listbarang', 'App\Http\Controllers\BarangController@listbarang');
+Route::post('/listbarang', 'App\Http\Controllers\BarangController@addbarang');
+Route::get('/logbarang', 'App\Http\Controllers\BarangController@logbarang');
+Route::post('/listbarang/tambahstock/{id}', 'App\Http\Controllers\BarangController@updatestock');
+Route::post('/listbarang/kurangstock/{id}', 'App\Http\Controllers\BarangController@minusstock');
 
 
 

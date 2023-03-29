@@ -59,7 +59,8 @@
                                         aria-controls="multiCollapseExample2"> <span class="tf-icons bx bx-minus"></span>
                                     </button>
                                     <button class="btn btn-icon btn-secondary me-1" type="button" aria-expanded="false"
-                                        aria-controls="multiCollapseExample2"> <span class="tf-icons bx bx-message-detail"></span>
+                                        aria-controls="multiCollapseExample2"> <span
+                                            class="tf-icons bx bx-message-detail"></span>
                                     </button>
 
                                     <!-- Add Stock Modal -->
@@ -74,12 +75,19 @@
                                                 </div>
                                                 <div class="modal-body d-flex justify-content-center align-items-center">
                                                     <div class="col-sm-6 col-lg-12 mb-4 ">
-                                                        <div class="card">
-                                                            <label for="nama_equipment" class="form-label">Jumlah Barang
-                                                                Masuk</label>
-                                                            <input type="number" name="stock" id="stock"
-                                                                class="form-control" value="{{ $b->stock }}">
-                                                        </div>
+                                                        <form action="{!! url('/listbarang/tambahstock/' . $b->id) !!}" method="POST">
+                                                            @csrf
+                                                            <div class="card">
+                                                                <label class="form-label">Jumlah Barang
+                                                                    Masuk</label>
+                                                                <input type="number" name="stock" id="stock"
+                                                                    class="form-control">
+                                                            </div>
+                                                                <button type="submit" class="btn btn-primary mt-3">
+                                                                    <span class="tf-icons bx bx-layer-plus"></span>&nbsp;
+                                                                    Update Stock
+                                                                </button>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
@@ -98,10 +106,19 @@
                                                 </div>
                                                 <div class="modal-body d-flex justify-content-center align-items-center">
                                                     <div class="col-sm-6 col-lg-12 mb-4 ">
-                                                        <label for="nama_equipment" class="form-label">Jumlah Barang
-                                                            keluar</label>
-                                                        <input type="number" name="stock" id="stock"
-                                                            class="form-control" value="{{ $b->stock }}">
+                                                        <form action="{!! url('/listbarang/kurangstock/' . $b->id) !!}" method="POST">
+                                                            @csrf
+                                                            <div class="card">
+                                                                <label class="form-label">Jumlah Barang
+                                                                    Keluar</label>
+                                                                <input type="number" name="stock" id="stock"
+                                                                    class="form-control" >
+                                                            </div>
+                                                                <button type="submit" class="btn btn-danger mt-3">
+                                                                    <span class="tf-icons bx bx-layer-minus"></span>&nbsp;
+                                                                    Update Stock
+                                                                </button>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>

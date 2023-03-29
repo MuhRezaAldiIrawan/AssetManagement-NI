@@ -63,51 +63,19 @@ class pages extends Controller
         return view('pages.activity.subpages.printactivity', compact('title'));
     }
 
-    public function cari(Request $request)
-    {
+    // public function cari(Request $request)
+    // {
 
-        dd($request);
-        $cari = $request->cari;
+    //     dd($request);
+    //     $cari = $request->cari;
 
-        $toll = DB::table('activities')->where('lokasi', 'like', "%" . $request->cari . "%")->paginate();
+    //     $toll = DB::table('activities')->where('lokasi', 'like', "%" . $request->cari . "%")->paginate();
 
-        return view('index', ['toll' => $toll]);
-    }
+    //     return view('index', ['toll' => $toll]);
+    // }
 
     //Barang
-    public function listbarang(Request $request)
-    {
-        $title = 'MUN | List Stok Barang';
-        $pagination = 10;
-        $listbarang = DB::table('barangs')->paginate($pagination);
 
-        return view('pages.barang.listbarang', ['listbarang' => $listbarang], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
-    }
-
-    public function addbarang(Request $request)
-    {
-        $validatedData = $request->validate([
-            'nama_equipment' => 'required',
-            'unit' => 'required',
-            'merk' => 'required',
-            'stock' => 'required',
-
-        ]);
-
-        Barang::create($validatedData);
-
-        Alert::success('Success', 'Log Activity Telah berhasil Ditambahkan');
-        return redirect('/listbarang');
-
-        return view('pages.barang.listbarang', compact('title'));
-    }
-
-    public function logbarang(Request $request)
-    {
-        $title = 'MUN | Log Activity Barang';
-
-        return view('pages.barang.logbarang', compact('title'));
-    }
 
     // All Print
     public function print_location(Request $request)
