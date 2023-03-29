@@ -13,10 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 // Main ROUTE
 Route::get('/', 'App\Http\Controllers\AuthController@loginview')->name('login')->middleware('guest');
 Route::get('/dashboard', 'App\Http\Controllers\pages@index');
@@ -25,8 +21,8 @@ Route::get('/nontoll', 'App\Http\Controllers\ActivityController@nontoll');
 Route::get('/pengembangan', 'App\Http\Controllers\ActivityController@pengembangan');
 Route::get('/location', 'App\Http\Controllers\LocationController@location');
 Route::get('/kategori', 'App\Http\Controllers\KategoriController@kategori');
-Route::get('/users', 'App\Http\Controllers\pages@users');
-Route::get('/allusers', 'App\Http\Controllers\pages@allusers');
+Route::get('/users', 'App\Http\Controllers\UsersController@users');
+Route::get('/allusers', 'App\Http\Controllers\UsersController@allusers');
 
 
 //End Main Route
@@ -49,12 +45,11 @@ Route::post('/kategori/update', 'App\Http\Controllers\KategoriController@updatek
 Route::get('/kategori/delete/{id}', 'App\Http\Controllers\KategoriController@deletekategori');
 
 //User
-Route::post('/allusers', 'App\Http\Controllers\pages@addallusers');
-Route::get('/allusers/{id}', 'App\Http\Controllers\pages@editallusers');
-Route::post('/allusers/update/{id}', 'App\Http\Controllers\pages@updateallusers');
-Route::get('/allusers/delete/{id}', 'App\Http\Controllers\pages@deleteallusers');
-
-Route::post('/users/update/{id}', 'App\Http\Controllers\pages@updateusers');
+Route::post('/allusers', 'App\Http\Controllers\UsersController@addallusers');
+Route::get('/allusers/{id}', 'App\Http\Controllers\UsersController@editallusers');
+Route::post('/allusers/update/{id}', 'App\Http\Controllers\UsersController@updateallusers');
+Route::get('/allusers/delete/{id}', 'App\Http\Controllers\UsersController@deleteallusers');
+Route::post('/users/update/{id}', 'App\Http\Controllers\UsersController@updateusers');
 
 //Activity
 Route::post('/toll', 'App\Http\Controllers\ActivityController@addtollactivity');
