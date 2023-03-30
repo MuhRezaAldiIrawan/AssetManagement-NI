@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Barang;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
 
 class BarangController extends Controller
 {
@@ -63,5 +64,15 @@ class BarangController extends Controller
 
         toast('Stock Berhasil dikurangkan', 'success');
         return redirect('/listbarang');
+    }
+
+    public function print_listbarang(Request $request)
+    {
+        $title = 'Print Page';
+
+        $date = Carbon::now()->format('d-m-Y');
+        $listbarang = DB::table('barangs')->get();
+
+        return view('pages.barang.printlistbarang', ['listbarang' => $listbarang, 'date' => $date], compact('title'))->with('i', ($request->input('page', 1) - 1));
     }
 }

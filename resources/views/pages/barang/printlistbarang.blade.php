@@ -18,7 +18,7 @@
                 <td rowspan="3" width=20% align="center"><img width="90%" src="{{ asset('img/Logo/mun.png') }}"
                         alt=""></td>
                 <td style="text-align:center" width="45%">
-                    <h3>LIST PEGAWAI / USER</h3>
+                    <h3>LIST BARANG</h3>
                 </td>
             </tr>
         </thead>
@@ -29,18 +29,20 @@
         <thead >
             <tr align="center" style="background-color: gray;">
                 <th rowspan="2" width="2%">NO</th>
-                <th rowspan="2" width="15%">NAMA</th>
-                <th rowspan="2" width="15%">EMAIL</th>
-                <th rowspan="2" width="15%">JABATAN</th>      
+                <th rowspan="2" width="15%">NAMA EQUPMENT</th>
+                <th rowspan="2" width="15%">UNIT</th>
+                <th rowspan="2" width="15%">MERK</th>   
+                <th rowspan="2" width="15%">STOCK</th>       
             </tr>
         </thead>
         @php $i=1 @endphp
-        @foreach ($allusers as $l)
+        @foreach ($listbarang as $l)
             <tbody>
                 <td style="text-align:center">{{ $i++ }}</td>
-                <td>{{ $l->nama }}</td>
-                <td style="text-align:center">{{ $l->email }}</td>
-                <td style="text-align:center">{{ $l->jabatan }}</td>
+                <td>{{ $l->nama_equipment }}</td>
+                <td style="text-align:center">{{ $l->unit }}</td>
+                <td style="text-align:center">{{ $l->merk }}</td>
+                <td style="text-align:center">{{ $l->stock }}</td>
             </tbody>
         @endforeach
     </table>

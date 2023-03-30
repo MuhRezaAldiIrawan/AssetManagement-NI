@@ -114,12 +114,10 @@ class UsersController extends Controller
     public function print_allusers(Request $request)
     {
         $title = 'Print Page';
-     
+
         $date = Carbon::now()->format('d-m-Y');
         $allusers = DB::table('users')->get();
 
         return view('pages.users.printallusers', ['allusers' => $allusers, 'date' => $date], compact('title'))->with('i', ($request->input('page', 1) - 1));
-    
     }
-
 }

@@ -67,6 +67,7 @@ Route::post('/activitydetail/rejected/{id}', 'App\Http\Controllers\ActivityContr
 Route::get('/print_location', 'App\Http\Controllers\LocationController@print_location');
 Route::get('/print_kategori', 'App\Http\Controllers\KategoriController@print_kategori');
 Route::get('/print_allusers', 'App\Http\Controllers\UsersController@print_allusers');
+Route::get('/print_listbarang', 'App\Http\Controllers\BarangController@print_listbarang');
 // Route::get('/toll/cari','App\Http\Controllers\pages@cari');
 
 //Barang
