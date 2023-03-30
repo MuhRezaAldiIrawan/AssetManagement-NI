@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Carbon;
 
 class KategoriController extends Controller
 {
@@ -53,4 +54,17 @@ class KategoriController extends Controller
         Alert::success('Success', 'Data Lokasi Telah berhasil dihapus');
         return redirect('/kategori');
     }
+
+    public function print_kategori(Request $request)
+    {
+        $title = 'Print Page';
+     
+        $date = Carbon::now()->format('d-m-Y');
+        $kategori = DB::table('kategori')->get();
+
+        return view('pages.kategori.printkategori', ['kategori' => $kategori, 'date' => $date], compact('title'))->with('i', ($request->input('page', 1) - 1));
+    
+    }
+
+
 }

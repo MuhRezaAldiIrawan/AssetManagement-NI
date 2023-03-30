@@ -7,10 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
 </head>
 
+
 <body onload="window.print();">
-    <table border="1" align="center" width=100%>
+    <table border="1" align="center" width=100% >
         <thead>
             <tr>
                 <td rowspan="3" width=20% align="center"><img width="90%" src="{{ asset('img/Logo/mun.png') }}"
@@ -23,8 +25,8 @@
     </table>
     <br>
 
-    <table border="1" width=100%>
-        <thead>
+    <table border="1" width=100% >
+        <thead >
             <tr align="center" style="background-color: gray;">
                 <th rowspan="2" width="2%">NO</th>
                 <th rowspan="2" width="15%">NAMA LOKASI</th>
@@ -56,5 +58,11 @@
         </tbody>
     </table>
 </body>
+
+
+
+
+
+
 
 </html>

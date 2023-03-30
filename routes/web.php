@@ -64,8 +64,8 @@ Route::post('/activitydetail/{id}', 'App\Http\Controllers\ActivityController@app
 Route::post('/activitydetail/rejected/{id}', 'App\Http\Controllers\ActivityController@rejected');
 
 //Print 
-Route::get('/print_location', 'App\Http\Controllers\pages@print_location');
-Route::get('/printactivity', 'App\Http\Controllers\pages@printactivity');
+Route::get('/print_location', 'App\Http\Controllers\LocationController@print_location');
+Route::get('/print_kategori', 'App\Http\Controllers\KategoriController@print_kategori');
 // Route::get('/toll/cari','App\Http\Controllers\pages@cari');
 
 //Barang

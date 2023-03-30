@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Carbon;
+
 
 use Barryvdh\DomPDF\Facade\PDF;
 
@@ -78,16 +78,5 @@ class pages extends Controller
 
 
     // All Print
-    public function print_location(Request $request)
-    {
-        $title = 'Print Page';
-     
-        $date = Carbon::now()->format('d-m-Y');
-        $location = DB::table('lokasi')->get();
 
-        return view('pages.location.printlocation', ['location' => $location, 'date' => $date], compact('title'))->with('i', ($request->input('page', 1) - 1));
-    
-        // return view('pages.location.printlocation');
-    
-    }
 }

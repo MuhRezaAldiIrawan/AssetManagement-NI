@@ -21,7 +21,7 @@
                                 <span class="tf-icons bx bx-plus"></span>
                             </button>
                             <a href="/print_location" target="_blank">
-                                <button type="button" class="btn btn-icon btn-secondary m-1" >
+                                <button type="button" class="btn btn-icon btn-secondary m-1">
                                     <span class="tf-icons bx bx-printer"></span>
                                 </button>
                             </a>
@@ -31,7 +31,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive text-wrap">
-                    <table class="table table-bordered table-striped  table-hover">
+                    <table class="table table-bordered table-striped  table-hover" >
                         <thead>
                             <tr>
                                 <th class="text-center" width="50px">No</th>
@@ -100,7 +100,7 @@
                         <ul class="pagination">
                             {{ $location->links() }}
                         </ul>
-                    </nav>  
+                    </nav>
                 </div>
             </div>
         </div>
@@ -139,4 +139,3 @@
         </div>
     </div>
 @endsection
-
