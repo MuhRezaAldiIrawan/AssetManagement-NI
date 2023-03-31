@@ -32,7 +32,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class=" text-wrap mt-3">
+                <div class=" table-responsive text-nowrap mt-3">
                     <table class="table table-bordered table-striped  table-hover " width="1000px">
                         <thead>
                             <tr>

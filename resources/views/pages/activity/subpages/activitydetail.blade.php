@@ -75,9 +75,18 @@
 
                                                 <div id="accordionIcon-3" class="accordion-collapse collapse"
                                                     data-bs-parent="#accordionIcon">
+                                                    
                                                     <div class="accordion-body">
-                                                        <p>{{ $d->j_hardware }}</p>
-                                                        <p>{{ $d->u_hardware }}</p>
+                                                        <p>Jenis Hardware : </p>
+                                                        <?php $counter = 1; ?>
+                                                        @foreach ($activitydetail as $item)
+                                                            @foreach (explode(',', $item->j_hardware) as $hardware)
+                                                            {{ $counter }}. {{ $hardware }}<br>
+                                                            <?php $counter++; ?>
+                                                            @endforeach
+                                                        @endforeach
+                                                        <p class="mt-3">Uraian Hardware : </p>
+                                                        <p >{{ $d->u_hardware }}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -95,7 +104,15 @@
                                                 <div id="accordionIcon-4" class="accordion-collapse collapse"
                                                     data-bs-parent="#accordionIcon">
                                                     <div class="accordion-body">
-                                                        <p>{{ $d->s_aplikasi }}</p>
+                                                        <p>Standart Aplikasi : </p>
+                                                        <?php $counter = 1; ?>
+                                                        @foreach ($activitydetail as $item)
+                                                            @foreach (explode(',', $item->s_aplikasi) as $hardware)
+                                                            {{ $counter }}. {{ $hardware }}<br>
+                                                            <?php $counter++; ?>
+                                                            @endforeach
+                                                        @endforeach
+                                                        <p class="mt-3">Uraian Standart Aplikasi : </p>
                                                         <p>{{ $d->u_aplikasi }}</p>
                                                     </div>
                                                 </div>
@@ -114,7 +131,15 @@
                                                 <div id="accordionIcon-5" class="accordion-collapse collapse"
                                                     data-bs-parent="#accordionIcon">
                                                     <div class="accordion-body">
-                                                        <p>{{ $d->a_it }}</p>
+                                                        <P>Aplikasi IT : </P>
+                                                        <?php $counter = 1; ?>
+                                                        @foreach ($activitydetail as $item)
+                                                            @foreach (explode(',', $item->a_it) as $hardware)
+                                                            {{ $counter }}. {{ $hardware }}<br>
+                                                            <?php $counter++; ?>
+                                                            @endforeach
+                                                        @endforeach
+                                                        <p class="mt-3">Uraian Aplikasi IT</p>
                                                         <p>{{ $d->u_it }}</p>
                                                     </div>
                                                 </div>

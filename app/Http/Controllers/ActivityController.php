@@ -76,15 +76,15 @@ class ActivityController extends Controller
 
 
         if (($request->input('j_hardware'))) {
-            $validatedData['j_hardware'] = json_encode($request->j_hardware);
+            $validatedData['j_hardware'] = implode(',', $validatedData['j_hardware']);
         }
 
         if (($request->input('s_aplikasi'))) {
-            $validatedData['s_aplikasi'] = json_encode($request->s_aplikasi);
+            $validatedData['s_aplikasi'] = implode(',', $validatedData['s_aplikasi']);
         }
 
         if (($request->input('a_it'))) {
-            $validatedData['a_it'] = json_encode($request->a_it);
+            $validatedData['a_it'] = implode(',', $validatedData['a_it']);
         }
 
         if ($request->file('foto')) {
@@ -142,15 +142,15 @@ class ActivityController extends Controller
         ]);
 
         if (($request->input('j_hardware'))) {
-            $validatedData['j_hardware'] = json_encode($request->j_hardware);
+            $validatedData['j_hardware'] = implode(',', $validatedData['j_hardware']);
         }
 
         if (($request->input('s_aplikasi'))) {
-            $validatedData['s_aplikasi'] = json_encode($request->s_aplikasi);
+            $validatedData['s_aplikasi'] = implode(',', $validatedData['s_aplikasi']);
         }
 
         if (($request->input('a_it'))) {
-            $validatedData['a_it'] = json_encode($request->a_it);
+            $validatedData['a_it'] = implode(',', $validatedData['a_it']);
         }
 
         if ($request->file('foto')) {
@@ -224,15 +224,15 @@ class ActivityController extends Controller
 
 
         if (($request->input('j_hardware'))) {
-            $validatedData['j_hardware'] = json_encode($request->j_hardware);
+            $validatedData['j_hardware'] = implode(',', $validatedData['j_hardware']);
         }
 
         if (($request->input('s_aplikasi'))) {
-            $validatedData['s_aplikasi'] = json_encode($request->s_aplikasi);
+            $validatedData['s_aplikasi'] = implode(',', $validatedData['s_aplikasi']);
         }
 
         if (($request->input('a_it'))) {
-            $validatedData['a_it'] = json_encode($request->a_it);
+            $validatedData['a_it'] = implode(',', $validatedData['a_it']);
         }
 
         if ($request->file('foto')) {
@@ -249,6 +249,11 @@ class ActivityController extends Controller
         $title = 'MUN | Detail Activity';
 
         $activitydetail = DB::table('activities')->where('id', $id)->get();
+        // $activitydetail->array_field = json_decode($activitydetail->array_field);
+
+    
+        // dd($activitydetail); 
+
 
         return view('pages.activity.subpages.activitydetail', ['activitydetail' => $activitydetail], compact('title'));
     }

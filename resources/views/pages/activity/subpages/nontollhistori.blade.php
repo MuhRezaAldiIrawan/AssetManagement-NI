@@ -97,9 +97,9 @@
                                                 <div class="modal-body d-flex justify-content-center align-items-center">
                                                     <div class="col-sm-6 col-lg-12 mb-4 ">
                                                         <div class="card">
-                                                            <div style="overflow:scroll; max-height: auto; width: 100%  ">
+                                                            <div style="overflow:scroll; max-height: 500px; max-width: 1000px  ">
                                                                 <img src="{{ asset('storage/' . $t->foto) }}"
-                                                                    alt="">
+                                                                    alt="" class="img-fluid">
                                                             </div>
                                                         </div>
                                                     </div>

@@ -30,17 +30,33 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class=" text-wrap mt-3">
+                <div class=" table-responsive text-nowrap mt-3">
                     <table class="table table-bordered table-striped  table-hover " width="1000px">
                         <thead>
                             <tr>
                                 <th class="text-center">No</th>
+                                <th class="text-center">Tanggal</th>
                                 <th class="text-center">Nama Equipment</th>
                                 <th class="text-center">Merk</th>
                                 <th class="text-center">Stock</th>
                                 <th class="text-center">Activity</th>
                             </tr>
-                        </thead>                     
+                        </thead>
+                        @foreach ($logbarang as $lb)
+                        <tbody>
+                            <td>{{ ++$i }}</td>
+                            <td>{{ $lb->tanggal }}</td>
+                            <td>{{ $lb->nama_equipment }}</td>
+                            <td>{{ $lb->merk }}</td>
+                            <td>{{ $lb->stock }}</td>
+                            <td>
+                                @if ($lb->activity == 'masuk')
+                                    <button type="button" class="btn btn-success active">{{ $lb->activity }}</button>   
+                                @elseif($lb->activity == 'keluar') 
+                                <button type="button" class="btn btn-danger active">{{ $lb->activity }}</button>   
+                                @endif  
+                        </tbody>
+                        @endforeach                     
                     </table>
                 </div>
             </div>

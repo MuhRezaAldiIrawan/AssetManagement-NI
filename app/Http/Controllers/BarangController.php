@@ -40,8 +40,10 @@ class BarangController extends Controller
     public function logbarang(Request $request)
     {
         $title = 'MUN | Log Activity Barang';
+        $pagination = 10;
+        $logbarang = DB::table('log_activity_barangs')->paginate($pagination);
 
-        return view('pages.barang.logbarang', compact('title'));
+        return view('pages.barang.logbarang', ['logbarang' => $logbarang], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
     }
 
     public function updatestock(Request $request, $id)
