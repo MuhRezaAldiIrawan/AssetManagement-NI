@@ -7,7 +7,7 @@ use App\Models\Activity;
 use App\Models\Kategori;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
-use Barryvdh\DomPDF\Facade\PDF;
+use Illuminate\Support\Carbon;
 
 use App\Models\lokasi;
 
@@ -249,11 +249,6 @@ class ActivityController extends Controller
         $title = 'MUN | Detail Activity';
 
         $activitydetail = DB::table('activities')->where('id', $id)->get();
-        // $activitydetail->array_field = json_decode($activitydetail->array_field);
-
-    
-        // dd($activitydetail); 
-
 
         return view('pages.activity.subpages.activitydetail', ['activitydetail' => $activitydetail], compact('title'));
     }
@@ -366,7 +361,7 @@ class ActivityController extends Controller
                 ->paginate($pagination);
         }
 
-        return view('pages.activity.subpages.histori', [
+        return view('pages.activity.subpages.histori.histori', [
             'histori' => $histori,
             'lokasi' => $lokasi,
             'selected_value' => $selected_value
@@ -411,7 +406,7 @@ class ActivityController extends Controller
                 ->paginate($pagination);
         }
 
-        return view('pages.activity.subpages.nontollhistori', [
+        return view('pages.activity.subpages.histori.nontollhistori', [
             'nontollhistori' => $nontollhistori,
             'lokasi' => $lokasi,
             'selected_value' => $selected_value
@@ -451,10 +446,23 @@ class ActivityController extends Controller
                 ->paginate($pagination);
         }
 
-        return view('pages.activity.subpages.pengembanganhistori', [
+        return view('pages.activity.subpages.histori.pengembanganhistori', [
             'pengembangan' => $pengembangan,
             'lokasi' => $lokasi,
             'selected_value' => $selected_value
         ], compact('title', 'subtitle'))->with('i', ($request->input('page', 1) - 1) * $pagination);
+    }
+
+    public function print_detail(Request $request)
+    {
+        $title = 'Print Page';
+     
+        $date = Carbon::now();
+        $activitydetail = DB::table('activities')->first();
+
+        return view('pages.activity.subpages.print.detailprint', ['activitydetail' => $activitydetail, 'date' => $date], compact('title'));
+    
+        // return view('pages.location.printlocation');
+    
     }
 }

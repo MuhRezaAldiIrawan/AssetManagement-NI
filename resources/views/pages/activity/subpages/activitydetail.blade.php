@@ -75,18 +75,18 @@
 
                                                 <div id="accordionIcon-3" class="accordion-collapse collapse"
                                                     data-bs-parent="#accordionIcon">
-                                                    
+
                                                     <div class="accordion-body">
                                                         <p>Jenis Hardware : </p>
                                                         <?php $counter = 1; ?>
                                                         @foreach ($activitydetail as $item)
                                                             @foreach (explode(',', $item->j_hardware) as $hardware)
-                                                            {{ $counter }}. {{ $hardware }}<br>
-                                                            <?php $counter++; ?>
+                                                                {{ $counter }}. {{ $hardware }}<br>
+                                                                <?php $counter++; ?>
                                                             @endforeach
                                                         @endforeach
                                                         <p class="mt-3">Uraian Hardware : </p>
-                                                        <p >{{ $d->u_hardware }}</p>
+                                                        <p>{{ $d->u_hardware }}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -108,8 +108,8 @@
                                                         <?php $counter = 1; ?>
                                                         @foreach ($activitydetail as $item)
                                                             @foreach (explode(',', $item->s_aplikasi) as $hardware)
-                                                            {{ $counter }}. {{ $hardware }}<br>
-                                                            <?php $counter++; ?>
+                                                                {{ $counter }}. {{ $hardware }}<br>
+                                                                <?php $counter++; ?>
                                                             @endforeach
                                                         @endforeach
                                                         <p class="mt-3">Uraian Standart Aplikasi : </p>
@@ -135,8 +135,8 @@
                                                         <?php $counter = 1; ?>
                                                         @foreach ($activitydetail as $item)
                                                             @foreach (explode(',', $item->a_it) as $hardware)
-                                                            {{ $counter }}. {{ $hardware }}<br>
-                                                            <?php $counter++; ?>
+                                                                {{ $counter }}. {{ $hardware }}<br>
+                                                                <?php $counter++; ?>
                                                             @endforeach
                                                         @endforeach
                                                         <p class="mt-3">Uraian Aplikasi IT</p>
@@ -166,9 +166,11 @@
                                             </div>
 
                                             <div class="demo-inline-spacing d-flex justify-content-end ">
-                                                <button type="button" class="btn btn-secondary m-1">
-                                                    <span class="tf-icons bx bx-printer"></span>&nbsp; Print
-                                                </button>
+                                                <a href="/print_detail" target="_blank">
+                                                    <button type="button" class="btn btn-secondary m-1">
+                                                        <span class="tf-icons bx bx-printer"></span>&nbsp; Print
+                                                    </button>
+                                                </a>
                                                 <form action="{!! url('/activitydetail/rejected/' . $d->id) !!}" method="POST">
                                                     @csrf
                                                     <input id="id" name="id" class="form-control"
