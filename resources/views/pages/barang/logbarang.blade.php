@@ -40,8 +40,7 @@
                                 <th class="text-center">Stock</th>
                                 <th class="text-center">Activity</th>
                             </tr>
-                        </thead>
-                       
+                        </thead>                     
                     </table>
                 </div>
             </div>
