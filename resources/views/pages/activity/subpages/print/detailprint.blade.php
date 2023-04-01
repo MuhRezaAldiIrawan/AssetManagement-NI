@@ -121,12 +121,12 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input type="checkbox" id="Server" name="PC/Laptop" value="Server"  {{ in_array('Server', $j_hardware) ? 'checked' : '' }}> Server</td>
+                    <td><input type="checkbox" id="Server" name="Server" value="Server"  {{ in_array('Server', $j_hardware) ? 'checked' : '' }}> Server</td>
                     <td align="center"><input type="checkbox"></td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input type="checkbox"> Printer/Periferial</td>
+                    <td><input type="checkbox" id="Server" name="Printer/Periferal" value="Printer/Periferal"  {{ in_array('Printer/Periferal', $j_hardware) ? 'checked' : '' }}> Printer/Periferial</td>
                     <td align="center"><input type="checkbox"></td>
                 </tr>
                 <tr>
