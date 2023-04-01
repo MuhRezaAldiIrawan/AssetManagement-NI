@@ -121,7 +121,7 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input type="checkbox" id="Server" name="j_hardware[]" value="Server"> Server</td>
+                    <td><input type="checkbox" id="Server" name="PC/Laptop" value="Server"  {{ in_array('Server', $j_hardware) ? 'checked' : '' }}> Server</td>
                     <td align="center"><input type="checkbox"></td>
                 </tr>
                 <tr>
