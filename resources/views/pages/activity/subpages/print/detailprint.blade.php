@@ -56,7 +56,7 @@
     </table>
     <br>
 
- 
+
     <table width=100% border="0">
         <tr>
             <td width="20%">Periode ( Diisi oleh IT)</td>
@@ -69,7 +69,7 @@
             </td>
         </tr>
         <tr>
-            
+
             <td>Nama Lengkap (user)</td>
             <td> : </td>
             <td style="overflow: hidden;">
@@ -78,21 +78,21 @@
             <td width="10%">Lokasi</td>
             <td> : </td>
             <td style="overflow: hidden;">
-                <u></u>{{ $activitydetail->lokasi }}
+                {{-- <u></u>{{ $activitydetail->lokasi }} --}}
             </td>
             <td width="5%"> Ext: </td>
             <td>___________ </td>
-        
+
         </tr>
         <tr>
             <td>Departemen/Shift</td>
             <td> : </td>
-            <td style="overflow: hidden;"><u></u>{{ $activitydetail->shift }}</td>
+            {{-- <td style="overflow: hidden;"><u></u>{{ $activitydetail->shift }}</td> --}}
             <td>Jabatan</td>
             <td> : </td>
             <td style="overflow: hidden;"><u></u>{{ auth()->user()->jabatan }}</td>
         </tr>
-       
+
     </table>
 
 
@@ -106,37 +106,45 @@
                 <th align="center" width="10%">Kondisi</th>
                 <th><input type="checkbox"> Mohon dijabarkan Permasalahan (di isi oleh user)</th>
             </tr>
-            <tr>
-                <td></td>
-                <td><input type="checkbox"> PC/Laptop</td>
-                <td align="center"><input type="checkbox"></td>
-                <td rowspan="6" style="vertical-align: top;"></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="checkbox"> Server</td>
-                <td align="center"><input type="checkbox"></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="checkbox"> Printer/Periferial</td>
-                <td align="center"><input type="checkbox"></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="checkbox"> Internet/Jaringan</td>
-                <td align="center"><input type="checkbox"></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="checkbox"> LTCS/TFI/PCS/RTM/CCTV</td>
-                <td align="center"><input type="checkbox"></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="checkbox"> ..............................</td>
-                <td align="center"><input type="checkbox"></td>
-            </tr>
+            @php
+                $j_hardware = json_decode($activitydetail[0]->j_hardware);
+                $s_aplikasi = json_decode($activitydetail[0]->s_aplikasi);
+                $a_it = json_decode($activitydetail[0]->a_it);
+            @endphp
+            @foreach ($activitydetail as $activity)
+                <tr>
+                    <td></td>
+                    <td><input type="checkbox" id="PC/Laptop" name="PC/Laptop" value="PC/Laptop"
+                            {{ in_array('PC/Laptop', $j_hardware) ? 'checked' : '' }}>PC/Laptop</td>
+                    <td align="center"><input type="checkbox" id="PC/Laptop" name="j_hardware[]" value="PC/Laptop"></td>
+                    <td rowspan="6" style="vertical-align: top;"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="checkbox" id="Server" name="j_hardware[]" value="Server"> Server</td>
+                    <td align="center"><input type="checkbox"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="checkbox"> Printer/Periferial</td>
+                    <td align="center"><input type="checkbox"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="checkbox"> Internet/Jaringan</td>
+                    <td align="center"><input type="checkbox"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="checkbox"> LTCS/TFI/PCS/RTM/CCTV</td>
+                    <td align="center"><input type="checkbox"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="checkbox"> ..............................</td>
+                    <td align="center"><input type="checkbox"></td>
+                </tr>
+            @endforeach
         </thead>
     </table>
     <br>

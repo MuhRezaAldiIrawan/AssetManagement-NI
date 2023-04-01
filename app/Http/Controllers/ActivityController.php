@@ -74,17 +74,16 @@ class ActivityController extends Controller
 
         ]);
 
-
         if (($request->input('j_hardware'))) {
-            $validatedData['j_hardware'] = implode(',', $validatedData['j_hardware']);
+            $validatedData['j_hardware'] =  json_encode($request->j_hardware);
         }
 
         if (($request->input('s_aplikasi'))) {
-            $validatedData['s_aplikasi'] = implode(',', $validatedData['s_aplikasi']);
+            $validatedData['s_aplikasi'] = json_encode($request->s_aplikasi);
         }
 
         if (($request->input('a_it'))) {
-            $validatedData['a_it'] = implode(',', $validatedData['a_it']);
+            $validatedData['a_it'] = json_encode($request->a_it);
         }
 
         if ($request->file('foto')) {
@@ -458,8 +457,9 @@ class ActivityController extends Controller
         $title = 'Print Page';
      
         $date = Carbon::now();
-        $activitydetail = DB::table('activities')->first();
 
+        $activitydetail = DB::table('activities')->get();
+   
         return view('pages.activity.subpages.print.detailprint', ['activitydetail' => $activitydetail, 'date' => $date], compact('title'));
     
         // return view('pages.location.printlocation');
