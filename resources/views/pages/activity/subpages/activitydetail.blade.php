@@ -166,7 +166,7 @@
                                             </div>
 
                                             <div class="demo-inline-spacing d-flex justify-content-end ">
-                                                <a href="/print_detail" target="_blank">
+                                                <a href="/print_detail/{{ $d->id }}" target="_blank">
                                                     <button type="button" class="btn btn-secondary m-1">
                                                         <span class="tf-icons bx bx-printer"></span>&nbsp; Print
                                                     </button>

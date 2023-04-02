@@ -452,13 +452,13 @@ class ActivityController extends Controller
         ], compact('title', 'subtitle'))->with('i', ($request->input('page', 1) - 1) * $pagination);
     }
 
-    public function print_detail(Request $request)
+    public function print_detail(Request $request, $id)
     {
         $title = 'Print Page';
      
         $date = Carbon::now();
 
-        $activitydetail = DB::table('activities')->get();
+        $activitydetail = DB::table('activities')->where('id', '=', $id)->get();
    
         return view('pages.activity.subpages.print.detailprint', ['activitydetail' => $activitydetail, 'date' => $date], compact('title'));
     
