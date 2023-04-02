@@ -95,8 +95,8 @@
 
     </table>
 
-
-    Hardware: <input type="checkbox"> &nbsp;Tol <input type="checkbox">
+    @foreach ($activitydetail as $activity)
+    Hardware: <input type="checkbox" id="Toll" name="Toll" value="Toll"  {{ ('Toll') ? 'checked' : '' }}> &nbsp;Tol <input type="checkbox" id="NonToll" name="NonToll" value="NonToll"  {{ ('NonToll') ? 'checked' : '' }}>
     &nbsp;Non Tol
     <table border="1" width=100%>
         <thead>
@@ -111,13 +111,13 @@
                 $s_aplikasi = json_decode($activitydetail[0]->s_aplikasi);
                 $a_it = json_decode($activitydetail[0]->a_it);
             @endphp
-            @foreach ($activitydetail as $activity)
+          
                 <tr>
                     <td></td>
                     <td><input type="checkbox" id="PC/Laptop" name="PC/Laptop" value="PC/Laptop"
                             {{ in_array('PC/Laptop', $j_hardware) ? 'checked' : '' }}>PC/Laptop</td>
                     <td align="center"><input type="checkbox" id="PC/Laptop" name="j_hardware[]" value="PC/Laptop"></td>
-                    <td rowspan="6" style="vertical-align: top;"></td>
+                    <td rowspan="6" style="vertical-align: top;">{{ $activity->u_hardware }}</td>
                 </tr>
                 <tr>
                     <td></td>
@@ -126,17 +126,17 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input type="checkbox" id="Server" name="Printer/Periferal" value="Printer/Periferal"  {{ in_array('Printer/Periferal', $j_hardware) ? 'checked' : '' }}> Printer/Periferial</td>
+                    <td><input type="checkbox" id="Printer/Periferal" name="Printer/Periferal" value="Printer/Periferal"  {{ in_array('Printer/Periferal', $j_hardware) ? 'checked' : '' }}> Printer/Periferial</td>
                     <td align="center"><input type="checkbox"></td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input type="checkbox"> Internet/Jaringan</td>
+                    <td><input type="checkbox" id="Internet/Jaringan" name="Internet/Jaringan" value="Internet/Jaringan"  {{ in_array('Internet/Jaringan', $j_hardware) ? 'checked' : '' }}> Internet/Jaringan</td>
                     <td align="center"><input type="checkbox"></td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input type="checkbox"> LTCS/TFI/PCS/RTM/CCTV</td>
+                    <td><input type="checkbox" id="LTCS/TFI/PCS/RTM/CCTV" name="LTCS/TFI/PCS/RTM/CCTV" value="LTCS/TFI/PCS/RTM/CCTV"  {{ in_array('LTCS/TFI/PCS/RTM/CCTV', $j_hardware) ? 'checked' : '' }}> LTCS/TFI/PCS/RTM/CCTV</td>
                     <td align="center"><input type="checkbox"></td>
                 </tr>
                 <tr>
@@ -144,9 +144,10 @@
                     <td><input type="checkbox"> ..............................</td>
                     <td align="center"><input type="checkbox"></td>
                 </tr>
-            @endforeach
+           
         </thead>
     </table>
+    @endforeach
     <br>
 
     Software: <input type="checkbox"> &nbsp;Tol <input type="checkbox">
