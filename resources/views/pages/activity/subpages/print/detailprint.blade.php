@@ -96,8 +96,9 @@
     </table>
 
     @foreach ($activitydetail as $activity)
-    Hardware: <input type="checkbox" id="Toll" name="Toll" value="Toll"  {{ ('Toll') ? 'checked' : '' }}> &nbsp;Tol <input type="checkbox" id="NonToll" name="NonToll" value="NonToll"  {{ ('NonToll') ? 'checked' : '' }}>
-    &nbsp;Non Tol
+    Hardware: 
+    <input type="checkbox" id="Toll" name="Toll" value="Toll"  @if($activity->kategori_activity == 'Toll') checked @endif> &nbsp;Tol 
+    <input type="checkbox" id="NonToll" name="NonToll" value="NonToll" @if($activity->kategori_activity == 'NonToll') checked @endif>&nbsp;Non Tol
     <table border="1" width=100%>
         <thead>
             <tr align="left">

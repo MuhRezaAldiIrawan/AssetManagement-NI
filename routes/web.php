@@ -68,7 +68,7 @@ Route::get('/print_location', 'App\Http\Controllers\LocationController@print_loc
 Route::get('/print_kategori', 'App\Http\Controllers\KategoriController@print_kategori');
 Route::get('/print_allusers', 'App\Http\Controllers\UsersController@print_allusers');
 Route::get('/print_listbarang', 'App\Http\Controllers\BarangController@print_listbarang');
-Route::get('/print_detail', 'App\Http\Controllers\ActivityController@print_detail');
+Route::get('/print_detail/{id}', 'App\Http\Controllers\ActivityController@print_detail');
 // Route::get('/toll/cari','App\Http\Controllers\pages@cari');
 
 //Barang
