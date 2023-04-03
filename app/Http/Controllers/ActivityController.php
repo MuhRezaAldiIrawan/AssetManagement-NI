@@ -469,13 +469,6 @@ class ActivityController extends Controller
      
         $date = Carbon::now();
 
-        $kategori_activity = null;
-        if ($request->Toll) {
-            $kategori_activity = 'Toll';
-        } else if ($request->NonToll) {
-            $kategori_activity = 'NonToll';
-        }
-
         $activitydetail = DB::table('activities')->where('id', '=', $id)->get();
    
         return view('pages.activity.subpages.print.detailprint', ['activitydetail' => $activitydetail, 'date' => $date], compact('title'));
