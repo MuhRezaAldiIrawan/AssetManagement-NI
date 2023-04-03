@@ -49,7 +49,7 @@
                         </div>
                     </div>
                 </form>
-                <div class="table-responsive text-wrap mt-3">
+                <div class="table-responsive text-nowrap mt-3">
                     <table class="table table-bordered table-striped  table-hover display" width="1000px">
                         <thead>
                             <tr class="text-wrap">

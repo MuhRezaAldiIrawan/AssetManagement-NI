@@ -49,7 +49,7 @@
                 </form>      
                 @endif
 
-                <div class="table-responsive text-wrap mt-3">
+                <div class="table-responsive text-nowrap mt-3">
                     <table class="table table-bordered table-striped  table-hover display" width="1000px">
                         <thead>
                             <tr class="text-wrap">
@@ -209,7 +209,7 @@
                                                                         data-bs-parent="#accordionIcon">
                                                                         <div class="accordion-body">
                                                                             <p>{{ $t->s_aplikasi }}</p>
-                                                                            <p>{{ $t->u_aplikasi }}</p>
+                                                                            <p style="display: table-cell;">{{ $t->u_aplikasi }}</p>
                                                                         </div>
                                                                     </div>
                                                                 </div>
