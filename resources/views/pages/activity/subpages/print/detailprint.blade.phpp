@@ -10,7 +10,7 @@
 
 {{-- <body onload="window.print()"> --}}
 
-<body>
+<body onload="window.print()">
     <table border="1" align="center" width=100%>
         <thead>
             <tr>
@@ -109,32 +109,39 @@
                 <th width="30%">Jenis Hadware</th>
                 <th align="center" width="10%">Kondisi</th>
                 <th><input type="checkbox"> Mohon dijabarkan Permasalahan (di isi oleh user)</th>
-            </tr>          
+            </tr>
+            @php
+                $j_hardware = json_decode($activitydetail[0]->j_hardware);
+                $s_aplikasi = json_decode($activitydetail[0]->s_aplikasi);
+                $a_it = json_decode($activitydetail[0]->a_it);
+            @endphp
+          
                 <tr>
                     <td></td>
-                    <td><input type="checkbox" id="PC/Laptop" name="PC/Laptop" value="PC/Laptop" @if(in_array('PC/Laptop', explode(',', $activity->j_hardware ?? ''))){{ 'checked' }}@endif>PC/Laptop</td>
-                    <td align="center"><input type="checkbox" id="PC/Laptop" name="j_hardware[]" value="PC/Laptop" @if(in_array('PC/Laptop', explode(',', $activity->j_hardware ?? ''))){{ 'checked' }}@endif></td>
+                    <td><input type="checkbox" id="PC/Laptop" name="PC/Laptop" value="PC/Laptop"
+                            {{ in_array('PC/Laptop', $j_hardware) ? 'checked' : '' }}>PC/Laptop</td>
+                    <td align="center"><input type="checkbox" id="PC/Laptop" name="j_hardware[]" value="PC/Laptop" {{ in_array('PC/Laptop', $j_hardware) ? 'checked' : '' }}></td>
                     <td rowspan="6" style="vertical-align: top;">{{ $activity->u_hardware }}</td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input type="checkbox" id="Server" name="Server" value="Server"  @if(in_array('Server', explode(',', $activity->j_hardware ?? ''))){{ 'checked' }}@endif> Server</td>
-                    <td align="center"><input type="checkbox" id="Server" name="Server" value="Server"  @if(in_array('Server', explode(',', $activity->j_hardware ?? ''))){{ 'checked' }}@endif></td>
+                    <td><input type="checkbox" id="Server" name="Server" value="Server"  {{ in_array('Server', $j_hardware) ? 'checked' : '' }}> Server</td>
+                    <td align="center"><input type="checkbox" id="Server" name="Server" value="Server"  {{ in_array('Server', $j_hardware) ? 'checked' : '' }}></td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input type="checkbox" id="Printer/Periferal" name="Printer/Periferal" value="Printer/Periferal"  @if(in_array('Printer/Periferal', explode(',', $activity->j_hardware ?? ''))){{ 'checked' }}@endif> Printer/Periferial</td>
-                    <td align="center"><input type="checkbox" id="Printer/Periferal" name="Printer/Periferal" value="Printer/Periferal"  @if(in_array('Printer/Periferal', explode(',', $activity->j_hardware ?? ''))){{ 'checked' }}@endif></td>
+                    <td><input type="checkbox" id="Printer/Periferal" name="Printer/Periferal" value="Printer/Periferal"  {{ in_array('Printer/Periferal', $j_hardware) ? 'checked' : '' }}> Printer/Periferial</td>
+                    <td align="center"><input type="checkbox" id="Printer/Periferal" name="Printer/Periferal" value="Printer/Periferal"  {{ in_array('Printer/Periferal', $j_hardware) ? 'checked' : '' }}></td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input type="checkbox" id="Internet/Jaringan" name="Internet/Jaringan" value="Internet/Jaringan" @if(in_array('Internet/Jaringan', explode(',', $activity->j_hardware ?? ''))){{ 'checked' }}@endif > Internet/Jaringan</td>
-                    <td align="center"><input type="checkbox" id="Internet/Jaringan" name="Internet/Jaringan" value="Internet/Jaringan" @if(in_array('Internet/Jaringan', explode(',', $activity->j_hardware ?? ''))){{ 'checked' }}@endif></td>
+                    <td><input type="checkbox" id="Internet/Jaringan" name="Internet/Jaringan" value="Internet/Jaringan"  {{ in_array('Internet/Jaringan', $j_hardware) ? 'checked' : '' }}> Internet/Jaringan</td>
+                    <td align="center"><input type="checkbox" id="Internet/Jaringan" name="Internet/Jaringan" value="Internet/Jaringan"  {{ in_array('Internet/Jaringan', $j_hardware) ? 'checked' : '' }}></td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input type="checkbox" id="LTCS/TFI/PCS/RTM/CCTV" name="LTCS/TFI/PCS/RTM/CCTV" value="LTCS/TFI/PCS/RTM/CCTV"  @if(in_array('LTCS/TFI/PCS/RTM/CCTV', explode(',', $activity->j_hardware ?? ''))){{ 'checked' }}@endif > LTCS/TFI/PCS/RTM/CCTV</td>
-                    <td align="center"><input type="checkbox" id="LTCS/TFI/PCS/RTM/CCTV" name="LTCS/TFI/PCS/RTM/CCTV" value="LTCS/TFI/PCS/RTM/CCTV"   @if(in_array('LTCS/TFI/PCS/RTM/CCTV', explode(',', $activity->j_hardware ?? ''))){{ 'checked' }}@endif></td>
+                    <td><input type="checkbox" id="LTCS/TFI/PCS/RTM/CCTV" name="LTCS/TFI/PCS/RTM/CCTV" value="LTCS/TFI/PCS/RTM/CCTV"  {{ in_array('LTCS/TFI/PCS/RTM/CCTV', $j_hardware) ? 'checked' : '' }}> LTCS/TFI/PCS/RTM/CCTV</td>
+                    <td align="center"><input type="checkbox" id="LTCS/TFI/PCS/RTM/CCTV" name="LTCS/TFI/PCS/RTM/CCTV" value="LTCS/TFI/PCS/RTM/CCTV"  {{ in_array('LTCS/TFI/PCS/RTM/CCTV', $j_hardware) ? 'checked' : '' }}></td>
                 </tr>
                 <tr>
                     <td></td>
@@ -161,14 +168,14 @@
             </tr>
             <tr>
                 <td></td>
-                <td><input type="checkbox" id="Sistem Operasi" name="Sistem Operasi" value="Sistem Operasi"  @if(in_array('Sistem Operasi', explode(',', $activity->s_aplikasi ?? ''))){{ 'checked' }}@endif> Operating System</td>
-                <td align="center"><input type="checkbox" id="Sistem Operasi" name="Sistem Operasi" value="Sistem Operasi"  @if(in_array('Sistem Operasi', explode(',', $activity->s_aplikasi ?? ''))){{ 'checked' }}@endif></td>
+                <td><input type="checkbox" id="Sistem Operasi" name="Sistem Operasi" value="Sistem Operasi"  {{ in_array('Sistem Operasi', $s_aplikasi) ? 'checked' : '' }}> Operating System</td>
+                <td align="center"><input type="checkbox" id="Sistem Operasi" name="Sistem Operasi" value="Sistem Operasi"  {{ in_array('Sistem Operasi', $s_aplikasi) ? 'checked' : '' }}></td>
                 <td rowspan="6" style="vertical-align: top;">{{ $activity->u_aplikasi }}</td>
             </tr>
             <tr>
                 <td></td>
-                <td><input type="checkbox" id="Microsoft Office" name="Microsoft Office" value="Microsoft Office" @if(in_array('Microsoft Office', explode(',', $activity->s_aplikasi ?? ''))){{ 'checked' }}@endif > Open Office (word/excel/power poin)</td>
-                <td align="center"><input type="checkbox"  id="Microsoft Office" name="Microsoft Office" value="Microsoft Office"  @if(in_array('Microsoft Office', explode(',', $activity->s_aplikasi ?? ''))){{ 'checked' }}@endif></td>
+                <td><input type="checkbox" id="Microsoft Office" name="Microsoft Office" value="Microsoft Office"  {{ in_array('Microsoft Office', $s_aplikasi) ? 'checked' : '' }}> Open Office (word/excel/power poin)</td>
+                <td align="center"><input type="checkbox"  id="Microsoft Office" name="Microsoft Office" value="Microsoft Office"  {{ in_array('Microsoft Office', $s_aplikasi) ? 'checked' : '' }}></td>
             </tr>
             <tr>
                 <td></td>
@@ -189,24 +196,24 @@
             </tr>
             <tr>
                 <td></td>
-                <td><input type="checkbox" id="Program LTCS/TFI" name="Program LTCS/TFI" value="Program LTCS/TFI"  @if(in_array('Program LTCS/TFI', explode(',', $activity->a_it ?? ''))){{ 'checked' }}@endif  > Program LTCS/TFI</td>
-                <td align="center"><input type="checkbox" id="Program LTCS/TFI" name="Program LTCS/TFI" value="Program LTCS/TFI"  @if(in_array('Program LTCS/TFI', explode(',', $activity->a_it ?? ''))){{ 'checked' }}@endif ></td>
+                <td><input type="checkbox" id="Program LTCS/TFI" name="Program LTCS/TFI" value="Program LTCS/TFI"  {{ in_array('Program LTCS/TFI', $a_it) ? 'checked' : '' }} > Program LTCS/TFI</td>
+                <td align="center"><input type="checkbox" id="Program LTCS/TFI" name="Program LTCS/TFI" value="Program LTCS/TFI"  {{ in_array('Program LTCS/TFI', $a_it) ? 'checked' : '' }}></td>
                 <td rowspan="6" style="vertical-align: top;">{{ $activity->u_it }}</td>
             </tr>
             <tr>
                 <td></td>
-                <td><input type="checkbox" id="Program PCS" name="Program PCS" value="Program PCS"    @if(in_array('Program PCS', explode(',', $activity->a_it ?? ''))){{ 'checked' }}@endif> Program PCS</td>
-                <td align="center"><input type="checkbox" id="Program PCS" name="Program PCS" value="Program PCS"    @if(in_array('Program PCS', explode(',', $activity->a_it ?? ''))){{ 'checked' }}@endif></td>
+                <td><input type="checkbox" id="Program PCS" name="Program PCS" value="Program PCS"  {{ in_array('Program PCS', $a_it) ? 'checked' : '' }}> Program PCS</td>
+                <td align="center"><input type="checkbox" id="Program PCS" name="Program PCS" value="Program PCS"  {{ in_array('Program PCS', $a_it) ? 'checked' : '' }}></td>
             </tr>
             <tr>
                 <td></td>
-                <td><input type="checkbox" id="Program RTM" name="Program RTM" value="Program RTM"    @if(in_array('Program RTM', explode(',', $activity->a_it ?? ''))){{ 'checked' }}@endif> Program RTM</td>
-                <td align="center"><input type="checkbox" id="Program RTM" name="Program RTM" value="Program RTM"    @if(in_array('Program RTM', explode(',', $activity->a_it ?? ''))){{ 'checked' }}@endif></td>
+                <td><input type="checkbox" id="Program RTM" name="Program RTM" value="Program RTM"  {{ in_array('Program RTM', $a_it) ? 'checked' : '' }}> Program RTM</td>
+                <td align="center"><input type="checkbox" id="Program RTM" name="Program RTM" value="Program RTM"  {{ in_array('Program RTM', $a_it) ? 'checked' : '' }}></td>
             </tr>
             <tr>
                 <td></td>
-                <td><input type="checkbox" id="Program CCTV/VMS" name="Program CCTV/VMS" value="Program CCTV/VMS"    @if(in_array('Program CCTV/VMS', explode(',', $activity->a_it ?? ''))){{ 'checked' }}@endif> Program CCTV/VMS</td>
-                <td align="center"><input type="checkbox"  id="Program CCTV/VMS" name="Program CCTV/VMS" value="Program CCTV/VMS"    @if(in_array('Program CCTV/VMS', explode(',', $activity->a_it ?? ''))){{ 'checked' }}@endif></td>
+                <td><input type="checkbox" id="Program CCTV/VMS" name="Program CCTV/VMS" value="Program CCTV/VMS"  {{ in_array('Program CCTV/VMS', $a_it) ? 'checked' : '' }}> Program CCTV/VMS</td>
+                <td align="center"><input type="checkbox"  id="Program CCTV/VMS" name="Program CCTV/VMS" value="Program CCTV/VMS"  {{ in_array('Program CCTV/VMS', $a_it) ? 'checked' : '' }}></td>
             </tr>
             <tr>
                 <td></td>

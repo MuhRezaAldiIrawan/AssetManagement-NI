@@ -22,9 +22,12 @@
                                 data-bs-target="#fullscreenModal"">
                                 <span class="tf-icons bx bx-plus"></span>
                             </button>
-                            <button type="button" class="btn btn-icon btn-secondary m-1">
+                            {{-- <a href="/print_activity" target="_blank"> --}}
+                            <button type="button" class="btn btn-icon btn-secondary m-1" data-bs-toggle="modal"
+                                data-bs-target="#modalCenter">
                                 <span class="tf-icons bx bx-printer"></span>
                             </button>
+                            {{-- </a> --}}
                         </div>
                     </div>
                 </div>
@@ -97,7 +100,8 @@
                                                 <div class="modal-body d-flex justify-content-center align-items-center">
                                                     <div class="col-sm-6 col-lg-12 mb-4 ">
                                                         <div class="card">
-                                                            <div style="overflow:scroll; max-height: 500px; max-width: 1000px  ">
+                                                            <div
+                                                                style="overflow:scroll; max-height: 500px; max-width: 1000px  ">
                                                                 <img src="{{ asset('storage/' . $t->foto) }}"
                                                                     alt="">
                                                             </div>
@@ -158,7 +162,7 @@
                                     <span id="basic-icon-default-fullname2" class="input-group-text"><i
                                             class="bx bx-calendar"></i></span>
                                     <input type="date" class="form-control" id="tanggal" name="tanggal"
-                                        placeholder="DD/MM/YYYY" aria-label="John Doe" />
+                                        placeholder="DD/MM/YYYY" aria-label="John Doe" required/>
                                 </div>
                             </div>
                         </div>
@@ -203,7 +207,7 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-icon-default-company"></label>
                             <div class="col-sm-10">
-                                <textarea id="u_hardware" name="u_hardware" class="form-control" placeholder="Penjabaran Masalah Hardware"></textarea>
+                                <textarea id="u_hardware" name="u_hardware" class="form-control"  placeholder="Penjabaran Masalah Hardware"></textarea>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -285,7 +289,7 @@
                                 <div class="input-group input-group-merge">
                                     <span id="basic-icon-default-fullname2" class="input-group-text"><i
                                             class="bx bx-run "></i></span>
-                                    <select class="form-select" id="shift" name="shift">
+                                    <select class="form-select" id="shift" name="shift" required>
                                         <option value="Satu">Satu</option>
                                         <option value="Dua2">Dua</option>
                                         <option value="Tiga">Tiga</option>
@@ -299,7 +303,7 @@
                                 <div class="input-group input-group-merge">
                                     <span id="basic-icon-default-fullname2" class="input-group-text"><i
                                             class="bx bx-location-plus "></i></span>
-                                    <select class="form-select" id="lokasi" name="lokasi"
+                                    <select class="form-select" id="lokasi" name="lokasi" required
                                         aria-label="Default select example">
                                         @foreach ($lokasi as $l)
                                             <option value="{{ $l->nama }}">{{ $l->nama }}</option>
@@ -314,7 +318,7 @@
                                 <div class="input-group input-group-merge">
                                     <span id="basic-icon-default-fullname2" class="input-group-text"><i
                                             class="bx bx-package "></i></span>
-                                    <select class="form-select" id="kategori" name="kategori"
+                                    <select class="form-select" id="kategori" name="kategori" required
                                         aria-label="Default select example">
                                         @foreach ($kategori as $k)
                                             <option value="{{ $k->nama }}">{{ $k->nama }}</option>
@@ -333,7 +337,8 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Biaya</label>
                             <div class="col-sm-10">
-                                <input  type="number" inputmode="numeric" id="biaya" name="biaya" class="form-control" placeholder="example : 80.000"></input>
+                                <input type="number" inputmode="numeric" id="biaya" name="biaya"
+                                    class="form-control" placeholder="example : 80.000" required></input>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -355,6 +360,41 @@
                         </div>
                         <button type="submit" class="btn btn-primary" name="simpan">Save Data</button>
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Print Activity -->
+    <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalCenterTitle">Print Activity</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                        <div class="row g-2">
+                            <div class="col mb-0">
+                                <label for="startdate" class="form-label">Start Date</label>
+                                <input type="date" id="startdate" name="startdate" class="form-control"
+                                    placeholder="Tanggal Mulai" />
+                            </div>
+                            <div class="col mb-0">
+                                <label for="enddate" class="form-label">End Date</label>
+                                <input type="date" id="enddate" name="enddate" class="form-control"
+                                    placeholder="Tanggal Berakhir" />
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                Close
+                            </button>
+                            <a href="" onclick="this.href='/print_activity/' + document.getElementById('startdate').value + '/' + document.getElementById('enddate').value " target="_blank">
+                                <button type="submit" class="btn btn-primary">Cetak Data Data</button>
+                            </a>
+                            
+                        </div>
                 </div>
             </div>
         </div>

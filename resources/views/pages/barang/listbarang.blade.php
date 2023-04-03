@@ -18,7 +18,7 @@
                 <div class="col-md-6">
                     <div class="demo-inline-spacing">
                         <div class="d-flex justify-content-end">
-                            <button type="button" class="btn btn-icon btn-primary m-1" d data-bs-toggle="modal"
+                            <button type="button" class="btn btn-icon btn-primary m-1"  data-bs-toggle="modal"
                                 data-bs-target="#modalCenter">
                                 <span class="tf-icons bx bx-plus"></span>
                             </button>

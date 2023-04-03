@@ -53,37 +53,39 @@ class ActivityController extends Controller
 
     public function addtollactivity(Request $request)
     {
+
         $validatedData = $request->validate([
             'user_id' => 'required',
             'kategori_activity' => 'required',
             'tanggal' => 'required',
-            'j_hardware' => 'required',
-            'u_hardware' => 'required',
-            's_aplikasi' => 'required',
-            'u_aplikasi' => 'required',
-            'a_it' => 'required',
-            'u_it' => 'required',
-            'catatan' => 'required',
+            'j_hardware' => 'nullable',
+            'u_hardware' => 'nullable',
+            's_aplikasi' => 'nullable',
+            'u_aplikasi' => 'nullable',
+            'a_it' => 'nullable',
+            'u_it' => 'nullable',
+            'catatan' => 'nullable',
             'shift' => 'required',
             'lokasi' => 'required',
             'kategori' => 'required',
-            'kondisi_akhir' => 'required',
+            'kondisi_akhir' => 'nullable',
             'biaya' => 'required',
             'foto' => 'image|file',
             'status' => 'required'
 
         ]);
 
+
         if (($request->input('j_hardware'))) {
-            $validatedData['j_hardware'] =  json_encode($request->j_hardware);
+            $validatedData['j_hardware'] = implode(',', $validatedData['j_hardware']);
         }
 
         if (($request->input('s_aplikasi'))) {
-            $validatedData['s_aplikasi'] = json_encode($request->s_aplikasi);
+            $validatedData['s_aplikasi'] = implode(',', $validatedData['s_aplikasi']);
         }
 
         if (($request->input('a_it'))) {
-            $validatedData['a_it'] = json_encode($request->a_it);
+            $validatedData['a_it'] = implode(',', $validatedData['a_it']);
         }
 
         if ($request->file('foto')) {
@@ -139,29 +141,29 @@ class ActivityController extends Controller
             'status' => 'required'
 
         ]);
-        if (($request->input('j_hardware'))) {
-            $validatedData['j_hardware'] =  json_encode($request->j_hardware);
-        }
-
-        if (($request->input('s_aplikasi'))) {
-            $validatedData['s_aplikasi'] = json_encode($request->s_aplikasi);
-        }
-
-        if (($request->input('a_it'))) {
-            $validatedData['a_it'] = json_encode($request->a_it);
-        }
-
         // if (($request->input('j_hardware'))) {
-        //     $validatedData['j_hardware'] = implode(',', $validatedData['j_hardware']);
+        //     $validatedData['j_hardware'] =  json_encode($request->j_hardware);
         // }
 
         // if (($request->input('s_aplikasi'))) {
-        //     $validatedData['s_aplikasi'] = implode(',', $validatedData['s_aplikasi']);
+        //     $validatedData['s_aplikasi'] = json_encode($request->s_aplikasi);
         // }
 
         // if (($request->input('a_it'))) {
-        //     $validatedData['a_it'] = implode(',', $validatedData['a_it']);
+        //     $validatedData['a_it'] = json_encode($request->a_it);
         // }
+
+        if (($request->input('j_hardware'))) {
+            $validatedData['j_hardware'] = implode(',', $validatedData['j_hardware']);
+        }
+
+        if (($request->input('s_aplikasi'))) {
+            $validatedData['s_aplikasi'] = implode(',', $validatedData['s_aplikasi']);
+        }
+
+        if (($request->input('a_it'))) {
+            $validatedData['a_it'] = implode(',', $validatedData['a_it']);
+        }
 
         if ($request->file('foto')) {
             $validatedData['foto'] = $request->file('foto')->store('activity-foto');
@@ -234,15 +236,15 @@ class ActivityController extends Controller
 
 
         if (($request->input('j_hardware'))) {
-            $validatedData['j_hardware'] =  json_encode($request->j_hardware);
+            $validatedData['j_hardware'] =  implode(',', $validatedData['j_hardware']);
         }
 
         if (($request->input('s_aplikasi'))) {
-            $validatedData['s_aplikasi'] = json_encode($request->s_aplikasi);
+            $validatedData['s_aplikasi'] = implode(',', $validatedData['s_aplikasi']);
         }
 
         if (($request->input('a_it'))) {
-            $validatedData['a_it'] = json_encode($request->a_it);
+            $validatedData['a_it'] = implode(',', $validatedData['a_it']);
         }
 
         if ($request->file('foto')) {
@@ -466,14 +468,27 @@ class ActivityController extends Controller
     public function print_detail(Request $request, $id)
     {
         $title = 'Print Page';
-     
+
         $date = Carbon::now();
 
         $activitydetail = DB::table('activities')->where('id', '=', $id)->get();
-   
+
         return view('pages.activity.subpages.print.detailprint', ['activitydetail' => $activitydetail, 'date' => $date], compact('title'));
-    
+
         // return view('pages.location.printlocation');
-    
+
+    }
+
+    public function print_activity($startdate, $enddate)
+    {
+
+        $title = 'Print Page';
+
+        $date = Carbon::now();
+
+        $printactivity = DB::table('activities')->whereBetween('tanggal', [$startdate, $enddate])->latest()->get();
+
+
+        return view('pages.activity.subpages.print.activityprint', ['printactivity' => $printactivity, 'date' => $date], compact('title'));
     }
 }
