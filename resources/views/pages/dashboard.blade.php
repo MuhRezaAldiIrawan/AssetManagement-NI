@@ -12,10 +12,10 @@
                     <div class="card-body">
                         <h5 class="card-title text-primary">Welcome {{ auth()->user()->nama }} 🎉</h5>
                         <p class="mb-4">
-                            Kamu Punya <span class="fw-bold">72</span> Tambahan Permintaan Activity
+                            Kamu Punya <span class="fw-bold">{{ $jumlahactivity }}</span> Tambahan Permintaan Activity
                         </p>
 
-                        <a href="javascript:;" class="btn btn-sm btn-outline-primary">View Activity</a>
+                        <a href="/toll" class="btn btn-sm btn-outline-primary">View Activity</a>
                     </div>
                 </div>
                 <div class="col-sm-5 text-end text-sm-left">

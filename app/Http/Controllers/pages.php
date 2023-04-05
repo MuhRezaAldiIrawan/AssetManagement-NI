@@ -25,15 +25,20 @@ class pages extends Controller
     {
         $title = 'MUN | Dashboard';
 
+        $jumlahactivity = Activity::all()->where('status', '=', 'pending')->count();
 
         $mayor = Activity::all()->where('kategori', '=', 'Kerusakan Mayor')->count();
         $perbaikan = Activity::all()->where('kategori', '=', 'Perbaikan')->count();
         $pergantian = Activity::all()->where('kategori', '=', 'Kerusakan/Pergantian')->count();
         $minor = Activity::all()->where('kategori', '=', 'Kerusakan Minor')->count();
 
-
-
-        return view('pages.dashboard', compact('title'))->with(['mayor' => $mayor, 'perbaikan' => $perbaikan, 'pergantian' => $pergantian, 'minor' => $minor]);
+        return view('pages.dashboard', compact('title'))->with([
+            'mayor' => $mayor, 
+            'perbaikan' => $perbaikan, 
+            'pergantian' => $pergantian, 
+            'minor' => $minor,
+            'jumlahactivity' => $jumlahactivity
+        ]);
     }
 
 
