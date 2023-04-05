@@ -42,7 +42,7 @@
                                         </div>
                                     @endif
 
-                                    <form action="{!! url('/register'); !!}" method="POST" enctype="multipart/form-data">
+                                    <form action="{!! url('/register'); !!}" method="POST">
                                         @csrf
                                         <div class="form-group">
                                             <label class="font-weight-semibold" for="Email">Nama</label>

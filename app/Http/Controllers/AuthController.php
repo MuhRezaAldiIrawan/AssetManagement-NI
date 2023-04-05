@@ -113,8 +113,6 @@ class AuthController extends Controller
             'email' => 'required|email',
             'password' => 'required|min:3',
             
-            // 'foto' => 'image|file',
-            
         ]);
         $validatedData['password'] = Hash::make($validatedData['password']);
 
