@@ -38,19 +38,17 @@
                                     @if(session()->has('loginError'))
                                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                         {{ session('loginError') }}
-                                        {{-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> --}}
-                                      </div>
+                                    </div>
                                     @endif
 
                                     <form action="/login" method="POST">
                                         @csrf
                                         <div class="form-group">
-                                            <label class="font-weight-semibold" for="Email">Email:</label>
+                                            <label class="font-weight-semibold" for="Email" >Email:</label>
                                             <div class="input-affix">
-                                                {{-- <i class="prefix-icon far fa-envelope"></i> --}}
                                                 <input type="text"
                                                     class="form-control"
-                                                    id="email" name="email" placeholder="Email" required>
+                                                    id="email" name="email" placeholder="Email" required autofocus>
                                             </div>
                                         </div>
                                         <div class="form-group">

@@ -66,17 +66,17 @@ class UsersController extends Controller
             'nama' => 'required|max:255',
             'email' => 'required|email',
             'jabatan' => 'required',
+            'role' => 'required',
             'foto' => 'image|file',
         ]);
 
-        if ($request->file('foto')) {
-            $allusers['foto'] = $request->file('foto')->store('users-foto');
-        }
+        // if ($request->file('foto')) {
+        //     $allusers['foto'] = $request->file('foto')->store('users-foto');
+        // }
 
         User::where('id', $request->id)->update($allusers);
 
-        // return view('pages.users.allusers', ['allusers' => $allusers], compact('title'));
-
+        toast('User Telah Berhasil Di Update', 'success');
         return redirect('/allusers');
     }
 

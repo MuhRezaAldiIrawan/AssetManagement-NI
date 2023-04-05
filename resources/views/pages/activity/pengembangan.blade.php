@@ -30,90 +30,97 @@
                 </div>
             </div>
             <div class="card-body">
-                <form action="/pengembangan" method="get">
-                    <div class="row g-2">
-                        <div class="col mb-0">
-                            <select id="cari" name="search" class="form-select">
-                                <option value="" selected>Semua Lokasi</option>
-                                @foreach ($lokasi as $l)
-                                    <option>{{ $l->nama }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col mb-0">
-                            <div class="demo-inline-spacing">
-                                <button type="submit" class="btn btn-primary" value="CARI">
-                                    <span class="tf-icons bx bx-search"></span>&nbsp; Search
-                                </button>
+                @if ($pengembangan->isEmpty())
+                    @include('components.emptyfield')
+                @else
+                    <form action="/pengembangan" method="get">
+                        <div class="row g-2">
+                            <div class="col mb-0">
+                                <select id="cari" name="search" class="form-select">
+                                    <option value="" selected>Semua Lokasi</option>
+                                    @foreach ($lokasi as $l)
+                                        <option>{{ $l->nama }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col mb-0">
+                                <div class="demo-inline-spacing">
+                                    <button type="submit" class="btn btn-primary" value="CARI">
+                                        <span class="tf-icons bx bx-search"></span>&nbsp; Search
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </form>
-                <div class="table-responsive text-nowrap mt-3">
-                    <table class="table table-bordered table-striped  table-hover display" width="1000px">
-                        <thead>
-                            <tr class="text-wrap">
-                                <th class="text-center">No</th>
-                                <th class="text-center">Tanggal</th>
-                                <th class="text-center">Uraian Jenis Hardware</th>
-                                <th class="text-center">Shift</th>
-                                <th class="text-center">Kategori</th>
-                                <th class="text-center">user</th>
-                                <th class="text-center">Status</th>
-                                <th class="text-center" width="21%">Action</th>
-                            </tr>
-                        </thead>
-                        @foreach ($pengembangan as $t)
-                            <tbody>
-                                <td>{{ ++$i }}</td>
-                                <td>{{ $t->tanggal }}</td>
-                                <td>{{ Str::limit($t->u_hardware, 200) }}</td>
-                                <td>{{ $t->shift }}</td>
-                                <td>{{ $t->kategori }}</td>
-                                <td>{{ $t->user_id }}</td>
-                                <td>
-                                    <button type="button" class="btn btn-warning active">Pending</button>
-                                </td>
-                                <td>
-                                    <button class="btn btn-icon btn-success me-1" type="button" data-bs-toggle="modal"
-                                        data-bs-target="#basicModalView{{ $t->id }}" aria-expanded="false"
-                                        aria-controls="multiCollapseExample2"> <span class="tf-icons bx bx-qr-scan"></span>
-                                    </button>
-                                    <a href="/activitydetail/{{ $t->id }}">
-                                        <button type="button" class="btn btn-primary">
-                                            <span class="tf-icons bx bx-detail"></span>&nbsp; Details
+                    </form>
+                    <div class="table-responsive text-nowrap mt-3">
+                        <table class="table table-bordered table-striped  table-hover display" width="1000px">
+                            <thead>
+                                <tr class="text-wrap">
+                                    <th class="text-center">No</th>
+                                    <th class="text-center">Tanggal</th>
+                                    <th class="text-center">Uraian Jenis Hardware</th>
+                                    <th class="text-center">Shift</th>
+                                    <th class="text-center">Kategori</th>
+                                    <th class="text-center">user</th>
+                                    <th class="text-center">Status</th>
+                                    <th class="text-center" width="21%">Action</th>
+                                </tr>
+                            </thead>
+                            @foreach ($pengembangan as $t)
+                                <tbody>
+                                    <td>{{ ++$i }}</td>
+                                    <td>{{ $t->tanggal }}</td>
+                                    <td>{{ Str::limit($t->u_hardware, 200) }}</td>
+                                    <td>{{ $t->shift }}</td>
+                                    <td>{{ $t->kategori }}</td>
+                                    <td>{{ $t->user_id }}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-warning active">Pending</button>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-icon btn-success me-1" type="button" data-bs-toggle="modal"
+                                            data-bs-target="#basicModalView{{ $t->id }}" aria-expanded="false"
+                                            aria-controls="multiCollapseExample2"> <span
+                                                class="tf-icons bx bx-qr-scan"></span>
                                         </button>
-                                    </a>
-                                    <!-- View Modal -->
-                                    <div class="modal fade" id="basicModalView{{ $t->id }}" tabindex="-1"
-                                        aria-hidden="true">
-                                        <div class="modal-dialog modal-lg" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel1">Edit User</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body d-flex justify-content-center align-items-center">
-                                                    <div class="col-sm-6 col-lg-12 mb-4 ">
-                                                        <div class="card">
-                                                            <div style="overflow:scroll; max-height: auto; width: 100%  ">
-                                                                <img src="{{ asset('storage/' . $t->foto) }}"
-                                                                    alt="">
+                                        <a href="/activitydetail/{{ $t->id }}">
+                                            <button type="button" class="btn btn-primary">
+                                                <span class="tf-icons bx bx-detail"></span>&nbsp; Details
+                                            </button>
+                                        </a>
+                                        <!-- View Modal -->
+                                        <div class="modal fade" id="basicModalView{{ $t->id }}" tabindex="-1"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel1">Edit User</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div
+                                                        class="modal-body d-flex justify-content-center align-items-center">
+                                                        <div class="col-sm-6 col-lg-12 mb-4 ">
+                                                            <div class="card">
+                                                                <div
+                                                                    style="overflow:scroll; max-height: auto; width: 100%  ">
+                                                                    <img src="{{ asset('storage/' . $t->foto) }}"
+                                                                        alt="">
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </td>
-                            </tbody>
-                        @endforeach
-                    </table>
-                </div>
+                                    </td>
+                                </tbody>
+                            @endforeach
+                @endif
+                </table>
             </div>
         </div>
+    </div>
     </div>
 
     <!-- Add Modal -->
@@ -330,7 +337,8 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Biaya</label>
                             <div class="col-sm-10">
-                                <input  type="number" inputmode="numeric" id="biaya" name="biaya" class="form-control" placeholder="example : 80.000"></input>
+                                <input type="number" inputmode="numeric" id="biaya" name="biaya"
+                                    class="form-control" placeholder="example : 80.000"></input>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -346,7 +354,8 @@
                         <div class="row mb-3" hidden>
                             <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Status</label>
                             <div class="col-sm-10">
-                                <input id="status" name="status" class="form-control" value="pending" readonly></input>
+                                <input id="status" name="status" class="form-control" value="pending"
+                                    readonly></input>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary" name="simpan">Save changes</button>
@@ -362,4 +371,3 @@
         </div>
     </div>
 @endsection
-

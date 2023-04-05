@@ -32,92 +32,100 @@
                     </div>
                 </div>
             </div>
+
             <div class="card-body">
-                <form action="/toll" method="get">
-                    <div class="row g-2">
-                        <div class="col mb-0">
-                            <select id="cari" name="search" class="form-select">
-                                <option value="" selected>Semua Lokasi</option>
-                                @foreach ($lokasi as $l)
-                                    <option>{{ $l->nama }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col mb-0">
-                            <div class="demo-inline-spacing">
-                                <button type="submit" class="btn btn-primary" value="CARI">
-                                    <span class="tf-icons bx bx-search"></span>&nbsp; Search
-                                </button>
+                @if ($toll->isEmpty())
+                    @include('components.emptyfield')
+                @else
+                    <form action="/toll" method="get">
+                        <div class="row g-2">
+                            <div class="col mb-0">
+                                <select id="cari" name="search" class="form-select">
+                                    <option value="" selected>Semua Lokasi</option>
+                                    @foreach ($lokasi as $l)
+                                        <option>{{ $l->nama }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col mb-0">
+                                <div class="demo-inline-spacing">
+                                    <button type="submit" class="btn btn-primary" value="CARI">
+                                        <span class="tf-icons bx bx-search"></span>&nbsp; Search
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </form>
-                <div class="table-responsive text-nowrap mt-3">
-                    <table class="table table-bordered table-striped  table-hover display" width="1000px">
-                        <thead>
-                            <tr class="text-wrap">
-                                <th class="text-center">No</th>
-                                <th class="text-center">Tanggal</th>
-                                <th class="text-center">Uraian Jenis Hardware</th>
-                                <th class="text-center">Shift</th>
-                                <th class="text-center">Kategori</th>
-                                <th class="text-center">user</th>
-                                <th class="text-center">Status</th>
-                                <th class="text-center" width="21%">Action</th>
-                            </tr>
-                        </thead>
-                        @foreach ($toll as $t)
-                            <tbody>
-                                <td>{{ ++$i }}</td>
-                                <td>{{ $t->tanggal }}</td>
-                                <td>{{ Str::limit($t->u_hardware, 100) }}</td>
-                                <td>{{ $t->shift }}</td>
-                                <td>{{ $t->kategori }}</td>
-                                <td>{{ $t->user_id }}</td>
-                                <td>
-                                    <button type="button" class="btn btn-warning active">Pending</button>
-                                </td>
-                                <td>
-                                    <button class="btn btn-icon btn-success me-1" type="button" data-bs-toggle="modal"
-                                        data-bs-target="#basicModalView{{ $t->id }}" aria-expanded="false"
-                                        aria-controls="multiCollapseExample2"> <span class="tf-icons bx bx-qr-scan"></span>
-                                    </button>
-                                    <a href="/activitydetail/{{ $t->id }}">
-                                        <button type="button" class="btn btn-primary">
-                                            <span class="tf-icons bx bx-detail"></span>&nbsp; Details
+                    </form>
+
+                    <div class="table-responsive text-nowrap mt-3">
+                        <table class="table table-bordered table-striped  table-hover display" width="1000px">
+                            <thead>
+                                <tr class="text-wrap">
+                                    <th class="text-center">No</th>
+                                    <th class="text-center">Tanggal</th>
+                                    <th class="text-center">Uraian Jenis Hardware</th>
+                                    <th class="text-center">Shift</th>
+                                    <th class="text-center">Kategori</th>
+                                    <th class="text-center">user</th>
+                                    <th class="text-center">Status</th>
+                                    <th class="text-center" width="21%">Action</th>
+                                </tr>
+                            </thead>
+                            @foreach ($toll as $t)
+                                <tbody>
+                                    <td>{{ ++$i }}</td>
+                                    <td>{{ $t->tanggal }}</td>
+                                    <td>{{ Str::limit($t->u_hardware, 100) }}</td>
+                                    <td>{{ $t->shift }}</td>
+                                    <td>{{ $t->kategori }}</td>
+                                    <td>{{ $t->user_id }}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-warning active">Pending</button>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-icon btn-success me-1" type="button" data-bs-toggle="modal"
+                                            data-bs-target="#basicModalView{{ $t->id }}" aria-expanded="false"
+                                            aria-controls="multiCollapseExample2"> <span
+                                                class="tf-icons bx bx-qr-scan"></span>
                                         </button>
-                                    </a>
-                                    <!-- View Modal -->
-                                    <div class="modal fade" id="basicModalView{{ $t->id }}" tabindex="-1"
-                                        aria-hidden="true">
-                                        <div class="modal-dialog modal-lg" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel1">Edit User</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body d-flex justify-content-center align-items-center">
-                                                    <div class="col-sm-6 col-lg-12 mb-4 ">
-                                                        <div class="card">
-                                                            <div
-                                                                style="overflow:scroll; max-height: 500px; max-width: 1000px  ">
-                                                                <img src="{{ asset('storage/' . $t->foto) }}"
-                                                                    alt="">
+                                        <a href="/activitydetail/{{ $t->id }}">
+                                            <button type="button" class="btn btn-primary">
+                                                <span class="tf-icons bx bx-detail"></span>&nbsp; Details
+                                            </button>
+                                        </a>
+                                        <!-- View Modal -->
+                                        <div class="modal fade" id="basicModalView{{ $t->id }}" tabindex="-1"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel1">Edit User</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div
+                                                        class="modal-body d-flex justify-content-center align-items-center">
+                                                        <div class="col-sm-6 col-lg-12 mb-4 ">
+                                                            <div class="card">
+                                                                <div
+                                                                    style="overflow:scroll; max-height: 500px; max-width: 1000px  ">
+                                                                    <img src="{{ asset('storage/' . $t->foto) }}"
+                                                                        alt="">
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </td>
-                            </tbody>
-                        @endforeach
-                    </table>
-                </div>
+                                    </td>
+                                </tbody>
+                            @endforeach
+                @endif
+                </table>
             </div>
         </div>
+    </div>
     </div>
 
     <!-- Add Modal -->
@@ -162,7 +170,7 @@
                                     <span id="basic-icon-default-fullname2" class="input-group-text"><i
                                             class="bx bx-calendar"></i></span>
                                     <input type="date" class="form-control" id="tanggal" name="tanggal"
-                                        placeholder="DD/MM/YYYY" aria-label="John Doe" required/>
+                                        placeholder="DD/MM/YYYY" aria-label="John Doe" required />
                                 </div>
                             </div>
                         </div>
@@ -207,7 +215,7 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-icon-default-company"></label>
                             <div class="col-sm-10">
-                                <textarea id="u_hardware" name="u_hardware" class="form-control"  placeholder="Penjabaran Masalah Hardware"></textarea>
+                                <textarea id="u_hardware" name="u_hardware" class="form-control" placeholder="Penjabaran Masalah Hardware"></textarea>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -374,27 +382,29 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                        <div class="row g-2">
-                            <div class="col mb-0">
-                                <label for="startdate" class="form-label">Start Date</label>
-                                <input type="date" id="startdate" name="startdate" class="form-control"
-                                    placeholder="Tanggal Mulai" />
-                            </div>
-                            <div class="col mb-0">
-                                <label for="enddate" class="form-label">End Date</label>
-                                <input type="date" id="enddate" name="enddate" class="form-control"
-                                    placeholder="Tanggal Berakhir" />
-                            </div>
+                    <div class="row g-2">
+                        <div class="col mb-0">
+                            <label for="startdate" class="form-label">Start Date</label>
+                            <input type="date" id="startdate" name="startdate" class="form-control"
+                                placeholder="Tanggal Mulai" />
                         </div>
-                        <div class="mt-3">
-                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                                Close
-                            </button>
-                            <a href="" onclick="this.href='/print_activity/' + document.getElementById('startdate').value + '/' + document.getElementById('enddate').value " target="_blank">
-                                <button type="submit" class="btn btn-primary">Cetak Data Data</button>
-                            </a>
-                            
+                        <div class="col mb-0">
+                            <label for="enddate" class="form-label">End Date</label>
+                            <input type="date" id="enddate" name="enddate" class="form-control"
+                                placeholder="Tanggal Berakhir" />
                         </div>
+                    </div>
+                    <div class="mt-3">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                            Close
+                        </button>
+                        <a href=""
+                            onclick="this.href='/print_activity/' + document.getElementById('startdate').value + '/' + document.getElementById('enddate').value "
+                            target="_blank">
+                            <button type="submit" class="btn btn-primary">Cetak Data Data</button>
+                        </a>
+
+                    </div>
                 </div>
             </div>
         </div>

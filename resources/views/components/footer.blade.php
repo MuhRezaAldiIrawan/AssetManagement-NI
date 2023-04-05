@@ -5,7 +5,7 @@
             <script>
                 document.write(new Date().getFullYear());
             </script>
-            , made with ❤️ by
+            , made with  by
             <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">Llen Developer PNUP</a>
         </div>
     </div>

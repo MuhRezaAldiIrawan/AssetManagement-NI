@@ -37,8 +37,12 @@
                             <div class="d-flex">
                                 <div class="flex-shrink-0 me-3">
                                     <div class="avatar avatar-online">
-                                        <img src="{{ asset('storage/' .  auth()->user()->foto) }}" alt
-                                            class=" rounded-circle" />
+                                        @if (auth()->user()->ttd)
+                                        <img src="{{ asset('storage/' .  auth()->user()->foto) }}" alt class="rounded-circle" />
+                                        @else
+                                            <img src="{{ asset('img/Logo/mun.png') }}" alt=""
+                                            class="rounded-circle">
+                                        @endif    
                                     </div>
                                 </div>
                                 <div class="flex-grow-1">
@@ -52,25 +56,22 @@
                         <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="/users">
                             <i class="bx bx-user me-2"></i>
                             <span class="align-middle">My Profile</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">
-                            <i class="bx bx-cog me-2"></i>
-                            <span class="align-middle">Settings</span>
                         </a>
                     </li>
                     <li>
                         <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="auth-login-basic.html">
-                            <i class="bx bx-power-off me-2"></i>
-                            <span class="align-middle">Log Out</span>
-                        </a>
+                        <form action="/logout" method="POST">
+                            @csrf
+                            <button class="dropdown-item" href="/logout">
+                                <i class="bx bx-power-off me-2"></i>
+                                <span class="align-middle">Log Out</span>
+                            </button>
+                        </form>
                     </li>
                 </ul>
             </li>

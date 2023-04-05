@@ -40,20 +40,17 @@
                                 <th class="text-center" width="25%">Nama</th>
                                 <th class="text-center">Email</th>
                                 <th class="text-center" width="15%">Jabatan</th>
+                                <th class="text-center" width="15%">Roles</th>
                                 <th class="text-center"  width="19%">Actions</th>
                             </tr>
                         </thead>
                         @foreach ($allusers as $l)
                             <tbody>
-                                <td>{{ $l->id }}</td>
+                                <td>{{ ++$i }}</td>
                                 <td>{{ $l->nama }}</td>
                                 <td>{{ $l->email }}</td>
                                 <td>{{ $l->jabatan }}</td>
-
-                                {{-- <div style="height: 30px; overflow:hidden; width: 30px"> 
-                                        <img src="{{ asset('storage/' . $l->foto ) }}" alt="">
-                                    </div> --}}
-
+                                <td>{{ $l->role }}</td>
                                 <td>
                                     <button class="btn btn-icon btn-success me-1" type="button" data-bs-toggle="modal"
                                         data-bs-target="#basicModalView{{ $l->id }}" aria-expanded="false"
@@ -80,14 +77,6 @@
                                                 <div class="modal-body">
                                                     <form action="{!! url('/allusers/update/'. $l->id ) !!}" method="POST" enctype="multipart/form-data">
                                                         @csrf
-                                                        {{-- <div class="row">
-                                                            <div class="col mb-3">
-                                                                <label for="nameBasic" class="form-label">ID User</label>
-                                                                <input type="text" id="id" name="id"
-                                                                    class="form-control" value="{{ $l->id }}"
-                                                                    disabled />
-                                                            </div>
-                                                        </div> --}}
                                                         <div class="row g-2">
                                                             <div class="col mb-0">
                                                                 <label for="Nama" class="form-label">Nama</label>
@@ -99,22 +88,13 @@
                                                                 <input type="text" id="email" name="email"
                                                                     class="form-control" value="{{ $l->email }}" />
                                                             </div>
-                                                        </div>
-                                                        {{-- <div class="row" hidden>
-                                                            <div class="col mb-3">
-                                                                <label for="nameBasic" class="form-label">Passwrod</label>
-                                                                <input type="text" id="password" name="password"
-                                                                    class="form-control" value="{{ $l->password }}"
-                                                                    disabled />
-                                                            </div>
-                                                        </div> --}}
+                                                        </div>                                                     
                                                         <div class="row g-2">
                                                             <div class="col mb-0">
                                                                 <label for="jabatan"
                                                                     class="form-label mt-2">Jabatan</label>
                                                                 <select id="jabatan" name="jabatan"
                                                                     class="form-select">
-                                                                    <option>Default select</option>
                                                                     <option value="Admin">Admin</option>
                                                                     <option value="Svp.IT">Svp.IT</option>
                                                                     <option value="Ka.Bang MMN">Ka.Bang MMN</option>
@@ -123,16 +103,17 @@
                                                                     <option value="Staf IT">Staf IT</option>
                                                                     <option value="IT Maintenance">IT Maintenance</option>
                                                                 </select>
-                                                                {{-- <input type="text" id="jabatan" name="jabatan"
-                                                                    class="form-control" value="{{ $l->jabatan }}" /> --}}
                                                             </div>
                                                         </div>
-                                                        <div class="row">
-                                                            <div class="col mb-3">
-                                                                <label for="nameBasic"
-                                                                    class="form-label mt-2">Foto</label>
-                                                                <input type="file" id="foto" name="foto"
-                                                                    class="form-control" value="{{ $l->foto }}" />
+                                                        <div class="row g-2">
+                                                            <div class="col mb-0">
+                                                                <label for="jabatan"
+                                                                    class="form-label mt-2">User Roles</label>
+                                                                <select id="role" name="role"
+                                                                    class="form-select">
+                                                                    <option value="superadmin">Super Admin</option>
+                                                                    <option value="user">User</option>
+                                                                </select>
                                                             </div>
                                                         </div>
                                                         <button type="submit" class="btn btn-primary mt-3">Update

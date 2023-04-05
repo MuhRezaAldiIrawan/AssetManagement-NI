@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['auth', 'CekRole:superadmin']], function(){
 
+    //Logout
+    Route::post('/logout', 'App\Http\Controllers\AuthController@logout');
+
     // Main Route
     Route::get('/dashboard', 'App\Http\Controllers\pages@index');
     Route::get('/toll', 'App\Http\Controllers\ActivityController@toll');
