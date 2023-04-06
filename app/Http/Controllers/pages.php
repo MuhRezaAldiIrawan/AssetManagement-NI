@@ -32,12 +32,51 @@ class pages extends Controller
         $pergantian = Activity::all()->where('kategori', '=', 'Kerusakan/Pergantian')->count();
         $minor = Activity::all()->where('kategori', '=', 'Kerusakan Minor')->count();
 
+        $lastMonth = date('Y-m-d', strtotime('first day of last month'));
+        $thisMonth = date('Y-m-d', strtotime('first day of this month'));
+
+
+        $stockLastMonthMayor = Activity::whereBetween('tanggal', [$lastMonth, $thisMonth])->where('kategori', '=', 'Kerusakan Mayor')->count('kategori');
+        $stockThisMonthMayor = Activity::whereBetween('tanggal', [$thisMonth, now()])->where('kategori', '=', 'Kerusakan Mayor')->count('kategori');
+        $stockDiffMayor = $stockThisMonthMayor - $stockLastMonthMayor;
+
+        $stockLastMonthPerbaikan = Activity::whereBetween('tanggal', [$lastMonth, $thisMonth])->where('kategori', '=', 'Perbaikan')->count('kategori');
+        $stockThisMonthPerbaikan = Activity::whereBetween('tanggal', [$thisMonth, now()])->where('kategori', '=', 'Perbaikan')->count('kategori');
+        $stockDiffPerbaikan = $stockThisMonthPerbaikan - $stockLastMonthPerbaikan;
+
+        $stockLastMonthPergantian = Activity::whereBetween('tanggal', [$lastMonth, $thisMonth])->where('kategori', '=', 'Kerusakan/Pergantian')->count('kategori');
+        $stockThisMonthPergantian = Activity::whereBetween('tanggal', [$thisMonth, now()])->where('kategori', '=', 'Kerusakan/Pergantian')->count('kategori');
+        $stockDiffPergantian = $stockThisMonthPergantian - $stockLastMonthPergantian;
+
+        $stockLastMonthMinor = Activity::whereBetween('tanggal', [$lastMonth, $thisMonth])->where('kategori', '=', 'Kerusakan Minor')->count('kategori');
+        $stockThisMonthMinor = Activity::whereBetween('tanggal', [$thisMonth, now()])->where('kategori', '=', 'Kerusakan Minor')->count('kategori');
+        $stockDiffMinor = $stockThisMonthMinor - $stockLastMonthMinor;
+
+
         return view('pages.dashboard', compact('title'))->with([
-            'mayor' => $mayor, 
-            'perbaikan' => $perbaikan, 
-            'pergantian' => $pergantian, 
+            'mayor' => $mayor,
+            'perbaikan' => $perbaikan,
+            'pergantian' => $pergantian,
             'minor' => $minor,
-            'jumlahactivity' => $jumlahactivity
+            'jumlahactivity' => $jumlahactivity, 
+
+            'stockLastMonthMayor' => $stockLastMonthMayor,
+            'stockThisMonthMayor' => $stockThisMonthMayor,
+            'stockDiffMayor' => $stockDiffMayor,
+
+            'stockLastMonthPerbaikan' => $stockLastMonthPerbaikan,
+            'stockThisMonthPerbaikan' => $stockThisMonthPerbaikan,
+            'stockDiffPerbaikan' => $stockDiffPerbaikan,
+
+            'stockLastMonthPergantian' => $stockLastMonthPergantian,
+            'stockThisMonthPergantian' => $stockThisMonthPergantian,
+            'stockDiffPergantian' => $stockDiffPergantian,
+
+            'stockLastMonthMinor' => $stockLastMonthMinor,
+            'stockThisMonthMinor' => $stockThisMonthMinor,
+            'stockDiffMinor' => $stockDiffMinor,
+
+
         ]);
     }
 
@@ -45,12 +84,12 @@ class pages extends Controller
     //End Activity Controllers
 
     //Location Controllers
-   
+
 
     //End Location Controllers
 
     //Kategori Controllers
-  
+
 
     //End Kategori Controllers
 

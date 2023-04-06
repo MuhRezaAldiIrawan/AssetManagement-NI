@@ -479,14 +479,49 @@ class ActivityController extends Controller
 
     }
 
-    public function print_activity($startdate, $enddate)
+    public function print_activity_toll($startdate, $enddate)
     {
 
         $title = 'Print Page';
 
         $date = Carbon::now();
 
-        $printactivity = DB::table('activities')->whereBetween('tanggal', [$startdate, $enddate])->latest()->get();
+        $printactivity = DB::table('activities')->whereBetween('tanggal', [$startdate, $enddate])
+        ->where('kategori_activity', '=' , 'Toll' )
+        ->latest()
+        ->get();
+
+
+        return view('pages.activity.subpages.print.activityprint', ['printactivity' => $printactivity, 'date' => $date], compact('title'));
+    }
+
+    public function print_activity_nontoll($startdate, $enddate)
+    {
+
+        $title = 'Print Page';
+
+        $date = Carbon::now();
+
+        $printactivity = DB::table('activities')->whereBetween('tanggal', [$startdate, $enddate])
+        ->where('kategori_activity', '=' , 'NonToll' )
+        ->latest()
+        ->get();
+
+
+        return view('pages.activity.subpages.print.activityprint', ['printactivity' => $printactivity, 'date' => $date], compact('title'));
+    }
+
+    public function print_activity_pengembangan($startdate, $enddate)
+    {
+
+        $title = 'Print Page';
+
+        $date = Carbon::now();
+
+        $printactivity = DB::table('activities')->whereBetween('tanggal', [$startdate, $enddate])
+        ->where('kategori_activity', '=' , 'pengembangan' )
+        ->latest()
+        ->get();
 
 
         return view('pages.activity.subpages.print.activityprint', ['printactivity' => $printactivity, 'date' => $date], compact('title'));

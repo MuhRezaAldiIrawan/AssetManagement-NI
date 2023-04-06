@@ -22,7 +22,8 @@
                                 data-bs-target="#fullscreenModal"">
                                 <span class="tf-icons bx bx-plus"></span>
                             </button>
-                            <button type="button" class="btn btn-icon btn-secondary m-1">
+                            <button type="button" class="btn btn-icon btn-secondary m-1" data-bs-toggle="modal"
+                                data-bs-target="#modalCenter">
                                 <span class="tf-icons bx bx-printer"></span>
                             </button>
                         </div>
@@ -347,7 +348,7 @@
                                 <div class="input-group input-group-merge">
                                     <span id="basic-icon-default-fullname2" class="input-group-text"><i
                                             class="bx bx-camera"></i></span>
-                                    <input type="file" class="form-control" id="foto" name="foto" required/>
+                                    <input type="file" class="form-control" id="foto" name="foto" required />
                                 </div>
                             </div>
                         </div>
@@ -362,6 +363,43 @@
                     </form>
                 </div>
 
+            </div>
+        </div>
+    </div>
+
+    <!-- Print Activity -->
+    <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalCenterTitle">Print Activity</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-2">
+                        <div class="col mb-0">
+                            <label for="startdate" class="form-label">Start Date</label>
+                            <input type="date" id="startdate" name="startdate" class="form-control"
+                                placeholder="Tanggal Mulai" />
+                        </div>
+                        <div class="col mb-0">
+                            <label for="enddate" class="form-label">End Date</label>
+                            <input type="date" id="enddate" name="enddate" class="form-control"
+                                placeholder="Tanggal Berakhir" />
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                            Close
+                        </button>
+                        <a href=""
+                            onclick="this.href='/print_activity_nontoll/' + document.getElementById('startdate').value + '/' + document.getElementById('enddate').value "
+                            target="_blank">
+                            <button type="submit" class="btn btn-primary">Cetak Data Data</button>
+                        </a>
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>

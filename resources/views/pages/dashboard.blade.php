@@ -51,7 +51,7 @@
                         </div>
                         <h2 class="fw-semibold d-block mb-1">{{ $mayor }}</h2>
                         <h4 class="card-title mb-2">Kerusakan Mayor</h4>
-                        <small class="text-success fw-semibold">bulan ini <i class="bx bx-up-arrow-alt"></i> +10</small>
+                        <small class="text-success fw-semibold">bulan ini <i class="bx bx-up-arrow-alt"></i> +{{ $stockDiffMayor }}</small>
                     </div>
                 </div>
             </div>
@@ -76,7 +76,7 @@
                         </div>
                         <h2 class="fw-semibold d-block mb-1">{{ $perbaikan }}</h2>
                         <h4 class="card-title mb-2">Perbaikan</h4>
-                        <small class="text-success fw-semibold">bulan ini <i class="bx bx-up-arrow-alt"></i> +10</small>
+                        <small class="text-success fw-semibold">bulan ini <i class="bx bx-up-arrow-alt"></i> +{{ $stockDiffPerbaikan }}</small>
                     </div>
                 </div>
             </div>
@@ -101,7 +101,7 @@
                         </div>
                         <h2 class="fw-semibold d-block mb-1">{{ $pergantian }}</h2>
                         <h4 class="card-title mb-2">Pergantian</h4>
-                        <small class="text-success fw-semibold">bulan ini <i class="bx bx-up-arrow-alt"></i> +10</small>
+                        <small class="text-success fw-semibold">bulan ini <i class="bx bx-up-arrow-alt"></i> +{{ $stockDiffPergantian }}</small>
                     </div>
                 </div>
             </div>
@@ -126,7 +126,7 @@
                         </div>
                         <h2 class="fw-semibold d-block mb-1">{{ $minor }}</h2>
                         <h4 class="card-title mb-2">Penanganan Minor</h4>
-                        <small class="text-success fw-semibold">bulan ini <i class="bx bx-up-arrow-alt"></i> +10</small>
+                        <small class="text-success fw-semibold">bulan ini <i class="bx bx-up-arrow-alt"></i> +{{ $stockDiffMinor }}</small>
                     </div>
                 </div>
             </div>

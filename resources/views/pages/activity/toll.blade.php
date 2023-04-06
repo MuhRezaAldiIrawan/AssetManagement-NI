@@ -22,12 +22,10 @@
                                 data-bs-target="#fullscreenModal"">
                                 <span class="tf-icons bx bx-plus"></span>
                             </button>
-                            {{-- <a href="/print_activity" target="_blank"> --}}
                             <button type="button" class="btn btn-icon btn-secondary m-1" data-bs-toggle="modal"
                                 data-bs-target="#modalCenter">
                                 <span class="tf-icons bx bx-printer"></span>
-                            </button>
-                            {{-- </a> --}}
+                            </button>            
                         </div>
                     </div>
                 </div>
@@ -399,7 +397,7 @@
                             Close
                         </button>
                         <a href=""
-                            onclick="this.href='/print_activity/' + document.getElementById('startdate').value + '/' + document.getElementById('enddate').value "
+                            onclick="this.href='/print_activity_toll/' + document.getElementById('startdate').value + '/' + document.getElementById('enddate').value "
                             target="_blank">
                             <button type="submit" class="btn btn-primary">Cetak Data Data</button>
                         </a>
