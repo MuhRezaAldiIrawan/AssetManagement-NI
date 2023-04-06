@@ -20,6 +20,7 @@ Route::group(['middleware' => ['auth', 'CekRole:superadmin']], function(){
 
     // Main Route
     Route::get('/dashboard', 'App\Http\Controllers\pages@index');
+    // Route::get('/dashboard', 'App\Http\Controllers\pages@ChartActivity');
     Route::get('/toll', 'App\Http\Controllers\ActivityController@toll');
     Route::get('/nontoll', 'App\Http\Controllers\ActivityController@nontoll');
     Route::get('/pengembangan', 'App\Http\Controllers\ActivityController@pengembangan');

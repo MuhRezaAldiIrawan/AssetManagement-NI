@@ -21,6 +21,7 @@ use App\Models\User;
 
 class pages extends Controller
 {
+
     public function index()
     {
         $title = 'MUN | Dashboard';
@@ -58,7 +59,7 @@ class pages extends Controller
             'perbaikan' => $perbaikan,
             'pergantian' => $pergantian,
             'minor' => $minor,
-            'jumlahactivity' => $jumlahactivity, 
+            'jumlahactivity' => $jumlahactivity,
 
             'stockLastMonthMayor' => $stockLastMonthMayor,
             'stockThisMonthMayor' => $stockThisMonthMayor,
@@ -80,47 +81,5 @@ class pages extends Controller
         ]);
     }
 
-
-    //End Activity Controllers
-
-    //Location Controllers
-
-
-    //End Location Controllers
-
-    //Kategori Controllers
-
-
-    //End Kategori Controllers
-
-
-    //User Controllers
-
-
-    //End User Controllers
-
-    //External Command
-    public function printactivity()
-    {
-        $title = 'MUN | Dashboard';
-
-        return view('pages.activity.subpages.printactivity', compact('title'));
-    }
-
-    // public function cari(Request $request)
-    // {
-
-    //     dd($request);
-    //     $cari = $request->cari;
-
-    //     $toll = DB::table('activities')->where('lokasi', 'like', "%" . $request->cari . "%")->paginate();
-
-    //     return view('index', ['toll' => $toll]);
-    // }
-
-    //Barang
-
-
-    // All Print
 
 }
