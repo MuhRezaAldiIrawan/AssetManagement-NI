@@ -20,6 +20,8 @@ class Activity extends Model
         'tanggal',
         'j_hardware',
         'u_hardware',
+        'gto',
+        'u_gto',
         's_aplikasi',
         'u_aplikasi',
         'a_it',
@@ -32,6 +34,8 @@ class Activity extends Model
         'biaya',
         'foto',
         'status',
+        'first_review',
+        'second_review',
         
 
     ];

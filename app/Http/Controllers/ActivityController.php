@@ -60,6 +60,8 @@ class ActivityController extends Controller
             'tanggal' => 'required',
             'j_hardware' => 'nullable',
             'u_hardware' => 'nullable',
+            'gto' => 'nullable',
+            'u_gto' => 'nullable',
             's_aplikasi' => 'nullable',
             'u_aplikasi' => 'nullable',
             'a_it' => 'nullable',
@@ -78,6 +80,10 @@ class ActivityController extends Controller
 
         if (($request->input('j_hardware'))) {
             $validatedData['j_hardware'] = implode(',', $validatedData['j_hardware']);
+        }
+
+        if (($request->input('gto'))) {
+            $validatedData['gto'] = implode(',', $validatedData['gto']);
         }
 
         if (($request->input('s_aplikasi'))) {
@@ -127,6 +133,8 @@ class ActivityController extends Controller
             'tanggal' => 'required',
             'j_hardware' => 'nullable',
             'u_hardware' => 'nullable',
+            'gto' => 'nullable',
+            'u_gto' => 'nullable',
             's_aplikasi' => 'nullable',
             'u_aplikasi' => 'nullable',
             'a_it' => 'nullable',
@@ -155,6 +163,10 @@ class ActivityController extends Controller
 
         if (($request->input('j_hardware'))) {
             $validatedData['j_hardware'] = implode(',', $validatedData['j_hardware']);
+        }
+
+        if (($request->input('gto'))) {
+            $validatedData['gto'] = implode(',', $validatedData['gto']);
         }
 
         if (($request->input('s_aplikasi'))) {
@@ -219,6 +231,8 @@ class ActivityController extends Controller
             'tanggal' => 'required',
             'j_hardware' => 'nullable',
             'u_hardware' => 'nullable',
+            'gto' => 'nullable',
+            'u_gto' => 'nullable',
             's_aplikasi' => 'nullable',
             'u_aplikasi' => 'nullable',
             'a_it' => 'nullable',
@@ -237,6 +251,10 @@ class ActivityController extends Controller
 
         if (($request->input('j_hardware'))) {
             $validatedData['j_hardware'] =  implode(',', $validatedData['j_hardware']);
+        }
+
+        if (($request->input('gto'))) {
+            $validatedData['gto'] = implode(',', $validatedData['gto']);
         }
 
         if (($request->input('s_aplikasi'))) {
@@ -317,17 +335,44 @@ class ActivityController extends Controller
     }
 
 
-    public function approve(Request $request, $id)
+    public function approve_atasanit(Request $request, $id)
     {
-        // dd($request);
+
+        $first_review = $request->filled('first_review') ? $request->first_review : null;
+        $second_review = $request->filled('second_review') ? $request->second_review : null;
+
         DB::table('activities')->where('id', $id)->update([
-            'status' => $request->status,
+            'first_review' => $request->first_review,
+            'status' => ( $first_review && $second_review ) ? 'approve' : 'pending'
 
         ]);
+
+
+
 
         return redirect('/dashboard');
     }
 
+    public function approve_pengecekanit(Request $request, $id)
+    {
+        $first_review = $request->filled('first_review') ? $request->first_review : null;
+        $second_review = $request->filled('second_review') ? $request->second_review : null;
+  
+        DB::table('activities')->where('id', $id)->update([
+            'second_review' => $request->second_review,
+            'status' => ( $first_review && $second_review ) ? 'approve' : 'pending'
+            
+
+
+        ]);
+
+
+
+
+        return redirect('/dashboard');
+    }
+
+    
     public function rejected(Request $request, $id)
     {
         // dd($request);

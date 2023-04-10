@@ -42,6 +42,7 @@ class UsersController extends Controller
 
     public function allusers(Request $request)
     {
+        $this -> authorize('superadmin');
         $title = 'MUN | All User';
         $pagination = 10;
         $allusers = DB::table('users')->paginate($pagination);

@@ -26,6 +26,26 @@
                                 data-bs-target="#modalCenter">
                                 <span class="tf-icons bx bx-printer"></span>
                             </button>
+                            <div class="btn-group" id="dropdown-icon-demo">
+                                <button type="button" class="btn btn-icon btn-info m-1 dropdown-toggle hide-arrow"
+                                    data-bs-toggle="dropdown"  data-bs-offset="10,20">
+                                    <span class="tf-icons bx bx-export"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center"><i
+                                            class="bx bxl-microsoft-teams scaleX-n1-rtl m-1"></i>Excel</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center"><i
+                                                class="bx bxs-file-pdf scaleX-n1-rtl m-1"></i>Pdf</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center"><i
+                                                class="bx bxs-file-doc scaleX-n1-rtl m-1"></i>CSV</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -214,6 +234,55 @@
                             <label class="col-sm-2 col-form-label" for="basic-icon-default-company"></label>
                             <div class="col-sm-10">
                                 <textarea id="u_hardware" name="u_hardware" class="form-control" placeholder="Penjabaran Masalah Hardware"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-3" hidden>
+                            <label class="col-sm-2 col-form-label" for="basic-icon-default-company">GTO (Gardu Toll Otomatis)</label>
+                            <div class="col-sm-10">
+                                <div class="input-group input-group-merge">
+                                    <div class="col-md d-flex align-items-center ">
+                                        <div class="form-check form-check-inline mt-1">
+                                            <input class="form-check-input" type="checkbox" id="Dispenser GTO/Mesin GTO"
+                                                name="gto[]" value="Dispenser GTO/Mesin GTO" />
+                                            <label class="form-check-label" for="inlineCheckbox1">Dispenser GTO/Mesin GTO</label>
+                                        </div>
+                                        <div class="form-check form-check-inline mt-1">
+                                            <input class="form-check-input" type="checkbox" id="TFI"
+                                                name="gto[]" value="TFI" />
+                                            <label class="form-check-label" for="inlineCheckbox2">TFI</label>
+                                        </div>
+                                        <div class="form-check form-check-inline mt-1">
+                                            <input class="form-check-input" type="checkbox" id="Gate Barrier"
+                                                name="gto[]" value="Gate Barrier" />
+                                            <label class="form-check-label"
+                                                for="inlineCheckbox1">Gate Barrier</label>
+                                        </div>
+                                        <div class="form-check form-check-inline mt-1">
+                                            <input class="form-check-input" type="checkbox" id="Sensor (OBS/LZR/Loop Coil)"
+                                                name="gto[]" value="Sensor (OBS/LZR/Loop Coil)" />
+                                            <label class="form-check-label"
+                                                for="inlineCheckbox2">Sensor (OBS/LZR/Loop Coil)</label>
+                                        </div>
+                                        <div class="form-check form-check-inline mt-1">
+                                            <input class="form-check-input" type="checkbox" id="LLA / OTL"
+                                                name="gto[]" value="LLA / OTL" />
+                                            <label class="form-check-label"
+                                                for="inlineCheckbox2">LLA / OTL</label>
+                                        </div>
+                                        <div class="form-check form-check-inline mt-1">
+                                            <input class="form-check-input" type="checkbox" id="Lainnya"
+                                                name="gto[]" value="Lainnya" />
+                                            <label class="form-check-label"
+                                                for="inlineCheckbox2">Lainnya</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3" hidden>
+                            <label class="col-sm-2 col-form-label" for="basic-icon-default-company"></label>
+                            <div class="col-sm-10">
+                                <textarea id="u_gto" name="u_gto" class="form-control" placeholder="Penjabaran Masalah GTO"></textarea>
                             </div>
                         </div>
                         <div class="row mb-3">

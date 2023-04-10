@@ -120,11 +120,13 @@
                         <div data-i18n="Without menu">Profile</div>
                     </a>
                 </li>
+                @can('superadmin')
                 <li class="menu-item {{ request()->is('allusers') ? 'active' : '' }}">
                     <a href="/allusers" class="menu-link">
                         <div data-i18n="Without navbar">All Users</div>
                     </a>
-                </li>
+                </li>       
+                @endcan
             </ul>
         </li>
         <li class="menu-header small text-uppercase"><span class="menu-header-text">End Menu</span></li>

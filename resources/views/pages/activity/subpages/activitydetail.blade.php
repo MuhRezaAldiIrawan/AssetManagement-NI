@@ -95,6 +95,34 @@
                                                 <h2 class="accordion-header text-body d-flex justify-content-between"
                                                     id="accordionIconOne">
                                                     <button type="button" class="accordion-button collapsed"
+                                                        data-bs-toggle="collapse" data-bs-target="#accordionIcon-8"
+                                                        aria-controls="accordionIcon-8">
+                                                        Uraian & GTO
+                                                    </button>
+                                                </h2>
+
+                                                <div id="accordionIcon-8" class="accordion-collapse collapse"
+                                                    data-bs-parent="#accordionIcon">
+
+                                                    <div class="accordion-body">
+                                                        <p>GTO : </p>
+                                                        <?php $counter = 1; ?>
+                                                        @foreach ($activitydetail as $item)
+                                                            @foreach (explode(',', $item->gto) as $hardware)
+                                                                {{ $counter }}. {{ $hardware }}<br>
+                                                                <?php $counter++; ?>
+                                                            @endforeach
+                                                        @endforeach
+                                                        <p class="mt-3">Uraian Hardware : </p>
+                                                        <p>{{ $d->u_gto }}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="accordion-item m-3">
+                                                <h2 class="accordion-header text-body d-flex justify-content-between"
+                                                    id="accordionIconOne">
+                                                    <button type="button" class="accordion-button collapsed"
                                                         data-bs-toggle="collapse" data-bs-target="#accordionIcon-4"
                                                         aria-controls="accordionIcon-4">
                                                         Uraian & Standart Aplikasi
@@ -171,26 +199,49 @@
                                                         <span class="tf-icons bx bx-printer"></span>&nbsp; Print
                                                     </button>
                                                 </a>
-                                                <form action="{!! url('/activitydetail/rejected/' . $d->id) !!}" method="POST">
-                                                    @csrf
-                                                    <input id="id" name="id" class="form-control"
-                                                        value="{{ $d->id }}" readonly hidden></input>
-                                                    <input id="status" name="status" class="form-control"
-                                                        value="rejected" readonly hidden></input>
-                                                    <button type="submit" class="btn btn-danger m-1">
-                                                        <span class="tf-icons bx bx-trash"></span>&nbsp; Rejected
-                                                    </button>
-                                                </form>
-                                                <form action="{!! url('/activitydetail/' . $d->id) !!}" method="POST">
-                                                    @csrf
-                                                    <input id="status" name="status" class="form-control"
-                                                        value="{{ $d->id }}" readonly hidden></input>
-                                                    <input id="status" name="status" class="form-control"
-                                                        value="approve" readonly hidden></input>
-                                                    <button type="submit" class="btn btn-success m-1">
-                                                        <span class="tf-icons bx bx-select-multiple"></span>&nbsp; Approve
-                                                    </button>
-                                                </form>
+                                                @can('accept')
+                                                    @if (auth()->user()->role == 'atasan it' && $d->status == 'pending')
+                                                        <form action="{!! url('/activitydetail/rejected/' . $d->id) !!}" method="POST">
+                                                            @csrf
+                                                            <input id="id" name="id" class="form-control"
+                                                                value="{{ $d->id }}" readonly hidden></input>
+                                                            <input id="status" name="status" class="form-control"
+                                                                value="rejected" readonly hidden></input>
+                                                            <button type="submit" class="btn btn-danger m-1">
+                                                                <span class="tf-icons bx bx-trash"></span>&nbsp; Rejected
+                                                            </button>
+                                                        </form>
+                                                        <form action="{!! url('/activitydetail/atasanit/' . $d->id) !!}" method="POST">
+                                                            @csrf
+                                                            <input id="first_review" name="first_review" class="form-control"
+                                                                value="{{ auth()->user()->nama }}" readonly hidden></input>
+                                                            <button type="submit" class="btn btn-success m-1">
+                                                                <span class="tf-icons bx bx-select-multiple"></span>&nbsp;
+                                                                Approve
+                                                            </button>
+                                                        </form>
+                                                    @elseif(auth()->user()->role == 'it' && $d->status == 'pending')
+                                                        <form action="{!! url('/activitydetail/rejected/' . $d->id) !!}" method="POST">
+                                                            @csrf
+                                                            <input id="id" name="id" class="form-control"
+                                                                value="{{ $d->id }}" readonly hidden></input>
+                                                            <input id="status" name="status" class="form-control"
+                                                                value="rejected" readonly hidden></input>
+                                                            <button type="submit" class="btn btn-danger m-1">
+                                                                <span class="tf-icons bx bx-trash"></span>&nbsp; Rejected
+                                                            </button>
+                                                        </form>
+                                                        <form action="{!! url('/activitydetail/pengecekanit/' . $d->id) !!}" method="POST">
+                                                            @csrf
+                                                            <input id="second_review" name="second_review" class="form-control"
+                                                                value="{{ auth()->user()->nama }}" readonly hidden></input>
+                                                            <button type="submit" class="btn btn-success m-1">
+                                                                <span class="tf-icons bx bx-select-multiple"></span>&nbsp;
+                                                                Approve
+                                                            </button>
+                                                        </form>
+                                                    @endif
+                                                @endcan
                                             </div>
                                         </tbody>
                                     @endforeach

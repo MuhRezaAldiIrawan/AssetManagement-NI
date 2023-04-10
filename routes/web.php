@@ -13,14 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['middleware' => ['auth', 'CekRole:superadmin']], function(){
+// Auth ROUTE
+Route::get('/', 'App\Http\Controllers\AuthController@loginview')->name('login');
+Route::post('/login', 'App\Http\Controllers\AuthController@authenticate');
+Route::get('/register', 'App\Http\Controllers\AuthController@registerview');
+Route::post('/register', 'App\Http\Controllers\AuthController@store');
+
+Route::group(['middleware' => ['auth', 'CekRole:superadmin,user,atasan it,it']], function(){
 
     //Logout
     Route::post('/logout', 'App\Http\Controllers\AuthController@logout');
 
     // Main Route
     Route::get('/dashboard', 'App\Http\Controllers\pages@index');
-    // Route::get('/dashboard', 'App\Http\Controllers\pages@ChartActivity');
     Route::get('/toll', 'App\Http\Controllers\ActivityController@toll');
     Route::get('/nontoll', 'App\Http\Controllers\ActivityController@nontoll');
     Route::get('/pengembangan', 'App\Http\Controllers\ActivityController@pengembangan');
@@ -57,7 +62,8 @@ Route::group(['middleware' => ['auth', 'CekRole:superadmin']], function(){
     Route::get('/pengembanganhistori', 'App\Http\Controllers\ActivityController@pengembanganhistori');
     Route::get('/activitydetail/{id}', 'App\Http\Controllers\ActivityController@activitydetail');
     Route::post('/activitydetail/update/', 'App\Http\Controllers\ActivityController@ubahdata');
-    Route::post('/activitydetail/{id}', 'App\Http\Controllers\ActivityController@approve');
+    Route::post('/activitydetail/atasanit/{id}', 'App\Http\Controllers\ActivityController@approve_atasanit');
+    Route::post('/activitydetail/pengecekanit/{id}', 'App\Http\Controllers\ActivityController@approve_pengecekanit');
     Route::post('/activitydetail/rejected/{id}', 'App\Http\Controllers\ActivityController@rejected');
 
     //Print 
@@ -78,15 +84,10 @@ Route::group(['middleware' => ['auth', 'CekRole:superadmin']], function(){
     Route::post('/listbarang/tambahstock/{id}', 'App\Http\Controllers\BarangController@updatestock');
     Route::post('/listbarang/kurangstock/{id}', 'App\Http\Controllers\BarangController@minusstock');
 
-
-
 });
 
-// Auth ROUTE
-Route::get('/', 'App\Http\Controllers\AuthController@loginview')->name('login');
-Route::post('/login', 'App\Http\Controllers\AuthController@authenticate');
-Route::get('/register', 'App\Http\Controllers\AuthController@registerview');
-Route::post('/register', 'App\Http\Controllers\AuthController@store');
+
+
 
 
 

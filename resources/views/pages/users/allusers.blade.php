@@ -112,6 +112,8 @@
                                                                 <select id="role" name="role"
                                                                     class="form-select">
                                                                     <option value="superadmin">Super Admin</option>
+                                                                    <option value="atasan it">Atasan IT</option>
+                                                                    <option value="it">IT</option>
                                                                     <option value="user">User</option>
                                                                 </select>
                                                             </div>

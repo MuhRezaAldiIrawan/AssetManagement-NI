@@ -20,6 +20,8 @@ class CreateActivitiesTable extends Migration
             $table->date('tanggal');
             $table->string('j_hardware')->nullable();
             $table->text('u_hardware')->nullable();
+            $table->string('gto')->nullable();
+            $table->text('u_gto')->nullable();
             $table->string('s_aplikasi')->nullable();
             $table->text('u_aplikasi')->nullable();
             $table->string('a_it')->nullable();

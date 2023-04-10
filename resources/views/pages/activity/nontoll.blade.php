@@ -213,6 +213,55 @@
                                 <textarea id="u_hardware" name="u_hardware" class="form-control" placeholder="Penjabaran Masalah Hardware"></textarea>
                             </div>
                         </div>
+                        <div class="row mb-3" hidden>
+                            <label class="col-sm-2 col-form-label" for="basic-icon-default-company">GTO (Gardu Toll Otomatis)</label>
+                            <div class="col-sm-10">
+                                <div class="input-group input-group-merge">
+                                    <div class="col-md d-flex align-items-center ">
+                                        <div class="form-check form-check-inline mt-1">
+                                            <input class="form-check-input" type="checkbox" id="Dispenser GTO/Mesin GTO"
+                                                name="gto[]" value="Dispenser GTO/Mesin GTO" />
+                                            <label class="form-check-label" for="inlineCheckbox1">Dispenser GTO/Mesin GTO</label>
+                                        </div>
+                                        <div class="form-check form-check-inline mt-1">
+                                            <input class="form-check-input" type="checkbox" id="TFI"
+                                                name="gto[]" value="TFI" />
+                                            <label class="form-check-label" for="inlineCheckbox2">TFI</label>
+                                        </div>
+                                        <div class="form-check form-check-inline mt-1">
+                                            <input class="form-check-input" type="checkbox" id="Gate Barrier"
+                                                name="gto[]" value="Gate Barrier" />
+                                            <label class="form-check-label"
+                                                for="inlineCheckbox1">Gate Barrier</label>
+                                        </div>
+                                        <div class="form-check form-check-inline mt-1">
+                                            <input class="form-check-input" type="checkbox" id="Sensor (OBS/LZR/Loop Coil)"
+                                                name="gto[]" value="Sensor (OBS/LZR/Loop Coil)" />
+                                            <label class="form-check-label"
+                                                for="inlineCheckbox2">Sensor (OBS/LZR/Loop Coil)</label>
+                                        </div>
+                                        <div class="form-check form-check-inline mt-1">
+                                            <input class="form-check-input" type="checkbox" id="LLA / OTL"
+                                                name="gto[]" value="LLA / OTL" />
+                                            <label class="form-check-label"
+                                                for="inlineCheckbox2">LLA / OTL</label>
+                                        </div>
+                                        <div class="form-check form-check-inline mt-1">
+                                            <input class="form-check-input" type="checkbox" id="Lainnya"
+                                                name="gto[]" value="Lainnya" />
+                                            <label class="form-check-label"
+                                                for="inlineCheckbox2">Lainnya</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3" hidden>
+                            <label class="col-sm-2 col-form-label" for="basic-icon-default-company"></label>
+                            <div class="col-sm-10">
+                                <textarea id="u_gto" name="u_gto" class="form-control" placeholder="Penjabaran Masalah GTO"></textarea>
+                            </div>
+                        </div>
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Standart
                                 Aplikasi</label>
