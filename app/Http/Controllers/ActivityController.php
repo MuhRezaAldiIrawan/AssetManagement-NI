@@ -343,7 +343,7 @@ class ActivityController extends Controller
 
         DB::table('activities')->where('id', $id)->update([
             'first_review' => $request->first_review,
-            'status' => ( $first_review && $second_review ) ? 'approve' : 'pending'
+      
 
         ]);
 
@@ -360,7 +360,7 @@ class ActivityController extends Controller
   
         DB::table('activities')->where('id', $id)->update([
             'second_review' => $request->second_review,
-            'status' => ( $first_review && $second_review ) ? 'approve' : 'pending'
+
             
 
 
