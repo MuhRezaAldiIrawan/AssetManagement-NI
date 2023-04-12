@@ -213,8 +213,8 @@
                                                         </form>
                                                         <form action="{!! url('/activitydetail/atasanit/' . $d->id) !!}" method="POST">
                                                             @csrf
-                                                            <input id="first_review" name="first_review" class="form-control"
-                                                                value="{{ auth()->user()->nama }}" readonly hidden></input>
+                                                            <input id="first_review_id" name="first_review_id" class="form-control"
+                                                                value="{{ auth()->user()->id }}" readonly hidden></input>
                                                             <button type="submit" class="btn btn-success m-1">
                                                                 <span class="tf-icons bx bx-select-multiple"></span>&nbsp;
                                                                 Approve
@@ -233,8 +233,30 @@
                                                         </form>
                                                         <form action="{!! url('/activitydetail/pengecekanit/' . $d->id) !!}" method="POST">
                                                             @csrf
-                                                            <input id="second_review" name="second_review" class="form-control"
-                                                                value="{{ auth()->user()->nama }}" readonly hidden></input>
+                                                            <input id="second_review_id" name="second_review_id"
+                                                                class="form-control" value="{{ auth()->user()->id }}"
+                                                                readonly hidden></input>
+                                                            <button type="submit" class="btn btn-success m-1">
+                                                                <span class="tf-icons bx bx-select-multiple"></span>&nbsp;
+                                                                Approve
+                                                            </button>
+                                                        </form>
+                                                    @elseif(auth()->user()->role == 'superadmin' && $d->status == 'pending')
+                                                        <form action="{!! url('/activitydetail/rejected/' . $d->id) !!}" method="POST">
+                                                            @csrf
+                                                            <input id="id" name="id" class="form-control"
+                                                                value="{{ $d->id }}" readonly hidden></input>
+                                                            <input id="status" name="status" class="form-control"
+                                                                value="rejected" readonly hidden></input>
+                                                            <button type="submit" class="btn btn-danger m-1">
+                                                                <span class="tf-icons bx bx-trash"></span>&nbsp; Rejected
+                                                            </button>
+                                                        </form>
+                                                        <form action="{!! url('/activitydetail/pengecekanit/' . $d->id) !!}" method="POST">
+                                                            @csrf
+                                                            <input id="second_review" name="second_review"
+                                                                class="form-control" value="{{ auth()->user()->id }}"
+                                                                readonly hidden></input>
                                                             <button type="submit" class="btn btn-success m-1">
                                                                 <span class="tf-icons bx bx-select-multiple"></span>&nbsp;
                                                                 Approve

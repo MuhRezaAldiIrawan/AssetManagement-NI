@@ -34,8 +34,8 @@ class Activity extends Model
         'biaya',
         'foto',
         'status',
-        'first_review',
-        'second_review',
+        'first_review_id',
+        'second_review_id',
         
 
     ];

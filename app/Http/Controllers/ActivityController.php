@@ -347,37 +347,28 @@ class ActivityController extends Controller
     public function approve_atasanit(Request $request, $id)
     {
 
-        $first_review = $request->filled('first_review') ? $request->first_review : null;
-        $second_review = $request->filled('second_review') ? $request->second_review : null;
-
-        DB::table('activities')->where('id', $id)->update([
-            'first_review' => $request->first_review,
-
+        DB::table('activities')->where('id', $request->id)->update([
+            'first_review_id' => $request->first_review_id,
         ]);
 
+        if (empty($review->second_review_id)) {
+            $review->status = 'pending';
+        } else {
+            $review->status = 'success';
+        }
 
-
-
-        return redirect('/dashboard');
+        return redirect('/toll');
     }
 
     public function approve_pengecekanit(Request $request, $id)
     {
-        $first_review = $request->filled('first_review') ? $request->first_review : null;
-        $second_review = $request->filled('second_review') ? $request->second_review : null;
-  
-        DB::table('activities')->where('id', $id)->update([
-            'second_review' => $request->second_review,
-
-            
-
-
+        DB::table('activities')->where('id', $request->id)->update([
+            'second_review_id' => $request->second_review_id,
         ]);
+        // dd($request);
 
-
-
-
-        return redirect('/dashboard');
+        return redirect('/toll');
+  
     }
 
     

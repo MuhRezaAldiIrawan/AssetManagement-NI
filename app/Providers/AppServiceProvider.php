@@ -34,7 +34,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Gate::define('accept', function (User $user) {
-            return $user->role === 'atasan it' || $user->role === 'it';
+            return $user->role === 'superadmin' || $user->role === 'atasan it' || $user->role === 'it' ;
         });
     }
 }
