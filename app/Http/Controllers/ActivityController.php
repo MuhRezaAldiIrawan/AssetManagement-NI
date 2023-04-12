@@ -351,11 +351,11 @@ class ActivityController extends Controller
             'first_review_id' => $request->first_review_id,
         ]);
 
-        if (empty($review->second_review_id)) {
-            $review->status = 'pending';
-        } else {
-            $review->status = 'success';
-        }
+        // if (empty($review->second_review_id)) {
+        //     $review->status = 'pending';
+        // } else {
+        //     $review->status = 'success';
+        // }
 
         return redirect('/toll');
     }
