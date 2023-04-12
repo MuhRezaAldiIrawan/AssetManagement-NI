@@ -28,10 +28,10 @@ class pages extends Controller
 
         $jumlahactivity = Activity::all()->where('status', '=', 'pending')->count();
 
-        $mayor = Activity::all()->where('kategori', '=', 'Kerusakan Mayor')->count();
-        $perbaikan = Activity::all()->where('kategori', '=', 'Perbaikan')->count();
-        $pergantian = Activity::all()->where('kategori', '=', 'Kerusakan/Pergantian')->count();
-        $minor = Activity::all()->where('kategori', '=', 'Kerusakan Minor')->count();
+        $mayor = Activity::all()->where('kategori_id', '=', 'Kerusakan Mayor')->count();
+        $perbaikan = Activity::all()->where('kategori_id', '=', 'Perbaikan')->count();
+        $pergantian = Activity::all()->where('kategori_id', '=', 'Kerusakan/Pergantian')->count();
+        $minor = Activity::all()->where('kategori_id', '=', 'Kerusakan Minor')->count();
 
         $lastMonth = date('Y-m-d', strtotime('first day of last month'));
         $thisMonth = date('Y-m-d', strtotime('first day of this month'));

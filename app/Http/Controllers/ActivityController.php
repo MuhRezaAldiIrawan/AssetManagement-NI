@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Activity;
 use App\Models\Kategori;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Carbon;
@@ -20,10 +21,12 @@ class ActivityController extends Controller
         $pagination = 10;
         $lokasi = Lokasi::all();
         $kategori = Kategori::all();
+
         $selected_value = $request->lokasi;
+        
 
         if ($request->has('search') || $selected_value) {
-            $toll = DB::table('activities')
+            $toll = Activity::with('user')
                 ->where(function ($query) use ($request, $selected_value) {
                     $query->where('kategori_activity', 'Toll')
                         ->whereIn('status', ['pending']);
@@ -40,16 +43,22 @@ class ActivityController extends Controller
 
             session()->put('toll', $toll);
         } else {
-            $toll = DB::table('activities')
+            $toll = Activity::with('user')
                 ->where('kategori_activity', 'Toll')
                 ->whereIn('status', ['pending'])
                 // ->orWhere('status', '=', 'rejected')
                 ->latest()
                 ->paginate($pagination);
         }
+        // dd($user);
 
-        return view('pages.activity.toll', ['toll' => $toll, 'lokasi' => $lokasi, 'kategori' => $kategori, 'selected_value' => $selected_value], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
+        return view('pages.activity.toll', [
+            'toll' => $toll, 
+            'lokasi' => $lokasi, 
+            'kategori' => $kategori, 
+            'selected_value' => $selected_value], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
     }
+
 
     public function addtollactivity(Request $request)
     {
@@ -112,11 +121,11 @@ class ActivityController extends Controller
         $kategori = Kategori::all();
 
         if ($request->has('search')) {
-            $nontoll = DB::table('activities')->where([['kategori_activity', '=', 'NonToll'], ['status', '=', 'pending'], ['lokasi', 'like', '%' . $request->search . '%']])->paginate($pagination);
+            $nontoll =Activity::with('user')->where([['kategori_activity', '=', 'NonToll'], ['status', '=', 'pending'], ['lokasi', 'like', '%' . $request->search . '%']])->paginate($pagination);
             session()->put('selected_value', null);
             session()->put('nontoll', $nontoll);
         } else {
-            $nontoll = DB::table('activities')->where([['kategori_activity', '=', 'NonToll'], ['status', '=', 'pending']])->paginate($pagination);
+            $nontoll =Activity::with('user')->where([['kategori_activity', '=', 'NonToll'], ['status', '=', 'pending']])->paginate($pagination);
         }
 
         // $nontoll = DB::table('activities')->where([['kategori_activity', '=', 'NonToll'],['status', '=', 'pending']])->paginate($pagination);
@@ -194,7 +203,7 @@ class ActivityController extends Controller
         $selected_value = $request->lokasi;
 
         if ($request->has('search') || $selected_value) {
-            $pengembangan = DB::table('activities')
+            $pengembangan = Activity::with('user')
                 ->where(function ($query) use ($request, $selected_value) {
                     $query->where('kategori_activity', 'pengembangan')
                         ->whereIn('status', ['pending']);
@@ -211,7 +220,7 @@ class ActivityController extends Controller
 
             session()->put('pengembangan', $pengembangan);
         } else {
-            $pengembangan = DB::table('activities')
+            $pengembangan = Activity::with('user')
                 ->where('kategori_activity', 'pengembangan')
                 ->whereIn('status', ['pending'])
                 // ->orWhere('status', '=', 'rejected')
@@ -343,7 +352,6 @@ class ActivityController extends Controller
 
         DB::table('activities')->where('id', $id)->update([
             'first_review' => $request->first_review,
-      
 
         ]);
 

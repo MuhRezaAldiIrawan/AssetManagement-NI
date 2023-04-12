@@ -15,7 +15,7 @@ class CreateActivitiesTable extends Migration
     {
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
+            $table->foreignId('user_id')->constrained('users');
             $table->string('kategori_activity');
             $table->date('tanggal');
             $table->string('j_hardware')->nullable();
@@ -34,6 +34,8 @@ class CreateActivitiesTable extends Migration
             $table->string('biaya');
             $table->string('foto');
             $table->string('status');
+            $table->foreignId('first_review_id')->nullable()->constrained('users');
+            $table->foreignId('second_review_id')->nullable()->constrained('users');
             $table->timestamps();
         });
     }

@@ -96,7 +96,7 @@
                                     <td>{{ Str::limit($t->u_hardware, 100) }}</td>
                                     <td>{{ $t->shift }}</td>
                                     <td>{{ $t->kategori }}</td>
-                                    <td>{{ $t->user_id }}</td>
+                                    <td>{{ $t->user->nama }}</td>
                                     <td>
                                         <button type="button" class="btn btn-warning active">Pending</button>
                                     </td>
@@ -164,7 +164,7 @@
                                     <span id="basic-icon-default-fullname2" class="input-group-text"><i
                                             class="bx bx-devices"></i></span>
                                     <input type="text" class="form-control" id="basic-icon-default-fullname"
-                                        name="user_id" id="user_id" value="{{ auth()->user()->nama }}" readonly />
+                                        name="user_id" id="user_id" value="{{ auth()->user()->id }}" readonly />
                                 </div>
                             </div>
                         </div>

@@ -40,6 +40,12 @@ class Activity extends Model
 
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+
     public function lokasi()
     {
     	return $this->belongsTo(Lokasi::class);
@@ -49,6 +55,8 @@ class Activity extends Model
     {
     	return $this->belongsTo(Kategori::class);
     }
+
+
 
 
     
