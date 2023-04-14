@@ -354,7 +354,7 @@ class ActivityController extends Controller
         $activity->save();
 
         if ($activity->second_review_id) {
-            $activity->status = 'Approve';
+            $activity->status = 'approve';
         } else {
             $activity->status = 'pending';
         }
@@ -376,10 +376,20 @@ class ActivityController extends Controller
 
     public function approve_pengecekanit(Request $request, $id)
     {
-        DB::table('activities')->where('id', $request->id)->update([
-            'second_review_id' => $request->second_review_id,
-        ]);
         // dd($request);
+
+        $activity = Activity::find($request->id);
+
+        $activity->second_review_id = $request->second_review_id;
+        $activity->save();
+
+        if ($activity->first_review_id) {
+            $activity->status = 'approve';
+        } else {
+            $activity->status = 'pending';
+        }
+        $activity->save();
+
 
         return redirect('/toll');
     }
