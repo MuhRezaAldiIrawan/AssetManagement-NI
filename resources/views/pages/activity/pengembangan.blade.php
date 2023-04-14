@@ -203,6 +203,12 @@
                                             <label class="form-check-label"
                                                 for="inlineCheckbox2">LTCS/TFI/PCS/RTM/CCTV</label>
                                         </div>
+                                        <div class="form-check form-check-inline mt-1">
+                                            <input class="form-check-input" type="checkbox" id="Lainnya"
+                                                name="j_hardware[]" value="Lainnya" />
+                                            <label class="form-check-label"
+                                                for="inlineCheckbox2">Lainnya</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -279,6 +285,11 @@
                                             <label class="form-check-label" for="Microsoft Office">Microsoft
                                                 Office</label>
                                         </div>
+                                        <div class="form-check form-check-inline mt-1">
+                                            <input class="form-check-input" type="checkbox" id="Lainnya"
+                                                name="s_aplikasi[]" value="Lainnya" />
+                                            <label class="form-check-label" for="Lainnya">Lainnya</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -316,6 +327,11 @@
                                                 name="a_it[]" value="Program CCTV/VMS" />
                                             <label class="form-check-label" for="Program CCTV/VMS">Program
                                                 CCTV/VMS</label>
+                                        </div>
+                                        <div class="form-check form-check-inline mt-1">
+                                            <input class="form-check-input" type="checkbox" id="Lainnya"
+                                                name="a_it[]" value="Lainnya" />
+                                            <label class="form-check-label" for="Lainnya">Lainnya</label>
                                         </div>
                                     </div>
                                 </div>

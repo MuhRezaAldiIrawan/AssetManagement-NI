@@ -523,6 +523,18 @@ class ActivityController extends Controller
 
     }
 
+    public function print_detail_pengembangan(Request $request, $id)
+    {
+        $title = 'Print Page';
+
+        $date = Carbon::now();
+
+        $activitydetailpengembangan = DB::table('activities')->where('id', '=', $id)->get();
+
+        return view('pages.activity.subpages.print.pengembanganprint', ['activitydetailpengembangan' => $activitydetailpengembangan, 'date' => $date], compact('title'));
+
+    }
+
     public function print_activity_toll($startdate, $enddate)
     {
 

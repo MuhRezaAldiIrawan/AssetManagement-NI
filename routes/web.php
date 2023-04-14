@@ -72,9 +72,11 @@ Route::group(['middleware' => ['auth', 'CekRole:superadmin,user,atasan it,it']],
     Route::get('/print_allusers', 'App\Http\Controllers\UsersController@print_allusers');
     Route::get('/print_listbarang', 'App\Http\Controllers\BarangController@print_listbarang');
     Route::get('/print_detail/{id}', 'App\Http\Controllers\ActivityController@print_detail');
+    Route::get('/print_detail_pengembangan/{id}', 'App\Http\Controllers\ActivityController@print_detail_pengembangan');
     Route::get('/print_activity_toll/{startdate}/{enddate}', 'App\Http\Controllers\ActivityController@print_activity_toll');
     Route::get('/print_activity_nontoll/{startdate}/{enddate}', 'App\Http\Controllers\ActivityController@print_activity_nontoll');
     Route::get('/print_activity_pengembangan/{startdate}/{enddate}', 'App\Http\Controllers\ActivityController@print_activity_pengembangan');
+
     // Route::get('/toll/cari','App\Http\Controllers\pages@cari');
 
     //Barang

@@ -194,11 +194,19 @@
                                             </div>
 
                                             <div class="demo-inline-spacing d-flex justify-content-end ">
-                                                <a href="/print_detail/{{ $d->id }}" target="_blank">
-                                                    <button type="button" class="btn btn-secondary m-1">
-                                                        <span class="tf-icons bx bx-printer"></span>&nbsp; Print
-                                                    </button>
-                                                </a>
+                                                @if ($d->kategori_activity == 'pengembangan')
+                                                    <a href="/print_detail_pengembangan/{{ $d->id }}" target="_blank">
+                                                        <button type="button" class="btn btn-secondary m-1">
+                                                            <span class="tf-icons bx bx-printer"></span>&nbsp; Print
+                                                        </button>
+                                                    </a>
+                                                @else
+                                                    <a href="/print_detail/{{ $d->id }}" target="_blank">
+                                                        <button type="button" class="btn btn-secondary m-1">
+                                                            <span class="tf-icons bx bx-printer"></span>&nbsp; Print
+                                                        </button>
+                                                    </a>
+                                                @endif
                                                 @can('accept')
                                                     @if (auth()->user()->role == 'atasan it' && $d->status == 'pending')
                                                         <form action="{!! url('/activitydetail/rejected/' . $d->id) !!}" method="POST">
@@ -213,8 +221,9 @@
                                                         </form>
                                                         <form action="{!! url('/activitydetail/atasanit/' . $d->id) !!}" method="POST">
                                                             @csrf
-                                                            <input id="first_review_id" name="first_review_id" class="form-control"
-                                                                value="{{ auth()->user()->id }}" readonly hidden></input>
+                                                            <input id="first_review_id" name="first_review_id"
+                                                                class="form-control" value="{{ auth()->user()->id }}"
+                                                                readonly hidden></input>
                                                             <button type="submit" class="btn btn-success m-1">
                                                                 <span class="tf-icons bx bx-select-multiple"></span>&nbsp;
                                                                 Approve

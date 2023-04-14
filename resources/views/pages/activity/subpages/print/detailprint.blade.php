@@ -24,7 +24,7 @@
                         <tr>
                             <td width=38%>No. Dok </td>
                             <td width=5%>:</td>
-                            <td>FO/MIS/02/03</td>
+                            <td>FO-MMN-MIS-02-03</td>
                         </tr>
                     </table>
                 </td>
@@ -37,7 +37,7 @@
                     <tr>
                         <td width=38%>Tgl Terbit </td>
                         <td width=5%>:</td>
-                        <td>{{ $date->format('d F Y') }}</td>
+                        <td></td>
                     </tr>
                 </table>
             </td>
@@ -47,7 +47,7 @@
                         <tr>
                             <td width=38%>No. Revisi </td>
                             <td width=5%>:</td>
-                            <td style="overflow: hidden;">01</td>
+                            <td style="overflow: hidden;">05</td>
                         </tr>
                     </table>
                 </td>
@@ -61,10 +61,10 @@
         <tr>
             <td width="20%">Periode ( Diisi oleh IT)</td>
             <td width="5%"> : </td>
-            <td style="vertical-align: middle;" width="25%"> I <input type="checkbox"> &nbsp;II <input
-                    type="checkbox">
-                &nbsp;III
-                <input type="checkbox">
+            <td style="vertical-align: middle;" width="25%"> 
+                I <input type="checkbox" id="shift" name="shift" value="shift"  @if($activity->kategori_activity == 'shift') checked @endif> &nbsp;
+                II <input type="checkbox" id="shift" name="shift" value="shift"  @if($activity->kategori_activity == 'shift') checked @endif> &nbsp;
+                III<input type="checkbox" id="shift" name="shift" value="shift"  @if($activity->kategori_activity == 'shift') checked @endif>
                 :
             </td>
         </tr>
@@ -138,8 +138,10 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input type="checkbox"> ..............................</td>
-                    <td align="center"><input type="checkbox"></td>
+                    <td><input type="checkbox" id="Lainnya" name="Lainnya" value="Lainnya"
+                            @if (in_array('Lainnya', explode(',', $activity->j_hardware ?? ''))) {{ 'checked' }} @endif>Lainnya</td>
+                    <td align="center"><input type="checkbox" id="Lainnya" name="Lainnya" value="Lainnya"
+                            @if (in_array('Lainnya', explode(',', $activity->j_hardware ?? ''))) {{ 'checked' }} @endif></td>
                 </tr>
            
         </thead>
@@ -172,8 +174,10 @@
             </tr>
             <tr>
                 <td></td>
-                <td><input type="checkbox"> ..............................</td>
-                <td align="center"><input type="checkbox"></td>
+                <td><input type="checkbox" id="Lainnya" name="Lainnya" value="Lainnya"
+                        @if (in_array('Lainnya', explode(',', $activity->s_aplikasi ?? ''))) {{ 'checked' }} @endif> Lainnya</td>
+                <td align="center"><input type="checkbox" id="Lainnya" name="Lainnya" value="Lainnya"
+                        @if (in_array('Lainnya', explode(',', $activity->s_aplikasi ?? ''))) {{ 'checked' }} @endif></td>
             </tr>
         </thead>
     </table>
@@ -210,8 +214,10 @@
             </tr>
             <tr>
                 <td></td>
-                <td><input type="checkbox"> ..............................</td>
-                <td align="center"><input type="checkbox"></td>
+                <td><input type="checkbox" id="Lainnya" name="Lainnya" value="Lainnya"
+                        @if (in_array('Lainnya', explode(',', $activity->a_it ?? ''))) {{ 'checked' }} @endif>Lainnya</td>
+                <td align="center"><input type="checkbox" id="Lainnya" name="Lainnya" value="Lainnya"
+                        @if (in_array('Lainnya', explode(',', $activity->a_it ?? ''))) {{ 'checked' }} @endif></td>
             </tr>
         </thead>
     </table>
@@ -236,14 +242,17 @@
         <thead>
             <th width=25%>*Mengetahui (Atasan IT)</th>
             <th width=25%>Pengecekan Oleh (IT)</th>
+            <th width=25%>User</th>
         </thead>
         <tbody>
             <tr height="100px">
                 <th width="25%"><img style="width: 100px;" src="{{ asset('img/ttd/625520090e70c.png') }}" alt=""></th>
                 <th width="25%"><img style="width: 100px;" src="{{ asset('img/ttd/626b0a3ec261f.png') }}" alt=""></th>
+                <th width="25%"><img style="width: 100px;" src="{{ asset('img/ttd/626b0a3ec261f.png') }}" alt=""></th>
             </tr>
             <tr>
                 <th width=25%>Nama : Mahuri Said</th>
+                <th width=25%>Nama : Anwar</th>
                 <th width=25%>Nama : Anwar</th>
             </tr>
         </tbody>
