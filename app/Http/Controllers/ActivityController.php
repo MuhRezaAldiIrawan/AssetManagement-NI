@@ -23,7 +23,7 @@ class ActivityController extends Controller
         $kategori = Kategori::all();
 
         $selected_value = $request->lokasi;
-        
+
 
         if ($request->has('search') || $selected_value) {
             $toll = Activity::with('user')
@@ -53,10 +53,11 @@ class ActivityController extends Controller
         // dd($user);
 
         return view('pages.activity.toll', [
-            'toll' => $toll, 
-            'lokasi' => $lokasi, 
-            'kategori' => $kategori, 
-            'selected_value' => $selected_value], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
+            'toll' => $toll,
+            'lokasi' => $lokasi,
+            'kategori' => $kategori,
+            'selected_value' => $selected_value
+        ], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
     }
 
 
@@ -121,11 +122,11 @@ class ActivityController extends Controller
         $kategori = Kategori::all();
 
         if ($request->has('search')) {
-            $nontoll =Activity::with('user')->where([['kategori_activity', '=', 'NonToll'], ['status', '=', 'pending'], ['lokasi', 'like', '%' . $request->search . '%']])->paginate($pagination);
+            $nontoll = Activity::with('user')->where([['kategori_activity', '=', 'NonToll'], ['status', '=', 'pending'], ['lokasi', 'like', '%' . $request->search . '%']])->paginate($pagination);
             session()->put('selected_value', null);
             session()->put('nontoll', $nontoll);
         } else {
-            $nontoll =Activity::with('user')->where([['kategori_activity', '=', 'NonToll'], ['status', '=', 'pending']])->paginate($pagination);
+            $nontoll = Activity::with('user')->where([['kategori_activity', '=', 'NonToll'], ['status', '=', 'pending']])->paginate($pagination);
         }
 
         // $nontoll = DB::table('activities')->where([['kategori_activity', '=', 'NonToll'],['status', '=', 'pending']])->paginate($pagination);
@@ -347,9 +348,22 @@ class ActivityController extends Controller
     public function approve_atasanit(Request $request, $id)
     {
 
-        DB::table('activities')->where('id', $request->id)->update([
-            'first_review_id' => $request->first_review_id,
-        ]);
+        $activity = Activity::find($request->id);
+
+        $activity->first_review_id = $request->first_review_id;
+        $activity->save();
+
+        if ($activity->second_review_id) {
+            $activity->status = 'Approve';
+        } else {
+            $activity->status = 'pending';
+        }
+        $activity->save();
+
+        // DB::table('activities')->where('id', $request->id)->update([
+        //     'first_review_id' => $request->first_review_id,
+        // ]);
+
 
         // if (empty($review->second_review_id)) {
         //     $review->status = 'pending';
@@ -368,10 +382,9 @@ class ActivityController extends Controller
         // dd($request);
 
         return redirect('/toll');
-  
     }
 
-    
+
     public function rejected(Request $request, $id)
     {
         // dd($request);
@@ -532,7 +545,6 @@ class ActivityController extends Controller
         $activitydetailpengembangan = DB::table('activities')->where('id', '=', $id)->get();
 
         return view('pages.activity.subpages.print.pengembanganprint', ['activitydetailpengembangan' => $activitydetailpengembangan, 'date' => $date], compact('title'));
-
     }
 
     public function print_activity_toll($startdate, $enddate)
@@ -543,9 +555,9 @@ class ActivityController extends Controller
         $date = Carbon::now();
 
         $printactivity = DB::table('activities')->whereBetween('tanggal', [$startdate, $enddate])
-        ->where('kategori_activity', '=' , 'Toll' )
-        ->latest()
-        ->get();
+            ->where('kategori_activity', '=', 'Toll')
+            ->latest()
+            ->get();
 
 
         return view('pages.activity.subpages.print.activityprint', ['printactivity' => $printactivity, 'date' => $date], compact('title'));
@@ -559,9 +571,9 @@ class ActivityController extends Controller
         $date = Carbon::now();
 
         $printactivity = DB::table('activities')->whereBetween('tanggal', [$startdate, $enddate])
-        ->where('kategori_activity', '=' , 'NonToll' )
-        ->latest()
-        ->get();
+            ->where('kategori_activity', '=', 'NonToll')
+            ->latest()
+            ->get();
 
 
         return view('pages.activity.subpages.print.activityprint', ['printactivity' => $printactivity, 'date' => $date], compact('title'));
@@ -575,9 +587,9 @@ class ActivityController extends Controller
         $date = Carbon::now();
 
         $printactivity = DB::table('activities')->whereBetween('tanggal', [$startdate, $enddate])
-        ->where('kategori_activity', '=' , 'pengembangan' )
-        ->latest()
-        ->get();
+            ->where('kategori_activity', '=', 'pengembangan')
+            ->latest()
+            ->get();
 
 
         return view('pages.activity.subpages.print.activityprint', ['printactivity' => $printactivity, 'date' => $date], compact('title'));
