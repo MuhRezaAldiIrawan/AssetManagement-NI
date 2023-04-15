@@ -366,7 +366,7 @@
                                             class="bx bx-run "></i></span>
                                     <select class="form-select" id="shift" name="shift" required>
                                         <option value="Satu">Satu</option>
-                                        <option value="Dua2">Dua</option>
+                                        <option value="Dua">Dua</option>
                                         <option value="Tiga">Tiga</option>
                                     </select>
                                 </div>

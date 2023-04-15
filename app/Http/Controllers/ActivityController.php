@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Activity;
 use App\Models\Kategori;
+use App\Models\ReviewActivity;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -293,118 +294,104 @@ class ActivityController extends Controller
         return view('pages.activity.subpages.activitydetail', ['activitydetail' => $activitydetail], compact('title'));
     }
 
-    public function ubahdata(Request $request, Activity $activity)
-    {
-        // dd($request);
-        // return ($request->file('foto')->store('activity-foto'));
-
-        $activitydetail = $request->validate([
-            'id' => 'required',
-            'user_id' => 'required',
-            'kategori_activity' => 'required',
-            'tanggal' => 'required',
-            'j_hardware' => 'required',
-            'u_hardware' => 'required',
-            's_aplikasi' => 'required',
-            'u_aplikasi' => 'required',
-            'a_it' => 'required',
-            'u_it' => 'required',
-            'catatan' => 'required',
-            'shift' => 'required',
-            'lokasi' => 'required',
-            'kategori' => 'required',
-            'kondisi_akhir' => 'required',
-            'foto' => 'image|file',
-            'status' => 'required'
-        ]);
-
-        if (($request->input('j_hardware'))) {
-            $validatedData['j_hardware'] = json_encode($request->j_hardware);
-        }
-
-        if (($request->input('s_aplikasi'))) {
-            $validatedData['s_aplikasi'] = json_encode($request->s_aplikasi);
-        }
-
-        if (($request->input('a_it'))) {
-            $validatedData['a_it'] = json_encode($request->a_it);
-        }
-
-        if ($request->file('foto')) {
-            $validatedData['foto'] = $request->file('foto')->store('activity-foto');
-        }
-
-
-
-        Activity::where('id', $activity->id)->update($activitydetail);
-        // Activity::save();
-
-        // return view('pages.users.allusers', compact('title'));
-
-        return redirect('/activitydetail');
-    }
-
-
     public function approve_atasanit(Request $request, $id)
     {
 
-        $activity = Activity::find($request->id);
-
-        $activity->first_review_id = $request->first_review_id;
-        $activity->save();
-
-        if ($activity->second_review_id) {
-            $activity->status = 'approve';
-        } else {
-            $activity->status = 'pending';
-        }
-        $activity->save();
-
-        // DB::table('activities')->where('id', $request->id)->update([
-        //     'first_review_id' => $request->first_review_id,
-        // ]);
-
-
-        // if (empty($review->second_review_id)) {
-        //     $review->status = 'pending';
-        // } else {
-        //     $review->status = 'success';
-        // }
-
-        return redirect('/toll');
-    }
-
-    public function approve_pengecekanit(Request $request, $id)
-    {
-        // dd($request);
-
-        $activity = Activity::find($request->id);
-
-        $activity->second_review_id = $request->second_review_id;
-        $activity->save();
-
-        if ($activity->first_review_id) {
-            $activity->status = 'approve';
-        } else {
-            $activity->status = 'pending';
-        }
-        $activity->save();
-
-
-        return redirect('/toll');
-    }
-
-
-    public function rejected(Request $request, $id)
-    {
-        // dd($request);
-        DB::table('activities')->where('id', $id)->update([
-            'status' => $request->status,
-
+        DB::table('review_activities')->insert([
+            'activities_id' => $request->activities_id,
+            'first_review_id' => $request->first_review_id,
+            'first_review_value' => $request->first_review_value,
         ]);
-
+        // alihkan halaman ke halaman pegawai
         return redirect('/dashboard');
     }
+
+
+
+    // public function approve_atasanit(Request $request, $id)
+    // {
+
+    //     $activity = Activity::find($request->id);
+
+    //     $activity->first_review_id = $request->first_review_id;
+    //     $activity->save();
+
+    //     if ($activity->second_review_id) {
+    //         $activity->status = 'approve';
+    //     } else {
+    //         $activity->status = 'pending';
+    //     }
+    //     $activity->save();
+
+    //     return redirect('/toll');
+    // }
+
+    // public function approve_pengecekanit(Request $request, $id)
+    // {
+    //     // dd($request);
+
+    //     $activity = Activity::find($request->id);
+
+    //     $activity->second_review_id = $request->second_review_id;
+    //     $activity->save();
+
+    //     if ($activity->first_review_id) {
+    //         $activity->status = 'approve';
+    //     } else {
+    //         $activity->status = 'pending';
+    //     }
+    //     $activity->save();
+
+
+    //     return redirect('/toll');
+    // }
+
+    // public function rejected_atasanit(Request $request, $id)
+    // {
+    //     $activity = Activity::find($request->id);
+
+    //     $activity->first_review_id = $request->first_review_id;
+    //     $activity->save();
+
+    //     if ($activity->second_review_id) {
+    //         $activity->status = 'approve';
+    //     } else {
+    //         $activity->status = 'pending';
+    //     }
+    //     $activity->save();
+
+    //     return redirect('/toll');
+    // }
+
+    // public function rejected_pengecekanit(Request $request, $id)
+    // {
+    //     $activity = Activity::find($request->id);
+
+    //     $activity->second_review_id = $request->second_review_id;
+    //     $activity->save();
+
+    //     if ($activity->first_review_id) {
+    //         $activity->status = 'approve';
+    //     } else {
+    //         $activity->status = 'pending';
+    //     }
+    //     $activity->save();
+
+
+    //     return redirect('/toll');
+    // }
+
+
+    // public function rejected(Request $request, $id)
+    // {
+    //     // dd($request);
+    //     DB::table('activities')->where('id', $id)->update([
+    //         'status' => $request->status,
+
+    //     ]);
+
+    //     return redirect('/dashboard');
+    // }
 
     public function tollhistori(Request $request)
     {

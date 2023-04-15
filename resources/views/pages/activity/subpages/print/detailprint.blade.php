@@ -62,10 +62,12 @@
             <td width="20%">Periode ( Diisi oleh IT)</td>
             <td width="5%"> : </td>
             <td style="vertical-align: middle;" width="25%"> 
-                I <input type="checkbox" id="shift" name="shift" value="shift"  @if($activity->kategori_activity == 'shift') checked @endif> &nbsp;
-                II <input type="checkbox" id="shift" name="shift" value="shift"  @if($activity->kategori_activity == 'shift') checked @endif> &nbsp;
-                III<input type="checkbox" id="shift" name="shift" value="shift"  @if($activity->kategori_activity == 'shift') checked @endif>
-                :
+                @foreach ($activitydetail as $item)
+                I <input type="checkbox" id="shift" name="shift" value="shift[]"  @if($item->shift == 'Satu') checked @endif> &nbsp;
+                II <input type="checkbox" id="shift" name="shift" value="shift[]"  @if($item->shift == 'Dua') checked @endif> &nbsp;
+                III<input type="checkbox" id="shift" name="shift" value="shift[]"  @if($item->shift == 'Tiga') checked @endif>
+                :   
+                @endforeach
             </td>
         </tr>
         <tr>
