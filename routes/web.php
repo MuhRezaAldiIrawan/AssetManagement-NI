@@ -64,7 +64,8 @@ Route::group(['middleware' => ['auth', 'CekRole:superadmin,user,atasan it,it']],
     Route::post('/activitydetail/update/', 'App\Http\Controllers\ActivityController@ubahdata');
     Route::post('/activitydetail/atasanit/{id}', 'App\Http\Controllers\ActivityController@approve_atasanit');
     Route::post('/activitydetail/pengecekanit/{id}', 'App\Http\Controllers\ActivityController@approve_pengecekanit');
-    Route::post('/activitydetail/rejected/{id}', 'App\Http\Controllers\ActivityController@rejected');
+    Route::post('/activitydetail/atasanitrejected/{id}', 'App\Http\Controllers\ActivityController@rejected_atasanit');
+    Route::post('/activitydetail/pengecekanitrejected/{id}', 'App\Http\Controllers\ActivityController@rejected_pengecekanit');
 
     //Print 
     Route::get('/print_location', 'App\Http\Controllers\LocationController@print_location');

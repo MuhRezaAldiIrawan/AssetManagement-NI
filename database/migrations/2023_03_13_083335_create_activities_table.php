@@ -36,6 +36,8 @@ class CreateActivitiesTable extends Migration
             $table->string('status');
             $table->foreignId('first_review_id')->nullable()->constrained('users');
             $table->foreignId('second_review_id')->nullable()->constrained('users');
+            $table->string('first_value')->nullable();
+            $table->string('second_value')->nullable();
             $table->timestamps();
         });
     }

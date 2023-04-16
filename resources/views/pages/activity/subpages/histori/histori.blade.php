@@ -70,7 +70,7 @@
                                 <td>{{ Str::limit($t->u_hardware, 200) }}</td>
                                 <td>{{ $t->shift }}</td>
                                 <td>{{ $t->kategori }}</td>
-                                <td>{{ $t->user_id }}</td>
+                                <td>{{ $t->user->nama }}</td>
                                 <td>
                                     @if ($t->status == 'approve')
                                         <button type="button" class="btn btn-success active">Approve</button>

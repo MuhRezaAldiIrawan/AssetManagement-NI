@@ -294,92 +294,119 @@ class ActivityController extends Controller
         return view('pages.activity.subpages.activitydetail', ['activitydetail' => $activitydetail], compact('title'));
     }
 
+
     public function approve_atasanit(Request $request, $id)
     {
 
-        DB::table('review_activities')->insert([
-            'activities_id' => $request->activities_id,
-            'first_review_id' => $request->first_review_id,
-            'first_review_value' => $request->first_review_value,
-        ]);
-        // alihkan halaman ke halaman pegawai
-        return redirect('/dashboard');
+        $activity = Activity::find($request->id);
+
+        $activity->first_review_id = $request->first_review_id;
+        $activity->first_value = $request->first_value;
+        $activity->save();
+        
+        if ($activity->second_review_id) {
+        
+            // check first_value and second_value
+            if ($activity->first_value == 'approve' && $activity->second_value == 'approve') {
+                $activity->status = 'approve';
+            } else {
+                $activity->status = 'rejected';
+            }
+        
+        } else {
+            $activity->status = 'pending';
+        }
+        
+
+        
+        $activity->save();
+    
+
+        return redirect('/toll');
     }
 
+    public function approve_pengecekanit(Request $request, $id)
+    {
+        // dd($request);
+
+        $activity = Activity::find($request->id);
+
+        $activity->second_review_id = $request->second_review_id;
+        $activity->second_value = $request->second_value;
+        $activity->save();
+
+        if ($activity->first_review_id) {
+        
+            // check first_value and second_value
+            if ($activity->first_value == 'approve' && $activity->second_value == 'approve') {
+                $activity->status = 'approve';
+            } else {
+                $activity->status = 'rejected';
+            }
+        
+        } else {
+            $activity->status = 'pending';
+        }
+        
+        $activity->save();
 
 
-    // public function approve_atasanit(Request $request, $id)
-    // {
+        return redirect('/toll');
+    }
 
-    //     $activity = Activity::find($request->id);
+    public function rejected_atasanit(Request $request, $id)
+    {
+        $activity = Activity::find($request->id);
 
-    //     $activity->first_review_id = $request->first_review_id;
-    //     $activity->save();
+        $activity->first_review_id = $request->first_review_id;
+        $activity->first_value = $request->first_value;
+        $activity->save();
 
-    //     if ($activity->second_review_id) {
-    //         $activity->status = 'approve';
-    //     } else {
-    //         $activity->status = 'pending';
-    //     }
-    //     $activity->save();
+        if ($activity->second_review_id) {
+        
+            // check first_value and second_value
+            if ($activity->first_value == 'approve' && $activity->second_value == 'approve') {
+                $activity->status = 'approve';
+            } else {
+                $activity->status = 'rejected';
+            }
+        
+        } else {
+            $activity->status = 'pending';
+        }
+        
+        $activity->save();
+        
 
-    //     return redirect('/toll');
-    // }
+        return redirect('/toll');
+    }
+    
 
-    // public function approve_pengecekanit(Request $request, $id)
-    // {
-    //     // dd($request);
+    public function rejected_pengecekanit(Request $request, $id)
+    {
+        $activity = Activity::find($request->id);
 
-    //     $activity = Activity::find($request->id);
+        $activity->second_review_id = $request->second_review_id;
+        $activity->second_value = $request->second_value;
+        $activity->save();
 
-    //     $activity->second_review_id = $request->second_review_id;
-    //     $activity->save();
-
-    //     if ($activity->first_review_id) {
-    //         $activity->status = 'approve';
-    //     } else {
-    //         $activity->status = 'pending';
-    //     }
-    //     $activity->save();
-
-
-    //     return redirect('/toll');
-    // }
-
-    // public function rejected_atasanit(Request $request, $id)
-    // {
-    //     $activity = Activity::find($request->id);
-
-    //     $activity->first_review_id = $request->first_review_id;
-    //     $activity->save();
-
-    //     if ($activity->second_review_id) {
-    //         $activity->status = 'approve';
-    //     } else {
-    //         $activity->status = 'pending';
-    //     }
-    //     $activity->save();
-
-    //     return redirect('/toll');
-    // }
-
-    // public function rejected_pengecekanit(Request $request, $id)
-    // {
-    //     $activity = Activity::find($request->id);
-
-    //     $activity->second_review_id = $request->second_review_id;
-    //     $activity->save();
-
-    //     if ($activity->first_review_id) {
-    //         $activity->status = 'approve';
-    //     } else {
-    //         $activity->status = 'pending';
-    //     }
-    //     $activity->save();
+        if ($activity->first_review_id) {
+        
+            // check first_value and second_value
+            if ($activity->first_value == 'approve' && $activity->second_value == 'approve') {
+                $activity->status = 'approve';
+            } else {
+                $activity->status = 'rejected';
+            }
+        
+        } else {
+            $activity->status = 'pending';
+        }
 
 
-    //     return redirect('/toll');
-    // }
+        return redirect('/toll');
+    }
+    
 
 
     // public function rejected(Request $request, $id)
@@ -402,7 +429,7 @@ class ActivityController extends Controller
         $selected_value = $request->lokasi;
 
         if ($request->has('search') || $selected_value) {
-            $histori = DB::table('activities')
+            $histori = Activity::with('user')
                 ->where(function ($query) use ($request, $selected_value) {
                     $query->where('kategori_activity', 'Toll')
                         ->whereIn('status', ['approve', 'rejected']);
@@ -419,7 +446,7 @@ class ActivityController extends Controller
 
             session()->put('toll', $histori);
         } else {
-            $histori = DB::table('activities')
+            $histori = Activity::with('user')
                 ->where('kategori_activity', 'Toll')
                 ->whereIn('status', ['approve', 'rejected'])
                 // ->orWhere('status', '=', 'rejected')
