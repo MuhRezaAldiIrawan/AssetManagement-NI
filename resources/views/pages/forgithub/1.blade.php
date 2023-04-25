@@ -6,3 +6,4 @@ lima
 enam
 tujuh
 delapam
+sembilan
