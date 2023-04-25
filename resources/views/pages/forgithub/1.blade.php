@@ -5,3 +5,4 @@ empat
 lima
 enam
 tujuh
+delapam
