@@ -365,10 +365,10 @@ class ActivityController extends Controller
         if ($activity->second_review_id) {
         
             // check first_value and second_value
-            if ($activity->first_value == 'approve' && $activity->second_value == 'approve') {
-                $activity->status = 'approve';
-            } else {
+            if ($activity->first_value == 'rejected' && $activity->second_value == 'rejected') {
                 $activity->status = 'rejected';
+            } else {
+                $activity->status = 'approve';
             }
         
         } else {
@@ -393,10 +393,10 @@ class ActivityController extends Controller
         if ($activity->first_review_id) {
         
             // check first_value and second_value
-            if ($activity->first_value == 'approve' && $activity->second_value == 'approve') {
-                $activity->status = 'approve';
-            } else {
+            if ($activity->first_value == 'rejected' && $activity->second_value == 'rejected') {
                 $activity->status = 'rejected';
+            } else {
+                $activity->status = 'approve';
             }
         
         } else {
