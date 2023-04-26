@@ -309,7 +309,12 @@ class ActivityController extends Controller
             // check first_value and second_value
             if ($activity->first_value == 'approve' && $activity->second_value == 'approve') {
                 $activity->status = 'approve';
-            } else {
+            } elseif ($activity->first_value == 'approve' && $activity->second_value == 'rejected') {
+                $activity->status = 'rejected';
+            } elseif ($activity->first_value == 'rejected' && $activity->second_value == 'approve') {
+                $activity->status = 'rejected';
+            } 
+            else {
                 $activity->status = 'rejected';
             }
         
@@ -340,7 +345,12 @@ class ActivityController extends Controller
             // check first_value and second_value
             if ($activity->first_value == 'approve' && $activity->second_value == 'approve') {
                 $activity->status = 'approve';
-            } else {
+            }elseif ($activity->first_value == 'approve' && $activity->second_value == 'rejected') {
+                $activity->status = 'rejected';
+            } elseif ($activity->first_value == 'rejected' && $activity->second_value == 'approve') {
+                $activity->status = 'rejected';
+            } 
+             else {
                 $activity->status = 'rejected';
             }
         
@@ -367,7 +377,12 @@ class ActivityController extends Controller
             // check first_value and second_value
             if ($activity->first_value == 'rejected' && $activity->second_value == 'rejected') {
                 $activity->status = 'rejected';
-            } else {
+            }elseif ($activity->first_value == 'approve' && $activity->second_value == 'rejected') {
+                $activity->status = 'rejected';
+            } elseif ($activity->first_value == 'rejected' && $activity->second_value == 'approve') {
+                $activity->status = 'rejected';
+            }  
+            else {
                 $activity->status = 'approve';
             }
         
@@ -395,7 +410,12 @@ class ActivityController extends Controller
             // check first_value and second_value
             if ($activity->first_value == 'rejected' && $activity->second_value == 'rejected') {
                 $activity->status = 'rejected';
-            } else {
+            }elseif ($activity->first_value == 'approve' && $activity->second_value == 'rejected') {
+                $activity->status = 'rejected';
+            } elseif ($activity->first_value == 'rejected' && $activity->second_value == 'approve') {
+                $activity->status = 'rejected';
+            } 
+            else {
                 $activity->status = 'approve';
             }
         
