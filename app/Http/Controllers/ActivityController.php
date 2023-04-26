@@ -302,7 +302,7 @@ class ActivityController extends Controller
 
         $activity->first_review_id = $request->first_review_id;
         $activity->first_value = $request->first_value;
-        $activity->save();
+        $activity->save();     
         
         if ($activity->second_review_id) {
         
@@ -327,7 +327,7 @@ class ActivityController extends Controller
         $activity->save();
     
 
-        return redirect('/toll');
+        
     }
 
     public function approve_pengecekanit(Request $request, $id)
@@ -404,6 +404,7 @@ class ActivityController extends Controller
         $activity->second_review_id = $request->second_review_id;
         $activity->second_value = $request->second_value;
         $activity->save();
+
 
         if ($activity->first_review_id) {
         
