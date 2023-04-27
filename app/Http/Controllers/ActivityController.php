@@ -565,7 +565,7 @@ class ActivityController extends Controller
 
         $date = Carbon::now();
 
-        $activitydetail = DB::table('activities')->where('id', '=', $id)->get();
+        $activitydetail = Activity::with('user')->where('id', '=', $id)->get();
 
         return view('pages.activity.subpages.print.detailprint', ['activitydetail' => $activitydetail, 'date' => $date], compact('title'));
 
@@ -579,7 +579,7 @@ class ActivityController extends Controller
 
         $date = Carbon::now();
 
-        $activitydetailpengembangan = DB::table('activities')->where('id', '=', $id)->get();
+        $activitydetailpengembangan = Activity::with('user')->where('id', '=', $id)->get();
 
         return view('pages.activity.subpages.print.pengembanganprint', ['activitydetailpengembangan' => $activitydetailpengembangan, 'date' => $date], compact('title'));
     }

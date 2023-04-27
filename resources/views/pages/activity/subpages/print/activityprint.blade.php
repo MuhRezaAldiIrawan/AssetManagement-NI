@@ -76,7 +76,7 @@
         @php $i=1 @endphp
         @foreach ($printactivity as $l)
             <tbody>
-                <td>{{ $i++ }}</td>
+                <td align="center">{{ $i++ }}</td>
                 <td>
                     @foreach(explode(',', $l->j_hardware) as $hardware)
                     {{$hardware}} <br>
@@ -86,7 +86,7 @@
                 <td>{{ $l->u_hardware }}</td>
                 <td></td>
                 <td></td>
-                <td>{{ $l->user->nama }}</td>
+                <td align="center">{{ $l->user->nama }}</td>
             </tbody>
         @endforeach
     </table>

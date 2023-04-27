@@ -239,7 +239,7 @@
         </thead>
     </table>
     <br>
-
+    @foreach ($activitydetail as $activity)
     <table border="1" width=100%>
         <thead>
             <th width=25%>*Mengetahui (Atasan IT)</th>
@@ -250,15 +250,16 @@
             <tr height="100px">
                 <th width="25%"><img style="width: 100px;" src="{{ asset('img/ttd/625520090e70c.png') }}" alt=""></th>
                 <th width="25%"><img style="width: 100px;" src="{{ asset('img/ttd/626b0a3ec261f.png') }}" alt=""></th>
-                <th width="25%"><img style="width: 100px;" src="{{ asset('img/ttd/626b0a3ec261f.png') }}" alt=""></th>
+                <th width="25%"><img style="width: 100px;" src="{{ asset('storage/' . auth()->user()->ttd) }}"></th>
             </tr>
             <tr>
-                <th width=25%>Nama : Mahuri Said</th>
-                <th width=25%>Nama : Anwar</th>
-                <th width=25%>Nama : Anwar</th>
+                <th width=25%>{{ $activity->first_review_id }}</th>
+                <th width=25%>{{ $activity->second_review_id }}</th>
+                <th width=25%>{{ auth()->user()->nama }}</th>
             </tr>
         </tbody>
     </table>
+    @endforeach
     <br>
     <table border="0" width=100%>
         <tbody>

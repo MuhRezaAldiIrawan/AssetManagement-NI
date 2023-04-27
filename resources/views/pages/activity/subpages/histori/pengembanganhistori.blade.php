@@ -83,6 +83,12 @@
                                         data-bs-target="#basicModalDetail{{ $t->id }}">
                                         <span class="tf-icons bx bx-detail"></span>&nbsp; Details
                                     </button>
+                                    <a href="/print_detail_pengembangan/{{ $t->id }}"
+                                        target="_blank">
+                                        <button type="button" class="btn btn-secondary m-1">
+                                            <span class="tf-icons bx bx-printer"></span>&nbsp; Print
+                                        </button>
+                                    </a>
 
                                     <!-- View Modal -->
                                     <div class="modal fade" id="basicModalView{{ $t->id }}" tabindex="-1"
