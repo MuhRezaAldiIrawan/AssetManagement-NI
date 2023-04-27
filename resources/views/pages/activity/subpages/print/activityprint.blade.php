@@ -86,7 +86,7 @@
                 <td>{{ $l->u_hardware }}</td>
                 <td></td>
                 <td></td>
-                <td>{{ $l->user_id }}</td>
+                <td>{{ $l->user->nama }}</td>
             </tbody>
         @endforeach
     </table>

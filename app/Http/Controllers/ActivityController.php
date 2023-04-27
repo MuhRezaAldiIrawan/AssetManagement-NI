@@ -309,9 +309,7 @@ class ActivityController extends Controller
             // check first_value and second_value
             if ($activity->first_value == 'approve' && $activity->second_value == 'approve') {
                 $activity->status = 'approve';
-            } elseif ($activity->first_value == 'approve' && $activity->second_value == 'rejected') {
-                $activity->status = 'rejected';
-            } elseif ($activity->first_value == 'rejected' && $activity->second_value == 'approve') {
+            } elseif ($activity->first_value == 'approve' && $activity->second_value == 'rejected' || $activity->first_value == 'rejected' && $activity->second_value == 'approve' ) {
                 $activity->status = 'rejected';
             } 
             else {
@@ -326,7 +324,7 @@ class ActivityController extends Controller
         
         $activity->save();
     
-
+        return redirect('/toll');
         
     }
 
@@ -345,12 +343,10 @@ class ActivityController extends Controller
             // check first_value and second_value
             if ($activity->first_value == 'approve' && $activity->second_value == 'approve') {
                 $activity->status = 'approve';
-            }elseif ($activity->first_value == 'approve' && $activity->second_value == 'rejected') {
+            }elseif ($activity->first_value == 'approve' && $activity->second_value == 'rejected' || $activity->first_value == 'rejected' && $activity->second_value == 'approve' ) {
                 $activity->status = 'rejected';
-            } elseif ($activity->first_value == 'rejected' && $activity->second_value == 'approve') {
-                $activity->status = 'rejected';
-            } 
-             else {
+            }
+            else {
                 $activity->status = 'rejected';
             }
         
@@ -377,11 +373,9 @@ class ActivityController extends Controller
             // check first_value and second_value
             if ($activity->first_value == 'rejected' && $activity->second_value == 'rejected') {
                 $activity->status = 'rejected';
-            }elseif ($activity->first_value == 'approve' && $activity->second_value == 'rejected') {
+            }elseif ($activity->first_value == 'approve' && $activity->second_value == 'rejected' || $activity->first_value == 'rejected' && $activity->second_value == 'approve') {
                 $activity->status = 'rejected';
-            } elseif ($activity->first_value == 'rejected' && $activity->second_value == 'approve') {
-                $activity->status = 'rejected';
-            }  
+            }
             else {
                 $activity->status = 'approve';
             }
@@ -411,9 +405,7 @@ class ActivityController extends Controller
             // check first_value and second_value
             if ($activity->first_value == 'rejected' && $activity->second_value == 'rejected') {
                 $activity->status = 'rejected';
-            }elseif ($activity->first_value == 'approve' && $activity->second_value == 'rejected') {
-                $activity->status = 'rejected';
-            } elseif ($activity->first_value == 'rejected' && $activity->second_value == 'approve') {
+            }elseif ($activity->first_value == 'approve' && $activity->second_value == 'rejected' || $activity->first_value == 'rejected' && $activity->second_value == 'approve') {
                 $activity->status = 'rejected';
             } 
             else {
@@ -599,7 +591,7 @@ class ActivityController extends Controller
 
         $date = Carbon::now();
 
-        $printactivity = DB::table('activities')->whereBetween('tanggal', [$startdate, $enddate])
+        $printactivity =Activity::with('user')->whereBetween('tanggal', [$startdate, $enddate])
             ->where('kategori_activity', '=', 'Toll')
             ->latest()
             ->get();
