@@ -45,6 +45,16 @@ class Activity extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function firstreview()
+    {
+        return $this->belongsTo(User::class, 'first_review_id');
+    }
+
+    public function secondreview()
+    {
+        return $this->belongsTo(User::class, 'second_review_id');
+    }
+
 
     public function lokasi()
     {

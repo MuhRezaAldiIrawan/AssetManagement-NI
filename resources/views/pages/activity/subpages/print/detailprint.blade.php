@@ -248,13 +248,13 @@
         </thead>
         <tbody>
             <tr height="100px">
-                <th width="25%"><img style="width: 100px;" src="{{ asset('img/ttd/625520090e70c.png') }}" alt=""></th>
-                <th width="25%"><img style="width: 100px;" src="{{ asset('img/ttd/626b0a3ec261f.png') }}" alt=""></th>
+                <th width="25%"><img style="width: 100px;" src="{{ asset('storage/' . $activity->firstreview->ttd) }}" alt=""></th>
+                <th width="25%"><img style="width: 100px;" src="{{ asset('storage/' . $activity->secondreview->ttd) }}" alt=""></th>
                 <th width="25%"><img style="width: 100px;" src="{{ asset('storage/' . auth()->user()->ttd) }}"></th>
             </tr>
             <tr>
-                <th width=25%>{{ $activity->first_review_id }}</th>
-                <th width=25%>{{ $activity->second_review_id }}</th>
+                <th width=25%>{{ $activity->firstreview->nama }}</th>
+                <th width=25%>{{ $activity->secondreview->nama }}</th>
                 <th width=25%>{{ auth()->user()->nama }}</th>
             </tr>
         </tbody>
