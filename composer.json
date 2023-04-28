@@ -14,6 +14,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "maatwebsite/excel": "^1.1",
+        "maennchen/zipstream-php": "3.0.2",
         "realrashid/sweet-alert": "^6.0"
     },
     "require-dev": {
