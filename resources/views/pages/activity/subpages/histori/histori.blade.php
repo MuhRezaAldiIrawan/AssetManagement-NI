@@ -18,7 +18,8 @@
                 <div class="col-md-6">
                     <div class="demo-inline-spacing">
                         <div class="d-flex justify-content-end">
-                            <button type="button" class="btn btn-icon btn-secondary m-1">
+                            <button type="button" class="btn btn-icon btn-secondary m-1" data-bs-toggle="modal"
+                                data-bs-target="#modalCenter">
                                 <span class="tf-icons bx bx-printer"></span>
                             </button>
                         </div>
@@ -27,26 +28,26 @@
             </div>
             <div class="card-body">
 
-                @if('/tollhistori' )
-                <form action="/tollhistori" method="get">
-                    <div class="row g-2">
-                        <div class="col mb-0">
-                            <select id="cari" name="search" class="form-select">
-                                <option value="" selected>Semua Lokasi</option>
-                                @foreach ($lokasi as $l)
-                                    <option>{{ $l->nama }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col mb-0">
-                            <div class="demo-inline-spacing">
-                                <button type="submit" class="btn btn-primary" value="CARI">
-                                    <span class="tf-icons bx bx-search"></span>&nbsp; Search
-                                </button>
+                @if ('/tollhistori')
+                    <form action="/tollhistori" method="get">
+                        <div class="row g-2">
+                            <div class="col mb-0">
+                                <select id="cari" name="search" class="form-select">
+                                    <option value="" selected>Semua Lokasi</option>
+                                    @foreach ($lokasi as $l)
+                                        <option>{{ $l->nama }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col mb-0">
+                                <div class="demo-inline-spacing">
+                                    <button type="submit" class="btn btn-primary" value="CARI">
+                                        <span class="tf-icons bx bx-search"></span>&nbsp; Search
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </form>      
+                    </form>
                 @endif
 
                 <div class="table-responsive text-nowrap mt-3">
@@ -106,7 +107,8 @@
                                                 <div class="modal-body d-flex justify-content-center align-items-center">
                                                     <div class="col-sm-6 col-lg-12 mb-4 ">
                                                         <div class="card">
-                                                            <div style="overflow:scroll; max-height: 500px; max-width: 1000px  ">
+                                                            <div
+                                                                style="overflow:scroll; max-height: 500px; max-width: 1000px  ">
                                                                 <img src="{{ asset('storage/' . $t->foto) }}"
                                                                     alt="" class="img-fluid">
                                                             </div>
@@ -214,7 +216,8 @@
                                                                         data-bs-parent="#accordionIcon">
                                                                         <div class="accordion-body">
                                                                             <p>{{ $t->s_aplikasi }}</p>
-                                                                            <p style="display: table-cell;">{{ $t->u_aplikasi }}</p>
+                                                                            <p style="display: table-cell;">
+                                                                                {{ $t->u_aplikasi }}</p>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -274,6 +277,43 @@
                             </tbody>
                         @endforeach
                     </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Print Activity -->
+    <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalCenterTitle">Print Activity</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-2">
+                        <div class="col mb-0">
+                            <label for="startdate" class="form-label">Start Date</label>
+                            <input type="date" id="startdate" name="startdate" class="form-control"
+                                placeholder="Tanggal Mulai" />
+                        </div>
+                        <div class="col mb-0">
+                            <label for="enddate" class="form-label">End Date</label>
+                            <input type="date" id="enddate" name="enddate" class="form-control"
+                                placeholder="Tanggal Berakhir" />
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                            Close
+                        </button>
+                        <a href=""
+                            onclick="this.href='/print_activity_toll/' + document.getElementById('startdate').value + '/' + document.getElementById('enddate').value "
+                            target="_blank">
+                            <button type="submit" class="btn btn-primary">Cetak Data</button>
+                        </a>
+
+                    </div>
                 </div>
             </div>
         </div>
