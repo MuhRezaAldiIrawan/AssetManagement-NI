@@ -7,3 +7,4 @@ enam
 tujuh
 delapam
 sembilan
+ten
