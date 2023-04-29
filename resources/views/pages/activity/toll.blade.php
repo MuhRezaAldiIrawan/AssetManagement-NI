@@ -76,7 +76,7 @@
                     @include('components.emptyfield')
                 @else
                     <div class="table-responsive text-nowrap mt-3">
-                        <table class="table table-bordered table-striped  table-hover display" width="1000px">
+                        <table class="table table-bordered table-striped  table-hover display" width="1000px" id="tbl_list">
                             <thead>
                                 <tr class="text-wrap">
                                     <th class="text-center">No</th>
@@ -89,7 +89,10 @@
                                     <th class="text-center" width="21%">Action</th>
                                 </tr>
                             </thead>
-                            @foreach ($toll as $t)
+                            <tbody>
+
+                            </tbody>
+                            {{-- @foreach ($toll as $t)
                                 <tbody>
                                     <td>{{ ++$i }}</td>
                                     <td>{{ $t->tanggal }}</td>
@@ -138,7 +141,7 @@
                                         </div>
                                     </td>
                                 </tbody>
-                            @endforeach
+                            @endforeach --}}
                 @endif
                 </table>
             </div>
@@ -186,3 +189,4 @@
         </div>
     </div>
 @endsection
+

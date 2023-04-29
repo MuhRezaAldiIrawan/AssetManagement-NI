@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Carbon;
 
+
+
 use App\Models\lokasi;
 
 class ActivityController extends Controller
@@ -25,6 +27,7 @@ class ActivityController extends Controller
 
         $selected_value = $request->lokasi;
 
+   
 
         if ($request->has('search') || $selected_value) {
             $toll = Activity::with('user')
@@ -51,7 +54,7 @@ class ActivityController extends Controller
                 ->latest()
                 ->paginate($pagination);
         }
-        // dd($user);
+
 
         return view('pages.activity.toll', [
             'toll' => $toll,
