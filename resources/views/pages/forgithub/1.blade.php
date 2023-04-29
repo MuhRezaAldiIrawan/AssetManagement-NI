@@ -9,3 +9,4 @@ delapam
 sembilan
 ten
 sebelas
+duabelas
