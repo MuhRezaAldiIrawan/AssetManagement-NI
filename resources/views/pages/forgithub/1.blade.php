@@ -8,3 +8,4 @@ tujuh
 delapam
 sembilan
 ten
+sebelas
