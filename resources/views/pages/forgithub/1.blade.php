@@ -10,3 +10,4 @@ sembilan
 ten
 sebelas
 duabelas
+tigabelas
