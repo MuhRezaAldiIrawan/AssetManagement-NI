@@ -11,3 +11,4 @@ ten
 sebelas
 duabelas
 tigabelas
+empatbelas
