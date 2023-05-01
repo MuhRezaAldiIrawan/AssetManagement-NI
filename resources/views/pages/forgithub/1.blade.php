@@ -15,3 +15,4 @@ empatbelas
 limabelas
 enambelas
 tujuhbelas
+delapanbelas
