@@ -14,3 +14,4 @@ tigabelas
 empatbelas
 limabelas
 enambelas
+tujuhbelas
