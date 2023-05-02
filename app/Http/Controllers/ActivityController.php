@@ -10,6 +10,9 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Carbon;
+use Session;
+use App\Imports\ActivityImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 
@@ -27,7 +30,7 @@ class ActivityController extends Controller
 
         $selected_value = $request->lokasi;
 
-   
+
 
         if ($request->has('search') || $selected_value) {
             $toll = Activity::with('user')
@@ -305,30 +308,27 @@ class ActivityController extends Controller
 
         $activity->first_review_id = $request->first_review_id;
         $activity->first_value = $request->first_value;
-        $activity->save();     
-        
+        $activity->save();
+
         if ($activity->second_review_id) {
-        
+
             // check first_value and second_value
             if ($activity->first_value == 'approve' && $activity->second_value == 'approve') {
                 $activity->status = 'approve';
-            } elseif ($activity->first_value == 'approve' && $activity->second_value == 'rejected' || $activity->first_value == 'rejected' && $activity->second_value == 'approve' ) {
+            } elseif ($activity->first_value == 'approve' && $activity->second_value == 'rejected' || $activity->first_value == 'rejected' && $activity->second_value == 'approve') {
                 $activity->status = 'rejected';
-            } 
-            else {
+            } else {
                 $activity->status = 'rejected';
             }
-        
         } else {
             $activity->status = 'pending';
         }
-        
 
-        
+
+
         $activity->save();
-    
+
         return redirect('/toll');
-        
     }
 
     public function approve_pengecekanit(Request $request, $id)
@@ -342,21 +342,19 @@ class ActivityController extends Controller
         $activity->save();
 
         if ($activity->first_review_id) {
-        
+
             // check first_value and second_value
             if ($activity->first_value == 'approve' && $activity->second_value == 'approve') {
                 $activity->status = 'approve';
-            }elseif ($activity->first_value == 'approve' && $activity->second_value == 'rejected' || $activity->first_value == 'rejected' && $activity->second_value == 'approve' ) {
+            } elseif ($activity->first_value == 'approve' && $activity->second_value == 'rejected' || $activity->first_value == 'rejected' && $activity->second_value == 'approve') {
+                $activity->status = 'rejected';
+            } else {
                 $activity->status = 'rejected';
             }
-            else {
-                $activity->status = 'rejected';
-            }
-        
         } else {
             $activity->status = 'pending';
         }
-        
+
         $activity->save();
 
 
@@ -372,27 +370,25 @@ class ActivityController extends Controller
         $activity->save();
 
         if ($activity->second_review_id) {
-        
+
             // check first_value and second_value
             if ($activity->first_value == 'rejected' && $activity->second_value == 'rejected') {
                 $activity->status = 'rejected';
-            }elseif ($activity->first_value == 'approve' && $activity->second_value == 'rejected' || $activity->first_value == 'rejected' && $activity->second_value == 'approve') {
+            } elseif ($activity->first_value == 'approve' && $activity->second_value == 'rejected' || $activity->first_value == 'rejected' && $activity->second_value == 'approve') {
                 $activity->status = 'rejected';
-            }
-            else {
+            } else {
                 $activity->status = 'approve';
             }
-        
         } else {
             $activity->status = 'pending';
         }
-        
+
         $activity->save();
-        
+
 
         return redirect('/toll');
     }
-    
+
 
     public function rejected_pengecekanit(Request $request, $id)
     {
@@ -404,17 +400,15 @@ class ActivityController extends Controller
 
 
         if ($activity->first_review_id) {
-        
+
             // check first_value and second_value
             if ($activity->first_value == 'rejected' && $activity->second_value == 'rejected') {
                 $activity->status = 'rejected';
-            }elseif ($activity->first_value == 'approve' && $activity->second_value == 'rejected' || $activity->first_value == 'rejected' && $activity->second_value == 'approve') {
+            } elseif ($activity->first_value == 'approve' && $activity->second_value == 'rejected' || $activity->first_value == 'rejected' && $activity->second_value == 'approve') {
                 $activity->status = 'rejected';
-            } 
-            else {
+            } else {
                 $activity->status = 'approve';
             }
-        
         } else {
             $activity->status = 'pending';
         }
@@ -422,7 +416,7 @@ class ActivityController extends Controller
 
         return redirect('/toll');
     }
-    
+
 
 
     // public function rejected(Request $request, $id)
@@ -594,7 +588,7 @@ class ActivityController extends Controller
 
         $date = Carbon::now();
 
-        $printactivity =Activity::with('user')->whereBetween('tanggal', [$startdate, $enddate])
+        $printactivity = Activity::with('user')->whereBetween('tanggal', [$startdate, $enddate])
             ->where('kategori_activity', '=', 'Toll')
             ->latest()
             ->get();
@@ -633,5 +627,30 @@ class ActivityController extends Controller
 
 
         return view('pages.activity.subpages.print.activityprint', ['printactivity' => $printactivity, 'date' => $date], compact('title'));
+    }
+
+    public function import_excel(Request $request)
+    {
+        // validasi
+        $this->validate($request, [
+            'user_id' => 'required',
+            'file' => 'required|mimes:csv,xls,xlsx'
+        ]);
+
+        // menangkap file excel
+        $user_id = $request->input('user_id');
+        $file = $request->file('file');
+
+        // membuat nama file unik
+        $nama_file = rand() . $file->getClientOriginalName();
+
+
+        $file->move('file_import', $nama_file);
+
+      
+        Excel::import(new ActivityImport($user_id), public_path('/file_import/' . $nama_file));
+
+        Alert::success('Success', 'Data Excel telah berhasil di Import');
+        return redirect('/toll');
     }
 }

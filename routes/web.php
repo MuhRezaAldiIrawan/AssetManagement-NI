@@ -78,14 +78,15 @@ Route::group(['middleware' => ['auth', 'CekRole:superadmin,user,atasan it,it']],
     Route::get('/print_activity_nontoll/{startdate}/{enddate}', 'App\Http\Controllers\ActivityController@print_activity_nontoll');
     Route::get('/print_activity_pengembangan/{startdate}/{enddate}', 'App\Http\Controllers\ActivityController@print_activity_pengembangan');
 
-    // Route::get('/toll/cari','App\Http\Controllers\pages@cari');
-
     //Barang
     Route::get('/listbarang', 'App\Http\Controllers\BarangController@listbarang');
     Route::post('/listbarang', 'App\Http\Controllers\BarangController@addbarang');
     Route::get('/logbarang', 'App\Http\Controllers\BarangController@logbarang');
     Route::post('/listbarang/tambahstock/{id}', 'App\Http\Controllers\BarangController@updatestock');
     Route::post('/listbarang/kurangstock/{id}', 'App\Http\Controllers\BarangController@minusstock');
+
+    //Export & Import
+    Route::post('/toll/import_excel', 'App\Http\Controllers\ActivityController@import_excel');
 
 });
 
