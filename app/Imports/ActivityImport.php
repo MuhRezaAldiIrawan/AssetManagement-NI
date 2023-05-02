@@ -4,11 +4,11 @@ namespace App\Imports;
 
 use App\Models\Activity;
 use Maatwebsite\Excel\Concerns\ToModel;
-// use Carbon;
-use Carbon\Carbon;
-// use App\Imports\ToModel;
+use Illuminate\Support\Carbon;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class ActivityImport implements ToModel
+
+class ActivityImport implements ToModel,WithHeadingRow
 {
     /**
     * @param array $row
@@ -21,23 +21,23 @@ class ActivityImport implements ToModel
         $user = auth()->user();
         return new Activity([
             'user_id'=> $user->id,
-            'kategori_activity' => $row[1],
-            'tanggal' => Carbon::parse($row[2])->format('Y-m-d H:i:s'), 
-            'j_hardware' => $row[3], 
-            'u_hardware' => $row[4],
-            'gto ' => $row[5], 
-            'u_gto' => $row[6], 
-            's_aplikasi' => $row[7],
-            'u_aplikasi' => $row[8], 
-            'a_it' => $row[9], 
-            'u_it' => $row[10],
-            'catatan' => $row[11], 
-            'shift' => $row[12], 
-            'lokasi' => $row[13],
-            'kategori' => $row[14], 
-            'kondisi_akhir' => $row[15], 
-            'biaya' => $row[16],
-            'status' => $row[17],
+            'kategori_activity' => $row['kategori_activity'],
+            'tanggal' => Carbon::parse($row['tanggal'])->format('Y-m-d H:i:s'), 
+            'j_hardware' => $row['j_hardware'], 
+            'u_hardware' => $row[ 'u_hardware'],
+            'gto' => $row['gto'], 
+            'u_gto' => $row['u_gto'], 
+            's_aplikasi' => $row['s_aplikasi'],
+            'u_aplikasi' => $row['u_aplikasi'], 
+            'a_it' => $row['a_it'], 
+            'u_it' => $row['u_it'],
+            'catatan' => $row['catatan'], 
+            'shift' => $row['shift'], 
+            'lokasi' => $row['lokasi'],
+            'kategori' => $row['kategori'], 
+            'kondisi_akhir' => $row['kondisi_akhir'], 
+            'biaya' => $row['biaya'],
+            'status' => $row['status'],
         ]);
     }
 }
