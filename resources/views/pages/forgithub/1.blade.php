@@ -16,3 +16,4 @@ limabelas
 enambelas
 tujuhbelas
 delapanbelas
+sembilan belas
