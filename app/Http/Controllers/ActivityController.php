@@ -654,4 +654,7 @@ class ActivityController extends Controller
 	{
 		return Excel::download(new ActivityExport, 'Activity.xlsx');
 	}
+
+
+    
 }

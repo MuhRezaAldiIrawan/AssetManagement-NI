@@ -17,8 +17,13 @@
                         <div class="row g-0">
                             @foreach ($activitydetail as $d)
                                 <div class="col-md-4 d-flex justify-content-center align-items-center">
-                                    <img class="card-img card-img-left" src="{{ asset('storage/' . $d->foto) }}"
-                                        style="width:250px" alt="Card image" />
+                                    @if ($d->foto)
+                                        <img class="card-img card-img-left" src="{{ asset('storage/' . $d->foto) }}"
+                                            style="width:250px" alt="Card image" />
+                                    @else
+                                        <img src="{{ asset('img/Logo/mun.png') }}" alt=""
+                                            style="max-height: 200px; width: 180px">
+                                    @endif
                                 </div>
                             @endforeach
                             <div class="col-lg">

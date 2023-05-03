@@ -5,6 +5,7 @@ namespace App\Exports;
 use App\Models\Activity;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
+
 class ActivityExport implements FromCollection
 {
     /**
@@ -14,4 +15,6 @@ class ActivityExport implements FromCollection
     {
         return Activity::all();
     }
+
+    
 }
