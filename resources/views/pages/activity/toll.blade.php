@@ -189,6 +189,6 @@
         </div>
     </div>
 
-    @include('components.import & export.import')
+    @include('components.import.import')
 
 @endsection

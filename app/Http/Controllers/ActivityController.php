@@ -5,14 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Activity;
 use App\Models\Kategori;
-use App\Models\ReviewActivity;
-use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Carbon;
-use Session;
 use App\Imports\ActivityImport;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ActivityExport;
+
 
 
 
@@ -637,20 +636,22 @@ class ActivityController extends Controller
             'file' => 'required|mimes:csv,xls,xlsx'
         ]);
 
-        // menangkap file excel
         $user_id = $request->input('user_id');
         $file = $request->file('file');
 
-        // membuat nama file unik
         $nama_file = rand() . $file->getClientOriginalName();
 
 
         $file->move('file_import', $nama_file);
 
-      
         Excel::import(new ActivityImport($user_id), public_path('/file_import/' . $nama_file));
 
         Alert::success('Success', 'Data Excel telah berhasil di Import');
         return redirect('/toll');
     }
+
+    public function export_excel()
+	{
+		return Excel::download(new ActivityExport, 'Activity.xlsx');
+	}
 }

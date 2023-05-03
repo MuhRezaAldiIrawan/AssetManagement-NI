@@ -5,6 +5,7 @@ namespace App\Imports;
 use App\Models\Activity;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Illuminate\Support\Carbon;
+// use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
 
@@ -21,8 +22,8 @@ class ActivityImport implements ToModel,WithHeadingRow
         $user = auth()->user();
         return new Activity([
             'user_id'=> $user->id,
-            'kategori_activity' => $row['kategori_activity'],
-            'tanggal' => Carbon::parse($row['tanggal'])->format('Y-m-d H:i:s'), 
+            'kategori_activity' => $row['kategori_activity'],    
+            'tanggal' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[ 'tanggal']),
             'j_hardware' => $row['j_hardware'], 
             'u_hardware' => $row[ 'u_hardware'],
             'gto' => $row['gto'], 

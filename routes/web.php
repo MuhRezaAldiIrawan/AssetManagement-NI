@@ -87,6 +87,7 @@ Route::group(['middleware' => ['auth', 'CekRole:superadmin,user,atasan it,it']],
 
     //Export & Import
     Route::post('/toll/import_excel', 'App\Http\Controllers\ActivityController@import_excel');
+    Route::get('/toll/export_excel', 'App\Http\Controllers\ActivityController@export_excel');
 
 });
 

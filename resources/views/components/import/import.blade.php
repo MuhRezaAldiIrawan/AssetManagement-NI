@@ -12,10 +12,11 @@
                         data-bs-dismiss="modal">
                         Import Data Excel
                     </button>
-                    <button class="btn btn-success" data-bs-target="#modalToggle2" data-bs-toggle="modal"
-                        data-bs-dismiss="modal">
+                    <a href="/toll/export_excel" target="_blank">
+                        <button class="btn btn-success">
                         Export Data Excel
                     </button>
+                    </a>
                 </div>
             </div>
         </div>
