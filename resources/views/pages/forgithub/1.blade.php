@@ -17,3 +17,4 @@ enambelas
 tujuhbelas
 delapanbelas
 sembilan belas
+dua puluh
