@@ -119,6 +119,11 @@
                             @endforeach
                 @endif
                 </table>
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        {{ $nontoll->links() }}
+                    </ul>
+                </nav>
             </div>
         </div>
     </div>

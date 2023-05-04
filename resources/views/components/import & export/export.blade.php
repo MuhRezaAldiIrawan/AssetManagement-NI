@@ -10,11 +10,11 @@
                 <div class="modal-body d-flex justify-content-around ">
                     <a href="/toll/export_excel" target="_blank">
                         <button class="btn btn-success">
-                            Import Data Excel All Data
+                            Export Data Excel All Data
                         </button>
                     </a>
                     <button class="btn btn-success" data-bs-toggle="modal"
-                        data-bs-target="#modalCenter1">Import Data Excel From Date
+                        data-bs-target="#modalCenter1">Export Data Excel From Date
                     </button>
                 </div>
             </div>

@@ -27,6 +27,28 @@
                                     <span class="tf-icons bx bx-printer"></span>
                                 </button>
                             </a>
+                            <div class="btn-group" id="dropdown-icon-demo">
+                                <button type="button" class="btn btn-icon btn-info m-1 dropdown-toggle hide-arrow"
+                                    data-bs-toggle="dropdown" data-bs-offset="10,20">
+                                    <span class="tf-icons bx bx-export"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center"
+                                            data-bs-toggle="modal" data-bs-target="#modalToggle"><i
+                                                class="bx bxl-microsoft-teams scaleX-n1-rtl m-1"></i>Excel
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center"><i
+                                                class="bx bxs-file-pdf scaleX-n1-rtl m-1"></i>Pdf</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center"><i
+                                                class="bx bxs-file-doc scaleX-n1-rtl m-1"></i>CSV</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -130,6 +152,11 @@
                             </tbody>
                         @endforeach
                     </table>
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            {{ $listbarang->links() }}
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
@@ -181,4 +208,7 @@
             </div>
         </div>
     </div>
+
+    <!-- Import Data Barang -->
+    @include('components.import & export.importbarang')
 @endsection

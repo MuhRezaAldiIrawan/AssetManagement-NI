@@ -7,6 +7,8 @@ use App\Models\Barang;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\BarangImport;
 
 class BarangController extends Controller
 {
@@ -76,5 +78,24 @@ class BarangController extends Controller
         $listbarang = DB::table('barangs')->get();
 
         return view('pages.barang.printlistbarang', ['listbarang' => $listbarang, 'date' => $date], compact('title'))->with('i', ($request->input('page', 1) - 1));
+    }
+
+    public function import_excel(Request $request)
+    {
+        // validasi
+        $this->validate($request, [
+            'file' => 'required|mimes:csv,xls,xlsx'
+        ]);
+
+        $file = $request->file('file');
+
+        $nama_file = rand() . $file->getClientOriginalName();
+
+        $file->move('file_import', $nama_file);
+
+        Excel::import(new BarangImport, public_path('/file_import/' . $nama_file));
+
+        Alert::success('Success', 'Data Excel telah berhasil di Import');
+        return redirect('/listbarang');
     }
 }

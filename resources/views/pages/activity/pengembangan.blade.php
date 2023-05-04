@@ -117,8 +117,13 @@
                                     </td>
                                 </tbody>
                             @endforeach
-                @endif
+                    @endif
                 </table>
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        {{ $pengembangan->links() }}
+                    </ul>
+                </nav>
             </div>
         </div>
     </div>
