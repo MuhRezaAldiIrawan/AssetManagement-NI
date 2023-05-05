@@ -32,7 +32,7 @@ class CreateActivitiesTable extends Migration
             $table->string('kategori');
             $table->text('kondisi_akhir')->nullable();
             $table->string('biaya');
-            $table->string('foto');
+            $table->string('foto')->nullable();
             $table->string('status');
             $table->foreignId('first_review_id')->nullable()->constrained('users');
             $table->foreignId('second_review_id')->nullable()->constrained('users');

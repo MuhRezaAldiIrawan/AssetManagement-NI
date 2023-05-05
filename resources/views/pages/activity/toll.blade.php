@@ -194,8 +194,8 @@
         </div>
     </div>
 
-    @include('components.import & export.import')
+    @include('components.import & export.Activity.import')
 
-    @include('components.import & export.export')
+    @include('components.import & export.Activity.export')
 
 @endsection

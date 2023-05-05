@@ -8,7 +8,8 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Imports\BarangImport;
+use App\Exports\BarangExport;
+
 
 class BarangController extends Controller
 {
@@ -44,7 +45,7 @@ class BarangController extends Controller
     {
         $title = 'MUN | Log Activity Barang';
         $pagination = 10;
-        $logbarang = DB::table('log_activity_barangs')->paginate($pagination);
+        $logbarang = DB::table('log_activity_barangs')->latest()->paginate($pagination);
         foreach ($logbarang as $barang) {
             $barang->tanggal = Carbon::parse($barang->tanggal)->format('d F Y');
         }
@@ -121,4 +122,9 @@ class BarangController extends Controller
 
         return redirect()->back()->with('success', 'Data berhasil diimport.');
     }
+
+    public function export_excel()
+	{
+		return Excel::download(new BarangExport, 'List Barang.xlsx');
+	}
 }

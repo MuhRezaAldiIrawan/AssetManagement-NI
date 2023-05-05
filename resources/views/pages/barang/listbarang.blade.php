@@ -210,5 +210,9 @@
     </div>
 
     <!-- Import Data Barang -->
-    @include('components.import & export.importbarang')
+    @include('components.import & export.Barang.import')
+
+    
+    <!-- Export Data Barang -->
+    @include('components.import & export.Barang.export')
 @endsection

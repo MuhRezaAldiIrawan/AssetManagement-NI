@@ -26,8 +26,8 @@ class ActivityController extends Controller
         $pagination = 10;
         $lokasi = Lokasi::all();
         $kategori = Kategori::all();
-
         $selected_value = $request->lokasi;
+      
 
 
 
@@ -56,6 +56,12 @@ class ActivityController extends Controller
                 ->latest()
                 ->paginate($pagination);
         }
+
+        foreach ($toll as $c) {
+            $c->tanggal = Carbon::parse($c->tanggal)->format('d F Y');
+        }
+
+
 
 
         return view('pages.activity.toll', [
@@ -135,7 +141,9 @@ class ActivityController extends Controller
             $nontoll = Activity::with('user')->where([['kategori_activity', '=', 'NonToll'], ['status', '=', 'pending']])->paginate($pagination);
         }
 
-        // $nontoll = DB::table('activities')->where([['kategori_activity', '=', 'NonToll'],['status', '=', 'pending']])->paginate($pagination);
+        foreach ($nontoll as $c) {
+            $c->tanggal = Carbon::parse($c->tanggal)->format('d F Y');
+        }
 
         return view('pages.activity.nontoll', ['nontoll' => $nontoll, 'lokasi' => $lokasi, 'kategori' => $kategori], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
     }
@@ -233,6 +241,10 @@ class ActivityController extends Controller
                 // ->orWhere('status', '=', 'rejected')
                 ->latest()
                 ->paginate($pagination);
+        }
+
+        foreach ($pengembangan as $c) {
+            $c->tanggal = Carbon::parse($c->tanggal)->format('d F Y');
         }
 
         return view('pages.activity.pengembangan', ['pengembangan' => $pengembangan, 'lokasi' => $lokasi, 'kategori' => $kategori, 'selected_value' => $selected_value], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);;
@@ -416,19 +428,6 @@ class ActivityController extends Controller
         return redirect('/toll');
     }
 
-
-
-    // public function rejected(Request $request, $id)
-    // {
-    //     // dd($request);
-    //     DB::table('activities')->where('id', $id)->update([
-    //         'status' => $request->status,
-
-    //     ]);
-
-    //     return redirect('/dashboard');
-    // }
-
     public function tollhistori(Request $request)
     {
         $title = 'MUN | Toll Histori';
@@ -461,6 +460,10 @@ class ActivityController extends Controller
                 // ->orWhere('status', '=', 'rejected')
                 ->latest()
                 ->paginate($pagination);
+        }
+
+        foreach ($histori as $c) {
+            $c->tanggal = Carbon::parse($c->tanggal)->format('d F Y');
         }
 
         return view('pages.activity.subpages.histori.histori', [
@@ -499,13 +502,12 @@ class ActivityController extends Controller
             $nontollhistori = DB::table('activities')
                 ->where('kategori_activity', 'NonToll')
                 ->whereIn('status', ['approve', 'rejected'])
-                // ->where([
-                //     ['kategori_activity', '=', 'NonToll'],
-                //     ['status', '=', 'approve'],
-                // ])
-                // ->orWhere('status', '=', 'rejected')
                 ->latest()
                 ->paginate($pagination);
+        }
+
+        foreach ($nontollhistori as $c) {
+            $c->tanggal = Carbon::parse($c->tanggal)->format('d F Y');
         }
 
         return view('pages.activity.subpages.histori.nontollhistori', [
@@ -546,6 +548,10 @@ class ActivityController extends Controller
                 ->whereIn('status', ['approve', 'rejected'])
                 ->latest()
                 ->paginate($pagination);
+        }
+
+        foreach ($pengembangan as $c) {
+            $c->tanggal = Carbon::parse($c->tanggal)->format('d F Y');
         }
 
         return view('pages.activity.subpages.histori.pengembanganhistori', [
