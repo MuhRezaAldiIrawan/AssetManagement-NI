@@ -12,16 +12,12 @@
             <div class="row gy-3 m-1">
                 <div class="col-md-6 d-flex align-items-end">
                     <div class="demo-inline-spacing ">
-                        <h4 class="m-0">List Barang</h4>
+                        <h4 class="m-0">Log Activity Barang</h4>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="demo-inline-spacing">
                         <div class="d-flex justify-content-end">
-                            <button type="button" class="btn btn-icon btn-primary m-1" d data-bs-toggle="modal"
-                                data-bs-target="#modalCenter">
-                                <span class="tf-icons bx bx-plus"></span>
-                            </button>
                             <button type="button" class="btn btn-icon btn-secondary m-1">
                                 <span class="tf-icons bx bx-printer"></span>
                             </button>
@@ -58,12 +54,17 @@
                         </tbody>
                         @endforeach                     
                     </table>
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            {{ $logbarang->links() }}
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Add Data Barang -->
+    {{-- <!-- Add Data Barang -->
     <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
@@ -108,5 +109,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 @endsection

@@ -18,6 +18,7 @@ class BarangController extends Controller
         $pagination = 10;
         $listbarang = DB::table('barangs')->paginate($pagination);
 
+
         return view('pages.barang.listbarang', ['listbarang' => $listbarang], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
     }
 
@@ -44,6 +45,9 @@ class BarangController extends Controller
         $title = 'MUN | Log Activity Barang';
         $pagination = 10;
         $logbarang = DB::table('log_activity_barangs')->paginate($pagination);
+        foreach ($logbarang as $barang) {
+            $barang->tanggal = Carbon::parse($barang->tanggal)->format('d F Y');
+        }
 
         return view('pages.barang.logbarang', ['logbarang' => $logbarang], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
     }
@@ -82,20 +86,39 @@ class BarangController extends Controller
 
     public function import_excel(Request $request)
     {
-        // validasi
-        $this->validate($request, [
-            'file' => 'required|mimes:csv,xls,xlsx'
-        ]);
-
         $file = $request->file('file');
+        $data = Excel::toArray([], $file);
 
-        $nama_file = rand() . $file->getClientOriginalName();
+        if (count($data) > 0) {
+            foreach ($data[0] as $key => $row) {
+                if ($key == 0) continue;
 
-        $file->move('file_import', $nama_file);
+                // validate each column value
+                if (!isset($row[1]) || !isset($row[2]) || !isset($row[3]) || !isset($row[4])) {
+                    // handle missing column value
+                    continue;
+                }
+                $nama_equipment = $row[1];
+                $unit = $row[2];
+                $merk = $row[3];
+                $stock_baru = $row[4];
 
-        Excel::import(new BarangImport, public_path('/file_import/' . $nama_file));
+                $product = DB::table('barangs')
+                    ->where('nama_equipment', $nama_equipment)
+                    ->where('unit', $unit)
+                    ->first();
 
-        Alert::success('Success', 'Data Excel telah berhasil di Import');
-        return redirect('/listbarang');
+                if ($product) {
+                    // jika nama_equipmen dan unit sudah ada di database, tambahkan stok baru
+                    $product->stock += $stock_baru;
+                    DB::table('barangs')->where('id', $product->id)->update(['unit' => $unit, 'merk' => $merk, 'stock' => $product->stock]);
+                } else {
+                    // jika nama_equipmen dan unit belum ada di database, insert data baru
+                    DB::table('barangs')->insert(['nama_equipment' => $nama_equipment, 'unit' => $unit, 'merk' => $merk, 'stock' => $stock_baru]);
+                }
+            }
+        }
+
+        return redirect()->back()->with('success', 'Data berhasil diimport.');
     }
 }
