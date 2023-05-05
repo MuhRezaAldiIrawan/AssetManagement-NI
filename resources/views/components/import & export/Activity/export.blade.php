@@ -30,15 +30,16 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <form action="/toll/exportdate" method="get">
                     <div class="row g-2">
                         <div class="col mb-0">
-                            <label for="startdate" class="form-label">Start Date</label>
-                            <input type="date" id="startdate" name="startdate" class="form-control"
+                            <label for="from_date" class="form-label">Start Date</label>
+                            <input type="date" id="from_date" name="from_date" class="form-control"
                                 placeholder="Tanggal Mulai" />
                         </div>
                         <div class="col mb-0">
-                            <label for="enddate" class="form-label">End Date</label>
-                            <input type="date" id="enddate" name="enddate" class="form-control"
+                            <label for="to_date" class="form-label">End Date</label>
+                            <input type="date" id="to_date" name="to_date" class="form-control"
                                 placeholder="Tanggal Berakhir" />
                         </div>
                     </div>
@@ -47,8 +48,8 @@
                             Close
                         </button>
                         <button type="submit" class="btn btn-primary">Export to Excel</button>
-
                     </div>
+                </form>
                 </div>
             </div>
         </div>

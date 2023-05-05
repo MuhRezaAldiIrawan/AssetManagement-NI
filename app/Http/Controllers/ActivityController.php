@@ -11,6 +11,7 @@ use Illuminate\Support\Carbon;
 use App\Imports\ActivityImport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ActivityExport;
+use App\Exports\ActivityExportAll;
 
 
 
@@ -27,7 +28,7 @@ class ActivityController extends Controller
         $lokasi = Lokasi::all();
         $kategori = Kategori::all();
         $selected_value = $request->lokasi;
-      
+
 
 
 
@@ -657,10 +658,19 @@ class ActivityController extends Controller
     }
 
     public function export_excel()
-	{
-		return Excel::download(new ActivityExport, 'Activity.xlsx');
-	}
+    {
+        Alert::success('Success', 'Data Excel Berhasil di Download');
+        return Excel::download(new ActivityExportAll, 'Activity.xlsx');
+    }
 
 
-    
+    public function exportData(Request $request)
+    {
+        $fromDate = $request->input('from_date');
+        $toDate = $request->input('to_date');
+
+        $data = Activity::whereBetween('tanggal', [$fromDate, $toDate])->get();
+
+        return Excel::download(new ActivityExport($data), 'data.xlsx');
+    }
 }

@@ -90,7 +90,7 @@ Route::group(['middleware' => ['auth', 'CekRole:superadmin,user,atasan it,it']],
     Route::get('/toll/export_excel', 'App\Http\Controllers\ActivityController@export_excel');
     Route::post('/listbarang/import_excel', 'App\Http\Controllers\BarangController@import_excel');
     Route::get('/listbarang/export_excel', 'App\Http\Controllers\BarangController@export_excel');
-
+    Route::get('/toll/exportdate', 'App\Http\Controllers\ActivityController@exportData');
 
 });
 
