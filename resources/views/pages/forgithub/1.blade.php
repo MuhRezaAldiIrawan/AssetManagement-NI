@@ -19,3 +19,4 @@ delapanbelas
 sembilan belas
 dua puluh
 dua satu
+dua dua
