@@ -18,3 +18,4 @@ tujuhbelas
 delapanbelas
 sembilan belas
 dua puluh
+dua satu

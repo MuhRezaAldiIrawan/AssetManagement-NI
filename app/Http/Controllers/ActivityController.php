@@ -659,7 +659,6 @@ class ActivityController extends Controller
 
     public function export_excel()
     {
-        Alert::success('Success', 'Data Excel Berhasil di Download');
         return Excel::download(new ActivityExportAll, 'Activity.xlsx');
     }
 
