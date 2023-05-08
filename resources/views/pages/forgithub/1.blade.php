@@ -26,3 +26,4 @@ dua lima
 dua enam
 dua tujuh
 dua delapan
+dua sembilan
