@@ -24,3 +24,5 @@ dua tiga
 dua empat'
 dua lima
 dua enam
+dua tujuh
+dua delapan
