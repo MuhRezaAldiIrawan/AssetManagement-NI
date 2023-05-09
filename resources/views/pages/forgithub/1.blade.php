@@ -20,7 +20,3 @@ sembilan belas
 dua puluh
 dua satu
 dua dua
-dua tiga
-dua empat'
-dua lima
-dua enam
