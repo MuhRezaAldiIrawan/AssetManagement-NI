@@ -20,6 +20,13 @@
             </a>
         </li>
 
+        <li class="menu-item {{ request()->is('scheadule') ? 'active' : '' }}">
+            <a href="/scheadule" class="menu-link">
+                <i class="menu-icon tf-icons bx bxs-calendar"></i>
+                <div data-i18n="Analytics">Scheadule</div>
+            </a>
+        </li>
+
         <li class="menu-header small text-uppercase"><span class="menu-header-text">Activity </span></li>
 
         <li class="menu-item {{ request()->is(['toll'],['tollhistori']) ? 'active' : '' }}">

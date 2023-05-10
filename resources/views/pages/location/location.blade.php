@@ -19,9 +19,7 @@
                             <button type="button" class="btn btn-icon btn-primary m-1" data-bs-toggle="modal"
                                 data-bs-target="#basicModal">
                                 <span class="tf-icons bx bx-plus"></span>
-                            </button>
-           
-           
+                            </button>          
                         </div>
                     </div>
                 </div>

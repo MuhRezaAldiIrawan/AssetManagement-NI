@@ -26,6 +26,7 @@ Route::group(['middleware' => ['auth', 'CekRole:superadmin,user,atasan it,it']],
 
     // Main Route
     Route::get('/dashboard', 'App\Http\Controllers\pages@index');
+    Route::get('/scheadule', 'App\Http\Controllers\ScheaduleController@scheadule');
     Route::get('/toll', 'App\Http\Controllers\ActivityController@toll');
     Route::get('/nontoll', 'App\Http\Controllers\ActivityController@nontoll');
     Route::get('/pengembangan', 'App\Http\Controllers\ActivityController@pengembangan');
@@ -33,6 +34,8 @@ Route::group(['middleware' => ['auth', 'CekRole:superadmin,user,atasan it,it']],
     Route::get('/kategori', 'App\Http\Controllers\KategoriController@kategori');
     Route::get('/users', 'App\Http\Controllers\UsersController@users');
     Route::get('/allusers', 'App\Http\Controllers\UsersController@allusers');
+
+
 
     //Location
     Route::post('/location', 'App\Http\Controllers\LocationController@addlocation');
