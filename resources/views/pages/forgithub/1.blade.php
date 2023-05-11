@@ -1,4 +1,2 @@
+
 test
-dua
-tiga
-empat
