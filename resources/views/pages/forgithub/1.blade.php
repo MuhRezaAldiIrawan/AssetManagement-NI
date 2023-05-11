@@ -5,7 +5,3 @@ empat
 lima
 enam
 tujuh
-limabelas
-enambelas
-tujuhbelas
-delapanbelas
