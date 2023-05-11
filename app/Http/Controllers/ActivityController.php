@@ -467,7 +467,7 @@ class ActivityController extends Controller
             $c->tanggal = Carbon::parse($c->tanggal)->format('d F Y');
         }
 
-        return view('pages.activity.subpages.histori.histori', [
+        return view('pages.activity.subpages.on-proggress.toll', [
             'histori' => $histori,
             'lokasi' => $lokasi,
             'selected_value' => $selected_value
@@ -511,7 +511,7 @@ class ActivityController extends Controller
             $c->tanggal = Carbon::parse($c->tanggal)->format('d F Y');
         }
 
-        return view('pages.activity.subpages.histori.nontollhistori', [
+        return view('pages.activity.subpages.on-proggress.nontoll', [
             'nontollhistori' => $nontollhistori,
             'lokasi' => $lokasi,
             'selected_value' => $selected_value
@@ -555,7 +555,7 @@ class ActivityController extends Controller
             $c->tanggal = Carbon::parse($c->tanggal)->format('d F Y');
         }
 
-        return view('pages.activity.subpages.histori.pengembanganhistori', [
+        return view('pages.activity.subpages.on-proggress.pengembangan', [
             'pengembangan' => $pengembangan,
             'lokasi' => $lokasi,
             'selected_value' => $selected_value
@@ -570,7 +570,7 @@ class ActivityController extends Controller
 
         $activitydetail = Activity::with('user')->where('id', '=', $id)->get();
 
-        return view('pages.activity.subpages.print.detailprint', ['activitydetail' => $activitydetail, 'date' => $date], compact('title'));
+        return view('components.print.detailprint', ['activitydetail' => $activitydetail, 'date' => $date], compact('title'));
 
         // return view('pages.location.printlocation');
 
@@ -584,7 +584,7 @@ class ActivityController extends Controller
 
         $activitydetailpengembangan = Activity::with('user')->where('id', '=', $id)->get();
 
-        return view('pages.activity.subpages.print.pengembanganprint', ['activitydetailpengembangan' => $activitydetailpengembangan, 'date' => $date], compact('title'));
+        return view('components.print.pengembanganprint', ['activitydetailpengembangan' => $activitydetailpengembangan, 'date' => $date], compact('title'));
     }
 
     public function print_activity_toll($startdate, $enddate)
@@ -600,7 +600,7 @@ class ActivityController extends Controller
             ->get();
 
 
-        return view('pages.activity.subpages.print.activityprint', ['printactivity' => $printactivity, 'date' => $date], compact('title'));
+        return view('components.print.activityprint', ['printactivity' => $printactivity, 'date' => $date], compact('title'));
     }
 
     public function print_activity_nontoll($startdate, $enddate)
@@ -616,7 +616,7 @@ class ActivityController extends Controller
             ->get();
 
 
-        return view('pages.activity.subpages.print.activityprint', ['printactivity' => $printactivity, 'date' => $date], compact('title'));
+        return view('components.print.activityprint', ['printactivity' => $printactivity, 'date' => $date], compact('title'));
     }
 
     public function print_activity_pengembangan($startdate, $enddate)
@@ -632,7 +632,7 @@ class ActivityController extends Controller
             ->get();
 
 
-        return view('pages.activity.subpages.print.activityprint', ['printactivity' => $printactivity, 'date' => $date], compact('title'));
+        return view('components.print.activityprint', ['printactivity' => $printactivity, 'date' => $date], compact('title'));
     }
 
     public function import_excel(Request $request)

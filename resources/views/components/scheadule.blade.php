@@ -374,11 +374,11 @@
             <td class="column28 style19 null style19" colspan="24"></td>
           </tr>
           <tr class="row9">
-            <td class="column4 style22 s style24" colspan="4">Januari</td>
-            <td class="column8 style22 s style25" colspan="4">Februari</td>
-            <td class="column12 style26 s style24" colspan="4">Maret</td>
-            <td class="column16 style22 s style24" colspan="4">April</td>
-            <td class="column20 style22 s style24" colspan="4">Mei</td>
+            <td class="column4 style22 s style28" colspan="4">Januari</td>
+            <td class="column8 style22 s style28" colspan="4">Februari</td>
+            <td class="column12 style26 s style28" colspan="4">Maret</td>
+            <td class="column16 style22 s style28" colspan="4">April</td>
+            <td class="column20 style22 s style28" colspan="4">Mei</td>
             <td class="column24 style22 s style28" colspan="4">Juni</td>
             <td class="column28 style29 s style31" colspan="4">Juli</td>
             <td class="column32 style29 s style31" colspan="4">Agustus</td>
@@ -1540,11 +1540,11 @@
             <td class="column28 style19 null style19" colspan="24"></td>
           </tr>
           <tr class="row34">
-            <td class="column4 style22 s style24" colspan="4">Januari</td>
-            <td class="column8 style22 s style25" colspan="4">Februari</td>
-            <td class="column12 style26 s style24" colspan="4">Maret</td>
-            <td class="column16 style22 s style24" colspan="4">April</td>
-            <td class="column20 style22 s style24" colspan="4">Mei</td>
+            <td class="column4 style22 s style28" colspan="4">Januari</td>
+            <td class="column8 style22 s style28" colspan="4">Februari</td>
+            <td class="column12 style26 s style28" colspan="4">Maret</td>
+            <td class="column16 style22 s style28" colspan="4">April</td>
+            <td class="column20 style22 s style28" colspan="4">Mei</td>
             <td class="column24 style22 s style28" colspan="4">Juni</td>
             <td class="column28 style29 s style31" colspan="4">Juli</td>
             <td class="column32 style29 s style31" colspan="4">Agustus</td>

@@ -42,7 +42,12 @@
                 </li>
                 <li class="menu-item {{ request()->is('tollhistori') ? 'active' : '' }}">
                     <a href="/tollhistori" class="menu-link">
-                        <div data-i18n="Without navbar">Log Histori</div>
+                        <div data-i18n="Without navbar"> On - Proggress</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ request()->is('toll-on-progress') ? 'active' : '' }}">
+                    <a href="/toll-on-progress" class="menu-link">
+                        <div data-i18n="Without menu">Histori</div>
                     </a>
                 </li>
             </ul>
@@ -60,7 +65,12 @@
                 </li>
                 <li class="menu-item {{ request()->is('nontollhistori') ? 'active' : '' }}">
                     <a href="/nontollhistori" class="menu-link">
-                        <div data-i18n="Without navbar">Log Histori</div>
+                        <div data-i18n="Without navbar">On - Proggress</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ request()->is('nontollhistori') ? 'active' : '' }}">
+                    <a href="/nontollhistori" class="menu-link">
+                        <div data-i18n="Without navbar">Histori</div>
                     </a>
                 </li>
             </ul>
@@ -78,7 +88,12 @@
                 </li>
                 <li class="menu-item  {{ request()->is('pengembanganhistori') ? 'active' : '' }}">
                     <a href="/pengembanganhistori" class="menu-link">
-                        <div data-i18n="Without navbar">Log Histori</div>
+                        <div data-i18n="Without navbar">On - Proggress</div>
+                    </a>
+                </li>
+                <li class="menu-item  {{ request()->is('pengembanganhistori') ? 'active' : '' }}">
+                    <a href="/pengembanganhistori" class="menu-link">
+                        <div data-i18n="Without navbar">Histori</div>
                     </a>
                 </li>
             </ul>
