@@ -26,7 +26,103 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class=" table-responsive text-nowrap mt-3">
+                <div class="col-xl-12">
+                    <h6 class="text-muted">Filled Tabs</h6>
+                    <div class="nav-align-top mb-4">
+                        <ul class="nav nav-tabs nav-fill" role="tablist">
+                            <li class="nav-item">
+                                <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab"
+                                    data-bs-target="#navs-justified-masuk" aria-controls="navs-justified-masuk"
+                                    aria-selected="true">
+                                    <i class="tf-icons bx bx-archive-in"></i> Masuk
+                                </button>
+                            </li>
+                            <li class="nav-item">
+                                <button type="button" class="nav-link" role="tab" data-bs-toggle="tab"
+                                    data-bs-target="#navs-justified-keluar" aria-controls="navs-justified-keluar"
+                                    aria-selected="false">
+                                    <i class="tf-icons bx bx-archive-out"></i> Keluar
+                                </button>
+                            </li>
+
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="navs-justified-masuk" role="tabpanel">
+                                <div class=" table-responsive text-nowrap mt-3">
+                                    <table class="table table-bordered table-striped  table-hover " width="1000px">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">No</th>
+                                                <th class="text-center">Tanggal</th>
+                                                <th class="text-center">Nama Equipment</th>
+                                                <th class="text-center">Merk</th>
+                                                <th class="text-center">Stock</th>
+                                                <th class="text-center">Activity</th>
+                                            </tr>
+                                        </thead>
+                                        @foreach ($logbarangmasuk as $lb)
+                                            @if ($lb->activity == 'masuk')
+                                                <tbody>
+                                                    <td>{{ ++$i_masuk }}</td>
+                                                    <td>{{ $lb->tanggal }}</td>
+                                                    <td>{{ $lb->nama_equipment }}</td>
+                                                    <td>{{ $lb->merk }}</td>
+                                                    <td>{{ $lb->stock }}</td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-success active">Masuk</button>
+                                                    </td>
+                                                </tbody>
+                                            @endif
+                                        @endforeach
+                                    </table>
+
+                                    <nav aria-label="Page navigation">
+                                        <ul class="pagination">
+                                            {{ $logbarangmasuk->links() }}
+                                        </ul>
+                                    </nav>
+
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="navs-justified-keluar" role="tabpanel">
+                                <div class=" table-responsive text-nowrap mt-3">
+                                    <table class="table table-bordered table-striped  table-hover " width="1000px">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">No</th>
+                                                <th class="text-center">Tanggal</th>
+                                                <th class="text-center">Nama Equipment</th>
+                                                <th class="text-center">Merk</th>
+                                                <th class="text-center">Stock</th>
+                                                <th class="text-center">Activity</th>
+                                            </tr>
+                                        </thead>
+                                        @foreach ($logbarangkeluar as $lb)
+                                            @if ($lb->activity == 'keluar')
+                                                <tbody>
+                                                    <td>{{ ++$i_keluar }}</td>
+                                                    <td>{{ $lb->tanggal }}</td>
+                                                    <td>{{ $lb->nama_equipment }}</td>
+                                                    <td>{{ $lb->merk }}</td>
+                                                    <td>{{ $lb->stock }}</td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-danger active">Keluar</button>
+                                                    </td>
+                                                </tbody>
+                                            @endif
+                                        @endforeach
+                                    </table>
+                                    <nav aria-label="Page navigation">
+                                        <ul class="pagination">
+                                            {{ $logbarangkeluar->links() }}
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{-- <div class=" table-responsive text-nowrap mt-3">
                     <table class="table table-bordered table-striped  table-hover " width="1000px">
                         <thead>
                             <tr>
@@ -59,7 +155,7 @@
                             {{ $logbarang->links() }}
                         </ul>
                     </nav>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

@@ -12,7 +12,7 @@
             <div class="row gy-3 m-1">
                 <div class="col-md-6 d-flex align-items-end">
                     <div class="demo-inline-spacing ">
-                        <h4 class="m-0">Histori Activity</h4>
+                        <h4 class="m-0">Proggress Activity</h4>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -74,9 +74,11 @@
                                 <td>{{ $t->user->nama }}</td>
                                 <td>
                                     @if ($t->status == 'approve')
-                                        <button type="button" class="btn btn-success active">Approve</button>
+                                        <button type="button" class="btn btn-success active">Open</button>
+                                    @elseif ($t->status == 'proses')
+                                        <button type="button" class="btn btn-success active">Proses</button>
                                     @else
-                                        <button type="button" class="btn btn-danger active">rejected</button>
+                                        <button type="button" class="btn btn-danger active">Rejected</button>
                                     @endif
                                 </td>
                                 <td>
@@ -84,10 +86,15 @@
                                         data-bs-target="#basicModalView{{ $t->id }}" aria-expanded="false"
                                         aria-controls="multiCollapseExample2"> <span class="tf-icons bx bx-qr-scan"></span>
                                     </button>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    <a href="/detailproggress/{{ $t->id }}">
+                                        <button type="button" class="btn btn-primary m-1">
+                                            <span class="tf-icons bx bx-detail"></span>&nbsp; Detail
+                                        </button>
+                                    </a>
+                                    {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#basicModalDetail{{ $t->id }}">
                                         <span class="tf-icons bx bx-detail"></span>&nbsp; Details
-                                    </button>
+                                    </button> --}}
                                     <a href="/print_detail/{{ $t->id }}" target="_blank">
                                         <button type="button" class="btn btn-secondary m-1">
                                             <span class="tf-icons bx bx-printer"></span>&nbsp; Print
@@ -120,7 +127,7 @@
                                     </div>
 
                                     <!-- Detail Modal -->
-                                    <div class="modal fade" id="basicModalDetail{{ $t->id }}" tabindex="-1"
+                                    {{-- <div class="modal fade" id="basicModalDetail{{ $t->id }}" tabindex="-1"
                                         aria-hidden="true">
                                         <div class="modal-dialog modal-xl" role="document">
                                             <div class="modal-content">
@@ -266,13 +273,18 @@
                                                                     </div>
                                                                 </div>
                                                             </tbody>
-
                                                         </table>
+                                                        <div class="d-flex justify-content-end">
+                                                            <button type="button" class="btn btn-primary">
+                                                                <span class="tf-icons bx bx-start"></span>&nbsp; Start
+                                                            </button>
+                                                        </div>
                                                     </div>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </td>
                             </tbody>
                         @endforeach

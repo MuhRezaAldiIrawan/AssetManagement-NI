@@ -15,7 +15,7 @@ class CreateLogActivityBarangsTable extends Migration
     {
         Schema::create('log_activity_barangs', function (Blueprint $table) {
             $table->id();
-            $table->date('tanggal');
+            $table->dateTime('tanggal');
             $table->string('nama_equipment');
             $table->string('unit');
             $table->string('merk');

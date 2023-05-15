@@ -44,13 +44,21 @@ class BarangController extends Controller
     public function logbarang(Request $request)
     {
         $title = 'MUN | Log Activity Barang';
-        $pagination = 10;
-        $logbarang = DB::table('log_activity_barangs')->latest()->paginate($pagination);
-        foreach ($logbarang as $barang) {
+        $pagination1 = 10;
+        $pagination2 = 10;
+        $logbarangmasuk = DB::table('log_activity_barangs')->where('activity', 'masuk')->latest('tanggal')->paginate($pagination1);
+        $logbarangkeluar = DB::table('log_activity_barangs')->where('activity', 'keluar')->latest('tanggal')->paginate($pagination2);
+
+        foreach ($logbarangmasuk as $barang) {
             $barang->tanggal = Carbon::parse($barang->tanggal)->format('d F Y');
         }
 
-        return view('pages.barang.logbarang', ['logbarang' => $logbarang], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
+        foreach ($logbarangkeluar as $barang) {
+            $barang->tanggal = Carbon::parse($barang->tanggal)->format('d F Y');
+        }
+
+
+        return view('pages.barang.logbarang', ['logbarangmasuk' => $logbarangmasuk, 'logbarangkeluar' => $logbarangkeluar], compact('title'))->with('i_masuk', ($request->input('page', 1) - 1) *  $pagination1)->with('i_keluar', ($request->input('page', 1) - 1) *  $pagination2);
     }
 
     public function updatestock(Request $request, $id)

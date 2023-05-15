@@ -73,7 +73,6 @@ class ActivityController extends Controller
         ], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
     }
 
-
     public function addtollactivity(Request $request)
     {
 
@@ -431,8 +430,8 @@ class ActivityController extends Controller
 
     public function tollhistori(Request $request)
     {
-        $title = 'MUN | Toll Histori';
-        $subtitle = 'Log Histori Toll';
+        $title = 'MUN | Toll Proggress Activity';
+        $subtitle = 'Log Proggress Job Toll';
         $pagination = 10;
         $lokasi = Lokasi::all();
         $selected_value = $request->lokasi;
@@ -441,7 +440,7 @@ class ActivityController extends Controller
             $histori = Activity::with('user')
                 ->where(function ($query) use ($request, $selected_value) {
                     $query->where('kategori_activity', 'Toll')
-                        ->whereIn('status', ['approve', 'rejected']);
+                        ->whereIn('status', ['approve', 'rejected', 'proses']);
                     if ($request->has('search')) {
                         $query->where('lokasi', 'like', '%' . $request->search . '%');
                         session()->put('selected_value', null);
@@ -457,7 +456,7 @@ class ActivityController extends Controller
         } else {
             $histori = Activity::with('user')
                 ->where('kategori_activity', 'Toll')
-                ->whereIn('status', ['approve', 'rejected'])
+                ->whereIn('status', ['approve', 'rejected', 'proses'])
                 // ->orWhere('status', '=', 'rejected')
                 ->latest()
                 ->paginate($pagination);
@@ -473,6 +472,7 @@ class ActivityController extends Controller
             'selected_value' => $selected_value
         ], compact('title', 'subtitle'))->with('i', ($request->input('page', 1) - 1) * $pagination);
     }
+
 
     public function nontollhistori(Request $request)
     {
@@ -562,6 +562,30 @@ class ActivityController extends Controller
         ], compact('title', 'subtitle'))->with('i', ($request->input('page', 1) - 1) * $pagination);
     }
 
+    public function detailproggress(Request $request, $id)
+    {
+        $title = 'Print Page';
+
+        $date = Carbon::now();
+
+        $activitydetail = Activity::with('user')->where('id', '=', $id)->get();
+
+        return view('pages.activity.subpages.on-proggress.detailproggress', ['activitydetail' => $activitydetail, 'date' => $date], compact('title'));
+
+        // return view('pages.location.printlocation');
+
+    }
+
+    public function startjob(Request $request, $id)
+    {
+        DB::table('activities')->where('id', $request->id)->update([
+            'status' => $request->status,
+        ]);
+    
+        return redirect('/toll');
+
+    }
+
     public function print_detail(Request $request, $id)
     {
         $title = 'Print Page';
@@ -575,6 +599,7 @@ class ActivityController extends Controller
         // return view('pages.location.printlocation');
 
     }
+    
 
     public function print_detail_pengembangan(Request $request, $id)
     {
@@ -661,7 +686,6 @@ class ActivityController extends Controller
     {
         return Excel::download(new ActivityExportAll, 'Activity.xlsx');
     }
-
 
     public function exportData(Request $request)
     {

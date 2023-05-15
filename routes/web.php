@@ -70,6 +70,9 @@ Route::group(['middleware' => ['auth', 'CekRole:superadmin,user,atasan it,it']],
     Route::post('/activitydetail/atasanitrejected/{id}', 'App\Http\Controllers\ActivityController@rejected_atasanit');
     Route::post('/activitydetail/pengecekanitrejected/{id}', 'App\Http\Controllers\ActivityController@rejected_pengecekanit');
 
+    Route::get('/detailproggress/{id}', 'App\Http\Controllers\ActivityController@detailproggress');
+    Route::post('/startjob/{id}', 'App\Http\Controllers\ActivityController@startjob');
+
     //Print 
     Route::get('/print_location', 'App\Http\Controllers\LocationController@print_location');
     Route::get('/print_kategori', 'App\Http\Controllers\KategoriController@print_kategori');
@@ -94,6 +97,7 @@ Route::group(['middleware' => ['auth', 'CekRole:superadmin,user,atasan it,it']],
     Route::post('/listbarang/import_excel', 'App\Http\Controllers\BarangController@import_excel');
     Route::get('/listbarang/export_excel', 'App\Http\Controllers\BarangController@export_excel');
     Route::get('/toll/exportdate', 'App\Http\Controllers\ActivityController@exportData');
+
 
 });
 
