@@ -6,3 +6,4 @@ lima
 enam
 tujuh
 delapan
+sembilan
