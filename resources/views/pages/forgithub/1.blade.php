@@ -7,3 +7,4 @@ enam
 tujuh
 delapan
 sembilan
+sepuluh
