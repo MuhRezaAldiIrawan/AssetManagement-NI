@@ -8,3 +8,4 @@ tujuh
 delapan
 sembilan
 sepuluh
+sebelas
