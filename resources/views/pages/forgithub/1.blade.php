@@ -3,8 +3,3 @@ dua
 tiga
 empat
 lima
-enam
-tujuh
-delapan
-
-dua belas
