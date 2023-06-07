@@ -1,2 +1,0 @@
-satu
-duya
