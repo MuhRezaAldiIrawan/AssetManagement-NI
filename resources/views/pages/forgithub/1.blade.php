@@ -1,2 +1,0 @@
-SATU
-duas
