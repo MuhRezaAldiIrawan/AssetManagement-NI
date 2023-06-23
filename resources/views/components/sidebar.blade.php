@@ -40,13 +40,13 @@
                         <div data-i18n="Without menu">Log Toll</div>
                     </a>
                 </li>
-                <li class="menu-item {{ request()->is('tollhistori') ? 'active' : '' }}">
-                    <a href="/tollhistori" class="menu-link">
+                <li class="menu-item {{ request()->is('toll-on-proggess') ? 'active' : '' }}">
+                    <a href="/toll-on-proggess" class="menu-link">
                         <div data-i18n="Without navbar"> On - Proggress</div>
                     </a>
                 </li>
-                <li class="menu-item {{ request()->is('toll-on-progress') ? 'active' : '' }}">
-                    <a href="/toll-on-progress" class="menu-link">
+                <li class="menu-item {{ request()->is('tollhistori') ? 'active' : '' }}">
+                    <a href="/tollhistori" class="menu-link">
                         <div data-i18n="Without menu">Histori</div>
                     </a>
                 </li>
@@ -68,8 +68,8 @@
                         <div data-i18n="Without navbar">On - Proggress</div>
                     </a>
                 </li>
-                <li class="menu-item {{ request()->is('nontollhistori') ? 'active' : '' }}">
-                    <a href="/nontollhistori" class="menu-link">
+                <li class="menu-item {{ request()->is('nontoll-on-progress') ? 'active' : '' }}">
+                    <a href="/nontoll-on-progress" class="menu-link">
                         <div data-i18n="Without navbar">Histori</div>
                     </a>
                 </li>
@@ -86,7 +86,7 @@
                         <div data-i18n="Without menu">Log Pengembangan</div>
                     </a>
                 </li>
-                <li class="menu-item  {{ request()->is('pengembanganhistori') ? 'active' : '' }}">
+                <li class="menu-item  {{ request()->is('pengembangan-on-progress') ? 'active' : '' }}">
                     <a href="/pengembanganhistori" class="menu-link">
                         <div data-i18n="Without navbar">On - Proggress</div>
                     </a>

@@ -340,7 +340,7 @@
             <td class="column45 style15 null style15" colspan="7"></td>
           </tr>
           <tr class="row4">
-            <td class="column0 style48 s style50" colspan="52">Tahun : 2022</td>
+            <td class="column0 style48 s style50" colspan="52">Tahun : {{ date('Y') }}</td>
           </tr>
           <tr class="row7">
             <td class="column0 style16 s style18" colspan="52">HADWARE DAN SOFWARE PERALATAN TOL</td>

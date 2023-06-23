@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="col-xl-12">
+                {{-- <div class="col-xl-12">
                     <h6 class="text-muted">Filled Tabs</h6>
                     <div class="nav-align-top mb-4">
                         <ul class="nav nav-tabs nav-fill" role="tablist">
@@ -121,8 +121,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                {{-- <div class=" table-responsive text-nowrap mt-3">
+                </div> --}}
+                <div class=" table-responsive text-nowrap mt-3">
                     <table class="table table-bordered table-striped  table-hover " width="1000px">
                         <thead>
                             <tr>
@@ -155,7 +155,7 @@
                             {{ $logbarang->links() }}
                         </ul>
                     </nav>
-                </div> --}}
+                </div>
             </div>
         </div>
     </div>

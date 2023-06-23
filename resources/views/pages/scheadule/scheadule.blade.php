@@ -6,7 +6,7 @@
 {{-- Content --}}
 @section('content')
 <div class="col-lg-12 mb-4 order-0">
-    <div class="card mb-4">
+    {{-- <div class="card mb-4">
         <h5 class="card-header">Bootstrap Toasts Example With Placement</h5>
         <div class="card-body">
           <div class="row gx-3 gy-2 align-items-center">
@@ -42,7 +42,7 @@
             </div>
           </div>
         </div>
-      </div>
+    </div> --}}
     <div class="card">
         <div class="row gy-3 m-1">
             <div class="col-md-6 d-flex align-items-end">

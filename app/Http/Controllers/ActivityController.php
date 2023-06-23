@@ -62,9 +62,6 @@ class ActivityController extends Controller
             $c->tanggal = Carbon::parse($c->tanggal)->format('d F Y');
         }
 
-
-
-
         return view('pages.activity.toll', [
             'toll' => $toll,
             'lokasi' => $lokasi,
@@ -335,8 +332,6 @@ class ActivityController extends Controller
             $activity->status = 'pending';
         }
 
-
-
         $activity->save();
 
         return redirect('/toll');
@@ -428,7 +423,7 @@ class ActivityController extends Controller
         return redirect('/toll');
     }
 
-    public function tollhistori(Request $request)
+    public function toll_on_proggess(Request $request)
     {
         $title = 'MUN | Toll Proggress Activity';
         $subtitle = 'Log Proggress Job Toll';
@@ -440,7 +435,7 @@ class ActivityController extends Controller
             $histori = Activity::with('user')
                 ->where(function ($query) use ($request, $selected_value) {
                     $query->where('kategori_activity', 'Toll')
-                        ->whereIn('status', ['approve', 'rejected', 'proses']);
+                        ->whereIn('status', ['approve', 'open', 'proses']);
                     if ($request->has('search')) {
                         $query->where('lokasi', 'like', '%' . $request->search . '%');
                         session()->put('selected_value', null);
@@ -456,7 +451,7 @@ class ActivityController extends Controller
         } else {
             $histori = Activity::with('user')
                 ->where('kategori_activity', 'Toll')
-                ->whereIn('status', ['approve', 'rejected', 'proses'])
+                ->whereIn('status', ['approve', 'open', 'proses'])
                 // ->orWhere('status', '=', 'rejected')
                 ->latest()
                 ->paginate($pagination);
@@ -471,6 +466,16 @@ class ActivityController extends Controller
             'lokasi' => $lokasi,
             'selected_value' => $selected_value
         ], compact('title', 'subtitle'))->with('i', ($request->input('page', 1) - 1) * $pagination);
+    }
+
+    public function tollhistori(Request $request)
+    {
+        $title = 'MUN | Toll Histori';
+        $pagination = 10;
+        $tollhistori = Activity::with('user')->where([['kategori_activity', 'Toll'], ['status','=','done']])->paginate($pagination);
+
+
+        return view('pages.activity.subpages.histori.toll', ['tollhistori' => $tollhistori], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
     }
 
 

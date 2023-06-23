@@ -26,6 +26,7 @@ class pages extends Controller
     {
         $title = 'MUN | Dashboard';
 
+        
         $jumlahactivity = Activity::all()->where('status', '=', 'pending')->count();
 
         $mayor = Activity::all()->where('kategori_id', '=', 'Kerusakan Mayor')->count();

@@ -9,7 +9,7 @@
         <div class="card">
             <div class="card-body">
                 @foreach ($activitydetail as $i)
-                    @if ($i->status == 'open')
+                    @if ($i->status == 'approve')
                         <div class="d-flex justify-content-end">
                             <form action="/startjob/{{ $i->id }}" method="post">
                                 @csrf
