@@ -87,7 +87,7 @@
                     </a>
                 </li>
                 <li class="menu-item  {{ request()->is('pengembangan-on-progress') ? 'active' : '' }}">
-                    <a href="/pengembanganhistori" class="menu-link">
+                    <a href="/pengembangan-on-progress" class="menu-link">
                         <div data-i18n="Without navbar">On - Proggress</div>
                     </a>
                 </li>

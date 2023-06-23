@@ -6,7 +6,7 @@
 {{-- Content --}}
 @section('content')
     <div class="col-lg-12 mb-4 order-0">
-        <h5 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Barang/</span>List Barang<i
+        <h5 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Non Toll/</span>Histori<i
                 class='bx bx-list-ol m-1'></i></h5>
         <div class="card">
             <div class="row gy-3 m-1">

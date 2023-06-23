@@ -6,13 +6,13 @@
 {{-- Content --}}
 @section('content')
     <div class="col-lg-12 mb-4 order-0">
-        <h5 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Toll /</span>Histori<i
+        <h5 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Pengembangan/</span>Histori<i
                 class='bx bx-list-ol m-1'></i></h5>
         <div class="card">
             <div class="row gy-3 m-1">
                 <div class="col-md-6 d-flex align-items-end">
                     <div class="demo-inline-spacing ">
-                        <h4 class="m-0">List Barang</h4>
+                        <h4 class="m-0">Pengembangan Histori</h4>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -62,7 +62,7 @@
                                 <th class="text-center">user</th>
                             </tr>
                         </thead>
-                        @foreach ($tollhistori as $b)
+                        @foreach ($pengembanganhistori as $b)
                             <tbody>
                                 <td>{{ ++$i }}</td>
                                 <td>{{ $b->tanggal }}</td>
@@ -83,7 +83,7 @@
                     </table>
                     <nav aria-label="Page navigation">
                         <ul class="pagination">
-                            {{ $tollhistori->links() }}
+                            {{ $pengembanganhistori->links() }}
                         </ul>
                     </nav>
                 </div>

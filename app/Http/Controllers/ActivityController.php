@@ -533,10 +533,10 @@ class ActivityController extends Controller
         return view('pages.activity.subpages.histori.nontoll', ['nontollhistori' => $nontollhistori], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
     }
 
-    public function pengembanganhistori(Request $request)
+    public function pengembangan_on_progress(Request $request)
     {
-        $title = 'MUN | Pengembangan Histori';
-        $subtitle = 'Log Histori Pengembangan';
+        $title = 'MUN | Pengembangan On Proggress';
+        $subtitle = 'Log proggress Pengembangan';
         $pagination = 10;
         $lokasi = Lokasi::all();
         $selected_value = $request->lokasi;
@@ -575,6 +575,16 @@ class ActivityController extends Controller
             'lokasi' => $lokasi,
             'selected_value' => $selected_value
         ], compact('title', 'subtitle'))->with('i', ($request->input('page', 1) - 1) * $pagination);
+    }
+
+    public function pengembanganhistori(Request $request)
+    {
+        $title = 'MUN | Pengembangan Histori';
+        $pagination = 10;
+        $pengembanganhistori = Activity::with('user')->where([['kategori_activity', 'pengembangan'], ['status','=','done']])->paginate($pagination);
+
+
+        return view('pages.activity.subpages.histori.pengembangan', ['pengembanganhistori' => $pengembanganhistori], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
     }
 
     public function detailproggress(Request $request, $id)

@@ -70,7 +70,7 @@
                                 <td>{{ $t->user_id }}</td>
                                 <td>
                                     @if ($t->status == 'approve')
-                                        <button type="button" class="btn btn-success active">Approve</button>
+                                        <button type="button" class="btn btn-success active">Open</button>
                                     @else
                                         <button type="button" class="btn btn-danger active">rejected</button>
                                     @endif
