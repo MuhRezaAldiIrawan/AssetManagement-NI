@@ -63,13 +63,13 @@
                         <div data-i18n="Without menu">Log Non Toll</div>
                     </a>
                 </li>
-                <li class="menu-item {{ request()->is('nontollhistori') ? 'active' : '' }}">
-                    <a href="/nontollhistori" class="menu-link">
+                <li class="menu-item {{ request()->is('nontoll-on-proggress') ? 'active' : '' }}">
+                    <a href="/nontoll-on-proggress" class="menu-link">
                         <div data-i18n="Without navbar">On - Proggress</div>
                     </a>
                 </li>
-                <li class="menu-item {{ request()->is('nontoll-on-progress') ? 'active' : '' }}">
-                    <a href="/nontoll-on-progress" class="menu-link">
+                <li class="menu-item {{ request()->is('nontollhistori') ? 'active' : '' }}">
+                    <a href="/nontollhistori" class="menu-link">
                         <div data-i18n="Without navbar">Histori</div>
                     </a>
                 </li>

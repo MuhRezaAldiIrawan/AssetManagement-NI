@@ -438,7 +438,7 @@ class ActivityController extends Controller
                         ->whereIn('status', ['approve', 'open', 'proses']);
                     if ($request->has('search')) {
                         $query->where('lokasi', 'like', '%' . $request->search . '%');
-                        session()->put('selected_value', null);
+                        session()->put('selectedtollhistori_value', null);
                     } else {
                         $query->where('lokasi', '=', $selected_value);
                         session()->put('selected_value', $selected_value);
@@ -479,9 +479,9 @@ class ActivityController extends Controller
     }
 
 
-    public function nontollhistori(Request $request)
+    public function nontoll_on_proggress(Request $request)
     {
-        $title = 'MUN | Toll Histori';
+        $title = 'MUN | Non Toll Proggress';
         $subtitle = 'Log Histori Non Toll';
         $pagination = 10;
         $lokasi = Lokasi::all();
@@ -521,6 +521,16 @@ class ActivityController extends Controller
             'lokasi' => $lokasi,
             'selected_value' => $selected_value
         ], compact('title', 'subtitle'))->with('i', ($request->input('page', 1) - 1) * $pagination);
+    }
+
+    public function nontollhistori(Request $request)
+    {
+        $title = 'MUN | Non Toll Histori';
+        $pagination = 10;
+        $nontollhistori = Activity::with('user')->where([['kategori_activity', 'NonToll'], ['status','=','done']])->paginate($pagination);
+
+
+        return view('pages.activity.subpages.histori.nontoll', ['nontollhistori' => $nontollhistori], compact('title'))->with('i', ($request->input('page', 1) - 1) *  $pagination);
     }
 
     public function pengembanganhistori(Request $request)

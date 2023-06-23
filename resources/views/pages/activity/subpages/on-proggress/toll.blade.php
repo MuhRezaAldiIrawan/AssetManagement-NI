@@ -28,8 +28,8 @@
             </div>
             <div class="card-body">
 
-                @if ('/tollhistori')
-                    <form action="/tollhistori" method="get">
+                @if ('/toll-on-proggess')
+                    <form action="/toll-on-proggess" method="get">
                         <div class="row g-2">
                             <div class="col mb-0">
                                 <select id="cari" name="search" class="form-select">

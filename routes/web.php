@@ -62,6 +62,7 @@ Route::group(['middleware' => ['auth', 'CekRole:superadmin,user,atasan it,it']],
     Route::post('/pengembangan', 'App\Http\Controllers\ActivityController@pengembanganactivity');
     Route::get('/toll-on-proggess', 'App\Http\Controllers\ActivityController@toll_on_proggess');
     Route::get('/tollhistori', 'App\Http\Controllers\ActivityController@tollhistori');
+    Route::get('/nontoll-on-proggress', 'App\Http\Controllers\ActivityController@nontoll_on_proggress');
     Route::get('/nontollhistori', 'App\Http\Controllers\ActivityController@nontollhistori');
     Route::get('/pengembanganhistori', 'App\Http\Controllers\ActivityController@pengembanganhistori');
     Route::get('/activitydetail/{id}', 'App\Http\Controllers\ActivityController@activitydetail');
